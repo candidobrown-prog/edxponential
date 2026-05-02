@@ -1,0 +1,44 @@
+{
+  "name": "CommunityPost",
+  "type": "object",
+  "properties": {
+    "community_id": {
+      "type": "string",
+      "description": "ID of the parent community"
+    },
+    "author_name": {
+      "type": "string",
+      "description": "Name of the author"
+    },
+    "author_email": {
+      "type": "string",
+      "description": "Email of the author"
+    },
+    "content": {
+      "type": "string",
+      "description": "Post content"
+    },
+    "post_type": {
+      "type": "string",
+      "enum": [
+        "discussion",
+        "question",
+        "resource",
+        "announcement"
+      ],
+      "default": "discussion"
+    },
+    "likes_count": {
+      "type": "number",
+      "default": 0
+    },
+    "replies_count": {
+      "type": "number",
+      "default": 0
+    }
+  },
+  "required": [
+    "community_id",
+    "content"
+  ]
+}

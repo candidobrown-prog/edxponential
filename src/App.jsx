@@ -5,7 +5,15 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import PageNotFound from './lib/PageNotFound';
 import { AuthProvider, useAuth } from '@/lib/AuthContext';
 import UserNotRegisteredError from '@/components/UserNotRegisteredError';
-// Add page imports here
+import AppLayout from './components/layout/AppLayout';
+import Dashboard from './pages/Dashboard';
+import Courses from './pages/Courses';
+import CourseDetail from './pages/CourseDetail';
+import Coaching from './pages/Coaching';
+import CoachingDetail from './pages/CoachingDetail';
+import Communities from './pages/Communities';
+import CommunityDetail from './pages/CommunityDetail';
+import Profile from './pages/Profile';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -33,7 +41,16 @@ const AuthenticatedApp = () => {
   // Render the main app
   return (
     <Routes>
-      {/* Add your page Route elements here */}
+      <Route element={<AppLayout />}>
+        <Route path="/" element={<Dashboard />} />
+        <Route path="/courses" element={<Courses />} />
+        <Route path="/courses/:id" element={<CourseDetail />} />
+        <Route path="/coaching" element={<Coaching />} />
+        <Route path="/coaching/:id" element={<CoachingDetail />} />
+        <Route path="/communities" element={<Communities />} />
+        <Route path="/communities/:id" element={<CommunityDetail />} />
+        <Route path="/profile" element={<Profile />} />
+      </Route>
       <Route path="*" element={<PageNotFound />} />
     </Routes>
   );

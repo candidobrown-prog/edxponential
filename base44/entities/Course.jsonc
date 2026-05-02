@@ -1,0 +1,108 @@
+{
+  "name": "Course",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Course title"
+    },
+    "description": {
+      "type": "string",
+      "description": "Detailed course description"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "leadership",
+        "operations",
+        "curriculum",
+        "finance",
+        "culture",
+        "innovation",
+        "governance",
+        "fundraising"
+      ],
+      "description": "Course category"
+    },
+    "level": {
+      "type": "string",
+      "enum": [
+        "foundational",
+        "intermediate",
+        "advanced",
+        "executive"
+      ],
+      "description": "Difficulty level"
+    },
+    "duration_weeks": {
+      "type": "number",
+      "description": "Course duration in weeks"
+    },
+    "cover_image": {
+      "type": "string",
+      "description": "Cover image URL"
+    },
+    "instructor_name": {
+      "type": "string",
+      "description": "Name of the instructor"
+    },
+    "instructor_title": {
+      "type": "string",
+      "description": "Instructor's professional title"
+    },
+    "instructor_avatar": {
+      "type": "string",
+      "description": "Instructor avatar URL"
+    },
+    "modules": {
+      "type": "array",
+      "description": "Course modules",
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "duration_minutes": {
+            "type": "number"
+          }
+        }
+      }
+    },
+    "max_enrollment": {
+      "type": "number",
+      "description": "Maximum number of enrollees"
+    },
+    "enrolled_count": {
+      "type": "number",
+      "default": 0,
+      "description": "Current enrollment count"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "published",
+        "archived"
+      ],
+      "default": "draft"
+    },
+    "price": {
+      "type": "number",
+      "description": "Course price in USD"
+    },
+    "start_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Course start date"
+    }
+  },
+  "required": [
+    "title",
+    "description",
+    "category"
+  ]
+}

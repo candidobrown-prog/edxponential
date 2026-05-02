@@ -1,0 +1,72 @@
+{
+  "name": "Community",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Community name"
+    },
+    "description": {
+      "type": "string",
+      "description": "Community description"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "charter_schools",
+        "public_schools",
+        "private_schools",
+        "higher_ed",
+        "edtech",
+        "policy",
+        "general"
+      ],
+      "description": "Community category"
+    },
+    "cover_image": {
+      "type": "string",
+      "description": "Cover image URL"
+    },
+    "member_count": {
+      "type": "number",
+      "default": 0,
+      "description": "Number of members"
+    },
+    "visibility": {
+      "type": "string",
+      "enum": [
+        "public",
+        "private",
+        "invite_only"
+      ],
+      "default": "public"
+    },
+    "moderator_name": {
+      "type": "string",
+      "description": "Moderator name"
+    },
+    "moderator_email": {
+      "type": "string",
+      "description": "Moderator email"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Community tags"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "archived"
+      ],
+      "default": "active"
+    }
+  },
+  "required": [
+    "name",
+    "description"
+  ]
+}

@@ -1,0 +1,92 @@
+{
+  "name": "CoachingSession",
+  "type": "object",
+  "properties": {
+    "coach_name": {
+      "type": "string",
+      "description": "Name of the coach"
+    },
+    "coach_title": {
+      "type": "string",
+      "description": "Coach's professional title"
+    },
+    "coach_avatar": {
+      "type": "string",
+      "description": "Coach avatar URL"
+    },
+    "coach_email": {
+      "type": "string",
+      "description": "Coach's email"
+    },
+    "specializations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Areas of expertise"
+    },
+    "bio": {
+      "type": "string",
+      "description": "Coach biography"
+    },
+    "session_type": {
+      "type": "string",
+      "enum": [
+        "one_on_one",
+        "group",
+        "consultation"
+      ],
+      "description": "Type of coaching session"
+    },
+    "duration_minutes": {
+      "type": "number",
+      "description": "Session duration"
+    },
+    "price": {
+      "type": "number",
+      "description": "Session price in USD"
+    },
+    "available_slots": {
+      "type": "array",
+      "description": "Available time slots",
+      "items": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "time": {
+            "type": "string"
+          },
+          "booked": {
+            "type": "boolean",
+            "default": false
+          }
+        }
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "paused",
+        "inactive"
+      ],
+      "default": "active"
+    },
+    "rating": {
+      "type": "number",
+      "description": "Average rating"
+    },
+    "total_sessions": {
+      "type": "number",
+      "default": 0,
+      "description": "Total sessions completed"
+    }
+  },
+  "required": [
+    "coach_name",
+    "session_type"
+  ]
+}
