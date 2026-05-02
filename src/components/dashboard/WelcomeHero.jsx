@@ -14,7 +14,7 @@ export default function WelcomeHero({ userName }) {
           {userName || 'Welcome back'}
         </h1>
         <p className="text-primary-foreground/70 text-base max-w-lg leading-relaxed">
-          Empowering education leaders to build transformative institutions. Your journey to exponential impact continues here.
+          Empowering education leaders to build transformative institutions. Your journey to edXponential impact continues here.
         </p>
       </div>
     </div>

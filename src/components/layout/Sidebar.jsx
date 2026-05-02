@@ -27,12 +27,11 @@ export default function Sidebar() {
       {/* Logo */}
       <div className="px-6 py-8 flex items-center gap-3">
         <div className="w-10 h-10 rounded-xl bg-secondary flex items-center justify-center flex-shrink-0">
-          <span className="text-secondary-foreground font-heading font-bold text-lg">E</span>
+          <span className="text-secondary-foreground font-heading font-bold text-lg">eX</span>
         </div>
         {!collapsed && (
           <div className="overflow-hidden">
-            <h1 className="font-heading text-lg font-semibold text-white tracking-tight">Exponential</h1>
-            <p className="text-xs text-sidebar-foreground/60">.org</p>
+            <h1 className="font-heading text-lg font-semibold text-white tracking-tight">edXponential</h1>
           </div>
         )}
       </div>
