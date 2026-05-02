@@ -1,0 +1,183 @@
+{
+  "name": "EdVestor",
+  "type": "object",
+  "properties": {
+    "user_email": {
+      "type": "string",
+      "description": "Linked user email"
+    },
+    "full_name": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string",
+      "description": "Title and firm"
+    },
+    "avatar_url": {
+      "type": "string"
+    },
+    "bio": {
+      "type": "string"
+    },
+    "thesis_statement": {
+      "type": "string",
+      "description": "AI-generated investor thesis"
+    },
+    "portfolio": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "stage": {
+            "type": "string"
+          },
+          "year": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "min_check_size": {
+      "type": "number"
+    },
+    "max_check_size": {
+      "type": "number"
+    },
+    "annual_deployment_target": {
+      "type": "number"
+    },
+    "preferred_stage": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "idea",
+          "launch",
+          "early_traction",
+          "growth",
+          "turnaround",
+          "acquisition"
+        ]
+      }
+    },
+    "preferred_investment_type": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "donation",
+          "grant",
+          "equity",
+          "revenue_share",
+          "loan",
+          "philanthropic",
+          "strategic_partnership"
+        ]
+      }
+    },
+    "preferred_education_focus": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "literacy",
+          "math",
+          "turnaround",
+          "charter",
+          "private",
+          "edtech",
+          "workforce",
+          "special_ed",
+          "leadership"
+        ]
+      }
+    },
+    "preferred_geography": {
+      "type": "string"
+    },
+    "risk_appetite": {
+      "type": "string",
+      "enum": [
+        "conservative",
+        "balanced",
+        "bold",
+        "transformational"
+      ]
+    },
+    "impact_priorities": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "reading_proficiency",
+          "math_proficiency",
+          "enrollment_growth",
+          "attendance",
+          "college_readiness",
+          "underserved",
+          "founder_diversity",
+          "innovation"
+        ]
+      }
+    },
+    "desired_involvement": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "passive_capital",
+          "advisory",
+          "board",
+          "strategic_partner",
+          "hands_on"
+        ]
+      }
+    },
+    "visibility": {
+      "type": "string",
+      "enum": [
+        "public",
+        "verified_only",
+        "private"
+      ],
+      "default": "verified_only"
+    },
+    "profile_complete": {
+      "type": "boolean",
+      "default": false
+    },
+    "total_invested": {
+      "type": "number"
+    },
+    "available_capital_range": {
+      "type": "string"
+    },
+    "contact_preference": {
+      "type": "string",
+      "enum": [
+        "platform_only",
+        "email",
+        "intro_required"
+      ],
+      "default": "intro_required"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "paused",
+        "pending_review"
+      ],
+      "default": "pending_review"
+    }
+  },
+  "required": [
+    "full_name"
+  ]
+}

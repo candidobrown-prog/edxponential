@@ -1,0 +1,91 @@
+{
+  "name": "MatchScore",
+  "type": "object",
+  "properties": {
+    "edvestor_email": {
+      "type": "string"
+    },
+    "deal_id": {
+      "type": "string"
+    },
+    "deal_title": {
+      "type": "string"
+    },
+    "founder_name": {
+      "type": "string"
+    },
+    "score": {
+      "type": "number",
+      "description": "0-100 match score"
+    },
+    "label": {
+      "type": "string",
+      "enum": [
+        "Exceptional Match",
+        "Strong Match",
+        "Good Match",
+        "Possible Fit",
+        "Low Fit"
+      ]
+    },
+    "capital_fit": {
+      "type": "number"
+    },
+    "stage_fit": {
+      "type": "number"
+    },
+    "sector_fit": {
+      "type": "number"
+    },
+    "impact_fit": {
+      "type": "number"
+    },
+    "geography_fit": {
+      "type": "number"
+    },
+    "risk_fit": {
+      "type": "number"
+    },
+    "involvement_fit": {
+      "type": "number"
+    },
+    "momentum_fit": {
+      "type": "number"
+    },
+    "explanation": {
+      "type": "string",
+      "description": "Plain-English match explanation"
+    },
+    "why_strong": {
+      "type": "string"
+    },
+    "review_first": {
+      "type": "string"
+    },
+    "potential_concerns": {
+      "type": "string"
+    },
+    "recommended_action": {
+      "type": "string"
+    },
+    "ai_insights": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "computed_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "is_visible": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "required": [
+    "edvestor_email",
+    "deal_id",
+    "score"
+  ]
+}

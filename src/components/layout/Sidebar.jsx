@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { LayoutDashboard, BookOpen, Users, User, ChevronLeft, ChevronRight, LogOut, Star, DollarSign, Briefcase, Layers, TrendingUp, CreditCard } from 'lucide-react';
+import { LayoutDashboard, BookOpen, Users, User, ChevronLeft, ChevronRight, LogOut, Star, DollarSign, Briefcase, Layers, TrendingUp, CreditCard, Sparkles, ShieldCheck } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
 import { cn } from '@/lib/utils';
 
@@ -11,8 +11,12 @@ const navItems = [
   { path: '/communities', icon: Users, label: 'Communities' },
   { path: '/edvestors', icon: DollarSign, label: 'edVestors' },
   { path: '/deal-room', icon: Briefcase, label: 'Deal Room' },
+  { path: '/matched-opportunities', icon: Sparkles, label: 'AI Matches' },
   { path: '/pipeline', icon: Layers, label: 'My Pipeline' },
   { path: '/founder-dashboard', icon: TrendingUp, label: 'Raise Capital' },
+  { path: '/matched-edvestors', icon: Users, label: 'Matched Investors' },
+  { path: '/investor-profile', icon: DollarSign, label: 'Investor Profile' },
+  { path: '/admin-match-control', icon: ShieldCheck, label: 'Match Control' },
   { path: '/pricing', icon: CreditCard, label: 'Pricing' },
   { path: '/profile', icon: User, label: 'Profile' },
 ];

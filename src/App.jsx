@@ -23,6 +23,10 @@ import Pricing from './pages/Pricing';
 import Communities from './pages/Communities';
 import CommunityDetail from './pages/CommunityDetail';
 import Profile from './pages/Profile';
+import InvestorProfile from './pages/InvestorProfile';
+import MatchedOpportunities from './pages/MatchedOpportunities';
+import MatchedEdVestors from './pages/MatchedEdVestors';
+import AdminMatchControl from './pages/AdminMatchControl';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -68,6 +72,10 @@ const AuthenticatedApp = () => {
         <Route path="/founder-dashboard" element={<FounderDashboard />} />
         <Route path="/pricing" element={<Pricing />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/investor-profile" element={<InvestorProfile />} />
+        <Route path="/matched-opportunities" element={<MatchedOpportunities />} />
+        <Route path="/matched-edvestors" element={<MatchedEdVestors />} />
+        <Route path="/admin-match-control" element={<AdminMatchControl />} />
       </Route>
       <Route path="*" element={<PageNotFound />} />
     </Routes>

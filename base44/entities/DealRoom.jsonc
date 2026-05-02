@@ -9,11 +9,16 @@
       "type": "string"
     },
     "founder_photo": {
-      "type": "string",
-      "description": "Avatar URL"
+      "type": "string"
     },
     "founder_background": {
       "type": "string"
+    },
+    "founder_track_record": {
+      "type": "string"
+    },
+    "years_operating": {
+      "type": "number"
     },
     "organization": {
       "type": "string"
@@ -22,12 +27,15 @@
       "type": "string"
     },
     "title": {
-      "type": "string",
-      "description": "Opportunity title"
+      "type": "string"
     },
     "thesis": {
       "type": "string",
       "description": "One-line investment thesis"
+    },
+    "opportunity_thesis": {
+      "type": "string",
+      "description": "AI-generated founder opportunity thesis"
     },
     "problem": {
       "type": "string"
@@ -38,21 +46,28 @@
     "vision": {
       "type": "string"
     },
+    "growth_plan": {
+      "type": "string"
+    },
+    "evidence_of_traction": {
+      "type": "string"
+    },
+    "risks": {
+      "type": "string"
+    },
     "description": {
-      "type": "string",
-      "description": "Full description / pitch"
+      "type": "string"
     },
     "stage": {
       "type": "string",
       "enum": [
         "idea",
-        "seed",
-        "early",
+        "launch",
+        "early_traction",
         "growth",
         "turnaround",
         "acquisition"
-      ],
-      "description": "Funding stage"
+      ]
     },
     "education_type": {
       "type": "string",
@@ -66,6 +81,21 @@
         "other"
       ]
     },
+    "capital_type_requested": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "donation",
+          "grant",
+          "equity",
+          "revenue_share",
+          "loan",
+          "philanthropic",
+          "strategic_partnership"
+        ]
+      }
+    },
     "impact_focus": {
       "type": "string",
       "enum": [
@@ -77,9 +107,27 @@
         "access"
       ]
     },
+    "desired_investor_involvement": {
+      "type": "string",
+      "enum": [
+        "passive_capital",
+        "advisory",
+        "board",
+        "strategic_partner",
+        "hands_on"
+      ]
+    },
+    "risk_profile": {
+      "type": "string",
+      "enum": [
+        "conservative",
+        "balanced",
+        "bold",
+        "transformational"
+      ]
+    },
     "amount_seeking": {
-      "type": "number",
-      "description": "Total raise in USD"
+      "type": "number"
     },
     "minimum_investment": {
       "type": "number"
@@ -96,6 +144,9 @@
     },
     "geography": {
       "type": "string"
+    },
+    "current_revenue": {
+      "type": "number"
     },
     "reading_proficiency": {
       "type": "number"
@@ -121,15 +172,44 @@
     "pitch_deck_url": {
       "type": "string"
     },
+    "financials_url": {
+      "type": "string"
+    },
+    "growth_plan_url": {
+      "type": "string"
+    },
+    "data_report_url": {
+      "type": "string"
+    },
+    "board_deck_url": {
+      "type": "string"
+    },
+    "legal_docs_url": {
+      "type": "string"
+    },
+    "pitch_readiness_score": {
+      "type": "number",
+      "default": 0
+    },
+    "pitch_readiness_label": {
+      "type": "string"
+    },
+    "ai_suggestions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
     "status": {
       "type": "string",
       "enum": [
+        "draft",
         "pending_review",
         "active",
         "closed",
         "funded"
       ],
-      "default": "pending_review"
+      "default": "draft"
     },
     "saves_count": {
       "type": "number",
@@ -142,6 +222,9 @@
     "featured": {
       "type": "boolean",
       "default": false
+    },
+    "admin_notes": {
+      "type": "string"
     }
   },
   "required": [
