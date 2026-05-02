@@ -25,14 +25,17 @@ export default function Sidebar() {
       collapsed ? "w-20" : "w-64"
     )}>
       {/* Logo */}
-      <div className="px-6 py-8 flex items-center gap-3">
-        <div className="w-10 h-10 rounded-xl bg-secondary flex items-center justify-center flex-shrink-0">
-          <span className="text-secondary-foreground font-heading font-bold text-lg">eX</span>
-        </div>
-        {!collapsed && (
-          <div className="overflow-hidden">
-            <h1 className="font-heading text-lg font-semibold text-white tracking-tight">edXponential</h1>
+      <div className="px-5 py-6 flex items-center">
+        {collapsed ? (
+          <div className="w-9 h-9 bg-white rounded flex items-center justify-center flex-shrink-0">
+            <span className="text-black font-heading font-bold text-sm tracking-tight">eX</span>
           </div>
+        ) : (
+          <img
+            src="https://media.base44.com/images/public/69f64dbf5c37a4db77e0e302/21d29b7f0_64B1F443-0AD3-403D-B726-ABEF11D14419.png"
+            alt="edXponential"
+            className="h-8 w-auto object-contain"
+          />
         )}
       </div>
 
@@ -51,10 +54,10 @@ export default function Sidebar() {
                   : "text-sidebar-foreground/70 hover:bg-sidebar-accent/50 hover:text-white"
               )}
             >
-              <Icon className={cn("w-5 h-5 flex-shrink-0", isActive && "text-secondary")} />
-              {!collapsed && <span className="text-sm font-medium">{label}</span>}
+              <Icon className="w-5 h-5 flex-shrink-0" />
+              {!collapsed && <span className="text-sm font-medium tracking-wide">{label}</span>}
               {isActive && !collapsed && (
-                <div className="ml-auto w-1.5 h-1.5 rounded-full bg-secondary" />
+                <div className="ml-auto w-1 h-4 rounded-full bg-white" />
               )}
             </Link>
           );
