@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { LayoutDashboard, BookOpen, Users, User, ChevronLeft, ChevronRight, LogOut, Star, DollarSign, Briefcase, Layers } from 'lucide-react';
+import { LayoutDashboard, BookOpen, Users, User, ChevronLeft, ChevronRight, LogOut, Star, DollarSign, Briefcase, Layers, TrendingUp, CreditCard } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
 import { cn } from '@/lib/utils';
 
@@ -12,6 +12,8 @@ const navItems = [
   { path: '/edvestors', icon: DollarSign, label: 'edVestors' },
   { path: '/deal-room', icon: Briefcase, label: 'Deal Room' },
   { path: '/pipeline', icon: Layers, label: 'My Pipeline' },
+  { path: '/founder-dashboard', icon: TrendingUp, label: 'Raise Capital' },
+  { path: '/pricing', icon: CreditCard, label: 'Pricing' },
   { path: '/profile', icon: User, label: 'Profile' },
 ];
 

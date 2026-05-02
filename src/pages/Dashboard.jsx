@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { base44 } from '@/api/base44Client';
 import { useQuery } from '@tanstack/react-query';
-import { BookOpen, Star, Users, ArrowRight, CheckCircle, DollarSign, Briefcase } from 'lucide-react';
+import { BookOpen, Star, Users, ArrowRight, CheckCircle, DollarSign, Briefcase, TrendingUp, CreditCard, Layers } from 'lucide-react';
 import TierBadge from '../components/shared/TierBadge';
 import { Link } from 'react-router-dom';
 import WelcomeHero from '../components/dashboard/WelcomeHero';
@@ -53,22 +53,38 @@ export default function Dashboard() {
       </div>
 
       {/* Capital Access Row */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-        <Link to="/deal-room" className="group bg-black text-white rounded-2xl p-6 hover:bg-black/90 transition-all">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <Link to="/deal-room" className="group bg-foreground text-background rounded-2xl p-5 hover:bg-foreground/90 transition-all col-span-1">
           <div className="flex items-center justify-between mb-3">
-            <Briefcase className="w-5 h-5 text-white/60" />
-            <ArrowRight className="w-4 h-4 text-white/40 group-hover:text-white/80 transition-colors" />
+            <Briefcase className="w-4 h-4 text-white/60" />
+            <ArrowRight className="w-3.5 h-3.5 text-white/40 group-hover:text-white/80 transition-colors" />
           </div>
-          <h3 className="font-heading text-lg font-semibold mb-1">Deal Room</h3>
-          <p className="text-white/50 text-sm">Private opportunities. Capital meets operators.</p>
+          <h3 className="font-heading text-base font-semibold mb-0.5">Deal Room</h3>
+          <p className="text-white/50 text-xs">Private investment opportunities</p>
         </Link>
-        <Link to="/edvestors" className="group bg-card border border-border/50 rounded-2xl p-6 hover:border-black/30 hover:shadow-sm transition-all">
+        <Link to="/pipeline" className="group bg-card border border-border/50 rounded-2xl p-5 hover:border-foreground/20 hover:shadow-sm transition-all">
           <div className="flex items-center justify-between mb-3">
-            <DollarSign className="w-5 h-5 text-muted-foreground" />
-            <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-black transition-colors" />
+            <Layers className="w-4 h-4 text-muted-foreground" />
+            <ArrowRight className="w-3.5 h-3.5 text-muted-foreground group-hover:text-foreground transition-colors" />
           </div>
-          <h3 className="font-heading text-lg font-semibold mb-1">edVestors</h3>
-          <p className="text-muted-foreground text-sm">Connect with investors funding education ventures.</p>
+          <h3 className="font-heading text-base font-semibold mb-0.5">My Pipeline</h3>
+          <p className="text-muted-foreground text-xs">Track your investor deal flow</p>
+        </Link>
+        <Link to="/founder-dashboard" className="group bg-card border border-border/50 rounded-2xl p-5 hover:border-foreground/20 hover:shadow-sm transition-all">
+          <div className="flex items-center justify-between mb-3">
+            <TrendingUp className="w-4 h-4 text-muted-foreground" />
+            <ArrowRight className="w-3.5 h-3.5 text-muted-foreground group-hover:text-foreground transition-colors" />
+          </div>
+          <h3 className="font-heading text-base font-semibold mb-0.5">Raise Capital</h3>
+          <p className="text-muted-foreground text-xs">Submit and manage your raise</p>
+        </Link>
+        <Link to="/pricing" className="group bg-card border border-border/50 rounded-2xl p-5 hover:border-foreground/20 hover:shadow-sm transition-all">
+          <div className="flex items-center justify-between mb-3">
+            <CreditCard className="w-4 h-4 text-muted-foreground" />
+            <ArrowRight className="w-3.5 h-3.5 text-muted-foreground group-hover:text-foreground transition-colors" />
+          </div>
+          <h3 className="font-heading text-base font-semibold mb-0.5">Membership</h3>
+          <p className="text-muted-foreground text-xs">edVestor pricing & access tiers</p>
         </Link>
       </div>
 

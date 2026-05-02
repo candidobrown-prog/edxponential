@@ -18,6 +18,8 @@ import EdVestors from './pages/EdVestors';
 import DealRoom from './pages/DealRoom';
 import DealDetail from './pages/DealDetail';
 import Pipeline from './pages/Pipeline';
+import FounderDashboard from './pages/FounderDashboard';
+import Pricing from './pages/Pricing';
 import Communities from './pages/Communities';
 import CommunityDetail from './pages/CommunityDetail';
 import Profile from './pages/Profile';
@@ -63,6 +65,8 @@ const AuthenticatedApp = () => {
         <Route path="/deal-room" element={<DealRoom />} />
         <Route path="/deal-room/:id" element={<DealDetail />} />
         <Route path="/pipeline" element={<Pipeline />} />
+        <Route path="/founder-dashboard" element={<FounderDashboard />} />
+        <Route path="/pricing" element={<Pricing />} />
         <Route path="/profile" element={<Profile />} />
       </Route>
       <Route path="*" element={<PageNotFound />} />
