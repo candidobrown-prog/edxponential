@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { ArrowLeft, Clock, Star, Award, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import BookingModal from '@/components/coaching/BookingModal';
+import CoachAvailabilityCalendar from '@/components/coaching/CoachAvailabilityCalendar';
 
 const sessionTypeLabels = {
   one_on_one: '1-on-1 Session',
@@ -15,6 +16,7 @@ const sessionTypeLabels = {
 
 export default function CoachingDetail() {
   const [showBooking, setShowBooking] = useState(false);
+  const [selectedSlot, setSelectedSlot] = useState(null);
   const coachId = window.location.pathname.split('/').pop();
 
   const { data: coaches = [] } = useQuery({
@@ -77,6 +79,12 @@ export default function CoachingDetail() {
             </div>
           )}
 
+          {/* Availability Calendar */}
+          <CoachAvailabilityCalendar
+            coachId={coach.id}
+            onSelectSlot={(slot) => setSelectedSlot(slot)}
+          />
+
           {/* Specializations */}
           {coach.specializations?.length > 0 && (
             <div className="bg-card border border-border/50 rounded-2xl p-8">
@@ -102,8 +110,13 @@ export default function CoachingDetail() {
               </div>
             )}
             <Button onClick={() => setShowBooking(true)} className="w-full bg-secondary hover:bg-secondary/90 text-secondary-foreground rounded-xl h-12 text-base font-semibold">
-              Book Session
+              {selectedSlot ? `Book ${selectedSlot.time}` : 'Book Session'}
             </Button>
+            {selectedSlot && (
+              <p className="text-xs text-center text-muted-foreground -mt-2">
+                {selectedSlot.date} · {selectedSlot.time}
+              </p>
+            )}
             <div className="space-y-3 pt-4 border-t border-border/50">
               <div className="flex items-center gap-3 text-sm">
                 <Clock className="w-4 h-4 text-muted-foreground" />
@@ -117,7 +130,7 @@ export default function CoachingDetail() {
           </div>
         </div>
       </div>
-      <BookingModal coach={coach} open={showBooking} onClose={() => setShowBooking(false)} />
+      <BookingModal coach={coach} open={showBooking} onClose={() => setShowBooking(false)} preselectedSlot={selectedSlot} />
     </div>
   );
 }

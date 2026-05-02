@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -7,10 +7,17 @@ import { Textarea } from '@/components/ui/textarea';
 import { CalendarDays, Clock, CheckCircle2 } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
 
-export default function BookingModal({ coach, open, onClose }) {
+export default function BookingModal({ coach, open, onClose, preselectedSlot }) {
   const [step, setStep] = useState('form'); // 'form' | 'confirmed'
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({ name: '', email: '', date: '', time: '', notes: '' });
+
+  // Sync preselectedSlot into form when modal opens
+  useEffect(() => {
+    if (open && preselectedSlot) {
+      setForm(f => ({ ...f, date: preselectedSlot.date, time: preselectedSlot.time }));
+    }
+  }, [open, preselectedSlot]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
