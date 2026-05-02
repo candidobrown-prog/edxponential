@@ -14,6 +14,8 @@ import Coaching from './pages/Coaching';
 import CoachingDetail from './pages/CoachingDetail';
 import EdVisors from './pages/EdVisors';
 import EdVisorDetail from './pages/EdVisorDetail';
+import EdVestors from './pages/EdVestors';
+import DealRoom from './pages/DealRoom';
 import Communities from './pages/Communities';
 import CommunityDetail from './pages/CommunityDetail';
 import Profile from './pages/Profile';
@@ -55,6 +57,8 @@ const AuthenticatedApp = () => {
         <Route path="/edvisors/:id" element={<EdVisorDetail />} />
         <Route path="/communities" element={<Communities />} />
         <Route path="/communities/:id" element={<CommunityDetail />} />
+        <Route path="/edvestors" element={<EdVestors />} />
+        <Route path="/deal-room" element={<DealRoom />} />
         <Route path="/profile" element={<Profile />} />
       </Route>
       <Route path="*" element={<PageNotFound />} />

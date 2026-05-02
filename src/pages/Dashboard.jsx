@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { base44 } from '@/api/base44Client';
 import { useQuery } from '@tanstack/react-query';
-import { BookOpen, Star, Users, TrendingUp, ArrowRight, CheckCircle } from 'lucide-react';
+import { BookOpen, Star, Users, ArrowRight, CheckCircle, DollarSign, Briefcase } from 'lucide-react';
+import TierBadge from '../components/shared/TierBadge';
 import { Link } from 'react-router-dom';
 import WelcomeHero from '../components/dashboard/WelcomeHero';
 import StatCard from '../components/dashboard/StatCard';
@@ -41,7 +42,7 @@ export default function Dashboard() {
 
   return (
     <div className="space-y-8">
-      <WelcomeHero userName={user?.full_name} />
+      <WelcomeHero userName={user?.full_name} tier={user?.membership_tier} />
 
       {/* Stats */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -49,6 +50,26 @@ export default function Dashboard() {
         <StatCard title="edVisors" value={coaches.length} icon={Star} accentColor="bg-black" subtitle="Ready for sessions" />
         <StatCard title="Communities" value={communities.length} icon={Users} accentColor="bg-black" subtitle="Active groups" />
         <StatCard title="Courses Completed" value={completedCourses} icon={CheckCircle} accentColor="bg-black" subtitle={`${inProgressCourses} in progress`} />
+      </div>
+
+      {/* Capital Access Row */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <Link to="/deal-room" className="group bg-black text-white rounded-2xl p-6 hover:bg-black/90 transition-all">
+          <div className="flex items-center justify-between mb-3">
+            <Briefcase className="w-5 h-5 text-white/60" />
+            <ArrowRight className="w-4 h-4 text-white/40 group-hover:text-white/80 transition-colors" />
+          </div>
+          <h3 className="font-heading text-lg font-semibold mb-1">Deal Room</h3>
+          <p className="text-white/50 text-sm">Private opportunities. Capital meets operators.</p>
+        </Link>
+        <Link to="/edvestors" className="group bg-card border border-border/50 rounded-2xl p-6 hover:border-black/30 hover:shadow-sm transition-all">
+          <div className="flex items-center justify-between mb-3">
+            <DollarSign className="w-5 h-5 text-muted-foreground" />
+            <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-black transition-colors" />
+          </div>
+          <h3 className="font-heading text-lg font-semibold mb-1">edVestors</h3>
+          <p className="text-muted-foreground text-sm">Connect with investors funding education ventures.</p>
+        </Link>
       </div>
 
       {/* My Progress */}

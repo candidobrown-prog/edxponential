@@ -5,7 +5,8 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Label } from '@/components/ui/label';
-import { User, Save, Mail, Briefcase, MapPin } from 'lucide-react';
+import { Save, Mail, Briefcase, MapPin } from 'lucide-react';
+import TierBadge, { TIERS } from '../components/shared/TierBadge';
 import { toast } from 'sonner';
 
 export default function Profile() {
@@ -17,6 +18,7 @@ export default function Profile() {
     organization: '',
     location: '',
     bio: '',
+    membership_tier: 'potentials',
     role_type: 'founder',
     years_experience: '',
   });
@@ -29,6 +31,7 @@ export default function Profile() {
         organization: u.organization || '',
         location: u.location || '',
         bio: u.bio || '',
+        membership_tier: u.membership_tier || 'potentials',
         role_type: u.role_type || 'founder',
         years_experience: u.years_experience || '',
       });
@@ -68,9 +71,10 @@ export default function Profile() {
           </div>
           <div>
             <h2 className="font-heading text-xl font-semibold">{user?.full_name || 'User'}</h2>
-            <p className="text-muted-foreground flex items-center gap-1.5 mt-1">
+            <p className="text-muted-foreground flex items-center gap-1.5 mt-1 mb-2">
               <Mail className="w-3.5 h-3.5" /> {user?.email}
             </p>
+            <TierBadge tier={form.membership_tier} size="md" />
           </div>
         </div>
       </div>
@@ -121,6 +125,17 @@ export default function Profile() {
                 <SelectItem value="principal">Principal</SelectItem>
                 <SelectItem value="superintendent">Superintendent</SelectItem>
                 <SelectItem value="board_member">Board Member</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+          <div className="space-y-2">
+            <Label>Membership Tier</Label>
+            <Select value={form.membership_tier} onValueChange={v => setForm({...form, membership_tier: v})}>
+              <SelectTrigger className="rounded-xl"><SelectValue /></SelectTrigger>
+              <SelectContent>
+                {Object.entries(TIERS).map(([k, v]) => (
+                  <SelectItem key={k} value={k}>{v.label}</SelectItem>
+                ))}
               </SelectContent>
             </Select>
           </div>

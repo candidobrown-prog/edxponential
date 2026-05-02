@@ -7,16 +7,16 @@ import { ArrowRight, Star, Users, BookOpen, CheckCircle, ChevronDown } from 'luc
 import { Link } from 'react-router-dom';
 
 const stats = [
-  { value: '500+', label: 'Education Leaders' },
-  { value: '120+', label: 'Expert edVisors' },
-  { value: '2,400+', label: 'Sessions Booked' },
-  { value: '98%', label: 'Satisfaction Rate' },
+  { value: '500+', label: 'edVisors Worldwide' },
+  { value: '$2B+', label: 'Capital in Network' },
+  { value: '1,200+', label: 'Schools Impacted' },
+  { value: '98%', label: 'Member Retention' },
 ];
 
 const features = [
-  { icon: BookOpen, title: 'Expert-Led Courses', desc: 'Deep curriculum built by leaders who have scaled institutions from 0 to thousands.' },
-  { icon: Users, title: 'edVisor Network', desc: 'One-on-one guidance from vetted coaches who have done it — not just studied it.' },
-  { icon: Star, title: 'Peer Communities', desc: 'Real conversations with founders, principals, and executives facing the same challenges.' },
+  { icon: BookOpen, title: 'Execution Curriculum', desc: 'Deep content built by leaders who have scaled institutions — not studied them.' },
+  { icon: Users, title: 'edVisor Network', desc: 'Private access to vetted operators who have built, scaled, and exited.' },
+  { icon: Star, title: 'Capital Network', desc: 'A dedicated lane connecting founders with high-conviction education investors.' },
 ];
 
 const testimonials = [
@@ -65,14 +65,14 @@ export default function Landing() {
       <section className="pt-32 pb-24 px-6 bg-black text-white">
         <div className="max-w-4xl mx-auto text-center">
           <Badge className="bg-white/10 text-white/80 border-white/20 mb-6 px-4 py-1.5 text-xs uppercase tracking-widest">
-            The Platform for Education Leaders
+            Invite Only · Private Ecosystem
           </Badge>
           <h1 className="font-heading text-5xl md:text-7xl font-bold tracking-tight leading-[1.05] mb-6">
-            Build institutions<br />
-            <span className="text-white/40">that outlast you.</span>
+            Where power<br />
+            <span className="text-white/40">meets education.</span>
           </h1>
           <p className="text-white/60 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-10">
-            edXponential connects education leaders with expert edVisors, world-class courses, and a peer community built for exponential impact.
+            edXponential is a private operating system for elite education founders, executives, and investors. Access. Execution. Capital. Results.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link to="/">

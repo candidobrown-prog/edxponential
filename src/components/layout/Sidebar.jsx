@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { 
-  LayoutDashboard, BookOpen, Users,
-  User, ChevronLeft, ChevronRight, LogOut, Star
-} from 'lucide-react';
+import { LayoutDashboard, BookOpen, Users, User, ChevronLeft, ChevronRight, LogOut, Star, DollarSign, Briefcase } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
 import { cn } from '@/lib/utils';
 
@@ -12,6 +9,8 @@ const navItems = [
   { path: '/courses', icon: BookOpen, label: 'Courses' },
   { path: '/edvisors', icon: Star, label: 'edVisors' },
   { path: '/communities', icon: Users, label: 'Communities' },
+  { path: '/edvestors', icon: DollarSign, label: 'edVestors' },
+  { path: '/deal-room', icon: Briefcase, label: 'Deal Room' },
   { path: '/profile', icon: User, label: 'Profile' },
 ];
 
@@ -40,7 +39,7 @@ export default function Sidebar() {
       </div>
 
       {/* Navigation */}
-      <nav className="flex-1 px-3 space-y-1">
+      <nav className="flex-1 px-3 space-y-0.5 overflow-y-auto">
         {navItems.map(({ path, icon: Icon, label }) => {
           const isActive = path === '/' ? location.pathname === '/' : location.pathname.startsWith(path);
           return (
@@ -48,29 +47,27 @@ export default function Sidebar() {
               key={path}
               to={path}
               className={cn(
-                "flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 group",
-                isActive 
-                  ? "bg-sidebar-accent text-white" 
+                "flex items-center gap-3 px-4 py-2.5 rounded-xl transition-all duration-200",
+                isActive
+                  ? "bg-sidebar-accent text-white"
                   : "text-sidebar-foreground/70 hover:bg-sidebar-accent/50 hover:text-white"
               )}
             >
-              <Icon className="w-5 h-5 flex-shrink-0" />
+              <Icon className="w-4 h-4 flex-shrink-0" />
               {!collapsed && <span className="text-sm font-medium tracking-wide">{label}</span>}
-              {isActive && !collapsed && (
-                <div className="ml-auto w-1 h-4 rounded-full bg-white" />
-              )}
+              {isActive && !collapsed && <div className="ml-auto w-1 h-4 rounded-full bg-white" />}
             </Link>
           );
         })}
       </nav>
 
       {/* Collapse & Logout */}
-      <div className="px-3 pb-6 space-y-2">
+      <div className="px-3 pb-6 space-y-1">
         <button
           onClick={() => base44.auth.logout()}
-          className="flex items-center gap-3 px-4 py-3 rounded-xl text-sidebar-foreground/50 hover:text-white hover:bg-sidebar-accent/50 transition-all w-full"
+          className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sidebar-foreground/50 hover:text-white hover:bg-sidebar-accent/50 transition-all w-full"
         >
-          <LogOut className="w-5 h-5 flex-shrink-0" />
+          <LogOut className="w-4 h-4 flex-shrink-0" />
           {!collapsed && <span className="text-sm">Sign Out</span>}
         </button>
         <button
