@@ -477,11 +477,18 @@ export default function DealDetail() {
                 <Button
                   variant="outline"
                   className="w-full rounded-xl gap-2"
+                  onClick={() => window.location.href = `mailto:${deal.founder_email || ''}?subject=Re: ${deal.title}`}
+                >
+                  <FileText className="w-4 h-4" /> Message Founder
+                </Button>
+                <Button
+                  variant="outline"
+                  className="w-full rounded-xl gap-2"
                   onClick={handleSave}
                   disabled={saved}
                 >
                   <Bookmark className="w-4 h-4" fill={saved ? 'currentColor' : 'none'} />
-                  {saved ? 'Saved' : 'Save Opportunity'}
+                  {saved ? 'Saved' : 'Save'}
                 </Button>
                 <Button
                   variant="outline"
