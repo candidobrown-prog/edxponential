@@ -59,13 +59,13 @@ export default function Coaching() {
     <div className="space-y-8">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="font-heading text-3xl font-bold">Coaching & Consultation</h1>
+          <h1 className="font-heading text-3xl font-bold">edVisors</h1>
           <p className="text-muted-foreground mt-1">Connect with expert education leaders for personalized guidance</p>
         </div>
         <Dialog open={open} onOpenChange={setOpen}>
           <DialogTrigger asChild>
             <Button className="bg-primary hover:bg-primary/90 rounded-xl gap-2">
-              <Plus className="w-4 h-4" /> Add Coach Profile
+              <Plus className="w-4 h-4" /> Add edVisor
             </Button>
           </DialogTrigger>
           <DialogContent className="sm:max-w-lg">

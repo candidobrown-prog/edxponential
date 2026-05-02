@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { 
-  LayoutDashboard, BookOpen, Users, MessageSquare, 
-  User, ChevronLeft, ChevronRight, LogOut, Sparkles
+  LayoutDashboard, BookOpen, Users,
+  User, ChevronLeft, ChevronRight, LogOut, Star
 } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
 import { cn } from '@/lib/utils';
@@ -10,7 +10,7 @@ import { cn } from '@/lib/utils';
 const navItems = [
   { path: '/', icon: LayoutDashboard, label: 'Dashboard' },
   { path: '/courses', icon: BookOpen, label: 'Courses' },
-  { path: '/coaching', icon: Sparkles, label: 'Coaching' },
+  { path: '/edvisors', icon: Star, label: 'edVisors' },
   { path: '/communities', icon: Users, label: 'Communities' },
   { path: '/profile', icon: User, label: 'Profile' },
 ];

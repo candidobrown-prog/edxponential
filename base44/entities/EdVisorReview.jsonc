@@ -1,0 +1,30 @@
+{
+  "name": "EdVisorReview",
+  "type": "object",
+  "properties": {
+    "edvisor_id": {
+      "type": "string",
+      "description": "ID of the CoachingSession (edVisor)"
+    },
+    "reviewer_name": {
+      "type": "string"
+    },
+    "reviewer_email": {
+      "type": "string"
+    },
+    "rating": {
+      "type": "number",
+      "description": "1-5 star rating"
+    },
+    "review_text": {
+      "type": "string"
+    },
+    "session_type": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "edvisor_id",
+    "rating"
+  ]
+}

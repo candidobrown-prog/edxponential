@@ -8,12 +8,21 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { ArrowLeft, Users, Globe, Lock, MessageSquare, Heart, Send } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { format } from 'date-fns';
+import MemberCard from '../components/communities/MemberCard';
+
+const postTypeStyles = {
+  discussion: 'bg-gray-100 text-gray-700',
+  question: 'bg-gray-100 text-gray-700',
+  resource: 'bg-gray-100 text-gray-700',
+  announcement: 'bg-black text-white',
+};
 
 export default function CommunityDetail() {
   const communityId = window.location.pathname.split('/').pop();
   const [user, setUser] = useState(null);
   const [newPost, setNewPost] = useState('');
   const [postType, setPostType] = useState('discussion');
+  const [activeTab, setActiveTab] = useState('discussions');
   const queryClient = useQueryClient();
 
   useEffect(() => {
@@ -30,6 +39,11 @@ export default function CommunityDetail() {
     queryFn: () => base44.entities.CommunityPost.filter({ community_id: communityId }, '-created_date', 50),
   });
 
+  const { data: members = [] } = useQuery({
+    queryKey: ['community-members', communityId],
+    queryFn: () => base44.entities.CommunityMember.filter({ community_id: communityId }, '-created_date', 100),
+  });
+
   const community = communities.find(c => c.id === communityId);
 
   const createPostMutation = useMutation({
@@ -39,6 +53,23 @@ export default function CommunityDetail() {
       setNewPost('');
       setPostType('discussion');
     },
+  });
+
+  const joinMutation = useMutation({
+    mutationFn: async () => {
+      const u = await base44.auth.me();
+      const existing = members.find(m => m.user_email === u.email);
+      if (existing) return;
+      return base44.entities.CommunityMember.create({
+        community_id: communityId,
+        user_email: u.email,
+        user_name: u.full_name,
+        user_title: u.title || '',
+        user_organization: u.organization || '',
+        role: 'member',
+      });
+    },
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['community-members', communityId] }),
   });
 
   const handlePost = () => {
@@ -62,13 +93,12 @@ export default function CommunityDetail() {
   }
 
   const VisibilityIcon = community.visibility === 'public' ? Globe : Lock;
+  const isJoined = user && members.some(m => m.user_email === user.email);
 
-  const postTypeStyles = {
-    discussion: 'bg-blue-50 text-blue-700',
-    question: 'bg-purple-50 text-purple-700',
-    resource: 'bg-green-50 text-green-700',
-    announcement: 'bg-amber-50 text-amber-700',
-  };
+  const tabs = [
+    { id: 'discussions', label: 'Discussions', count: posts.length },
+    { id: 'members', label: 'Members', count: members.length },
+  ];
 
   return (
     <div className="space-y-8">
@@ -78,94 +108,149 @@ export default function CommunityDetail() {
 
       {/* Header */}
       <div className="bg-card border border-border/50 rounded-2xl overflow-hidden">
-        <div className="h-32 bg-gradient-to-br from-secondary/20 via-primary/10 to-accent" />
-        <div className="p-8 -mt-8">
-          <div className="flex items-end gap-2 mb-1">
-            <h1 className="font-heading text-2xl font-bold">{community.name}</h1>
-            <VisibilityIcon className="w-4 h-4 text-muted-foreground mb-1" />
-          </div>
-          <p className="text-muted-foreground mt-2 max-w-2xl">{community.description}</p>
-          <div className="flex items-center gap-3 mt-4">
-            <Badge variant="outline" className="capitalize">{community.category?.replace(/_/g, ' ')}</Badge>
-            <span className="text-sm text-muted-foreground flex items-center gap-1">
-              <Users className="w-3.5 h-3.5" /> {community.member_count || 0} members
-            </span>
+        <div className="h-32 bg-gradient-to-br from-black via-gray-800 to-gray-600 relative">
+          {community.cover_image && <img src={community.cover_image} alt="" className="w-full h-full object-cover opacity-60" />}
+        </div>
+        <div className="p-8">
+          <div className="flex items-start justify-between gap-4">
+            <div>
+              <div className="flex items-center gap-2 mb-1">
+                <h1 className="font-heading text-2xl font-bold">{community.name}</h1>
+                <VisibilityIcon className="w-4 h-4 text-muted-foreground" />
+              </div>
+              <p className="text-muted-foreground mt-2 max-w-2xl">{community.description}</p>
+              <div className="flex items-center gap-3 mt-4">
+                <Badge variant="outline" className="capitalize">{community.category?.replace(/_/g, ' ')}</Badge>
+                <span className="text-sm text-muted-foreground flex items-center gap-1">
+                  <Users className="w-3.5 h-3.5" /> {members.length || community.member_count || 0} members
+                </span>
+              </div>
+            </div>
+            {!isJoined && (
+              <Button
+                onClick={() => joinMutation.mutate()}
+                disabled={joinMutation.isPending}
+                className="bg-black text-white hover:bg-black/85 rounded-xl shrink-0"
+              >
+                {joinMutation.isPending ? 'Joining...' : 'Join Community'}
+              </Button>
+            )}
+            {isJoined && (
+              <Badge className="bg-black text-white border-0">Member</Badge>
+            )}
           </div>
         </div>
       </div>
 
-      {/* New Post */}
-      <div className="bg-card border border-border/50 rounded-2xl p-6">
-        <Textarea
-          placeholder="Share an insight, ask a question, or post a resource..."
-          className="mb-3 min-h-[80px] rounded-xl"
-          value={newPost}
-          onChange={e => setNewPost(e.target.value)}
-        />
-        <div className="flex items-center justify-between">
-          <Select value={postType} onValueChange={setPostType}>
-            <SelectTrigger className="w-40 rounded-xl">
-              <SelectValue />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="discussion">Discussion</SelectItem>
-              <SelectItem value="question">Question</SelectItem>
-              <SelectItem value="resource">Resource</SelectItem>
-              <SelectItem value="announcement">Announcement</SelectItem>
-            </SelectContent>
-          </Select>
-          <Button
-            onClick={handlePost}
-            disabled={!newPost.trim() || createPostMutation.isPending}
-            className="bg-primary hover:bg-primary/90 rounded-xl gap-2"
+      {/* Tabs */}
+      <div className="flex gap-1 bg-muted rounded-xl p-1 w-fit">
+        {tabs.map(tab => (
+          <button
+            key={tab.id}
+            onClick={() => setActiveTab(tab.id)}
+            className={`px-5 py-2 rounded-lg text-sm font-medium transition-all ${
+              activeTab === tab.id ? 'bg-white text-black shadow-sm' : 'text-muted-foreground hover:text-foreground'
+            }`}
           >
-            <Send className="w-4 h-4" />
-            Post
-          </Button>
-        </div>
+            {tab.label} {tab.count > 0 && <span className="ml-1 text-xs opacity-60">({tab.count})</span>}
+          </button>
+        ))}
       </div>
 
-      {/* Posts */}
-      <div className="space-y-4">
-        {posts.length === 0 ? (
-          <div className="text-center py-12">
-            <MessageSquare className="w-10 h-10 text-muted-foreground/30 mx-auto mb-3" />
-            <p className="text-muted-foreground text-sm">No posts yet. Start the conversation!</p>
+      {/* Discussions Tab */}
+      {activeTab === 'discussions' && (
+        <div className="space-y-5">
+          {/* New Post */}
+          <div className="bg-card border border-border/50 rounded-2xl p-6">
+            <Textarea
+              placeholder="Share an insight, ask a question, or post a resource..."
+              className="mb-3 min-h-[80px] rounded-xl"
+              value={newPost}
+              onChange={e => setNewPost(e.target.value)}
+            />
+            <div className="flex items-center justify-between">
+              <Select value={postType} onValueChange={setPostType}>
+                <SelectTrigger className="w-40 rounded-xl">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="discussion">Discussion</SelectItem>
+                  <SelectItem value="question">Question</SelectItem>
+                  <SelectItem value="resource">Resource</SelectItem>
+                  <SelectItem value="announcement">Announcement</SelectItem>
+                </SelectContent>
+              </Select>
+              <Button
+                onClick={handlePost}
+                disabled={!newPost.trim() || createPostMutation.isPending}
+                className="bg-black hover:bg-black/85 text-white rounded-xl gap-2"
+              >
+                <Send className="w-4 h-4" /> Post
+              </Button>
+            </div>
           </div>
-        ) : (
-          posts.map(post => (
-            <div key={post.id} className="bg-card border border-border/50 rounded-2xl p-6">
-              <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
-                  <span className="font-heading font-bold text-primary text-sm">
-                    {post.author_name?.[0] || '?'}
-                  </span>
-                </div>
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2 mb-1">
-                    <span className="font-medium text-sm">{post.author_name}</span>
-                    <Badge className={`text-xs ${postTypeStyles[post.post_type] || ''}`}>
-                      {post.post_type}
-                    </Badge>
-                    <span className="text-xs text-muted-foreground">
-                      {post.created_date ? format(new Date(post.created_date), 'MMM d, h:mm a') : ''}
-                    </span>
+
+          {posts.length === 0 ? (
+            <div className="text-center py-12">
+              <MessageSquare className="w-10 h-10 text-muted-foreground/20 mx-auto mb-3" />
+              <p className="text-muted-foreground text-sm">No posts yet. Start the conversation!</p>
+            </div>
+          ) : (
+            posts.map(post => (
+              <div key={post.id} className="bg-card border border-border/50 rounded-2xl p-6">
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-full bg-black flex items-center justify-center flex-shrink-0">
+                    <span className="font-bold text-white text-sm">{post.author_name?.[0] || '?'}</span>
                   </div>
-                  <p className="text-sm text-foreground/80 leading-relaxed whitespace-pre-wrap">{post.content}</p>
-                  <div className="flex items-center gap-4 mt-3">
-                    <button className="flex items-center gap-1 text-xs text-muted-foreground hover:text-secondary transition-colors">
-                      <Heart className="w-3.5 h-3.5" /> {post.likes_count || 0}
-                    </button>
-                    <button className="flex items-center gap-1 text-xs text-muted-foreground hover:text-primary transition-colors">
-                      <MessageSquare className="w-3.5 h-3.5" /> {post.replies_count || 0}
-                    </button>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2 mb-1 flex-wrap">
+                      <span className="font-medium text-sm">{post.author_name}</span>
+                      <Badge className={`text-xs capitalize ${postTypeStyles[post.post_type] || ''}`}>
+                        {post.post_type}
+                      </Badge>
+                      <span className="text-xs text-muted-foreground">
+                        {post.created_date ? format(new Date(post.created_date), 'MMM d, h:mm a') : ''}
+                      </span>
+                    </div>
+                    <p className="text-sm text-foreground/80 leading-relaxed whitespace-pre-wrap">{post.content}</p>
+                    <div className="flex items-center gap-4 mt-3">
+                      <button className="flex items-center gap-1 text-xs text-muted-foreground hover:text-black transition-colors">
+                        <Heart className="w-3.5 h-3.5" /> {post.likes_count || 0}
+                      </button>
+                      <button className="flex items-center gap-1 text-xs text-muted-foreground hover:text-black transition-colors">
+                        <MessageSquare className="w-3.5 h-3.5" /> {post.replies_count || 0}
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
+            ))
+          )}
+        </div>
+      )}
+
+      {/* Members Tab */}
+      {activeTab === 'members' && (
+        <div>
+          {members.length === 0 ? (
+            <div className="text-center py-16">
+              <Users className="w-10 h-10 text-muted-foreground/20 mx-auto mb-3" />
+              <p className="text-muted-foreground text-sm">No members yet. Be the first to join!</p>
+              {!isJoined && (
+                <Button onClick={() => joinMutation.mutate()} className="mt-4 bg-black text-white rounded-xl">
+                  Join this Community
+                </Button>
+              )}
             </div>
-          ))
-        )}
-      </div>
+          ) : (
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+              {members.map(member => (
+                <MemberCard key={member.id} member={member} />
+              ))}
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 }

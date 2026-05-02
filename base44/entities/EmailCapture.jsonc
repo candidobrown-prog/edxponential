@@ -1,0 +1,22 @@
+{
+  "name": "EmailCapture",
+  "type": "object",
+  "properties": {
+    "email": {
+      "type": "string"
+    },
+    "full_name": {
+      "type": "string"
+    },
+    "role": {
+      "type": "string"
+    },
+    "source": {
+      "type": "string",
+      "default": "landing_page"
+    }
+  },
+  "required": [
+    "email"
+  ]
+}

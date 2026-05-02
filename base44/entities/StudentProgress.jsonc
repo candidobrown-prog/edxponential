@@ -1,0 +1,44 @@
+{
+  "name": "StudentProgress",
+  "type": "object",
+  "properties": {
+    "user_email": {
+      "type": "string"
+    },
+    "course_id": {
+      "type": "string"
+    },
+    "course_title": {
+      "type": "string"
+    },
+    "progress_percent": {
+      "type": "number",
+      "default": 0
+    },
+    "modules_completed": {
+      "type": "number",
+      "default": 0
+    },
+    "total_modules": {
+      "type": "number",
+      "default": 0
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "not_started",
+        "in_progress",
+        "completed"
+      ],
+      "default": "not_started"
+    },
+    "last_accessed": {
+      "type": "string",
+      "format": "date"
+    }
+  },
+  "required": [
+    "user_email",
+    "course_id"
+  ]
+}

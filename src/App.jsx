@@ -6,11 +6,14 @@ import PageNotFound from './lib/PageNotFound';
 import { AuthProvider, useAuth } from '@/lib/AuthContext';
 import UserNotRegisteredError from '@/components/UserNotRegisteredError';
 import AppLayout from './components/layout/AppLayout';
+import Landing from './pages/Landing';
 import Dashboard from './pages/Dashboard';
 import Courses from './pages/Courses';
 import CourseDetail from './pages/CourseDetail';
 import Coaching from './pages/Coaching';
 import CoachingDetail from './pages/CoachingDetail';
+import EdVisors from './pages/EdVisors';
+import EdVisorDetail from './pages/EdVisorDetail';
 import Communities from './pages/Communities';
 import CommunityDetail from './pages/CommunityDetail';
 import Profile from './pages/Profile';
@@ -41,12 +44,15 @@ const AuthenticatedApp = () => {
   // Render the main app
   return (
     <Routes>
+      <Route path="/welcome" element={<Landing />} />
       <Route element={<AppLayout />}>
         <Route path="/" element={<Dashboard />} />
         <Route path="/courses" element={<Courses />} />
         <Route path="/courses/:id" element={<CourseDetail />} />
         <Route path="/coaching" element={<Coaching />} />
         <Route path="/coaching/:id" element={<CoachingDetail />} />
+        <Route path="/edvisors" element={<EdVisors />} />
+        <Route path="/edvisors/:id" element={<EdVisorDetail />} />
         <Route path="/communities" element={<Communities />} />
         <Route path="/communities/:id" element={<CommunityDetail />} />
         <Route path="/profile" element={<Profile />} />
