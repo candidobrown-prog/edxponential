@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { base44 } from '@/api/base44Client';
 import { useQuery } from '@tanstack/react-query';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, Clock, Star, DollarSign, Users, Award, Sparkles } from 'lucide-react';
+import { ArrowLeft, Clock, Star, Award, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import BookingModal from '@/components/coaching/BookingModal';
 
 const sessionTypeLabels = {
   one_on_one: '1-on-1 Session',
@@ -13,6 +14,7 @@ const sessionTypeLabels = {
 };
 
 export default function CoachingDetail() {
+  const [showBooking, setShowBooking] = useState(false);
   const coachId = window.location.pathname.split('/').pop();
 
   const { data: coaches = [] } = useQuery({
@@ -99,7 +101,7 @@ export default function CoachingDetail() {
                 <span className="text-muted-foreground ml-1">/ session</span>
               </div>
             )}
-            <Button className="w-full bg-secondary hover:bg-secondary/90 text-secondary-foreground rounded-xl h-12 text-base font-semibold">
+            <Button onClick={() => setShowBooking(true)} className="w-full bg-secondary hover:bg-secondary/90 text-secondary-foreground rounded-xl h-12 text-base font-semibold">
               Book Session
             </Button>
             <div className="space-y-3 pt-4 border-t border-border/50">
@@ -115,6 +117,7 @@ export default function CoachingDetail() {
           </div>
         </div>
       </div>
+      <BookingModal coach={coach} open={showBooking} onClose={() => setShowBooking(false)} />
     </div>
   );
 }
