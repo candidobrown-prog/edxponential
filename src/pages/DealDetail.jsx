@@ -9,6 +9,9 @@ import {
   FileText, Star, Users, Calendar, DollarSign, CheckCircle
 } from 'lucide-react';
 import RequestIntroModal from '../components/dealroom/RequestIntroModal';
+import NDAModal from '../components/dealroom/NDAModal';
+import TrustBadges from '../components/dealroom/TrustBadges';
+import ScarcityBar from '../components/dealroom/ScarcityBar';
 import { formatAmount } from '../components/dealroom/DealCard';
 import {
   BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer,
@@ -61,6 +64,7 @@ export default function DealDetail() {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const [introOpen, setIntroOpen] = useState(false);
+  const [ndaOpen, setNdaOpen] = useState(false);
   const [docsUnlocked, setDocsUnlocked] = useState(false);
   const [saved, setSaved] = useState(false);
   const [user, setUser] = useState(null);
@@ -180,6 +184,10 @@ export default function DealDetail() {
               {deal.organization && (
                 <p className="text-sm text-muted-foreground mt-0.5">{deal.organization}</p>
               )}
+              {/* Trust badges */}
+              <div className="mt-3">
+                <TrustBadges show={['verified_founder', 'reviewed', ...(deal.featured ? ['background_check'] : [])]} />
+              </div>
               <div className="flex flex-wrap gap-4 mt-3 text-xs text-muted-foreground">
                 <span>Founded by <span className="text-foreground font-medium">{deal.founder_name}</span></span>
                 {deal.location && (
@@ -191,6 +199,18 @@ export default function DealDetail() {
                 {deal.enrollment && (
                   <span className="flex items-center gap-1"><Users className="w-3 h-3" />{deal.enrollment.toLocaleString()} students</span>
                 )}
+              </div>
+              {/* Scarcity + momentum bar */}
+              <div className="mt-4">
+                <ScarcityBar
+                  savesCount={deal.saves_count}
+                  introsCount={deal.intros_count}
+                  pct={pct}
+                  recentCommitments={deal.intros_count > 1 ? deal.intros_count : undefined}
+                  closingDays={deal.timeline ? 14 : undefined}
+                  slotsLeft={5}
+                  variant="banner"
+                />
               </div>
               {deal.thesis && (
                 <div className="mt-4 pt-4 border-t border-border/50">
@@ -365,7 +385,12 @@ export default function DealDetail() {
           {/* ── DOCUMENT VAULT ── */}
           <div className="bg-card border border-border/60 rounded-2xl p-7">
             <SectionLabel>Document Vault</SectionLabel>
-            <p className="text-xs text-muted-foreground mb-5">Private materials. Request an introduction to unlock full access.</p>
+            <div className="flex items-center justify-between mb-4">
+              <p className="text-xs text-muted-foreground">Private materials. Founder controls who can view each document.</p>
+              <span className="inline-flex items-center gap-1 text-[9px] uppercase tracking-widest font-medium text-emerald-700 bg-emerald-50 border border-emerald-200 rounded-full px-2.5 py-1">
+                <Lock className="w-2.5 h-2.5" /> Founder Controlled
+              </span>
+            </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {[
@@ -394,11 +419,17 @@ export default function DealDetail() {
             {!docsUnlocked && (
               <Button
                 className="w-full mt-5 rounded-xl bg-foreground text-background hover:bg-foreground/85 gap-2"
-                onClick={() => { setIntroOpen(true); setDocsUnlocked(true); }}
+                onClick={() => setNdaOpen(true)}
               >
-                <Lock className="w-4 h-4" /> Unlock Full Vault
+                <Lock className="w-4 h-4" /> Sign NDA & Unlock Vault
               </Button>
             )}
+
+            {/* Off-platform legal notice */}
+            <div className="mt-4 flex items-start gap-2 text-[10px] text-muted-foreground border-t border-border/40 pt-4">
+              <FileText className="w-3.5 h-3.5 shrink-0 mt-0.5" />
+              <span>All investments are handled off-platform. edXponential is not a registered broker-dealer and does not facilitate transactions. This platform facilitates introductions only.</span>
+            </div>
           </div>
 
           {/* ── ENDORSEMENTS ── */}
@@ -502,24 +533,35 @@ export default function DealDetail() {
               </div>
             </div>
 
-            {/* Deal Signals */}
+            {/* Trust Layer */}
             <div className="bg-card border border-border/60 rounded-2xl p-5 space-y-3">
-              <div className="text-[10px] uppercase tracking-widest text-muted-foreground mb-2">Deal Signals</div>
-              {[
-                deal.saves_count > 0 && `${deal.saves_count} investor${deal.saves_count > 1 ? 's' : ''} saved this`,
-                deal.intros_count > 0 && `${deal.intros_count} intro request${deal.intros_count > 1 ? 's' : ''} sent`,
-                deal.featured && 'Curated by edXponential',
-                'Vetted & approved opportunity',
-              ].filter(Boolean).map((signal, i) => (
-                <div key={i} className="flex items-center gap-2 text-xs text-muted-foreground">
-                  <CheckCircle className="w-3 h-3 text-foreground flex-shrink-0" />
-                  <span>{signal}</span>
-                </div>
-              ))}
+              <div className="text-[10px] uppercase tracking-widest text-muted-foreground mb-3">Trust Layer</div>
+              <TrustBadges show={['verified_founder', 'reviewed', ...(deal.featured ? ['background_check'] : [])]} size="sm" />
+            </div>
+
+            {/* Capital Momentum */}
+            <div className="bg-card border border-border/60 rounded-2xl p-5 space-y-2">
+              <div className="text-[10px] uppercase tracking-widest text-muted-foreground mb-2">Capital Momentum</div>
+              <ScarcityBar
+                savesCount={deal.saves_count}
+                introsCount={deal.intros_count}
+                pct={pct}
+                recentCommitments={deal.intros_count > 1 ? deal.intros_count : undefined}
+                closingDays={deal.timeline ? 14 : undefined}
+                slotsLeft={5}
+                variant="sidebar"
+              />
             </div>
           </div>
         </div>
       </div>
+
+      <NDAModal
+        open={ndaOpen}
+        dealTitle={deal?.title}
+        onClose={() => setNdaOpen(false)}
+        onAccept={() => { setNdaOpen(false); setDocsUnlocked(true); }}
+      />
 
       <RequestIntroModal
         deal={deal}

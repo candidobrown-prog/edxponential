@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { CheckCircle, Lock } from 'lucide-react';
+import { CheckCircle, Lock, AlertCircle, ShieldCheck } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
 import { useQueryClient } from '@tanstack/react-query';
 import { cn } from '@/lib/utils';
@@ -17,7 +17,7 @@ const TIMELINES = [
 ];
 
 export default function RequestIntroModal({ deal, open, onClose, userEmail }) {
-  const [step, setStep] = useState('form');
+  const [step, setStep] = useState('nda');
   const [form, setForm] = useState({
     investment_interest_range: '50k_100k',
     why_interested: '',
@@ -50,7 +50,7 @@ export default function RequestIntroModal({ deal, open, onClose, userEmail }) {
   };
 
   const handleClose = () => {
-    setStep('form');
+    setStep('nda');
     setForm({ investment_interest_range: '50k_100k', why_interested: '', invest_timeline: 'immediately', intro_message: '' });
     onClose();
   };
@@ -58,7 +58,40 @@ export default function RequestIntroModal({ deal, open, onClose, userEmail }) {
   return (
     <Dialog open={open} onOpenChange={handleClose}>
       <DialogContent className="sm:max-w-md">
-        {step === 'success' ? (
+        {step === 'nda' ? (
+          <div className="space-y-4">
+            <DialogHeader>
+              <div className="flex items-center gap-2 mb-1">
+                <Lock className="w-3.5 h-3.5 text-muted-foreground" />
+                <span className="text-[10px] uppercase tracking-widest text-muted-foreground">Step 1 of 2 · Confidential</span>
+              </div>
+              <DialogTitle className="font-heading text-xl">Confirm Agreement</DialogTitle>
+              <p className="text-sm text-muted-foreground">{deal?.title}</p>
+            </DialogHeader>
+            <div className="flex flex-wrap gap-2">
+              <span className="inline-flex items-center gap-1.5 text-[9px] uppercase tracking-widest font-medium rounded-full px-2.5 py-1 border bg-emerald-50 text-emerald-700 border-emerald-200">
+                <ShieldCheck className="w-3 h-3" /> Reviewed by edXponential
+              </span>
+            </div>
+            <div className="bg-muted rounded-xl p-4 text-xs text-muted-foreground space-y-2 leading-relaxed">
+              <p className="font-medium text-foreground">Before proceeding, you agree:</p>
+              <p>→ All materials shared are strictly <strong>confidential</strong></p>
+              <p>→ You will not disclose deal information to third parties</p>
+              <p>→ <strong>Investment handled off-platform.</strong> edXponential facilitates introductions only and is not a registered broker-dealer</p>
+              <p>→ Any investment decisions occur independently between you and the founder</p>
+            </div>
+            <div className="flex items-start gap-3 bg-amber-50 border border-amber-200 rounded-xl px-4 py-3 text-xs text-amber-800">
+              <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
+              <p>This is a non-binding confidentiality acknowledgment. Not a securities offering.</p>
+            </div>
+            <div className="flex gap-3">
+              <Button variant="outline" className="flex-1 rounded-xl" onClick={handleClose}>Cancel</Button>
+              <Button className="flex-1 rounded-xl bg-foreground text-background hover:bg-foreground/85" onClick={() => setStep('form')}>
+                I Agree — Continue
+              </Button>
+            </div>
+          </div>
+        ) : step === 'success' ? (
           <div className="py-8 text-center space-y-4">
             <div className="w-14 h-14 rounded-2xl bg-foreground flex items-center justify-center mx-auto">
               <CheckCircle className="w-7 h-7 text-background" />
@@ -79,12 +112,12 @@ export default function RequestIntroModal({ deal, open, onClose, userEmail }) {
               Go to My Pipeline
             </Button>
           </div>
-        ) : (
+        ) : step === 'form' ? (
           <>
             <DialogHeader>
               <div className="flex items-center gap-2 mb-1">
                 <Lock className="w-3.5 h-3.5 text-muted-foreground" />
-                <span className="text-[10px] uppercase tracking-widest text-muted-foreground">Confidential</span>
+                <span className="text-[10px] uppercase tracking-widest text-muted-foreground">Step 2 of 2 · Confidential</span>
               </div>
               <DialogTitle className="font-heading text-xl">Request Introduction</DialogTitle>
               <p className="text-sm text-muted-foreground">{deal?.title}</p>
@@ -160,8 +193,8 @@ export default function RequestIntroModal({ deal, open, onClose, userEmail }) {
               </p>
             </form>
           </>
-        )}
-      </DialogContent>
+          ) : null}
+          </DialogContent>
     </Dialog>
   );
 }

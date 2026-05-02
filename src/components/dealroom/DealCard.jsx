@@ -2,6 +2,8 @@ import React from 'react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Bookmark, Eye, MapPin, TrendingUp } from 'lucide-react';
+import TrustBadges from './TrustBadges';
+import ScarcityBar from './ScarcityBar';
 
 const STAGE_LABELS = {
   idea: 'Idea', seed: 'Seed', early: 'Early Stage',
@@ -101,6 +103,9 @@ export default function DealCard({ deal, onView, onSave, saved }) {
             </span>
           )}
         </div>
+        <div className="mt-2">
+          <TrustBadges show={['verified_founder', ...(deal.featured ? ['reviewed'] : [])]} size="sm" />
+        </div>
       </div>
 
       {/* ── KEY METRIC CALLOUT ── */}
@@ -142,6 +147,15 @@ export default function DealCard({ deal, onView, onSave, saved }) {
             </div>
           </div>
         )}
+
+        {/* Scarcity signals */}
+        <ScarcityBar
+          savesCount={deal.saves_count}
+          introsCount={deal.intros_count}
+          pct={pct}
+          recentCommitments={deal.intros_count > 0 ? deal.intros_count : undefined}
+          variant="banner"
+        />
 
         <Button
           size="sm"
