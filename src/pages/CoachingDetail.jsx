@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { base44 } from '@/api/base44Client';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import { Switch } from '@/components/ui/switch';
+import { Label } from '@/components/ui/label';
 import { ArrowLeft, Clock, Star, Award, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import BookingModal from '@/components/coaching/BookingModal';
@@ -18,10 +20,16 @@ export default function CoachingDetail() {
   const [showBooking, setShowBooking] = useState(false);
   const [selectedSlot, setSelectedSlot] = useState(null);
   const coachId = window.location.pathname.split('/').pop();
+  const queryClient = useQueryClient();
 
   const { data: coaches = [] } = useQuery({
     queryKey: ['coaches'],
     queryFn: () => base44.entities.CoachingSession.list(),
+  });
+
+  const toggleStatusMutation = useMutation({
+    mutationFn: ({ id, newStatus }) => base44.entities.CoachingSession.update(id, { status: newStatus }),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['coaches'] }),
   });
 
   const coach = coaches.find(c => c.id === coachId);
@@ -56,7 +64,7 @@ export default function CoachingDetail() {
               <div>
                 <h1 className="font-heading text-2xl font-bold">{coach.coach_name}</h1>
                 <p className="text-muted-foreground mt-1">{coach.coach_title}</p>
-                <div className="flex items-center gap-3 mt-3">
+                <div className="flex items-center gap-3 mt-3 flex-wrap">
                   <Badge className="bg-secondary/10 text-secondary border-0">
                     {sessionTypeLabels[coach.session_type]}
                   </Badge>
@@ -66,8 +74,24 @@ export default function CoachingDetail() {
                       {coach.rating?.toFixed(1)}
                     </span>
                   )}
+                  <Badge className={coach.status === 'active' ? 'bg-green-100 text-green-700 border-0' : 'bg-muted text-muted-foreground border-0'}>
+                    {coach.status === 'active' ? 'Available' : 'Unavailable'}
+                  </Badge>
                 </div>
               </div>
+            </div>
+            <div className="flex items-center gap-3 mt-5 pt-5 border-t border-border/50">
+              <Switch
+                id="status-toggle"
+                checked={coach.status === 'active'}
+                onCheckedChange={(checked) =>
+                  toggleStatusMutation.mutate({ id: coach.id, newStatus: checked ? 'active' : 'paused' })
+                }
+                disabled={toggleStatusMutation.isPending}
+              />
+              <Label htmlFor="status-toggle" className="text-sm cursor-pointer">
+                {coach.status === 'active' ? 'Mark as Unavailable' : 'Mark as Available'}
+              </Label>
             </div>
           </div>
 
@@ -109,8 +133,12 @@ export default function CoachingDetail() {
                 <span className="text-muted-foreground ml-1">/ session</span>
               </div>
             )}
-            <Button onClick={() => setShowBooking(true)} className="w-full bg-secondary hover:bg-secondary/90 text-secondary-foreground rounded-xl h-12 text-base font-semibold">
-              {selectedSlot ? `Book ${selectedSlot.time}` : 'Book Session'}
+            <Button
+              onClick={() => setShowBooking(true)}
+              disabled={coach.status !== 'active'}
+              className="w-full bg-secondary hover:bg-secondary/90 text-secondary-foreground rounded-xl h-12 text-base font-semibold disabled:opacity-50"
+            >
+              {coach.status !== 'active' ? 'Currently Unavailable' : selectedSlot ? `Book ${selectedSlot.time}` : 'Book Session'}
             </Button>
             {selectedSlot && (
               <p className="text-xs text-center text-muted-foreground -mt-2">
