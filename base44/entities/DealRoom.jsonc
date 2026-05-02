@@ -1,0 +1,153 @@
+{
+  "name": "DealRoom",
+  "type": "object",
+  "properties": {
+    "founder_email": {
+      "type": "string"
+    },
+    "founder_name": {
+      "type": "string"
+    },
+    "founder_photo": {
+      "type": "string",
+      "description": "Avatar URL"
+    },
+    "founder_background": {
+      "type": "string"
+    },
+    "organization": {
+      "type": "string"
+    },
+    "location": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string",
+      "description": "Opportunity title"
+    },
+    "thesis": {
+      "type": "string",
+      "description": "One-line investment thesis"
+    },
+    "problem": {
+      "type": "string"
+    },
+    "solution": {
+      "type": "string"
+    },
+    "vision": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string",
+      "description": "Full description / pitch"
+    },
+    "stage": {
+      "type": "string",
+      "enum": [
+        "idea",
+        "seed",
+        "early",
+        "growth",
+        "turnaround",
+        "acquisition"
+      ],
+      "description": "Funding stage"
+    },
+    "education_type": {
+      "type": "string",
+      "enum": [
+        "charter",
+        "private",
+        "public",
+        "higher_ed",
+        "edtech",
+        "services",
+        "other"
+      ]
+    },
+    "impact_focus": {
+      "type": "string",
+      "enum": [
+        "literacy",
+        "math",
+        "culture",
+        "scaling",
+        "turnaround",
+        "access"
+      ]
+    },
+    "amount_seeking": {
+      "type": "number",
+      "description": "Total raise in USD"
+    },
+    "minimum_investment": {
+      "type": "number"
+    },
+    "committed_capital": {
+      "type": "number",
+      "default": 0
+    },
+    "use_of_funds": {
+      "type": "string"
+    },
+    "timeline": {
+      "type": "string"
+    },
+    "geography": {
+      "type": "string"
+    },
+    "reading_proficiency": {
+      "type": "number"
+    },
+    "math_proficiency": {
+      "type": "number"
+    },
+    "attendance_rate": {
+      "type": "number"
+    },
+    "enrollment": {
+      "type": "number"
+    },
+    "teacher_retention": {
+      "type": "number"
+    },
+    "reading_growth": {
+      "type": "number"
+    },
+    "math_growth": {
+      "type": "number"
+    },
+    "pitch_deck_url": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending_review",
+        "active",
+        "closed",
+        "funded"
+      ],
+      "default": "pending_review"
+    },
+    "saves_count": {
+      "type": "number",
+      "default": 0
+    },
+    "intros_count": {
+      "type": "number",
+      "default": 0
+    },
+    "featured": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "required": [
+    "title",
+    "founder_name",
+    "description",
+    "stage"
+  ]
+}

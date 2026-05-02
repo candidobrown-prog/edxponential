@@ -1,0 +1,57 @@
+{
+  "name": "Pipeline",
+  "type": "object",
+  "properties": {
+    "investor_email": {
+      "type": "string"
+    },
+    "deal_id": {
+      "type": "string",
+      "description": "DealRoom record ID"
+    },
+    "deal_title": {
+      "type": "string"
+    },
+    "founder_name": {
+      "type": "string"
+    },
+    "amount_seeking": {
+      "type": "number"
+    },
+    "stage": {
+      "type": "string",
+      "enum": [
+        "saved",
+        "intro_requested",
+        "in_conversation",
+        "due_diligence",
+        "invested",
+        "passed"
+      ],
+      "default": "saved"
+    },
+    "investment_interest_range": {
+      "type": "string"
+    },
+    "why_interested": {
+      "type": "string"
+    },
+    "invest_timeline": {
+      "type": "string"
+    },
+    "intro_message": {
+      "type": "string"
+    },
+    "private_notes": {
+      "type": "string"
+    },
+    "last_activity": {
+      "type": "string",
+      "format": "date"
+    }
+  },
+  "required": [
+    "investor_email",
+    "deal_id"
+  ]
+}

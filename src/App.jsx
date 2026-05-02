@@ -16,6 +16,8 @@ import EdVisors from './pages/EdVisors';
 import EdVisorDetail from './pages/EdVisorDetail';
 import EdVestors from './pages/EdVestors';
 import DealRoom from './pages/DealRoom';
+import DealDetail from './pages/DealDetail';
+import Pipeline from './pages/Pipeline';
 import Communities from './pages/Communities';
 import CommunityDetail from './pages/CommunityDetail';
 import Profile from './pages/Profile';
@@ -59,6 +61,8 @@ const AuthenticatedApp = () => {
         <Route path="/communities/:id" element={<CommunityDetail />} />
         <Route path="/edvestors" element={<EdVestors />} />
         <Route path="/deal-room" element={<DealRoom />} />
+        <Route path="/deal-room/:id" element={<DealDetail />} />
+        <Route path="/pipeline" element={<Pipeline />} />
         <Route path="/profile" element={<Profile />} />
       </Route>
       <Route path="*" element={<PageNotFound />} />
