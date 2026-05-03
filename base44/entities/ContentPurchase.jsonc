@@ -1,0 +1,43 @@
+{
+  "name": "ContentPurchase",
+  "type": "object",
+  "properties": {
+    "user_email": {
+      "type": "string"
+    },
+    "content_id": {
+      "type": "string"
+    },
+    "content_title": {
+      "type": "string"
+    },
+    "purchase_type": {
+      "type": "string",
+      "enum": [
+        "single",
+        "bundle",
+        "subscription"
+      ]
+    },
+    "amount_paid": {
+      "type": "number"
+    },
+    "payment_status": {
+      "type": "string",
+      "enum": [
+        "paid",
+        "refunded",
+        "failed"
+      ],
+      "default": "paid"
+    },
+    "subscription_expires": {
+      "type": "string",
+      "format": "date"
+    }
+  },
+  "required": [
+    "user_email",
+    "content_id"
+  ]
+}

@@ -1,0 +1,138 @@
+{
+  "name": "ContentItem",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "content_type": {
+      "type": "string",
+      "enum": [
+        "lesson_plan",
+        "unit_plan",
+        "assessment",
+        "worksheet",
+        "intervention_plan",
+        "curriculum_map",
+        "instructional_guide",
+        "teacher_script",
+        "student_activity"
+      ]
+    },
+    "source": {
+      "type": "string",
+      "enum": [
+        "human_created",
+        "ai_generated"
+      ],
+      "default": "ai_generated"
+    },
+    "creator_email": {
+      "type": "string"
+    },
+    "creator_name": {
+      "type": "string"
+    },
+    "grade_level": {
+      "type": "string"
+    },
+    "subject": {
+      "type": "string"
+    },
+    "standard": {
+      "type": "string"
+    },
+    "standard_framework": {
+      "type": "string",
+      "enum": [
+        "common_core",
+        "state",
+        "custom"
+      ]
+    },
+    "topic": {
+      "type": "string"
+    },
+    "learning_objective": {
+      "type": "string"
+    },
+    "student_level": {
+      "type": "string",
+      "enum": [
+        "below_grade",
+        "on_grade",
+        "above_grade",
+        "all"
+      ]
+    },
+    "content_body": {
+      "type": "string"
+    },
+    "file_url": {
+      "type": "string"
+    },
+    "preview_url": {
+      "type": "string"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "price": {
+      "type": "number",
+      "default": 0
+    },
+    "price_type": {
+      "type": "string",
+      "enum": [
+        "free",
+        "single",
+        "bundle",
+        "subscription"
+      ],
+      "default": "free"
+    },
+    "bundle_id": {
+      "type": "string"
+    },
+    "duration_minutes": {
+      "type": "number"
+    },
+    "downloads_count": {
+      "type": "number",
+      "default": 0
+    },
+    "rating": {
+      "type": "number",
+      "default": 0
+    },
+    "reviews_count": {
+      "type": "number",
+      "default": 0
+    },
+    "featured": {
+      "type": "boolean",
+      "default": false
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "published",
+        "archived"
+      ],
+      "default": "draft"
+    }
+  },
+  "required": [
+    "title",
+    "content_type",
+    "subject",
+    "grade_level"
+  ]
+}

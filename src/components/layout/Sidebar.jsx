@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { LayoutDashboard, BookOpen, Users, User, ChevronLeft, ChevronRight, LogOut, Star, DollarSign, Briefcase, Layers, TrendingUp, CreditCard, Sparkles, ShieldCheck, GraduationCap } from 'lucide-react';
+import { LayoutDashboard, BookOpen, Users, User, ChevronLeft, ChevronRight, LogOut, Star, DollarSign, Briefcase, Layers, TrendingUp, CreditCard, Sparkles, ShieldCheck, Zap, Target } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
 import { cn } from '@/lib/utils';
 
 const navItems = [
   { path: '/', icon: LayoutDashboard, label: 'Dashboard' },
+  { path: '/matching', icon: Target, label: 'AI Matching' },
   { path: '/courses', icon: BookOpen, label: 'Courses' },
   { path: '/edvisors', icon: Star, label: 'edVisors' },
   { path: '/communities', icon: Users, label: 'Communities' },
@@ -68,26 +69,27 @@ export default function Sidebar() {
         })}
       </nav>
 
-      {/* TwotrX Tier */}
+      {/* Platform Tiers */}
       <div className="mx-3 my-2">
         <div className="h-px bg-sidebar-border" />
       </div>
-      <div className="px-3 mb-1">
-        {!collapsed && <p className="text-[10px] font-bold uppercase tracking-widest text-sidebar-foreground/30 px-4 mb-1">Tiers</p>}
-        <Link
-          to="/twotrx"
-          className={cn(
-            "flex items-center gap-3 px-4 py-2.5 rounded-xl transition-all duration-200",
-            location.pathname.startsWith('/twotrx')
-              ? "bg-[#4f46e5] text-white"
-              : "text-sidebar-foreground/70 hover:bg-sidebar-accent/50 hover:text-white"
-          )}
-        >
-          <div className="w-4 h-4 rounded flex items-center justify-center bg-white/20 flex-shrink-0">
-            <span className="text-[9px] font-black leading-none">2X</span>
-          </div>
-          {!collapsed && <span className="text-sm font-medium tracking-wide">TwotrX</span>}
-        </Link>
+      <div className="px-3 mb-1 space-y-0.5">
+        {!collapsed && <p className="text-[10px] font-bold uppercase tracking-widest text-sidebar-foreground/30 px-4 mb-1">Platform Tiers</p>}
+        {[
+          { to: '/twotrx', label: 'TwotrX', badge: '2X', active: location.pathname.startsWith('/twotrx') },
+          { to: '/onejob', label: 'OneJob', badge: '1J', active: location.pathname.startsWith('/onejob') },
+          { to: '/edxportante', label: 'edXportante', badge: 'eP', active: location.pathname.startsWith('/edxportante') },
+        ].map(({ to, label, badge, active }) => (
+          <Link key={to} to={to}
+            className={cn("flex items-center gap-3 px-4 py-2 rounded-xl transition-all duration-200",
+              active ? "bg-sidebar-accent text-white" : "text-sidebar-foreground/70 hover:bg-sidebar-accent/50 hover:text-white"
+            )}>
+            <div className="w-5 h-5 rounded flex items-center justify-center bg-white/20 flex-shrink-0">
+              <span className="text-[8px] font-black leading-none">{badge}</span>
+            </div>
+            {!collapsed && <span className="text-sm font-medium tracking-wide">{label}</span>}
+          </Link>
+        ))}
       </div>
 
       {/* Collapse & Logout */}

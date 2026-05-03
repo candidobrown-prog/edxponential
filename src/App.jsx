@@ -38,6 +38,18 @@ import TutorMarketplace from './pages/twotrx/TutorMarketplace';
 import TutorApply from './pages/twotrx/TutorApply';
 import StudentReferrals from './pages/twotrx/StudentReferrals';
 import TutorRequests from './pages/twotrx/TutorRequests';
+import MatchingDashboard from './pages/MatchingDashboard';
+import OneJobHome from './pages/onejob/OneJobHome';
+import JobBoard from './pages/onejob/JobBoard';
+import EmployerDashboard from './pages/onejob/EmployerDashboard';
+import PostJob from './pages/onejob/PostJob';
+import JobSeekerDashboard from './pages/onejob/JobSeekerDashboard';
+import OneJobPricing from './pages/onejob/OneJobPricing';
+import OneJobAdmin from './pages/onejob/OneJobAdmin';
+import EdXportanteHome from './pages/edxportante/EdXportanteHome';
+import ContentGenerator from './pages/edxportante/ContentGenerator';
+import ContentMarketplace from './pages/edxportante/ContentMarketplace';
+import EdXportanteDashboard from './pages/edxportante/EdXportanteDashboard';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -87,6 +99,26 @@ const AuthenticatedApp = () => {
         <Route path="/matched-opportunities" element={<MatchedOpportunities />} />
         <Route path="/matched-edvestors" element={<MatchedEdVestors />} />
         <Route path="/admin-match-control" element={<AdminMatchControl />} />
+        <Route path="/matching" element={<MatchingDashboard />} />
+      </Route>
+
+      {/* OneJob */}
+      <Route path="/onejob" element={<OneJobHome />} />
+      <Route element={<AppLayout />}>
+        <Route path="/onejob/jobs" element={<JobBoard />} />
+        <Route path="/onejob/employer" element={<EmployerDashboard />} />
+        <Route path="/onejob/post" element={<PostJob />} />
+        <Route path="/onejob/seeker" element={<JobSeekerDashboard />} />
+        <Route path="/onejob/pricing" element={<OneJobPricing />} />
+        <Route path="/onejob/admin" element={<OneJobAdmin />} />
+      </Route>
+
+      {/* edXportante */}
+      <Route path="/edxportante" element={<EdXportanteHome />} />
+      <Route element={<AppLayout />}>
+        <Route path="/edxportante/generate" element={<ContentGenerator />} />
+        <Route path="/edxportante/marketplace" element={<ContentMarketplace />} />
+        <Route path="/edxportante/dashboard" element={<EdXportanteDashboard />} />
       </Route>
 
       {/* TwotrX standalone entry */}
