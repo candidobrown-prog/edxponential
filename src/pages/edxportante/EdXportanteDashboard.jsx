@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { base44 } from '@/api/base44Client';
-import { BookOpen, Zap, Download, Star, ShoppingBag, ArrowRight, Plus } from 'lucide-react';
+import { BookOpen, Zap, Download, Star, ShoppingBag, ArrowRight, Plus, Layers, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 export default function EdXportanteDashboard() {
@@ -118,6 +118,37 @@ export default function EdXportanteDashboard() {
             </div>
           </div>
         )}
+
+        {/* Build Your Own App */}
+        <div className="bg-[#0a0f1e] rounded-2xl p-8">
+          <div className="flex items-start justify-between">
+            <div className="max-w-lg">
+              <div className="flex items-center gap-2 mb-3">
+                <Layers className="w-5 h-5 text-white/50" />
+                <p className="text-white/50 text-xs font-black uppercase tracking-widest">Premium Feature</p>
+              </div>
+              <h2 className="text-2xl font-black text-white mb-2">Build Your Own App</h2>
+              <p className="text-white/60 text-sm leading-relaxed mb-5">
+                Package your content into a fully branded internal curriculum platform for your school or network. 
+                Select materials, customize branding, and deploy a white-label instructional hub your teachers will love.
+              </p>
+              <div className="grid grid-cols-2 gap-2 mb-6">
+                {['Select your content library', 'Add your school branding', 'Deploy to your teachers', 'Track usage & engagement'].map(f => (
+                  <div key={f} className="flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0" />
+                    <span className="text-white/70 text-sm">{f}</span>
+                  </div>
+                ))}
+              </div>
+              <Button className="bg-white text-[#0a0f1e] hover:bg-gray-100 font-black gap-2">
+                <Layers className="w-4 h-4" /> Coming Soon — Join Waitlist
+              </Button>
+            </div>
+            <div className="hidden md:block w-32 h-32 bg-white/5 rounded-2xl border border-white/10 flex items-center justify-center">
+              <Layers className="w-12 h-12 text-white/20" />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
