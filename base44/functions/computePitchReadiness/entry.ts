@@ -50,7 +50,8 @@ Deno.serve(async (req) => {
     const body = await req.json();
     const { deal_id } = body;
 
-    const deals = await base44.entities.DealRoom.filter({ id: deal_id });
+    const allDeals = await base44.entities.DealRoom.list('-created_date', 500);
+    const deals = allDeals.filter(d => d.id === deal_id);
     if (!deals?.length) return Response.json({ error: 'Deal not found' }, { status: 404 });
 
     const deal = deals[0];

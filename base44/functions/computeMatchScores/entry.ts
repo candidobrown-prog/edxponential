@@ -124,18 +124,23 @@ Deno.serve(async (req) => {
     const { edvestor_email, deal_id } = body;
 
     // Fetch investors and deals
-    const [allInvestors, allDeals] = await Promise.all([
+    const [allInvestors, allDealsRaw] = await Promise.all([
       edvestor_email
         ? base44.asServiceRole.entities.EdVestor.filter({ user_email: edvestor_email })
         : base44.asServiceRole.entities.EdVestor.filter({ status: 'active' }),
       deal_id
-        ? base44.asServiceRole.entities.DealRoom.filter({ id: deal_id })
+        ? base44.asServiceRole.entities.DealRoom.list('-created_date', 500)
         : base44.asServiceRole.entities.DealRoom.filter({ status: 'active' })
     ]);
+
+    const allDeals = deal_id
+      ? allDealsRaw.filter(d => d.id === deal_id)
+      : allDealsRaw;
 
     const results = [];
 
     for (const investor of allInvestors) {
+      if (!investor.user_email) continue;
       for (const deal of allDeals) {
         const capital_fit = scoreCapitalFit(deal, investor);
         const stage_fit = scoreStageFit(deal, investor);

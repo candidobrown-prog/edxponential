@@ -51,7 +51,7 @@ export default function MatchedOpportunities() {
 
   const filteredMatches = matches
     .filter(m => m.is_visible !== false)
-    .filter(m => !filters.minScore || m.score >= Number(filters.minScore))
+    .filter(m => !filters.minScore || !filters.minScore.length || m.score >= Number(filters.minScore))
     .filter(m => {
       if (!filters.stage) return true;
       const deal = dealMap[m.deal_id];

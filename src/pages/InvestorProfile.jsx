@@ -81,10 +81,12 @@ export default function InvestorProfile() {
     queryKey: ['my_investor_profile', user?.email],
     queryFn: () => base44.entities.EdVestor.filter({ user_email: user.email }),
     enabled: !!user?.email,
-    onSuccess: (data) => {
-      if (data?.[0]) setForm(f => ({ ...f, ...data[0] }));
-    }
   });
+
+  // Populate form when existing profile loads
+  useEffect(() => {
+    if (existing?.[0]) setForm(f => ({ ...f, ...existing[0] }));
+  }, [existing]);
 
   const set = (key, val) => setForm(f => ({ ...f, [key]: val }));
 

@@ -100,7 +100,7 @@ export default function AdminMatchControl() {
   const totalCommitted = deals.reduce((acc, d) => acc + (d.committed_capital || 0), 0);
   const avgMatchScore = matches.length > 0 ? Math.round(matches.reduce((a, m) => a + m.score, 0) / matches.length) : 0;
 
-  const filteredDeals = statusFilter ? deals.filter(d => d.status === statusFilter) : deals;
+  const filteredDeals = statusFilter && statusFilter !== '' ? deals.filter(d => d.status === statusFilter) : deals;
 
   const TABS = [
     { id: 'overview', label: 'Overview' },
