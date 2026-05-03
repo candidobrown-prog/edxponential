@@ -1,0 +1,59 @@
+{
+  "name": "SessionNote",
+  "type": "object",
+  "properties": {
+    "session_id": {
+      "type": "string"
+    },
+    "tutor_email": {
+      "type": "string"
+    },
+    "student_id": {
+      "type": "string"
+    },
+    "student_name": {
+      "type": "string"
+    },
+    "session_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "subject": {
+      "type": "string"
+    },
+    "skill_taught": {
+      "type": "string"
+    },
+    "student_strengths": {
+      "type": "string"
+    },
+    "student_struggles": {
+      "type": "string"
+    },
+    "homework_next_steps": {
+      "type": "string"
+    },
+    "attendance": {
+      "type": "string",
+      "enum": [
+        "present",
+        "late",
+        "absent"
+      ]
+    },
+    "engagement_rating": {
+      "type": "number"
+    },
+    "progress_rating": {
+      "type": "number"
+    },
+    "recommendation": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "session_id",
+    "student_id",
+    "subject"
+  ]
+}

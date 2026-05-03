@@ -1,0 +1,143 @@
+{
+  "name": "TutorProfile",
+  "type": "object",
+  "properties": {
+    "user_email": {
+      "type": "string"
+    },
+    "full_name": {
+      "type": "string"
+    },
+    "photo_url": {
+      "type": "string"
+    },
+    "bio": {
+      "type": "string"
+    },
+    "location": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string"
+    },
+    "subjects": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "grade_levels": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "teaching_certified": {
+      "type": "boolean",
+      "default": false
+    },
+    "years_experience": {
+      "type": "number"
+    },
+    "degree": {
+      "type": "string"
+    },
+    "credentials": {
+      "type": "string"
+    },
+    "resume_url": {
+      "type": "string"
+    },
+    "background_check": {
+      "type": "string",
+      "enum": [
+        "not_submitted",
+        "pending",
+        "cleared",
+        "failed"
+      ],
+      "default": "not_submitted"
+    },
+    "hourly_rate": {
+      "type": "number"
+    },
+    "session_types": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "virtual",
+          "in_person",
+          "hybrid"
+        ]
+      }
+    },
+    "travel_radius_miles": {
+      "type": "number"
+    },
+    "languages": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "specializations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "availability": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "day": {
+            "type": "string"
+          },
+          "start": {
+            "type": "string"
+          },
+          "end": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "rating": {
+      "type": "number",
+      "default": 0
+    },
+    "total_sessions": {
+      "type": "number",
+      "default": 0
+    },
+    "verified": {
+      "type": "boolean",
+      "default": false
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending_review",
+        "approved",
+        "rejected",
+        "paused"
+      ],
+      "default": "pending_review"
+    },
+    "admin_notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "full_name",
+    "subjects"
+  ]
+}

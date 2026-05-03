@@ -1,0 +1,122 @@
+{
+  "name": "TutoringStudent",
+  "type": "object",
+  "properties": {
+    "student_name": {
+      "type": "string"
+    },
+    "grade": {
+      "type": "number"
+    },
+    "school_name": {
+      "type": "string"
+    },
+    "subject_needed": {
+      "type": "string"
+    },
+    "performance_level": {
+      "type": "string",
+      "enum": [
+        "below_grade",
+        "on_grade",
+        "above_grade"
+      ]
+    },
+    "learning_gaps": {
+      "type": "string"
+    },
+    "strengths": {
+      "type": "string"
+    },
+    "goals": {
+      "type": "string"
+    },
+    "iep_504": {
+      "type": "string",
+      "enum": [
+        "none",
+        "iep",
+        "504"
+      ]
+    },
+    "session_type": {
+      "type": "string",
+      "enum": [
+        "virtual",
+        "in_person",
+        "hybrid"
+      ]
+    },
+    "preferred_days": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "preferred_times": {
+      "type": "string"
+    },
+    "urgency": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "urgent"
+      ]
+    },
+    "referral_source": {
+      "type": "string",
+      "enum": [
+        "school",
+        "parent"
+      ]
+    },
+    "referred_by_email": {
+      "type": "string"
+    },
+    "parent_name": {
+      "type": "string"
+    },
+    "parent_email": {
+      "type": "string"
+    },
+    "parent_phone": {
+      "type": "string"
+    },
+    "location": {
+      "type": "string"
+    },
+    "preferred_tutor_gender": {
+      "type": "string",
+      "enum": [
+        "no_preference",
+        "male",
+        "female"
+      ]
+    },
+    "school_notes": {
+      "type": "string"
+    },
+    "assigned_tutor_id": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "matching",
+        "matched",
+        "active",
+        "completed",
+        "cancelled"
+      ],
+      "default": "pending"
+    }
+  },
+  "required": [
+    "student_name",
+    "grade",
+    "subject_needed"
+  ]
+}

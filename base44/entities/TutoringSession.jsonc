@@ -1,0 +1,107 @@
+{
+  "name": "TutoringSession",
+  "type": "object",
+  "properties": {
+    "tutor_id": {
+      "type": "string"
+    },
+    "tutor_name": {
+      "type": "string"
+    },
+    "tutor_email": {
+      "type": "string"
+    },
+    "student_id": {
+      "type": "string"
+    },
+    "student_name": {
+      "type": "string"
+    },
+    "booked_by_email": {
+      "type": "string"
+    },
+    "booked_by_type": {
+      "type": "string",
+      "enum": [
+        "school",
+        "parent"
+      ]
+    },
+    "subject": {
+      "type": "string"
+    },
+    "grade": {
+      "type": "number"
+    },
+    "session_type": {
+      "type": "string",
+      "enum": [
+        "virtual",
+        "in_person",
+        "hybrid"
+      ]
+    },
+    "session_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "start_time": {
+      "type": "string"
+    },
+    "end_time": {
+      "type": "string"
+    },
+    "duration_minutes": {
+      "type": "number"
+    },
+    "location_address": {
+      "type": "string"
+    },
+    "virtual_link": {
+      "type": "string"
+    },
+    "rate_per_hour": {
+      "type": "number"
+    },
+    "session_cost": {
+      "type": "number"
+    },
+    "platform_fee": {
+      "type": "number"
+    },
+    "tutor_payout": {
+      "type": "number"
+    },
+    "payment_status": {
+      "type": "string",
+      "enum": [
+        "unpaid",
+        "paid",
+        "refunded",
+        "failed"
+      ],
+      "default": "unpaid"
+    },
+    "session_status": {
+      "type": "string",
+      "enum": [
+        "scheduled",
+        "confirmed",
+        "in_progress",
+        "completed",
+        "cancelled",
+        "no_show"
+      ],
+      "default": "scheduled"
+    },
+    "notes_submitted": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "required": [
+    "tutor_id",
+    "student_id",
+    "session_date"
+  ]
+}

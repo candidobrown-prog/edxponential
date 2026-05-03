@@ -1,0 +1,77 @@
+{
+  "name": "TutorRequest",
+  "type": "object",
+  "properties": {
+    "student_id": {
+      "type": "string"
+    },
+    "student_name": {
+      "type": "string"
+    },
+    "tutor_id": {
+      "type": "string"
+    },
+    "tutor_name": {
+      "type": "string"
+    },
+    "requested_by_email": {
+      "type": "string"
+    },
+    "requested_by_type": {
+      "type": "string",
+      "enum": [
+        "school",
+        "parent"
+      ]
+    },
+    "subject": {
+      "type": "string"
+    },
+    "grade": {
+      "type": "number"
+    },
+    "message": {
+      "type": "string"
+    },
+    "preferred_schedule": {
+      "type": "string"
+    },
+    "session_type": {
+      "type": "string",
+      "enum": [
+        "virtual",
+        "in_person",
+        "hybrid"
+      ]
+    },
+    "tutor_response": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "accepted",
+        "declined",
+        "more_info",
+        "alternate_time"
+      ],
+      "default": "pending"
+    },
+    "tutor_notes": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "accepted",
+        "declined",
+        "booked"
+      ],
+      "default": "pending"
+    }
+  },
+  "required": [
+    "student_id",
+    "tutor_id",
+    "subject"
+  ]
+}

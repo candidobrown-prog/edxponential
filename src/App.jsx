@@ -27,6 +27,17 @@ import InvestorProfile from './pages/InvestorProfile';
 import MatchedOpportunities from './pages/MatchedOpportunities';
 import MatchedEdVestors from './pages/MatchedEdVestors';
 import AdminMatchControl from './pages/AdminMatchControl';
+import TwotrXHome from './pages/twotrx/TwotrXHome';
+import TwotrXLayout from './components/twotrx/TwotrXLayout';
+import SchoolDashboard from './pages/twotrx/SchoolDashboard';
+import ParentDashboard from './pages/twotrx/ParentDashboard';
+import TutorDashboard from './pages/twotrx/TutorDashboard';
+import TwotrXAdminDashboard from './pages/twotrx/TwotrXAdminDashboard';
+import ReferStudent from './pages/twotrx/ReferStudent';
+import TutorMarketplace from './pages/twotrx/TutorMarketplace';
+import TutorApply from './pages/twotrx/TutorApply';
+import StudentReferrals from './pages/twotrx/StudentReferrals';
+import TutorRequests from './pages/twotrx/TutorRequests';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -76,6 +87,49 @@ const AuthenticatedApp = () => {
         <Route path="/matched-opportunities" element={<MatchedOpportunities />} />
         <Route path="/matched-edvestors" element={<MatchedEdVestors />} />
         <Route path="/admin-match-control" element={<AdminMatchControl />} />
+      </Route>
+
+      {/* TwotrX standalone entry */}
+      <Route path="/twotrx" element={<TwotrXHome />} />
+
+      {/* TwotrX School Portal */}
+      <Route element={<TwotrXLayout userRole="school" />}>
+        <Route path="/twotrx/school" element={<SchoolDashboard />} />
+        <Route path="/twotrx/refer-student" element={<ReferStudent />} />
+        <Route path="/twotrx/students" element={<StudentReferrals />} />
+        <Route path="/twotrx/tutors" element={<TutorMarketplace />} />
+        <Route path="/twotrx/billing" element={<SchoolDashboard />} />
+        <Route path="/twotrx/reports" element={<SchoolDashboard />} />
+        <Route path="/twotrx/sessions" element={<SchoolDashboard />} />
+      </Route>
+
+      {/* TwotrX Parent Portal */}
+      <Route element={<TwotrXLayout userRole="parent" />}>
+        <Route path="/twotrx/parent" element={<ParentDashboard />} />
+        <Route path="/twotrx/my-student" element={<StudentReferrals />} />
+        <Route path="/twotrx/payments" element={<ParentDashboard />} />
+        <Route path="/twotrx/progress" element={<ParentDashboard />} />
+      </Route>
+
+      {/* TwotrX Tutor Portal */}
+      <Route element={<TwotrXLayout userRole="tutor" />}>
+        <Route path="/twotrx/tutor" element={<TutorDashboard />} />
+        <Route path="/twotrx/apply" element={<TutorApply />} />
+        <Route path="/twotrx/requests" element={<TutorRequests />} />
+        <Route path="/twotrx/calendar" element={<TutorDashboard />} />
+        <Route path="/twotrx/my-students" element={<StudentReferrals />} />
+        <Route path="/twotrx/session-notes" element={<TutorDashboard />} />
+        <Route path="/twotrx/earnings" element={<TutorDashboard />} />
+      </Route>
+
+      {/* TwotrX Admin Portal */}
+      <Route element={<TwotrXLayout userRole="admin" />}>
+        <Route path="/twotrx/admin" element={<TwotrXAdminDashboard />} />
+        <Route path="/twotrx/admin/tutors" element={<TwotrXAdminDashboard />} />
+        <Route path="/twotrx/admin/referrals" element={<StudentReferrals />} />
+        <Route path="/twotrx/admin/sessions" element={<TwotrXAdminDashboard />} />
+        <Route path="/twotrx/admin/payments" element={<TwotrXAdminDashboard />} />
+        <Route path="/twotrx/admin/reports" element={<TwotrXAdminDashboard />} />
       </Route>
       <Route path="*" element={<PageNotFound />} />
     </Routes>
