@@ -21,8 +21,10 @@ const navItems = [
   { path: '/admin-match-control', icon: ShieldCheck, label: 'Match Control' },
   { path: '/admin/feedback', icon: MessageSquare, label: 'Feedback Admin' },
   { path: '/xschores', icon: ShieldAlert, label: 'Xschores™' },
+  { path: '/billing', icon: CreditCard, label: 'Billing' },
+  { path: '/identity-verification', icon: ShieldCheck, label: 'Verification' },
   { path: '/notifications', icon: Bell, label: 'Notifications' },
-  { path: '/pricing', icon: CreditCard, label: 'Pricing' },
+  { path: '/pricing', icon: Zap, label: 'Pricing' },
   { path: '/profile', icon: User, label: 'Profile' },
 ];
 

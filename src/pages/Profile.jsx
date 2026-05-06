@@ -7,6 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Label } from '@/components/ui/label';
 import { Save, Mail, Briefcase, MapPin } from 'lucide-react';
 import TierBadge, { TIERS } from '../components/shared/TierBadge';
+import AccountCompletion from '../components/profile/AccountCompletion';
 import { toast } from 'sonner';
 
 export default function Profile() {
@@ -60,6 +61,8 @@ export default function Profile() {
         <h1 className="font-heading text-3xl font-bold">Your Profile</h1>
         <p className="text-muted-foreground mt-1">Manage your professional information</p>
       </div>
+
+      <AccountCompletion user={user} />
 
       {/* Profile Header */}
       <div className="bg-card border border-border/50 rounded-2xl p-8">

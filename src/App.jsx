@@ -58,6 +58,8 @@ import AskEddy from './components/eddy/AskEddy';
 import AdminFeedback from './pages/AdminFeedback';
 import MyXschool from './pages/MyXschool';
 import NotificationPrefs from './pages/NotificationPrefs';
+import Billing from './pages/Billing';
+import IdentityVerification from './pages/IdentityVerification';
 import AdminEnterprise from './pages/AdminEnterprise';
 import TubedXHome from './pages/tubedx/TubedXHome';
 import TubedXDashboard from './pages/tubedx/TubedXDashboard';
@@ -164,6 +166,8 @@ const AuthenticatedApp = () => {
         <Route path="/xschetails/dashboard" element={<XschetailsDashboard />} />
         <Route path="/my-xschool" element={<MyXschool />} />
         <Route path="/notifications" element={<NotificationPrefs />} />
+        <Route path="/billing" element={<Billing />} />
+        <Route path="/identity-verification" element={<IdentityVerification />} />
         <Route path="/admin/enterprise" element={<AdminEnterprise />} />
         <Route path="/admin/feedback" element={<AdminFeedback />} />
       </Route>
