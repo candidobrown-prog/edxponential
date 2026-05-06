@@ -53,5 +53,46 @@
   "required": [
     "investor_email",
     "deal_id"
-  ]
+  ],
+  "rls": {
+    "create": {
+      "data.investor_email": "{{user.email}}"
+    },
+    "read": {
+      "$or": [
+        {
+          "data.investor_email": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "data.investor_email": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "data.investor_email": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
 }
