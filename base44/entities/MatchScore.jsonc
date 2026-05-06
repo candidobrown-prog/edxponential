@@ -100,11 +100,6 @@
           "data.edvestor_email": "{{user.email}}"
         },
         {
-          "data.deal_id": {
-            "$in": "{{lookup.DealRoom.filter(founder_email=user.email).id}}"
-          }
-        },
-        {
           "user_condition": {
             "role": "admin"
           }
