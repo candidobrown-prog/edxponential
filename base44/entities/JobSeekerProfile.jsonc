@@ -1,0 +1,134 @@
+{
+  "name": "JobSeekerProfile",
+  "type": "object",
+  "properties": {
+    "user_email": {
+      "type": "string"
+    },
+    "full_name": {
+      "type": "string"
+    },
+    "headline": {
+      "type": "string"
+    },
+    "bio": {
+      "type": "string"
+    },
+    "photo_url": {
+      "type": "string"
+    },
+    "location": {
+      "type": "string"
+    },
+    "resume_url": {
+      "type": "string"
+    },
+    "cover_letter_url": {
+      "type": "string"
+    },
+    "linkedin_url": {
+      "type": "string"
+    },
+    "portfolio_url": {
+      "type": "string"
+    },
+    "years_experience": {
+      "type": "number"
+    },
+    "current_title": {
+      "type": "string"
+    },
+    "current_organization": {
+      "type": "string"
+    },
+    "desired_roles": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "desired_locations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "work_type_preference": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "subjects": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "grade_levels": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "certifications": {
+      "type": "string"
+    },
+    "education": {
+      "type": "string"
+    },
+    "open_to_work": {
+      "type": "boolean",
+      "default": true
+    },
+    "profile_complete": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "required": [
+    "user_email",
+    "full_name"
+  ],
+  "rls": {
+    "create": {
+      "data.user_email": "{{user.email}}"
+    },
+    "read": {
+      "$or": [
+        {
+          "data.user_email": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "data.user_email": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "data.user_email": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
+}
