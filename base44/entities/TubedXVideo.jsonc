@@ -1,0 +1,159 @@
+{
+  "name": "TubedXVideo",
+  "type": "object",
+  "properties": {
+    "owner_email": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "video_url": {
+      "type": "string"
+    },
+    "thumbnail_url": {
+      "type": "string"
+    },
+    "duration_seconds": {
+      "type": "number"
+    },
+    "file_size_mb": {
+      "type": "number"
+    },
+    "resolution": {
+      "type": "string",
+      "enum": [
+        "SD",
+        "HD",
+        "FHD",
+        "4K"
+      ],
+      "default": "HD"
+    },
+    "video_type": {
+      "type": "string",
+      "enum": [
+        "upload",
+        "recording",
+        "livestream",
+        "webinar",
+        "course_video",
+        "ott"
+      ],
+      "default": "upload"
+    },
+    "visibility": {
+      "type": "string",
+      "enum": [
+        "public",
+        "private",
+        "password",
+        "invite_only",
+        "team_only",
+        "school_only"
+      ],
+      "default": "private"
+    },
+    "password": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "chapters": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "transcript": {
+      "type": "string"
+    },
+    "captions_url": {
+      "type": "string"
+    },
+    "caption_languages": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "ai_summary": {
+      "type": "string"
+    },
+    "ai_script": {
+      "type": "string"
+    },
+    "seo_title": {
+      "type": "string"
+    },
+    "seo_description": {
+      "type": "string"
+    },
+    "seo_keywords": {
+      "type": "string"
+    },
+    "allow_download": {
+      "type": "boolean",
+      "default": false
+    },
+    "allow_comments": {
+      "type": "boolean",
+      "default": true
+    },
+    "allow_embed": {
+      "type": "boolean",
+      "default": false
+    },
+    "monetized": {
+      "type": "boolean",
+      "default": false
+    },
+    "price": {
+      "type": "number",
+      "default": 0
+    },
+    "views_count": {
+      "type": "number",
+      "default": 0
+    },
+    "watch_time_minutes": {
+      "type": "number",
+      "default": 0
+    },
+    "completion_rate": {
+      "type": "number",
+      "default": 0
+    },
+    "likes_count": {
+      "type": "number",
+      "default": 0
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "processing",
+        "ready",
+        "draft",
+        "archived"
+      ],
+      "default": "draft"
+    },
+    "collection_id": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "title",
+    "owner_email"
+  ]
+}

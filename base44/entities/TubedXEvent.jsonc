@@ -1,0 +1,95 @@
+{
+  "name": "TubedXEvent",
+  "type": "object",
+  "properties": {
+    "owner_email": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "event_type": {
+      "type": "string",
+      "enum": [
+        "webinar",
+        "livestream",
+        "conference",
+        "summit",
+        "training",
+        "town_hall",
+        "investor_meeting"
+      ],
+      "default": "webinar"
+    },
+    "scheduled_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "duration_minutes": {
+      "type": "number",
+      "default": 60
+    },
+    "thumbnail_url": {
+      "type": "string"
+    },
+    "registration_required": {
+      "type": "boolean",
+      "default": true
+    },
+    "max_attendees": {
+      "type": "number"
+    },
+    "registrations_count": {
+      "type": "number",
+      "default": 0
+    },
+    "attendees_count": {
+      "type": "number",
+      "default": 0
+    },
+    "replay_video_id": {
+      "type": "string"
+    },
+    "replay_views": {
+      "type": "number",
+      "default": 0
+    },
+    "is_paid": {
+      "type": "boolean",
+      "default": false
+    },
+    "ticket_price": {
+      "type": "number",
+      "default": 0
+    },
+    "revenue_generated": {
+      "type": "number",
+      "default": 0
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "scheduled",
+        "live",
+        "ended",
+        "replay_available"
+      ],
+      "default": "draft"
+    }
+  },
+  "required": [
+    "title",
+    "owner_email",
+    "event_type"
+  ]
+}

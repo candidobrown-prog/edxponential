@@ -57,6 +57,13 @@ import PlatformChatbot from './components/platform/PlatformChatbot';
 import MyXschool from './pages/MyXschool';
 import NotificationPrefs from './pages/NotificationPrefs';
 import AdminEnterprise from './pages/AdminEnterprise';
+import TubedXHome from './pages/tubedx/TubedXHome';
+import TubedXDashboard from './pages/tubedx/TubedXDashboard';
+import TubedXVideos from './pages/tubedx/TubedXVideos';
+import TubedXEvents from './pages/tubedx/TubedXEvents';
+import TubedXAnalytics from './pages/tubedx/TubedXAnalytics';
+import TubedXAIStudio from './pages/tubedx/TubedXAIStudio';
+import TubedXOTT from './pages/tubedx/TubedXOTT';
 import WelcomeScreen from './components/platform/WelcomeScreen';
 import { AnimatePresence } from 'framer-motion';
 
@@ -132,6 +139,17 @@ const AuthenticatedApp = () => {
         <Route path="/my-xschool" element={<MyXschool />} />
         <Route path="/notifications" element={<NotificationPrefs />} />
         <Route path="/admin/enterprise" element={<AdminEnterprise />} />
+      </Route>
+
+      {/* TubedX */}
+      <Route path="/tubedx" element={<TubedXHome />} />
+      <Route element={<AppLayout />}>
+        <Route path="/tubedx/dashboard" element={<TubedXDashboard />} />
+        <Route path="/tubedx/videos" element={<TubedXVideos />} />
+        <Route path="/tubedx/events" element={<TubedXEvents />} />
+        <Route path="/tubedx/analytics" element={<TubedXAnalytics />} />
+        <Route path="/tubedx/ai-studio" element={<TubedXAIStudio />} />
+        <Route path="/tubedx/ott" element={<TubedXOTT />} />
       </Route>
 
       {/* OneJob */}

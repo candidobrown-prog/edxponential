@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { LayoutDashboard, BookOpen, Users, User, ChevronLeft, ChevronRight, LogOut, Star, DollarSign, Briefcase, Layers, TrendingUp, CreditCard, Sparkles, ShieldCheck, Zap, Target, Building2, BarChart3, Bell, School } from 'lucide-react';
+import { LayoutDashboard, BookOpen, Users, User, ChevronLeft, ChevronRight, LogOut, Star, DollarSign, Briefcase, Layers, TrendingUp, CreditCard, Sparkles, ShieldCheck, Zap, Target, Building2, BarChart3, Bell, School, Play } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
 import { cn } from '@/lib/utils';
 
@@ -78,6 +78,7 @@ export default function Sidebar() {
       <div className="px-3 mb-1 space-y-0.5">
         {!collapsed && <p className="text-[10px] font-bold uppercase tracking-widest text-sidebar-foreground/30 px-4 mb-1">Platform Tiers</p>}
         {[
+          { to: '/tubedx', label: 'TubedX™', badge: 'TX', active: location.pathname.startsWith('/tubedx') },
           { to: '/twotrx', label: 'TwotrX', badge: '2X', active: location.pathname.startsWith('/twotrx') },
           { to: '/onejob', label: 'OneJob', badge: '1J', active: location.pathname.startsWith('/onejob') },
           { to: '/edxportante', label: 'edXportante', badge: 'eP', active: location.pathname.startsWith('/edxportante') },
