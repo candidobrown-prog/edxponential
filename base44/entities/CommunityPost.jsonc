@@ -43,7 +43,9 @@
   ],
   "rls": {
     "create": {
-      "data.author_email": "{{user.email}}"
+      "user_condition": {
+        "isAuthenticated": true
+      }
     },
     "read": {
       "$or": [
@@ -52,7 +54,7 @@
         },
         {
           "user_condition": {
-            "role": "admin"
+            "isAuthenticated": true
           }
         }
       ]
