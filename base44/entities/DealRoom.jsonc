@@ -235,18 +235,24 @@
   ],
   "rls": {
     "create": {
-      "data.founder_email": "{{user.email}}"
-    },
-    "read": {
       "$or": [
         {
           "data.founder_email": "{{user.email}}"
         },
         {
-          "data.status": "active",
           "user_condition": {
-            "role": "edvestor"
+            "role": "admin"
           }
+        }
+      ]
+    },
+    "read": {
+      "$or": [
+        {
+          "data.status": "active"
+        },
+        {
+          "data.founder_email": "{{user.email}}"
         },
         {
           "user_condition": {
