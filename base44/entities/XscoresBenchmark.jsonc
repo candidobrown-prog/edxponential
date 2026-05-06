@@ -1,0 +1,117 @@
+{
+  "name": "XscoresBenchmark",
+  "type": "object",
+  "properties": {
+    "school_id": {
+      "type": "string"
+    },
+    "benchmark_name": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "attendance",
+        "tardiness",
+        "behavior",
+        "academics",
+        "culture",
+        "communication"
+      ]
+    },
+    "metric": {
+      "type": "string"
+    },
+    "threshold_value": {
+      "type": "number"
+    },
+    "threshold_operator": {
+      "type": "string",
+      "enum": [
+        "greater_than",
+        "less_than",
+        "equal_to",
+        "greater_than_or_equal",
+        "less_than_or_equal"
+      ],
+      "default": "greater_than_or_equal"
+    },
+    "time_window": {
+      "type": "string",
+      "enum": [
+        "daily",
+        "weekly",
+        "monthly",
+        "semester",
+        "year_to_date"
+      ],
+      "default": "weekly"
+    },
+    "scope": {
+      "type": "string",
+      "enum": [
+        "school",
+        "grade",
+        "classroom",
+        "student",
+        "subgroup"
+      ],
+      "default": "school"
+    },
+    "grade_level": {
+      "type": "string"
+    },
+    "risk_level": {
+      "type": "string",
+      "enum": [
+        "watch",
+        "concern",
+        "at_risk",
+        "critical"
+      ],
+      "default": "concern"
+    },
+    "alert_audience": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "principal",
+          "assistant_principal",
+          "dean",
+          "counselor",
+          "teacher",
+          "parent",
+          "student"
+        ]
+      }
+    },
+    "alert_method": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "in_app",
+          "email",
+          "sms"
+        ]
+      }
+    },
+    "recommended_action": {
+      "type": "string"
+    },
+    "escalation_rule": {
+      "type": "string"
+    },
+    "active": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "required": [
+    "benchmark_name",
+    "category",
+    "metric",
+    "threshold_value"
+  ]
+}

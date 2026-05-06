@@ -68,6 +68,14 @@ import TubedXAIStudio from './pages/tubedx/TubedXAIStudio';
 import TubedXOTT from './pages/tubedx/TubedXOTT';
 import WelcomeScreen from './components/platform/WelcomeScreen';
 import OnboardingFlow from './components/platform/OnboardingFlow';
+import XschoresHome from './pages/xschores/XschoresHome';
+import XschoresLayout from './components/xschores/XschoresLayout';
+import XschoresDashboard from './pages/xschores/XschoresDashboard';
+import XschoresStudents from './pages/xschores/XschoresStudents';
+import XschoresAlerts from './pages/xschores/XschoresAlerts';
+import XschoresBenchmarks from './pages/xschores/XschoresBenchmarks';
+import XschoresCultureLog from './pages/xschores/XschoresCultureLog';
+import XschoresReports from './pages/xschores/XschoresReports';
 import { AnimatePresence } from 'framer-motion';
 
 const WELCOME_KEY = 'edx_welcome_shown';
@@ -232,6 +240,17 @@ const AuthenticatedApp = () => {
         <Route path="/twotrx/admin/payments" element={<TwotrXAdminDashboard />} />
         <Route path="/twotrx/admin/reports" element={<TwotrXAdminDashboard />} />
       </Route>
+      {/* Xschores */}
+      <Route path="/xschores/home" element={<XschoresHome />} />
+      <Route element={<XschoresLayout />}>
+        <Route path="/xschores" element={<XschoresDashboard />} />
+        <Route path="/xschores/students" element={<XschoresStudents />} />
+        <Route path="/xschores/alerts" element={<XschoresAlerts />} />
+        <Route path="/xschores/benchmarks" element={<XschoresBenchmarks />} />
+        <Route path="/xschores/culture" element={<XschoresCultureLog />} />
+        <Route path="/xschores/reports" element={<XschoresReports />} />
+      </Route>
+
       <Route path="*" element={<PageNotFound />} />
     </Routes>
     </>

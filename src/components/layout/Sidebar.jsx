@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { LayoutDashboard, BookOpen, Users, User, ChevronLeft, ChevronRight, LogOut, Star, DollarSign, Briefcase, Layers, TrendingUp, CreditCard, Sparkles, ShieldCheck, Zap, Target, Building2, BarChart3, Bell, School, Play, MessageSquare } from 'lucide-react';
+import { LayoutDashboard, BookOpen, Users, User, ChevronLeft, ChevronRight, LogOut, Star, DollarSign, Briefcase, Layers, TrendingUp, CreditCard, Sparkles, ShieldCheck, Zap, Target, Building2, BarChart3, Bell, School, Play, MessageSquare, ShieldAlert } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
 import { cn } from '@/lib/utils';
 
@@ -20,6 +20,7 @@ const navItems = [
   { path: '/investor-profile', icon: DollarSign, label: 'Investor Profile' },
   { path: '/admin-match-control', icon: ShieldCheck, label: 'Match Control' },
   { path: '/admin/feedback', icon: MessageSquare, label: 'Feedback Admin' },
+  { path: '/xschores', icon: ShieldAlert, label: 'Xschores™' },
   { path: '/notifications', icon: Bell, label: 'Notifications' },
   { path: '/pricing', icon: CreditCard, label: 'Pricing' },
   { path: '/profile', icon: User, label: 'Profile' },
