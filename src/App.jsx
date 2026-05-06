@@ -54,6 +54,8 @@ import EdXportanteDashboard from './pages/edxportante/EdXportanteDashboard';
 import Xschetails from './pages/Xschetails';
 import XschetailsDashboard from './pages/XschetailsDashboard';
 import PlatformChatbot from './components/platform/PlatformChatbot';
+import AskEddy from './components/eddy/AskEddy';
+import AdminFeedback from './pages/AdminFeedback';
 import MyXschool from './pages/MyXschool';
 import NotificationPrefs from './pages/NotificationPrefs';
 import AdminEnterprise from './pages/AdminEnterprise';
@@ -139,6 +141,7 @@ const AuthenticatedApp = () => {
         <Route path="/my-xschool" element={<MyXschool />} />
         <Route path="/notifications" element={<NotificationPrefs />} />
         <Route path="/admin/enterprise" element={<AdminEnterprise />} />
+        <Route path="/admin/feedback" element={<AdminFeedback />} />
       </Route>
 
       {/* TubedX */}
@@ -228,6 +231,7 @@ function App() {
         <Router>
           <AuthenticatedApp />
           <PlatformChatbot />
+          <AskEddy />
         </Router>
         <Toaster />
       </QueryClientProvider>

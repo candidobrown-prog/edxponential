@@ -1,0 +1,117 @@
+{
+  "name": "PlatformFeedback",
+  "type": "object",
+  "properties": {
+    "submitter_email": {
+      "type": "string"
+    },
+    "submitter_name": {
+      "type": "string"
+    },
+    "organization": {
+      "type": "string"
+    },
+    "user_role": {
+      "type": "string"
+    },
+    "platform_area": {
+      "type": "string",
+      "enum": [
+        "my_xschool",
+        "xschetails",
+        "xscores",
+        "pitch_park",
+        "edvisors",
+        "edvestors",
+        "twotrx",
+        "onejob",
+        "edxportante",
+        "tubedx",
+        "communities",
+        "billing",
+        "enterprise",
+        "ai_assistant",
+        "onboarding",
+        "general"
+      ]
+    },
+    "feedback_type": {
+      "type": "string",
+      "enum": [
+        "bug_report",
+        "feature_request",
+        "ux_issue",
+        "platform_suggestion",
+        "ai_quality",
+        "coaching_feedback",
+        "webinar_feedback",
+        "video_feedback",
+        "billing_issue",
+        "general_feedback"
+      ]
+    },
+    "severity": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "critical"
+      ],
+      "default": "medium"
+    },
+    "description": {
+      "type": "string"
+    },
+    "steps_to_reproduce": {
+      "type": "string"
+    },
+    "suggested_improvement": {
+      "type": "string"
+    },
+    "attachment_url": {
+      "type": "string"
+    },
+    "browser_device": {
+      "type": "string"
+    },
+    "priority": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "urgent"
+      ],
+      "default": "medium"
+    },
+    "ai_category": {
+      "type": "string"
+    },
+    "ai_summary": {
+      "type": "string"
+    },
+    "admin_notes": {
+      "type": "string"
+    },
+    "assigned_to": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "new",
+        "reviewing",
+        "assigned",
+        "in_progress",
+        "fixed",
+        "closed"
+      ],
+      "default": "new"
+    }
+  },
+  "required": [
+    "description",
+    "feedback_type"
+  ]
+}
