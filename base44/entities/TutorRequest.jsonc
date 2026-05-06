@@ -73,5 +73,56 @@
     "student_id",
     "tutor_id",
     "subject"
-  ]
+  ],
+  "rls": {
+    "create": {
+      "data.requested_by_email": "{{user.email}}"
+    },
+    "read": {
+      "$or": [
+        {
+          "data.requested_by_email": "{{user.email}}"
+        },
+        {
+          "data.tutor_id": {
+            "$in": "{{lookup.TutorProfile.filter(user_email=user.email).id}}"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "data.requested_by_email": "{{user.email}}"
+        },
+        {
+          "data.tutor_id": {
+            "$in": "{{lookup.TutorProfile.filter(user_email=user.email).id}}"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "data.requested_by_email": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
 }
