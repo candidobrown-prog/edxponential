@@ -95,6 +95,104 @@ function AccountTypeStep({ selected, onSelect, onNext }) {
   );
 }
 
+const PLANS = [
+  {
+    id: 'starter',
+    name: 'Starter',
+    price: '$49',
+    period: '/mo',
+    description: 'For individual educators & small schools',
+    features: ['Up to 3 staff seats', 'Core platform access', 'Eddy AI assistant', 'Basic analytics'],
+    color: 'border-white/20',
+    badge: null,
+  },
+  {
+    id: 'growth',
+    name: 'Growth',
+    price: '$149',
+    period: '/mo',
+    description: 'For growing schools & networks',
+    features: ['Up to 15 staff seats', 'All Starter features', 'Xschores™ intelligence', 'TwotrX tutoring', 'Priority support'],
+    color: 'border-blue-400',
+    badge: 'Most Popular',
+  },
+  {
+    id: 'enterprise',
+    name: 'Enterprise',
+    price: 'Custom',
+    period: '',
+    description: 'For CMOs, districts & large networks',
+    features: ['Unlimited seats', 'All Growth features', 'Deal Room & Investor tools', 'White-label options', 'Dedicated success manager'],
+    color: 'border-purple-400',
+    badge: 'Best Value',
+  },
+];
+
+function PricingStep({ selected, onSelect, onNext, onBack }) {
+  return (
+    <div className="space-y-5">
+      <div className="text-center">
+        <h2 className="text-2xl font-black text-white mb-2">Choose Your Plan</h2>
+        <p className="text-white/50 text-sm">Start free for 14 days — no charge until your trial ends.</p>
+      </div>
+
+      <div className="space-y-3">
+        {PLANS.map((plan) => {
+          const isSelected = selected === plan.id;
+          return (
+            <button
+              key={plan.id}
+              onClick={() => onSelect(plan.id)}
+              className={`w-full rounded-2xl border-2 p-4 text-left transition-all duration-200 ${
+                isSelected
+                  ? 'bg-white/10 border-white scale-[1.01]'
+                  : `bg-white/5 ${plan.color} hover:bg-white/8`
+              }`}
+            >
+              <div className="flex items-center justify-between">
+                <div className="flex-1">
+                  <div className="flex items-center gap-2 mb-0.5">
+                    <span className="text-white font-black text-sm">{plan.name}</span>
+                    {plan.badge && (
+                      <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-white/20 text-white/80">{plan.badge}</span>
+                    )}
+                  </div>
+                  <p className="text-white/40 text-xs">{plan.description}</p>
+                  <div className="flex flex-wrap gap-x-3 gap-y-0.5 mt-2">
+                    {plan.features.map(f => (
+                      <span key={f} className="text-white/50 text-[11px]">• {f}</span>
+                    ))}
+                  </div>
+                </div>
+                <div className="text-right ml-4 shrink-0">
+                  <span className="text-white font-black text-lg">{plan.price}</span>
+                  <span className="text-white/40 text-xs">{plan.period}</span>
+                </div>
+              </div>
+            </button>
+          );
+        })}
+      </div>
+
+      <div className="flex gap-3">
+        <button
+          onClick={onBack}
+          className="flex items-center gap-2 px-5 py-3.5 rounded-2xl border border-white/10 text-white/60 hover:text-white hover:border-white/30 transition-all text-sm font-bold"
+        >
+          <ArrowLeft className="w-4 h-4" /> Back
+        </button>
+        <button
+          onClick={onNext}
+          disabled={!selected}
+          className="flex-1 bg-white text-[#0a0f1e] font-black py-3.5 rounded-2xl flex items-center justify-center gap-2 disabled:opacity-30 disabled:cursor-not-allowed hover:bg-gray-100 transition-all"
+        >
+          Continue <ArrowRight className="w-4 h-4" />
+        </button>
+      </div>
+    </div>
+  );
+}
+
 function PaymentStep({ onNext, onBack }) {
   const [card, setCard] = useState({ name: '', number: '', expiry: '', cvv: '' });
 
@@ -190,23 +288,24 @@ function PaymentStep({ onNext, onBack }) {
 }
 
 export default function OnboardingFlow({ onComplete }) {
-  const [step, setStep] = useState(1); // 1 = account type, 2 = payment
+  const [step, setStep] = useState(1); // 1 = account type, 2 = pricing, 3 = billing
   const [accountType, setAccountType] = useState(null);
+  const [selectedPlan, setSelectedPlan] = useState(null);
 
   const handleFinish = async () => {
     try {
-      await base44.auth.updateMe({ account_type: accountType, onboarding_complete: true });
+      await base44.auth.updateMe({ account_type: accountType, selected_plan: selectedPlan, onboarding_complete: true });
     } catch (_) {}
     onComplete();
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-[#0a0f1e] flex items-center justify-center p-6" style={{ fontFamily: 'Arial, sans-serif' }}>
+    <div className="fixed inset-0 z-50 bg-[#0a0f1e] flex items-center justify-center p-6 overflow-y-auto" style={{ fontFamily: 'Arial, sans-serif' }}>
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-        className="max-w-lg w-full"
+        className="max-w-lg w-full py-8"
       >
         {/* Logo */}
         <div className="flex justify-center mb-8">
@@ -219,7 +318,7 @@ export default function OnboardingFlow({ onComplete }) {
 
         {/* Step indicator */}
         <div className="flex items-center justify-center gap-2 mb-8">
-          {[1, 2].map(s => (
+          {[1, 2, 3].map(s => (
             <div key={s} className={`h-1 rounded-full transition-all duration-300 ${s === step ? 'w-8 bg-white' : s < step ? 'w-4 bg-white/50' : 'w-4 bg-white/15'}`} />
           ))}
         </div>
@@ -232,7 +331,12 @@ export default function OnboardingFlow({ onComplete }) {
           )}
           {step === 2 && (
             <motion.div key="step2" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} transition={{ duration: 0.3 }}>
-              <PaymentStep onNext={handleFinish} onBack={() => setStep(1)} />
+              <PricingStep selected={selectedPlan} onSelect={setSelectedPlan} onNext={() => setStep(3)} onBack={() => setStep(1)} />
+            </motion.div>
+          )}
+          {step === 3 && (
+            <motion.div key="step3" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} transition={{ duration: 0.3 }}>
+              <PaymentStep onNext={handleFinish} onBack={() => setStep(2)} />
             </motion.div>
           )}
         </AnimatePresence>
