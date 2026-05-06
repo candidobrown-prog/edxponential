@@ -134,5 +134,50 @@
     "content_type",
     "subject",
     "grade_level"
-  ]
+  ],
+  "rls": {
+    "create": {
+      "data.creator_email": "{{user.email}}"
+    },
+    "read": {
+      "$or": [
+        {
+          "data.status": "published",
+          "data.price_type": "free"
+        },
+        {
+          "data.creator_email": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "data.creator_email": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "data.creator_email": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
 }
