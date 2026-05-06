@@ -71,7 +71,9 @@
   ],
   "rls": {
     "create": {
-      "created_by": "{{user.email}}"
+      "user_condition": {
+        "isAuthenticated": true
+      }
     },
     "read": {
       "$or": [
@@ -91,9 +93,6 @@
     "update": {
       "$or": [
         {
-          "created_by": "{{user.email}}"
-        },
-        {
           "data.moderator_email": "{{user.email}}"
         },
         {
@@ -105,9 +104,6 @@
     },
     "delete": {
       "$or": [
-        {
-          "created_by": "{{user.email}}"
-        },
         {
           "data.moderator_email": "{{user.email}}"
         },
