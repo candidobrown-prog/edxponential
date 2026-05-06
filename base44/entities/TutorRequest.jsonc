@@ -76,17 +76,21 @@
   ],
   "rls": {
     "create": {
-      "data.requested_by_email": "{{user.email}}"
-    },
-    "read": {
       "$or": [
         {
           "data.requested_by_email": "{{user.email}}"
         },
         {
-          "data.tutor_id": {
-            "$in": "{{lookup.TutorProfile.filter(user_email=user.email).id}}"
+          "user_condition": {
+            "role": "admin"
           }
+        }
+      ]
+    },
+    "read": {
+      "$or": [
+        {
+          "data.requested_by_email": "{{user.email}}"
         },
         {
           "user_condition": {
@@ -99,11 +103,6 @@
       "$or": [
         {
           "data.requested_by_email": "{{user.email}}"
-        },
-        {
-          "data.tutor_id": {
-            "$in": "{{lookup.TutorProfile.filter(user_email=user.email).id}}"
-          }
         },
         {
           "user_condition": {
