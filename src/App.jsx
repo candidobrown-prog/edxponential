@@ -50,6 +50,9 @@ import EdXportanteHome from './pages/edxportante/EdXportanteHome';
 import ContentGenerator from './pages/edxportante/ContentGenerator';
 import ContentMarketplace from './pages/edxportante/ContentMarketplace';
 import EdXportanteDashboard from './pages/edxportante/EdXportanteDashboard';
+import Xschetails from './pages/Xschetails';
+import XschetailsDashboard from './pages/XschetailsDashboard';
+import PlatformChatbot from './components/platform/PlatformChatbot';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -100,6 +103,8 @@ const AuthenticatedApp = () => {
         <Route path="/matched-edvestors" element={<MatchedEdVestors />} />
         <Route path="/admin-match-control" element={<AdminMatchControl />} />
         <Route path="/matching" element={<MatchingDashboard />} />
+        <Route path="/xschetails" element={<Xschetails />} />
+        <Route path="/xschetails/dashboard" element={<XschetailsDashboard />} />
       </Route>
 
       {/* OneJob */}
@@ -176,6 +181,7 @@ function App() {
       <QueryClientProvider client={queryClientInstance}>
         <Router>
           <AuthenticatedApp />
+          <PlatformChatbot />
         </Router>
         <Toaster />
       </QueryClientProvider>

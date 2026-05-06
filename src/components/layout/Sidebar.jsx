@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { LayoutDashboard, BookOpen, Users, User, ChevronLeft, ChevronRight, LogOut, Star, DollarSign, Briefcase, Layers, TrendingUp, CreditCard, Sparkles, ShieldCheck, Zap, Target } from 'lucide-react';
+import { LayoutDashboard, BookOpen, Users, User, ChevronLeft, ChevronRight, LogOut, Star, DollarSign, Briefcase, Layers, TrendingUp, CreditCard, Sparkles, ShieldCheck, Zap, Target, Building2, BarChart3 } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
 import { cn } from '@/lib/utils';
 
 const navItems = [
   { path: '/', icon: LayoutDashboard, label: 'Dashboard' },
+  { path: '/xschetails', icon: Building2, label: 'Xschetails™' },
+  { path: '/xschetails/dashboard', icon: BarChart3, label: 'Xschetails Dashboard' },
   { path: '/matching', icon: Target, label: 'AI Matching' },
   { path: '/courses', icon: BookOpen, label: 'Courses' },
   { path: '/edvisors', icon: Star, label: 'edVisors' },

@@ -1,19 +1,34 @@
 import React, { useState, useEffect } from 'react';
 import { base44 } from '@/api/base44Client';
 import { useQuery } from '@tanstack/react-query';
-import { BookOpen, Star, Users, ArrowRight, CheckCircle, DollarSign, Briefcase, TrendingUp, CreditCard, Layers } from 'lucide-react';
+import { BookOpen, Star, Users, ArrowRight, CheckCircle, DollarSign, Briefcase, TrendingUp, CreditCard, Layers, Building2, Sparkles, BarChart3 } from 'lucide-react';
 import TierBadge from '../components/shared/TierBadge';
 import { Link } from 'react-router-dom';
 import WelcomeHero from '../components/dashboard/WelcomeHero';
 import StatCard from '../components/dashboard/StatCard';
 import StudentProgressCard from '../components/dashboard/StudentProgressCard';
 import EdVisorCard from '../components/coaching/EdVisorCard';
+import OnboardingTutorial from '../components/platform/OnboardingTutorial';
+import { AnimatePresence } from 'framer-motion';
+
+const ONBOARD_KEY = 'edx_onboarding_dismissed';
+const COMPLETED_KEY = 'edx_onboarding_completed';
 
 export default function Dashboard() {
   const [user, setUser] = useState(null);
+  const [xschetails, setXschetails] = useState(null);
+  const [showOnboarding, setShowOnboarding] = useState(false);
 
   useEffect(() => {
-    base44.auth.me().then(setUser).catch(() => {});
+    base44.auth.me().then(async u => {
+      setUser(u);
+      const records = await base44.entities.Xschetails.filter({ user_email: u.email }, '-created_date', 1);
+      if (records.length > 0) setXschetails(records[0]);
+      // Show onboarding if not dismissed/completed
+      if (!localStorage.getItem(COMPLETED_KEY) && !localStorage.getItem(ONBOARD_KEY)) {
+        setTimeout(() => setShowOnboarding(true), 1000);
+      }
+    }).catch(() => {});
   }, []);
 
   const { data: courses = [] } = useQuery({
@@ -42,6 +57,18 @@ export default function Dashboard() {
 
   return (
     <div className="space-y-8">
+      <AnimatePresence>
+        {showOnboarding && (
+          <OnboardingTutorial
+            userRole={user?.role}
+            onClose={() => {
+              setShowOnboarding(false);
+              localStorage.setItem(ONBOARD_KEY, 'true');
+            }}
+          />
+        )}
+      </AnimatePresence>
+
       <WelcomeHero userName={user?.full_name} tier={user?.membership_tier} />
 
       {/* Stats */}
@@ -51,6 +78,49 @@ export default function Dashboard() {
         <StatCard title="Communities" value={communities.length} icon={Users} accentColor="bg-black" subtitle="Active groups" />
         <StatCard title="Courses Completed" value={completedCourses} icon={CheckCircle} accentColor="bg-black" subtitle={`${inProgressCourses} in progress`} />
       </div>
+
+      {/* Xschetails CTA */}
+      {!xschetails ? (
+        <div className="bg-[#0a0f1e] rounded-2xl p-6 flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center">
+              <Building2 className="w-6 h-6 text-white" />
+            </div>
+            <div>
+              <p className="text-white font-black">Build Your Xschetails™</p>
+              <p className="text-white/40 text-sm">Complete your school intelligence profile to unlock AI recommendations, dashboards, and matching.</p>
+            </div>
+          </div>
+          <Link to="/xschetails">
+            <button className="flex items-center gap-2 px-5 py-3 bg-white text-[#0a0f1e] rounded-xl font-black text-sm hover:bg-gray-100 transition-all whitespace-nowrap">
+              Start Now <ArrowRight className="w-4 h-4" />
+            </button>
+          </Link>
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div className="bg-[#0a0f1e] rounded-2xl p-5 col-span-1">
+            <p className="text-white/30 text-[10px] font-black uppercase tracking-widest mb-1">Xschetails™</p>
+            <p className="text-white font-black">{xschetails.school_name}</p>
+            <div className="mt-3 flex items-center gap-3">
+              <div className="flex-1 h-1.5 bg-white/10 rounded-full">
+                <div className="h-1.5 bg-white rounded-full" style={{ width: `${xschetails.completion_pct || 0}%` }} />
+              </div>
+              <span className="text-white/50 text-xs font-black">{xschetails.completion_pct || 0}%</span>
+            </div>
+          </div>
+          <Link to="/xschetails/dashboard" className="group bg-white border border-gray-100 rounded-2xl p-5 hover:border-[#0a0f1e] transition-all">
+            <BarChart3 className="w-5 h-5 text-gray-400 mb-2" />
+            <p className="font-black text-[#0a0f1e] text-sm">Xschetails Dashboard</p>
+            <p className="text-xs text-gray-400 mt-0.5">Performance charts & AI insights</p>
+          </Link>
+          <Link to="/xschetails" className="group bg-white border border-gray-100 rounded-2xl p-5 hover:border-[#0a0f1e] transition-all">
+            <Sparkles className="w-5 h-5 text-gray-400 mb-2" />
+            <p className="font-black text-[#0a0f1e] text-sm">AI Analysis</p>
+            <p className="text-xs text-gray-400 mt-0.5">{xschetails.ai_summary ? 'View your school report' : 'Generate AI insights'}</p>
+          </Link>
+        </div>
+      )}
 
       {/* Capital Access Row */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
