@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Tv, Play, CheckCircle, Star, Users, DollarSign, Globe, Lock, Plus, ArrowRight, Zap } from 'lucide-react';
+import { Tv, Play, CheckCircle, Star, Users, DollarSign, Globe, Lock, Plus, ArrowRight, Zap, BookOpen } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const OTT_FEATURES = [
@@ -20,10 +20,6 @@ const CHANNEL_TYPES = [
   { icon: DollarSign, title: 'Investor Media', desc: 'Private investment content, deal rooms, and pitches' },
 ];
 
-function BookOpenIcon(props) {
-  return <svg {...props} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>;
-}
-const BookOpen = BookOpenIcon;
 
 export default function TubedXOTT() {
   const [activeTab, setActiveTab] = useState('overview');
