@@ -52,5 +52,61 @@
     "school_id",
     "staff_email",
     "role"
-  ]
+  ],
+  "rls": {
+    "create": {
+      "$or": [
+        {
+          "data.invited_by_email": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "read": {
+      "$or": [
+        {
+          "data.staff_email": "{{user.email}}"
+        },
+        {
+          "data.invited_by_email": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "data.staff_email": "{{user.email}}"
+        },
+        {
+          "data.invited_by_email": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "data.invited_by_email": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
 }
