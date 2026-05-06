@@ -310,5 +310,17 @@
   "required": [
     "school_name",
     "owner_email"
-  ]
+  ],
+  "rls": {
+    "create": {},
+    "read": {
+      "data.owner_email": "{{user.email}}"
+    },
+    "update": {
+      "data.owner_email": "{{user.email}}"
+    },
+    "delete": {
+      "data.owner_email": "{{user.email}}"
+    }
+  }
 }
