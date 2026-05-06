@@ -55,5 +55,46 @@
     "session_id",
     "student_id",
     "subject"
-  ]
+  ],
+  "rls": {
+    "create": {
+      "data.tutor_email": "{{user.email}}"
+    },
+    "read": {
+      "$or": [
+        {
+          "data.tutor_email": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "data.tutor_email": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "data.tutor_email": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
 }
