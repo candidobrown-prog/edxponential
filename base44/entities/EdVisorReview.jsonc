@@ -29,9 +29,22 @@
   ],
   "rls": {
     "create": {
-      "data.reviewer_email": "{{user.email}}"
+      "user_condition": {
+        "isAuthenticated": true
+      }
     },
-    "read": {},
+    "read": {
+      "$or": [
+        {
+          "data.reviewer_email": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "isAuthenticated": true
+          }
+        }
+      ]
+    },
     "update": {
       "$or": [
         {
