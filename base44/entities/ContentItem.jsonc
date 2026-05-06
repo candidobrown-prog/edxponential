@@ -137,16 +137,27 @@
   ],
   "rls": {
     "create": {
-      "data.creator_email": "{{user.email}}"
+      "$or": [
+        {
+          "data.creator_email": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
     },
     "read": {
       "$or": [
         {
-          "data.status": "published",
-          "data.price_type": "free"
+          "data.creator_email": "{{user.email}}"
         },
         {
-          "data.creator_email": "{{user.email}}"
+          "data.status": "published"
+        },
+        {
+          "data.price_type": "free"
         },
         {
           "user_condition": {
