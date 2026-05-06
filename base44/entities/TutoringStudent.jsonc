@@ -118,5 +118,55 @@
     "student_name",
     "grade",
     "subject_needed"
-  ]
+  ],
+  "rls": {
+    "create": {
+      "data.referred_by_email": "{{user.email}}"
+    },
+    "read": {
+      "$or": [
+        {
+          "data.referred_by_email": "{{user.email}}"
+        },
+        {
+          "data.parent_email": "{{user.email}}"
+        },
+        {
+          "data.assigned_tutor_id": {
+            "$in": "{{lookup.TutorProfile.filter(user_email=user.email).id}}"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "data.referred_by_email": "{{user.email}}"
+        },
+        {
+          "data.parent_email": "{{user.email}}"
+        },
+        {
+          "data.assigned_tutor_id": {
+            "$in": "{{lookup.TutorProfile.filter(user_email=user.email).id}}"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
 }
