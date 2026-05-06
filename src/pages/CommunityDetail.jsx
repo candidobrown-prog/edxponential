@@ -3,9 +3,10 @@ import { base44 } from '@/api/base44Client';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { ArrowLeft, Users, Globe, Lock, MessageSquare, Heart, Send } from 'lucide-react';
+import { ArrowLeft, Users, Globe, Lock, MessageSquare, Heart, Send, Search, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { format } from 'date-fns';
 import MemberCard from '../components/communities/MemberCard';
@@ -23,6 +24,8 @@ export default function CommunityDetail() {
   const [newPost, setNewPost] = useState('');
   const [postType, setPostType] = useState('discussion');
   const [activeTab, setActiveTab] = useState('discussions');
+  const [memberSearch, setMemberSearch] = useState('');
+  const [memberFilter, setMemberFilter] = useState('all');
   const queryClient = useQueryClient();
 
   useEffect(() => {
@@ -231,24 +234,75 @@ export default function CommunityDetail() {
 
       {/* Members Tab */}
       {activeTab === 'members' && (
-        <div>
-          {members.length === 0 ? (
-            <div className="text-center py-16">
-              <Users className="w-10 h-10 text-muted-foreground/20 mx-auto mb-3" />
-              <p className="text-muted-foreground text-sm">No members yet. Be the first to join!</p>
-              {!isJoined && (
-                <Button onClick={() => joinMutation.mutate()} className="mt-4 bg-black text-white rounded-xl">
-                  Join this Community
-                </Button>
-              )}
-            </div>
-          ) : (
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-              {members.map(member => (
-                <MemberCard key={member.id} member={member} />
-              ))}
+        <div className="space-y-5">
+          {members.length > 0 && (
+            <div className="flex flex-col sm:flex-row gap-3">
+              <div className="relative flex-1 max-w-sm">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                <Input
+                  className="pl-10 rounded-xl"
+                  placeholder="Search by name, title, or organization..."
+                  value={memberSearch}
+                  onChange={e => setMemberSearch(e.target.value)}
+                />
+                {memberSearch && (
+                  <button onClick={() => setMemberSearch('')} className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground">
+                    <X className="w-4 h-4" />
+                  </button>
+                )}
+              </div>
+              <Select value={memberFilter} onValueChange={setMemberFilter}>
+                <SelectTrigger className="w-40 rounded-xl">
+                  <SelectValue placeholder="Filter by role" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">All Roles</SelectItem>
+                  <SelectItem value="moderator">Moderators</SelectItem>
+                  <SelectItem value="member">Members</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
           )}
+
+          {(() => {
+            const filteredMembers = members.filter(m => {
+              const q = memberSearch.toLowerCase();
+              const matchSearch = !q ||
+                m.user_name?.toLowerCase().includes(q) ||
+                m.user_title?.toLowerCase().includes(q) ||
+                m.user_organization?.toLowerCase().includes(q);
+              const matchRole = memberFilter === 'all' || m.role === memberFilter;
+              return matchSearch && matchRole;
+            });
+
+            if (members.length === 0) return (
+              <div className="text-center py-16">
+                <Users className="w-10 h-10 text-muted-foreground/20 mx-auto mb-3" />
+                <p className="text-muted-foreground text-sm">No members yet. Be the first to join!</p>
+                {!isJoined && (
+                  <Button onClick={() => joinMutation.mutate()} className="mt-4 bg-black text-white rounded-xl">
+                    Join this Community
+                  </Button>
+                )}
+              </div>
+            );
+
+            if (filteredMembers.length === 0) return (
+              <div className="text-center py-12">
+                <Search className="w-10 h-10 text-muted-foreground/20 mx-auto mb-3" />
+                <p className="text-muted-foreground text-sm">No members match your search.</p>
+                <button onClick={() => { setMemberSearch(''); setMemberFilter('all'); }} className="text-sm text-black underline mt-2">Clear filters</button>
+              </div>
+            );
+
+            return (
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                {filteredMembers.map(member => (
+                  <MemberCard key={member.id} member={member} />
+                ))}
+              </div>
+            );
+          })()}
         </div>
       )}
     </div>
