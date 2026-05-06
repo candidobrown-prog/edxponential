@@ -1,0 +1,225 @@
+{
+  "name": "JobPost",
+  "type": "object",
+  "properties": {
+    "employer_email": {
+      "type": "string"
+    },
+    "job_title": {
+      "type": "string"
+    },
+    "organization_name": {
+      "type": "string"
+    },
+    "school_name": {
+      "type": "string"
+    },
+    "location": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string"
+    },
+    "work_type": {
+      "type": "string",
+      "enum": [
+        "remote",
+        "hybrid",
+        "in_person"
+      ]
+    },
+    "employment_type": {
+      "type": "string",
+      "enum": [
+        "full_time",
+        "part_time",
+        "contract"
+      ]
+    },
+    "salary_min": {
+      "type": "number"
+    },
+    "salary_max": {
+      "type": "number"
+    },
+    "salary_display": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "responsibilities": {
+      "type": "string"
+    },
+    "required_qualifications": {
+      "type": "string"
+    },
+    "preferred_qualifications": {
+      "type": "string"
+    },
+    "application_deadline": {
+      "type": "string",
+      "format": "date"
+    },
+    "start_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "how_to_apply": {
+      "type": "string"
+    },
+    "contact_person": {
+      "type": "string"
+    },
+    "contact_email": {
+      "type": "string"
+    },
+    "logo_url": {
+      "type": "string"
+    },
+    "attachment_urls": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "grade_levels": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "subjects": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "role_category": {
+      "type": "string",
+      "enum": [
+        "teaching",
+        "leadership",
+        "executive",
+        "operations",
+        "edtech",
+        "special_ed",
+        "counseling",
+        "other"
+      ]
+    },
+    "tier": {
+      "type": "string",
+      "enum": [
+        "standard",
+        "featured",
+        "executive"
+      ],
+      "default": "standard"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "pending_payment",
+        "pending_review",
+        "active",
+        "expired",
+        "rejected",
+        "closed"
+      ],
+      "default": "draft"
+    },
+    "featured": {
+      "type": "boolean",
+      "default": false
+    },
+    "payment_status": {
+      "type": "string",
+      "enum": [
+        "unpaid",
+        "paid",
+        "refunded"
+      ],
+      "default": "unpaid"
+    },
+    "payment_amount": {
+      "type": "number"
+    },
+    "payment_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "expires_at": {
+      "type": "string",
+      "format": "date"
+    },
+    "views_count": {
+      "type": "number",
+      "default": 0
+    },
+    "applicants_count": {
+      "type": "number",
+      "default": 0
+    },
+    "saves_count": {
+      "type": "number",
+      "default": 0
+    },
+    "admin_notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "job_title",
+    "organization_name",
+    "description"
+  ],
+  "rls": {
+    "create": {
+      "data.employer_email": "{{user.email}}"
+    },
+    "read": {
+      "$or": [
+        {
+          "data.status": "active"
+        },
+        {
+          "data.employer_email": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "data.employer_email": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "data.employer_email": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
+}
