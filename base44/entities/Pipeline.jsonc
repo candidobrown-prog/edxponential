@@ -56,7 +56,16 @@
   ],
   "rls": {
     "create": {
-      "data.investor_email": "{{user.email}}"
+      "$or": [
+        {
+          "data.investor_email": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
     },
     "read": {
       "$or": [
