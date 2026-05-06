@@ -1,0 +1,129 @@
+{
+  "name": "EnterpriseQuote",
+  "type": "object",
+  "properties": {
+    "submitter_email": {
+      "type": "string"
+    },
+    "full_name": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "organization_name": {
+      "type": "string"
+    },
+    "school_network_name": {
+      "type": "string"
+    },
+    "website": {
+      "type": "string"
+    },
+    "org_type": {
+      "type": "string",
+      "enum": [
+        "single_school",
+        "charter_network",
+        "district",
+        "private_school_network",
+        "nonprofit",
+        "education_company",
+        "other"
+      ]
+    },
+    "num_schools": {
+      "type": "number"
+    },
+    "num_students": {
+      "type": "number"
+    },
+    "num_staff_users": {
+      "type": "number"
+    },
+    "grades_served": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string"
+    },
+    "services_needed": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "tech_needs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "budget_range": {
+      "type": "string"
+    },
+    "desired_start_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "contract_length": {
+      "type": "string",
+      "enum": [
+        "monthly",
+        "6_months",
+        "12_months",
+        "multi_year"
+      ]
+    },
+    "urgency_level": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "urgent"
+      ]
+    },
+    "problem_statement": {
+      "type": "string"
+    },
+    "desired_outcomes": {
+      "type": "string"
+    },
+    "additional_notes": {
+      "type": "string"
+    },
+    "quote_amount": {
+      "type": "number"
+    },
+    "assigned_owner": {
+      "type": "string"
+    },
+    "admin_notes": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "new",
+        "reviewing",
+        "quote_sent",
+        "in_negotiation",
+        "closed_won",
+        "closed_lost"
+      ],
+      "default": "new"
+    }
+  },
+  "required": [
+    "full_name",
+    "organization_name",
+    "submitter_email"
+  ]
+}

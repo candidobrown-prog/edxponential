@@ -1,0 +1,59 @@
+{
+  "name": "NotificationPrefs",
+  "type": "object",
+  "properties": {
+    "user_email": {
+      "type": "string"
+    },
+    "email_enabled": {
+      "type": "boolean",
+      "default": true
+    },
+    "phone_enabled": {
+      "type": "boolean",
+      "default": false
+    },
+    "watch_enabled": {
+      "type": "boolean",
+      "default": false
+    },
+    "phone_number": {
+      "type": "string"
+    },
+    "deadlines": {
+      "type": "boolean",
+      "default": true
+    },
+    "assignments": {
+      "type": "boolean",
+      "default": true
+    },
+    "discussions": {
+      "type": "boolean",
+      "default": false
+    },
+    "uploads": {
+      "type": "boolean",
+      "default": true
+    },
+    "projects": {
+      "type": "boolean",
+      "default": true
+    },
+    "sessions": {
+      "type": "boolean",
+      "default": true
+    },
+    "payments": {
+      "type": "boolean",
+      "default": true
+    },
+    "school_alerts": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "required": [
+    "user_email"
+  ]
+}

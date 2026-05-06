@@ -1,0 +1,314 @@
+{
+  "name": "MyXschool",
+  "type": "object",
+  "properties": {
+    "owner_email": {
+      "type": "string"
+    },
+    "school_name": {
+      "type": "string"
+    },
+    "logo_url": {
+      "type": "string"
+    },
+    "address": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string"
+    },
+    "zip": {
+      "type": "string"
+    },
+    "district": {
+      "type": "string"
+    },
+    "website": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "school_type": {
+      "type": "string",
+      "enum": [
+        "charter",
+        "traditional_public",
+        "private",
+        "private_religious",
+        "magnet",
+        "virtual",
+        "higher_ed",
+        "other"
+      ]
+    },
+    "grades_served": {
+      "type": "string"
+    },
+    "enrollment": {
+      "type": "number"
+    },
+    "year_founded": {
+      "type": "number"
+    },
+    "authorizer": {
+      "type": "string"
+    },
+    "public_school_id": {
+      "type": "string"
+    },
+    "district_id": {
+      "type": "string"
+    },
+    "leadership_team": {
+      "type": "string"
+    },
+    "pct_economically_disadvantaged": {
+      "type": "number"
+    },
+    "pct_iep": {
+      "type": "number"
+    },
+    "pct_multilingual": {
+      "type": "number"
+    },
+    "family_engagement_level": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high"
+      ]
+    },
+    "community_strengths": {
+      "type": "string"
+    },
+    "community_challenges": {
+      "type": "string"
+    },
+    "reading_proficiency": {
+      "type": "number"
+    },
+    "math_proficiency": {
+      "type": "number"
+    },
+    "writing_proficiency": {
+      "type": "number"
+    },
+    "science_proficiency": {
+      "type": "number"
+    },
+    "student_growth_data": {
+      "type": "string"
+    },
+    "assessment_platform": {
+      "type": "string"
+    },
+    "curriculum_used": {
+      "type": "string"
+    },
+    "intervention_programs": {
+      "type": "string"
+    },
+    "priority_gaps": {
+      "type": "string"
+    },
+    "attendance_rate": {
+      "type": "number"
+    },
+    "chronic_absenteeism_pct": {
+      "type": "number"
+    },
+    "suspension_rate": {
+      "type": "number"
+    },
+    "student_culture_rating": {
+      "type": "number"
+    },
+    "staff_culture_rating": {
+      "type": "number"
+    },
+    "family_satisfaction_rating": {
+      "type": "number"
+    },
+    "safety_concerns": {
+      "type": "string"
+    },
+    "num_teachers": {
+      "type": "number"
+    },
+    "teacher_retention_pct": {
+      "type": "number"
+    },
+    "vacancies": {
+      "type": "string"
+    },
+    "coaching_needs": {
+      "type": "string"
+    },
+    "pd_needs": {
+      "type": "string"
+    },
+    "budget_size": {
+      "type": "number"
+    },
+    "enrollment_trend": {
+      "type": "string",
+      "enum": [
+        "growing",
+        "stable",
+        "declining"
+      ]
+    },
+    "technology_needs": {
+      "type": "string"
+    },
+    "operations_pain_points": {
+      "type": "string"
+    },
+    "top_goals": {
+      "type": "string"
+    },
+    "biggest_challenge": {
+      "type": "string"
+    },
+    "urgency_level": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "urgent"
+      ]
+    },
+    "support_areas": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "funding_requested": {
+      "type": "boolean",
+      "default": false
+    },
+    "capital_amount_needed": {
+      "type": "number"
+    },
+    "use_of_funds": {
+      "type": "string"
+    },
+    "pitch_deck_url": {
+      "type": "string"
+    },
+    "financials_url": {
+      "type": "string"
+    },
+    "strategic_plan_url": {
+      "type": "string"
+    },
+    "school_improvement_plan_url": {
+      "type": "string"
+    },
+    "xscores_grade": {
+      "type": "string",
+      "enum": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "F"
+      ]
+    },
+    "xscores_overall": {
+      "type": "number"
+    },
+    "xscores_reading_rank": {
+      "type": "string"
+    },
+    "xscores_math_rank": {
+      "type": "string"
+    },
+    "xscores_badges": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "ai_summary": {
+      "type": "string"
+    },
+    "ai_strengths": {
+      "type": "string"
+    },
+    "ai_risks": {
+      "type": "string"
+    },
+    "ai_insights": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "ai_90_day_plan": {
+      "type": "string"
+    },
+    "pitch_readiness_score": {
+      "type": "number",
+      "default": 0
+    },
+    "profile_visibility": {
+      "type": "string",
+      "enum": [
+        "private",
+        "team_only",
+        "edvisor_visible",
+        "edvestor_visible",
+        "pitch_park_visible"
+      ],
+      "default": "private"
+    },
+    "xschetails_completion_pct": {
+      "type": "number",
+      "default": 0
+    },
+    "staff_seats_used": {
+      "type": "number",
+      "default": 0
+    },
+    "enterprise_status": {
+      "type": "string",
+      "enum": [
+        "none",
+        "requested",
+        "active"
+      ],
+      "default": "none"
+    },
+    "billing_status": {
+      "type": "string",
+      "enum": [
+        "free",
+        "active",
+        "past_due",
+        "cancelled"
+      ],
+      "default": "free"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "active",
+        "archived"
+      ],
+      "default": "draft"
+    }
+  },
+  "required": [
+    "school_name",
+    "owner_email"
+  ]
+}

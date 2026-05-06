@@ -1,0 +1,56 @@
+{
+  "name": "SchoolStaff",
+  "type": "object",
+  "properties": {
+    "school_id": {
+      "type": "string"
+    },
+    "invited_by_email": {
+      "type": "string"
+    },
+    "staff_name": {
+      "type": "string"
+    },
+    "staff_email": {
+      "type": "string"
+    },
+    "role": {
+      "type": "string",
+      "enum": [
+        "assistant_principal",
+        "dean",
+        "instructional_coach",
+        "operations_leader",
+        "teacher_leader",
+        "data_leader",
+        "finance_leader",
+        "counselor",
+        "other"
+      ]
+    },
+    "permissions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "invited",
+        "active",
+        "removed"
+      ],
+      "default": "invited"
+    },
+    "is_paid_seat": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "required": [
+    "school_id",
+    "staff_email",
+    "role"
+  ]
+}

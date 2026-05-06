@@ -1,3 +1,4 @@
+import React from 'react';
 import { Toaster } from "@/components/ui/toaster"
 import { QueryClientProvider } from '@tanstack/react-query'
 import { queryClientInstance } from '@/lib/query-client'
@@ -53,9 +54,28 @@ import EdXportanteDashboard from './pages/edxportante/EdXportanteDashboard';
 import Xschetails from './pages/Xschetails';
 import XschetailsDashboard from './pages/XschetailsDashboard';
 import PlatformChatbot from './components/platform/PlatformChatbot';
+import MyXschool from './pages/MyXschool';
+import NotificationPrefs from './pages/NotificationPrefs';
+import AdminEnterprise from './pages/AdminEnterprise';
+import WelcomeScreen from './components/platform/WelcomeScreen';
+import { AnimatePresence } from 'framer-motion';
+
+const WELCOME_KEY = 'edx_welcome_shown';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
+  const [showWelcome, setShowWelcome] = React.useState(false);
+
+  React.useEffect(() => {
+    if (!localStorage.getItem(WELCOME_KEY)) {
+      setTimeout(() => setShowWelcome(true), 800);
+    }
+  }, []);
+
+  const handleWelcomeChoice = (choice) => {
+    localStorage.setItem(WELCOME_KEY, choice);
+    setShowWelcome(false);
+  };
 
   // Show loading spinner while checking app public settings or auth
   if (isLoadingPublicSettings || isLoadingAuth) {
@@ -79,6 +99,10 @@ const AuthenticatedApp = () => {
 
   // Render the main app
   return (
+    <>
+    <AnimatePresence>
+      {showWelcome && <WelcomeScreen onChoice={handleWelcomeChoice} />}
+    </AnimatePresence>
     <Routes>
       <Route path="/welcome" element={<Landing />} />
       <Route element={<AppLayout />}>
@@ -105,6 +129,9 @@ const AuthenticatedApp = () => {
         <Route path="/matching" element={<MatchingDashboard />} />
         <Route path="/xschetails" element={<Xschetails />} />
         <Route path="/xschetails/dashboard" element={<XschetailsDashboard />} />
+        <Route path="/my-xschool" element={<MyXschool />} />
+        <Route path="/notifications" element={<NotificationPrefs />} />
+        <Route path="/admin/enterprise" element={<AdminEnterprise />} />
       </Route>
 
       {/* OneJob */}
@@ -170,6 +197,7 @@ const AuthenticatedApp = () => {
       </Route>
       <Route path="*" element={<PageNotFound />} />
     </Routes>
+    </>
   );
 };
 
