@@ -232,5 +232,52 @@
     "founder_name",
     "description",
     "stage"
-  ]
+  ],
+  "rls": {
+    "create": {
+      "data.founder_email": "{{user.email}}"
+    },
+    "read": {
+      "$or": [
+        {
+          "data.founder_email": "{{user.email}}"
+        },
+        {
+          "data.status": "active",
+          "user_condition": {
+            "role": "edvestor"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "data.founder_email": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "data.founder_email": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
 }
