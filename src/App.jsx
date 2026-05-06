@@ -67,19 +67,32 @@ import TubedXAnalytics from './pages/tubedx/TubedXAnalytics';
 import TubedXAIStudio from './pages/tubedx/TubedXAIStudio';
 import TubedXOTT from './pages/tubedx/TubedXOTT';
 import WelcomeScreen from './components/platform/WelcomeScreen';
+import OnboardingFlow from './components/platform/OnboardingFlow';
 import { AnimatePresence } from 'framer-motion';
 
 const WELCOME_KEY = 'edx_welcome_shown';
+const ONBOARDING_KEY = 'edx_onboarding_complete';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
+  const [showOnboarding, setShowOnboarding] = React.useState(false);
   const [showWelcome, setShowWelcome] = React.useState(false);
 
   React.useEffect(() => {
-    if (!localStorage.getItem(WELCOME_KEY)) {
+    if (!localStorage.getItem(ONBOARDING_KEY)) {
+      setTimeout(() => setShowOnboarding(true), 800);
+    } else if (!localStorage.getItem(WELCOME_KEY)) {
       setTimeout(() => setShowWelcome(true), 800);
     }
   }, []);
+
+  const handleOnboardingComplete = () => {
+    localStorage.setItem(ONBOARDING_KEY, 'true');
+    setShowOnboarding(false);
+    if (!localStorage.getItem(WELCOME_KEY)) {
+      setTimeout(() => setShowWelcome(true), 400);
+    }
+  };
 
   const handleWelcomeChoice = (choice) => {
     localStorage.setItem(WELCOME_KEY, choice);
@@ -109,6 +122,9 @@ const AuthenticatedApp = () => {
   // Render the main app
   return (
     <>
+    <AnimatePresence>
+      {showOnboarding && <OnboardingFlow onComplete={handleOnboardingComplete} />}
+    </AnimatePresence>
     <AnimatePresence>
       {showWelcome && <WelcomeScreen onChoice={handleWelcomeChoice} />}
     </AnimatePresence>
