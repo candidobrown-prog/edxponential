@@ -1,0 +1,125 @@
+{
+  "name": "JobApplication",
+  "type": "object",
+  "properties": {
+    "job_id": {
+      "type": "string"
+    },
+    "job_title": {
+      "type": "string"
+    },
+    "organization_name": {
+      "type": "string"
+    },
+    "applicant_email": {
+      "type": "string"
+    },
+    "applicant_name": {
+      "type": "string"
+    },
+    "applicant_phone": {
+      "type": "string"
+    },
+    "resume_url": {
+      "type": "string"
+    },
+    "cover_letter_url": {
+      "type": "string"
+    },
+    "cover_letter_text": {
+      "type": "string"
+    },
+    "linkedin_url": {
+      "type": "string"
+    },
+    "portfolio_url": {
+      "type": "string"
+    },
+    "years_experience": {
+      "type": "number"
+    },
+    "current_title": {
+      "type": "string"
+    },
+    "current_organization": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "submitted",
+        "under_review",
+        "shortlisted",
+        "interview_scheduled",
+        "offered",
+        "hired",
+        "rejected",
+        "withdrawn"
+      ],
+      "default": "submitted"
+    },
+    "employer_notes": {
+      "type": "string"
+    },
+    "saved_by_employer": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "required": [
+    "job_id",
+    "applicant_email",
+    "applicant_name"
+  ],
+  "rls": {
+    "create": {
+      "data.applicant_email": "{{user.email}}"
+    },
+    "read": {
+      "$or": [
+        {
+          "data.applicant_email": "{{user.email}}"
+        },
+        {
+          "data.job_id": {
+            "$in": "{{lookup.JobPost.filter(employer_email=user.email).id}}"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "data.applicant_email": "{{user.email}}"
+        },
+        {
+          "data.job_id": {
+            "$in": "{{lookup.JobPost.filter(employer_email=user.email).id}}"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "data.applicant_email": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
+}
