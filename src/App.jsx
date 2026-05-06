@@ -68,7 +68,6 @@ import TubedXEvents from './pages/tubedx/TubedXEvents';
 import TubedXAnalytics from './pages/tubedx/TubedXAnalytics';
 import TubedXAIStudio from './pages/tubedx/TubedXAIStudio';
 import TubedXOTT from './pages/tubedx/TubedXOTT';
-import WelcomeScreen from './components/platform/WelcomeScreen';
 import OnboardingFlow from './components/platform/OnboardingFlow';
 import XschoresHome from './pages/xschores/XschoresHome';
 import XschoresLayout from './components/xschores/XschoresLayout';
@@ -80,33 +79,21 @@ import XschoresCultureLog from './pages/xschores/XschoresCultureLog';
 import XschoresReports from './pages/xschores/XschoresReports';
 import { AnimatePresence } from 'framer-motion';
 
-const WELCOME_KEY = 'edx_welcome_shown';
 const ONBOARDING_KEY = 'edx_onboarding_complete';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
   const [showOnboarding, setShowOnboarding] = React.useState(false);
-  const [showWelcome, setShowWelcome] = React.useState(false);
 
   React.useEffect(() => {
     if (!localStorage.getItem(ONBOARDING_KEY)) {
-      setTimeout(() => setShowOnboarding(true), 800);
-    } else if (!localStorage.getItem(WELCOME_KEY)) {
-      setTimeout(() => setShowWelcome(true), 800);
+      setTimeout(() => setShowOnboarding(true), 600);
     }
   }, []);
 
   const handleOnboardingComplete = () => {
     localStorage.setItem(ONBOARDING_KEY, 'true');
     setShowOnboarding(false);
-    if (!localStorage.getItem(WELCOME_KEY)) {
-      setTimeout(() => setShowWelcome(true), 400);
-    }
-  };
-
-  const handleWelcomeChoice = (choice) => {
-    localStorage.setItem(WELCOME_KEY, choice);
-    setShowWelcome(false);
   };
 
   // Show loading spinner while checking app public settings or auth
@@ -134,9 +121,6 @@ const AuthenticatedApp = () => {
     <>
     <AnimatePresence>
       {showOnboarding && <OnboardingFlow onComplete={handleOnboardingComplete} />}
-    </AnimatePresence>
-    <AnimatePresence>
-      {showWelcome && <WelcomeScreen onChoice={handleWelcomeChoice} />}
     </AnimatePresence>
     <Routes>
       <Route path="/welcome" element={<Landing />} />
