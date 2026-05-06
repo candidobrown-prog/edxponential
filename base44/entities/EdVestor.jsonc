@@ -182,7 +182,16 @@
   ],
   "rls": {
     "create": {
-      "data.user_email": "{{user.email}}"
+      "$or": [
+        {
+          "data.user_email": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
     },
     "read": {
       "$or": [
@@ -193,15 +202,7 @@
           "data.visibility": "public"
         },
         {
-          "data.visibility": "verified_only",
-          "user_condition": {
-            "membership_tier": {
-              "$in": [
-                "founders_sphere",
-                "executive_entourage"
-              ]
-            }
-          }
+          "data.visibility": "verified_only"
         },
         {
           "user_condition": {
