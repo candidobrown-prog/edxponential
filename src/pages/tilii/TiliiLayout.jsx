@@ -1,12 +1,14 @@
 import React from 'react';
 import { Outlet, Link, useLocation } from 'react-router-dom';
 import { Play, Search, Radio, Video, BarChart3, Zap, Home } from 'lucide-react';
+import EdxTooltip from '@/components/platform/EdxTooltip';
+import { TOOLTIP } from '@/lib/tooltipData';
 
 const NAV = [
-  { path: '/tilii', icon: Home, label: 'Home', exact: true },
-  { path: '/tilii/discover', icon: Search, label: 'Discover' },
-  { path: '/tilii/watch', icon: Play, label: 'Watch' },
-  { path: '/tilii/studio', icon: Video, label: 'Studio' },
+  { path: '/tilii', icon: Home, label: 'Home', exact: true, tooltip: null },
+  { path: '/tilii/discover', icon: Search, label: 'Discover', tooltip: TOOLTIP.tiliiDiscover },
+  { path: '/tilii/watch', icon: Play, label: 'Watch', tooltip: TOOLTIP.tiliiWatch },
+  { path: '/tilii/studio', icon: Video, label: 'Studio', tooltip: TOOLTIP.tiliiStudio },
 ];
 
 export default function TiliiLayout() {
@@ -25,15 +27,16 @@ export default function TiliiLayout() {
           </Link>
 
           <nav className="flex items-center gap-1">
-            {NAV.map(({ path, icon: Icon, label, exact }) => {
+            {NAV.map(({ path, icon: Icon, label, exact, tooltip }) => {
               const active = exact ? pathname === path : pathname.startsWith(path) && path !== '/tilii';
-              return (
+              const link = (
                 <Link key={path} to={path}
                   className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-black transition-all ${active ? 'bg-white text-black' : 'text-white/40 hover:text-white hover:bg-white/[0.06]'}`}>
                   <Icon className="w-3.5 h-3.5" />
                   <span className="hidden sm:block">{label}</span>
                 </Link>
               );
+              return tooltip ? <EdxTooltip key={path} data={tooltip} delay={400}>{link}</EdxTooltip> : link;
             })}
           </nav>
 

@@ -9,6 +9,8 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Label } from '@/components/ui/label';
 import { Plus, Search, Users } from 'lucide-react';
 import CommunityCard from '../components/communities/CommunityCard';
+import EdxTooltip from '@/components/platform/EdxTooltip';
+import { TOOLTIP } from '@/lib/tooltipData';
 
 const communityCategories = [
   { value: 'charter_schools', label: 'Charter Schools' },
@@ -69,9 +71,11 @@ export default function Communities() {
         </div>
         <Dialog open={open} onOpenChange={setOpen}>
           <DialogTrigger asChild>
-            <Button className="bg-primary hover:bg-primary/90 rounded-xl gap-2">
-              <Plus className="w-4 h-4" /> Create Community
-            </Button>
+            <EdxTooltip data={TOOLTIP.communityCreate} delay={400}>
+              <Button className="bg-primary hover:bg-primary/90 rounded-xl gap-2">
+                <Plus className="w-4 h-4" /> Create Community
+              </Button>
+            </EdxTooltip>
           </DialogTrigger>
           <DialogContent className="sm:max-w-lg">
             <DialogHeader>

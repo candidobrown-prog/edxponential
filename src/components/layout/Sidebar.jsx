@@ -16,6 +16,7 @@ const navItems = [
   { path: '/my-xschool', icon: School, label: 'My Xschool™', tooltip: TOOLTIP.myXschool },
   { path: '/matching', icon: Target, label: 'AI Matching', tooltip: TOOLTIP.aiMatching },
   { path: '/courses', icon: BookOpen, label: 'Courses', tooltip: TOOLTIP.courses },
+  { path: '/coaching', icon: Star, label: 'Coaching', tooltip: TOOLTIP.coaching },
   { path: '/edvisors', icon: Star, label: 'edVisors', tooltip: TOOLTIP.edVisors },
   { path: '/communities', icon: Users, label: 'Communities', tooltip: TOOLTIP.communities },
   { path: '/edvestors', icon: DollarSign, label: 'edVestors', tooltip: TOOLTIP.edVestors },

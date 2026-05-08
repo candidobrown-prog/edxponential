@@ -182,6 +182,84 @@ export const TOOLTIP = {
     cta: 'Complete your profile.',
   },
 
+  // ── Coaching ─────────────────────────────────────────────────────────────
+  coaching: {
+    name: 'Coaching',
+    icon: '🏆',
+    tag: 'Live Sessions',
+    description: 'Book live 1-on-1 coaching sessions with education executives, instructional experts, and school transformation coaches.',
+    why: 'The fastest way to grow is learning from someone who\'s already done it.',
+    cta: 'Browse available coaches.',
+  },
+
+  // ── TiliiVisxion Inner Nav ────────────────────────────────────────────────
+  tiliiDiscover: {
+    name: 'Discover',
+    icon: '🔍',
+    tag: 'TiliiVisxion',
+    description: 'Browse thousands of education videos, masterclasses, documentaries, and creator channels — curated by AI for your goals.',
+    why: 'The right content at the right moment changes how you lead.',
+    cta: 'Start discovering.',
+  },
+  tiliiWatch: {
+    name: 'Watch',
+    icon: '▶️',
+    tag: 'TiliiVisxion',
+    description: 'Stream premium educational content, locked masterclasses, and creator channels. Your AI-recommended watch queue lives here.',
+    why: 'Every great leader is also a great learner.',
+    cta: 'Start watching.',
+  },
+  tiliiStudio: {
+    name: 'Creator Studio',
+    icon: '🎥',
+    tag: 'TiliiVisxion',
+    description: 'Upload your knowledge, build your channel, and monetize your expertise. The edXponential creator economy starts here.',
+    why: 'The world needs your voice. Build your audience.',
+    cta: 'Open your studio.',
+  },
+  tiliiLive: {
+    name: 'Live Streaming',
+    icon: '📡',
+    tag: 'TiliiVisxion',
+    description: 'Host or attend live learning sessions, town halls, Q&As, and real-time leadership conversations.',
+    why: 'Real-time learning creates real-time breakthroughs.',
+    cta: 'See what\'s live.',
+  },
+  tiliiMasterclasses: {
+    name: 'Masterclasses',
+    icon: '🎓',
+    tag: 'TiliiVisxion',
+    description: 'Deep-dive learning from world-class educators and leaders. Structured, premium, and worth every minute.',
+    why: 'Masterclasses compress years of experience into hours of insight.',
+    cta: 'Browse masterclasses.',
+  },
+  tiliiChannels: {
+    name: 'Channels',
+    icon: '📺',
+    tag: 'TiliiVisxion',
+    description: 'Follow your favorite education creators and organizations. Subscribe to channels that match your mission.',
+    why: 'Consistent learning from trusted voices compounds over time.',
+    cta: 'Find your channels.',
+  },
+
+  // ── Community Inner Features ───────────────────────────────────────────────
+  communityCreate: {
+    name: 'Create Community',
+    icon: '✨',
+    tag: 'Communities',
+    description: 'Launch your own private or public community. Invite members, set topics, and build your network inside edXponential.',
+    why: 'The communities you build define the culture you lead.',
+    cta: 'Create your community.',
+  },
+  communityJoin: {
+    name: 'Join a Community',
+    icon: '🤝',
+    tag: 'Communities',
+    description: 'Discover and join communities of principals, founders, investors, and educators aligned with your work.',
+    why: 'You grow fastest around people who get it.',
+    cta: 'Find your community.',
+  },
+
   // ── Platform Tiers ────────────────────────────────────────────────────────
   tubedX: {
     name: 'TubedX™',

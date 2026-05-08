@@ -2,6 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Play, Zap, Users, Globe, ArrowRight, Star, CheckCircle, Sparkles, Radio, BookOpen, Mic } from 'lucide-react';
+import EdxTooltip from '@/components/platform/EdxTooltip';
+import { TOOLTIP } from '@/lib/tooltipData';
+
+const NAV_TOOLTIPS = {
+  discover: TOOLTIP.tiliiDiscover,
+  channels: TOOLTIP.tiliiChannels,
+  live: TOOLTIP.tiliiLive,
+  masterclasses: TOOLTIP.tiliiMasterclasses,
+  studio: TOOLTIP.tiliiStudio,
+};
 
 const HERO_TITLES = ['Watch What\'s Next.', 'Learn Without Limits.', 'Watch Your Future Unfold.'];
 const CATEGORIES = ['Education', 'Leadership', 'Wellness', 'Entrepreneurship', 'AI & Tech', 'Storytelling', 'Coaching', 'Culture'];
@@ -53,7 +63,9 @@ export default function TiliiHome() {
           </Link>
           <div className="hidden md:flex items-center gap-6 text-sm text-white/40 font-semibold">
             {['Discover', 'Channels', 'Live', 'Masterclasses', 'Studio'].map(l => (
-              <Link key={l} to={`/tilii/${l.toLowerCase()}`} className="hover:text-white transition-colors">{l}</Link>
+              <EdxTooltip key={l} data={NAV_TOOLTIPS[l.toLowerCase()]} delay={400}>
+                <Link to={`/tilii/${l.toLowerCase()}`} className="hover:text-white transition-colors">{l}</Link>
+              </EdxTooltip>
             ))}
           </div>
           <div className="flex items-center gap-3">
