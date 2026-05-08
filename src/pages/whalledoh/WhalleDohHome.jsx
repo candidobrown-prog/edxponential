@@ -247,7 +247,7 @@ export default function WhalleDohHome() {
           <Link to="/whalledoh/discover" className="inline-flex items-center gap-2 bg-white text-[#07080f] font-black px-8 py-4 rounded-2xl hover:bg-gray-100 transition-all shadow-2xl shadow-white/10 text-sm">
             Find Your People <ArrowRight className="w-4 h-4" />
           </Link>
-          <p className="text-white/20 text-xs mt-6">Free to join · No credit card required</p>
+          <p className="text-white/20 text-xs mt-6">Free 7-day trial · $7/month after · Cancel anytime</p>
         </div>
       </section>
 
