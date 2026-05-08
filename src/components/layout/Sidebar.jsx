@@ -88,6 +88,7 @@ export default function Sidebar() {
           { to: '/onejob', label: 'OneJob', badge: '1J', active: location.pathname.startsWith('/onejob') },
           { to: '/edxportante', label: 'edXportante', badge: 'eP', active: location.pathname.startsWith('/edxportante') },
           { to: '/whalledoh', label: 'WhalleDoh™', badge: 'WD', active: location.pathname.startsWith('/whalledoh') },
+          { to: '/tilii', label: 'TiliiVisxion™', badge: 'TV', active: location.pathname.startsWith('/tilii') },
         ].map(({ to, label, badge, active }) => (
           <Link key={to} to={to}
             className={cn("flex items-center gap-3 px-4 py-2 rounded-xl transition-all duration-200",

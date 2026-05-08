@@ -69,6 +69,12 @@ import TubedXAnalytics from './pages/tubedx/TubedXAnalytics';
 import TubedXAIStudio from './pages/tubedx/TubedXAIStudio';
 import TubedXOTT from './pages/tubedx/TubedXOTT';
 import OnboardingFlow from './components/platform/OnboardingFlow';
+import TiliiHome from './pages/tilii/TiliiHome';
+import TiliiLayout from './pages/tilii/TiliiLayout';
+import TiliiGate from './pages/tilii/TiliiGate';
+import TiliiDiscover from './pages/tilii/TiliiDiscover';
+import TiliiWatch from './pages/tilii/TiliiWatch';
+import TiliiStudio from './pages/tilii/TiliiStudio';
 import WhalleDohHome from './pages/whalledoh/WhalleDohHome';
 import WhalleDohDiscover from './pages/whalledoh/WhalleDohDiscover';
 import WhalleDohAI from './pages/whalledoh/WhalleDohAI';
@@ -243,6 +249,17 @@ const AuthenticatedApp = () => {
         <Route path="/xschores/benchmarks" element={<XschoresBenchmarks />} />
         <Route path="/xschores/culture" element={<XschoresCultureLog />} />
         <Route path="/xschores/reports" element={<XschoresReports />} />
+      </Route>
+
+      {/* TiliiVisxion */}
+      <Route path="/tilii" element={<TiliiHome />} />
+      <Route element={<TiliiLayout />}>
+        <Route path="/tilii/discover" element={<TiliiGate><TiliiDiscover /></TiliiGate>} />
+        <Route path="/tilii/watch" element={<TiliiGate><TiliiWatch /></TiliiGate>} />
+        <Route path="/tilii/studio" element={<TiliiGate><TiliiStudio /></TiliiGate>} />
+        <Route path="/tilii/channels" element={<TiliiGate><TiliiDiscover /></TiliiGate>} />
+        <Route path="/tilii/live" element={<TiliiGate><TiliiDiscover /></TiliiGate>} />
+        <Route path="/tilii/masterclasses" element={<TiliiGate><TiliiDiscover /></TiliiGate>} />
       </Route>
 
       {/* WhalleDoh — public landing, gated inner pages */}
