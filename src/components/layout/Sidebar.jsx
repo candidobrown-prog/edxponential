@@ -28,6 +28,7 @@ const navItems = [
   { path: '/investor-profile', icon: DollarSign, label: 'Investor Profile', tooltip: TOOLTIP.investorProfile },
   { path: '/admin-match-control', icon: ShieldCheck, label: 'Match Control', tooltip: TOOLTIP.matchControl },
   { path: '/admin/feedback', icon: MessageSquare, label: 'Feedback Admin', tooltip: TOOLTIP.feedbackAdmin },
+  { path: '/admin/payments', icon: CreditCard, label: 'Payment Command', tooltip: TOOLTIP.billing },
   { path: '/xschores', icon: ShieldAlert, label: 'Xschores™', tooltip: TOOLTIP.xschores },
   { path: '/whalledoh', icon: Search, label: 'WhalleDoh™', tooltip: TOOLTIP.whalleDoh },
   { path: '/billing', icon: CreditCard, label: 'Billing', tooltip: TOOLTIP.billing },
