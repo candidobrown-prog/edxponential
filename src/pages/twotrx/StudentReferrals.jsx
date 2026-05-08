@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { base44 } from '@/api/base44Client';
-import { Users, ClipboardList, Plus, Search } from 'lucide-react';
+import { Users, ClipboardList, Plus, Search, Upload } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import ExcelImportWizard from '@/components/import/ExcelImportWizard';
+import { STUDENT_FIELDS } from '@/components/import/importFieldDefs';
 
 const STATUS_COLORS = {
   pending: 'bg-amber-100 text-amber-700',
@@ -18,6 +20,7 @@ export default function StudentReferrals() {
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
   const [statusFilter, setStatusFilter] = useState('');
+  const [showImport, setShowImport] = useState(false);
 
   useEffect(() => {
     base44.auth.me().then(u =>
@@ -40,12 +43,25 @@ export default function StudentReferrals() {
           <h1 className="text-2xl font-bold text-slate-900">Student Support Pipeline</h1>
           <p className="text-slate-500 mt-1">{students.length} total referrals in the TwotrX system.</p>
         </div>
-        <Link to="/twotrx/refer-student">
-          <Button className="bg-[#4f46e5] hover:bg-[#4338ca] text-white gap-2">
-            <Plus className="w-4 h-4" /> Refer Student
+        <div className="flex gap-2">
+          <Button variant="outline" onClick={() => setShowImport(true)} className="gap-2 rounded-xl">
+            <Upload className="w-4 h-4" /> Import from Excel
           </Button>
-        </Link>
+          <Link to="/twotrx/refer-student">
+            <Button className="bg-[#4f46e5] hover:bg-[#4338ca] text-white gap-2">
+              <Plus className="w-4 h-4" /> Refer Student
+            </Button>
+          </Link>
+        </div>
       </div>
+      <ExcelImportWizard
+        open={showImport}
+        onOpenChange={setShowImport}
+        fieldDefs={STUDENT_FIELDS}
+        entityName="TutoringStudent"
+        templateName="Student Referrals"
+        onImportComplete={() => base44.auth.me().then(u => base44.entities.TutoringStudent.filter({ referred_by_email: u.email })).then(setStudents)}
+      />
 
       {/* Filters */}
       <div className="flex items-center gap-3">

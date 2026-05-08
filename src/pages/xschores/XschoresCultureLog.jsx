@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { base44 } from '@/api/base44Client';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { Plus, Search, X, ClipboardList } from 'lucide-react';
+import { Plus, Search, X, ClipboardList, Upload } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import ExcelImportWizard from '@/components/import/ExcelImportWizard';
+import { CULTURE_FIELDS } from '@/components/import/importFieldDefs';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
@@ -30,6 +32,7 @@ export default function XschoresCultureLog() {
   const [search, setSearch] = useState('');
   const [categoryFilter, setCategoryFilter] = useState('all');
   const [showForm, setShowForm] = useState(false);
+  const [showImport, setShowImport] = useState(false);
   const [form, setForm] = useState(defaultForm);
   const queryClient = useQueryClient();
 
@@ -60,8 +63,19 @@ export default function XschoresCultureLog() {
           <h1 className="text-3xl font-black">Culture Log</h1>
           <p className="text-muted-foreground mt-1">Record and track student culture, behavior, and attendance events</p>
         </div>
-        <Button onClick={() => setShowForm(true)} className="rounded-xl gap-2"><Plus className="w-4 h-4" /> New Entry</Button>
+        <div className="flex gap-2">
+          <Button variant="outline" onClick={() => setShowImport(true)} className="rounded-xl gap-2"><Upload className="w-4 h-4" /> Import from Excel</Button>
+          <Button onClick={() => setShowForm(true)} className="rounded-xl gap-2"><Plus className="w-4 h-4" /> New Entry</Button>
+        </div>
       </div>
+      <ExcelImportWizard
+        open={showImport}
+        onOpenChange={setShowImport}
+        fieldDefs={CULTURE_FIELDS}
+        entityName="XscoresCultureEntry"
+        templateName="Culture Log"
+        onImportComplete={() => queryClient.invalidateQueries({ queryKey: ['xschores-culture'] })}
+      />
 
       {/* Filters */}
       <div className="flex flex-wrap gap-3">

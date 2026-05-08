@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import { base44 } from '@/api/base44Client';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { Link } from 'react-router-dom';
-import { Plus, Search, X, Users } from 'lucide-react';
+import { Plus, Search, X, Users, Upload } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Label } from '@/components/ui/label';
+import ExcelImportWizard from '@/components/import/ExcelImportWizard';
+import { STUDENT_FIELDS } from '@/components/import/importFieldDefs';
 
 const RISK_CONFIG = {
   on_track: { label: 'On Track', color: 'bg-green-100 text-green-800', dot: 'bg-green-500' },
@@ -24,6 +26,7 @@ export default function XschoresStudents() {
   const [riskFilter, setRiskFilter] = useState('all');
   const [gradeFilter, setGradeFilter] = useState('all');
   const [showAdd, setShowAdd] = useState(false);
+  const [showImport, setShowImport] = useState(false);
   const [form, setForm] = useState({ student_name: '', grade: '', homeroom_teacher: '', attendance_pct: 100, tardies_this_week: 0, absences_this_month: 0, risk_level: 'on_track', parent_name: '', parent_email: '', parent_phone: '' });
   const queryClient = useQueryClient();
 
@@ -52,8 +55,19 @@ export default function XschoresStudents() {
           <h1 className="text-3xl font-black">Students</h1>
           <p className="text-muted-foreground mt-1">Monitor and manage individual student risk profiles</p>
         </div>
-        <Button onClick={() => setShowAdd(true)} className="rounded-xl gap-2"><Plus className="w-4 h-4" /> Add Student</Button>
+        <div className="flex gap-2">
+          <Button variant="outline" onClick={() => setShowImport(true)} className="rounded-xl gap-2"><Upload className="w-4 h-4" /> Import from Excel</Button>
+          <Button onClick={() => setShowAdd(true)} className="rounded-xl gap-2"><Plus className="w-4 h-4" /> Add Student</Button>
+        </div>
       </div>
+      <ExcelImportWizard
+        open={showImport}
+        onOpenChange={setShowImport}
+        fieldDefs={STUDENT_FIELDS}
+        entityName="XscoresStudent"
+        templateName="Student Roster"
+        onImportComplete={() => queryClient.invalidateQueries({ queryKey: ['xschores-students'] })}
+      />
 
       {/* Filters */}
       <div className="flex flex-wrap gap-3">

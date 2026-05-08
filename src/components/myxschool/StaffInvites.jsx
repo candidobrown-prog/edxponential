@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { base44 } from '@/api/base44Client';
-import { Users, Plus, Mail, Check, X, AlertCircle } from 'lucide-react';
+import { Users, Plus, Mail, Check, X, AlertCircle, Upload } from 'lucide-react';
+import ExcelImportWizard from '@/components/import/ExcelImportWizard';
+import { STAFF_FIELDS } from '@/components/import/importFieldDefs';
 
 const ROLES = [
   {v:'assistant_principal',l:'Assistant Principal'},
@@ -23,6 +25,7 @@ const inp = "w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:ou
 
 export default function StaffInvites({ user, school, staff, onUpdate }) {
   const [showForm, setShowForm] = useState(false);
+  const [showImport, setShowImport] = useState(false);
   const [form, setForm] = useState({ staff_name:'', staff_email:'', role:'', permissions:[] });
   const [saving, setSaving] = useState(false);
 
@@ -83,11 +86,25 @@ export default function StaffInvites({ user, school, staff, onUpdate }) {
             <strong>{paidSeats} additional staff seat{paidSeats>1?'s':''}</strong> at <strong>$7.99/month each</strong> = <strong>${(paidSeats*7.99).toFixed(2)}/month</strong>
           </div>
         )}
-        <button onClick={() => setShowForm(!showForm)}
-          className="mt-4 flex items-center gap-2 px-5 py-3 bg-[#0a0f1e] text-white rounded-xl font-black text-sm hover:bg-[#1a2033] transition-all">
-          <Plus className="w-4 h-4" /> Invite Staff Member
-        </button>
+        <div className="mt-4 flex gap-2 flex-wrap">
+          <button onClick={() => setShowImport(true)}
+            className="flex items-center gap-2 px-5 py-3 border border-gray-200 text-gray-700 rounded-xl font-black text-sm hover:bg-gray-50 transition-all">
+            <Upload className="w-4 h-4" /> Import from Excel
+          </button>
+          <button onClick={() => setShowForm(!showForm)}
+            className="flex items-center gap-2 px-5 py-3 bg-[#0a0f1e] text-white rounded-xl font-black text-sm hover:bg-[#1a2033] transition-all">
+            <Plus className="w-4 h-4" /> Invite Staff Member
+          </button>
+        </div>
       </div>
+      <ExcelImportWizard
+        open={showImport}
+        onOpenChange={setShowImport}
+        fieldDefs={STAFF_FIELDS}
+        entityName="SchoolStaff"
+        templateName="Staff Roster"
+        onImportComplete={() => {}}
+      />
 
       {/* Invite Form */}
       {showForm && (
