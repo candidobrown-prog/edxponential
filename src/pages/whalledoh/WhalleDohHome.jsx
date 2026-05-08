@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Search, Sparkles, Users, Globe, ArrowRight, Star, CheckCircle, Zap, MessageSquare } from 'lucide-react';
+import EdxBadge from '@/components/design-system/EdxBadge';
+import EdxAvatar from '@/components/design-system/EdxAvatar';
 
 const ROLES = ['Teachers', 'Principals', 'Superintendents', 'Coaches', 'Professors', 'Founders', 'Researchers', 'Counselors', 'Designers', 'Mentors'];
 const FEATURED = [
@@ -208,14 +210,14 @@ export default function WhalleDohHome() {
                 initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.08 }}
                 className="group bg-white/[0.03] border border-white/[0.07] rounded-2xl p-5 hover:bg-white/[0.06] hover:border-white/15 transition-all cursor-pointer">
                 <div className="flex items-start gap-3 mb-3">
-                  <div className="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center text-xl flex-shrink-0">{e.emoji}</div>
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-1.5">
-                      <span className="text-white font-black text-sm truncate">{e.name}</span>
-                      {e.verified && <CheckCircle className="w-3.5 h-3.5 text-white/60 flex-shrink-0" />}
-                    </div>
-                    <p className="text-white/35 text-xs truncate">{e.role}</p>
+                <EdxAvatar name={e.name} size="md" dark />
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-1.5">
+                    <span className="text-white font-black text-sm truncate">{e.name}</span>
+                    {e.verified && <EdxBadge type="verified" size="xs" />}
                   </div>
+                  <p className="text-white/35 text-xs truncate">{e.role}</p>
+                </div>
                 </div>
                 <span className="inline-block text-[10px] font-bold text-white/50 border border-white/[0.1] rounded-full px-2.5 py-1">{e.tag}</span>
                 <div className="mt-3 opacity-0 group-hover:opacity-100 transition-opacity">
