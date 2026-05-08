@@ -69,6 +69,11 @@ import TubedXAnalytics from './pages/tubedx/TubedXAnalytics';
 import TubedXAIStudio from './pages/tubedx/TubedXAIStudio';
 import TubedXOTT from './pages/tubedx/TubedXOTT';
 import OnboardingFlow from './components/platform/OnboardingFlow';
+import WhalleDohHome from './pages/whalledoh/WhalleDohHome';
+import WhalleDohDiscover from './pages/whalledoh/WhalleDohDiscover';
+import WhalleDohAI from './pages/whalledoh/WhalleDohAI';
+import WhalleDohCommunities from './pages/whalledoh/WhalleDohCommunities';
+import WhalleDohProfile from './pages/whalledoh/WhalleDohProfile';
 import XschoresHome from './pages/xschores/XschoresHome';
 import XschoresLayout from './components/xschores/XschoresLayout';
 import XschoresDashboard from './pages/xschores/XschoresDashboard';
@@ -238,6 +243,13 @@ const AuthenticatedApp = () => {
         <Route path="/xschores/culture" element={<XschoresCultureLog />} />
         <Route path="/xschores/reports" element={<XschoresReports />} />
       </Route>
+
+      {/* WhalleDoh */}
+      <Route path="/whalledoh" element={<WhalleDohHome />} />
+      <Route path="/whalledoh/discover" element={<WhalleDohDiscover />} />
+      <Route path="/whalledoh/ai" element={<WhalleDohAI />} />
+      <Route path="/whalledoh/communities" element={<WhalleDohCommunities />} />
+      <Route path="/whalledoh/profiles" element={<WhalleDohProfile />} />
 
       <Route path="*" element={<PageNotFound />} />
     </Routes>

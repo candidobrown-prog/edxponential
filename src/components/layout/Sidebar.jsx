@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { LayoutDashboard, BookOpen, Users, User, ChevronLeft, ChevronRight, LogOut, Star, DollarSign, Briefcase, Layers, TrendingUp, CreditCard, Sparkles, ShieldCheck, Zap, Target, Building2, BarChart3, Bell, School, Play, MessageSquare, ShieldAlert } from 'lucide-react';
+import { LayoutDashboard, BookOpen, Users, User, ChevronLeft, ChevronRight, LogOut, Star, DollarSign, Briefcase, Layers, TrendingUp, CreditCard, Sparkles, ShieldCheck, Zap, Target, Building2, BarChart3, Bell, School, Play, MessageSquare, ShieldAlert, Search } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
 import { cn } from '@/lib/utils';
 
@@ -21,6 +21,7 @@ const navItems = [
   { path: '/admin-match-control', icon: ShieldCheck, label: 'Match Control' },
   { path: '/admin/feedback', icon: MessageSquare, label: 'Feedback Admin' },
   { path: '/xschores', icon: ShieldAlert, label: 'Xschores™' },
+  { path: '/whalledoh', icon: Search, label: 'WhalleDoh™' },
   { path: '/billing', icon: CreditCard, label: 'Billing' },
   { path: '/identity-verification', icon: ShieldCheck, label: 'Verification' },
   { path: '/notifications', icon: Bell, label: 'Notifications' },
@@ -86,6 +87,7 @@ export default function Sidebar() {
           { to: '/twotrx', label: 'TwotrX', badge: '2X', active: location.pathname.startsWith('/twotrx') },
           { to: '/onejob', label: 'OneJob', badge: '1J', active: location.pathname.startsWith('/onejob') },
           { to: '/edxportante', label: 'edXportante', badge: 'eP', active: location.pathname.startsWith('/edxportante') },
+          { to: '/whalledoh', label: 'WhalleDoh™', badge: 'WD', active: location.pathname.startsWith('/whalledoh') },
         ].map(({ to, label, badge, active }) => (
           <Link key={to} to={to}
             className={cn("flex items-center gap-3 px-4 py-2 rounded-xl transition-all duration-200",
