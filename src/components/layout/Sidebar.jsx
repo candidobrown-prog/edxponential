@@ -45,13 +45,9 @@ export default function Sidebar() {
             <span className="text-black font-heading font-black text-sm tracking-tight">eX</span>
           </div>
         ) : (
-          <div className="flex flex-col gap-0.5 w-full">
-            <img
-              src="https://media.base44.com/images/public/69f64dbf5c37a4db77e0e302/21d29b7f0_64B1F443-0AD3-403D-B726-ABEF11D14419.png"
-              alt="edXponential"
-              className="h-10 w-auto object-contain"
-            />
-            <span className="text-white/20 text-[9px] font-black uppercase tracking-[0.2em] px-0.5">The Future of Education</span>
+          <div className="flex flex-col gap-1 w-full">
+            <span className="text-white font-black text-xl tracking-tight leading-none">edXponential</span>
+            <span className="text-white/20 text-[9px] font-black uppercase tracking-[0.2em]">The Future of Education</span>
           </div>
         )}
       </div>
