@@ -39,17 +39,20 @@ export default function Sidebar() {
       collapsed ? "w-20" : "w-64"
     )}>
       {/* Logo */}
-      <div className="px-5 py-6 flex items-center">
+      <div className="px-4 py-5 flex items-center border-b border-sidebar-border/50">
         {collapsed ? (
-          <div className="w-9 h-9 bg-white rounded flex items-center justify-center flex-shrink-0">
-            <span className="text-black font-heading font-bold text-sm tracking-tight">eX</span>
+          <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg shadow-white/10">
+            <span className="text-black font-heading font-black text-sm tracking-tight">eX</span>
           </div>
         ) : (
-          <img
-            src="https://media.base44.com/images/public/69f64dbf5c37a4db77e0e302/21d29b7f0_64B1F443-0AD3-403D-B726-ABEF11D14419.png"
-            alt="edXponential"
-            className="h-8 w-auto object-contain"
-          />
+          <div className="flex flex-col gap-0.5 w-full">
+            <img
+              src="https://media.base44.com/images/public/69f64dbf5c37a4db77e0e302/21d29b7f0_64B1F443-0AD3-403D-B726-ABEF11D14419.png"
+              alt="edXponential"
+              className="h-10 w-auto object-contain"
+            />
+            <span className="text-white/20 text-[9px] font-black uppercase tracking-[0.2em] px-0.5">The Future of Education</span>
+          </div>
         )}
       </div>
 

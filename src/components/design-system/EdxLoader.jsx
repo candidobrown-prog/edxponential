@@ -68,21 +68,22 @@ export function EdxPageLoader({ message = 'Loading…', dark = true }) {
       initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
       className={`fixed inset-0 z-50 flex flex-col items-center justify-center gap-8 ${dark ? 'bg-[#07080f]' : 'bg-white'}`}
     >
+      {/* Logo */}
+      <motion.img
+        src="https://media.base44.com/images/public/69f64dbf5c37a4db77e0e302/21d29b7f0_64B1F443-0AD3-403D-B726-ABEF11D14419.png"
+        alt="edXponential"
+        className={`h-10 w-auto object-contain ${dark ? '' : 'invert'}`}
+        animate={{ opacity: [0.4, 0.9, 0.4] }}
+        transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
+      />
       <div className="relative">
         <EdxAIPulse label="" />
       </div>
       <div className="text-center space-y-1">
-        <div className={`text-sm font-black tracking-widest uppercase ${dark ? 'text-white/40' : 'text-black/30'}`}>
+        <div className={`text-xs font-black tracking-widest uppercase ${dark ? 'text-white/30' : 'text-black/25'}`}>
           {message}{dots}
         </div>
-        <div className={`w-24 h-px mx-auto ${dark ? 'bg-white/10' : 'bg-black/10'}`} />
       </div>
-      <motion.div
-        className={`text-[10px] font-black tracking-widest uppercase ${dark ? 'text-white/15' : 'text-black/15'}`}
-        animate={{ opacity: [0.5, 1, 0.5] }} transition={{ duration: 2, repeat: Infinity }}
-      >
-        edXponential
-      </motion.div>
     </motion.div>
   );
 }

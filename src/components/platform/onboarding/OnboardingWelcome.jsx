@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, Sparkles } from 'lucide-react';
+import EdxEmoji from '@/components/design-system/EdxEmoji';
 
 const HEADLINES = [
   'Lead Differently.',
@@ -11,16 +12,16 @@ const HEADLINES = [
 ];
 
 const FEATURES = [
-  { emoji: '🧠', label: 'AI Coaching & Strategy' },
-  { emoji: '🏫', label: 'School Intelligence' },
-  { emoji: '💼', label: 'Founder Deal Room' },
-  { emoji: '📚', label: 'Elite Courses' },
-  { emoji: '🤝', label: 'Private Communities' },
-  { emoji: '📊', label: 'Xschores™ Analytics' },
-  { emoji: '🎓', label: 'Expert edVisors' },
-  { emoji: '💰', label: 'Investor Network' },
-  { emoji: '🏆', label: 'Leadership Masterminds' },
-  { emoji: '🎥', label: 'TubedX™ Video' },
+  { emojiName: 'brain', label: 'AI Coaching & Strategy' },
+  { emojiName: 'spark', label: 'School Intelligence' },
+  { emojiName: 'rocket', label: 'Founder Deal Room' },
+  { emojiName: 'grad', label: 'Elite Courses' },
+  { emojiName: 'handshake', label: 'Private Communities' },
+  { emojiName: 'zap', label: 'Xschores™ Analytics' },
+  { emojiName: 'crown', label: 'Expert edVisors' },
+  { emojiName: 'grow', label: 'Investor Network' },
+  { emojiName: 'trophy', label: 'Leadership Masterminds' },
+  { emojiName: 'orb', label: 'TubedX™ Video' },
 ];
 
 const SOCIAL = ['Charter School Leaders', 'Founders', 'Superintendents', 'Turnaround Leaders', 'EdTech Builders', 'Education Investors'];
@@ -42,12 +43,13 @@ export default function OnboardingWelcome({ onNext, onSkip }) {
 
       {/* Logo */}
       <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1, duration: 0.6 }}
-        className="mb-10">
+        className="mb-10 flex flex-col items-center gap-2">
         <img
           src="https://media.base44.com/images/public/69f64dbf5c37a4db77e0e302/21d29b7f0_64B1F443-0AD3-403D-B726-ABEF11D14419.png"
           alt="edXponential"
-          className="h-9 w-auto object-contain mx-auto opacity-90"
+          className="h-14 w-auto object-contain mx-auto"
         />
+        <div className="w-16 h-px bg-white/10" />
       </motion.div>
 
       {/* Eyebrow */}
@@ -87,7 +89,7 @@ export default function OnboardingWelcome({ onNext, onSkip }) {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.7 + i * 0.04 }}
             className="flex items-center gap-1.5 bg-white/[0.05] border border-white/[0.08] rounded-full px-3 py-1.5 text-xs text-white/60 font-semibold">
-            <span>{f.emoji}</span> {f.label}
+            <EdxEmoji name={f.emojiName} size={16} /> {f.label}
           </motion.div>
         ))}
       </motion.div>

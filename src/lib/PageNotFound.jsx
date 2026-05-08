@@ -1,6 +1,8 @@
-import { useLocation } from 'react-router-dom';
+import React from 'react';
+import { useLocation, Link } from 'react-router-dom';
 import { base44 } from '@/api/base44Client';
 import { useQuery } from '@tanstack/react-query';
+import { ArrowLeft } from 'lucide-react';
 
 
 export default function PageNotFound({}) {
@@ -20,55 +22,42 @@ export default function PageNotFound({}) {
     });
     
     return (
-        <div className="min-h-screen flex items-center justify-center p-6 bg-slate-50">
-            <div className="max-w-md w-full">
-                <div className="text-center space-y-6">
-                    {/* 404 Error Code */}
-                    <div className="space-y-2">
-                        <h1 className="text-7xl font-light text-slate-300">404</h1>
-                        <div className="h-0.5 w-16 bg-slate-200 mx-auto"></div>
-                    </div>
-                    
-                    {/* Main Message */}
-                    <div className="space-y-3">
-                        <h2 className="text-2xl font-medium text-slate-800">
-                            Page Not Found
-                        </h2>
-                        <p className="text-slate-600 leading-relaxed">
-                            The page <span className="font-medium text-slate-700">"{pageName}"</span> could not be found in this application.
+        <div className="min-h-screen flex flex-col items-center justify-center p-6 bg-[#07080f]" style={{ fontFamily: 'Arial, Helvetica, sans-serif' }}>
+            <div className="max-w-lg w-full text-center space-y-10">
+                {/* Logo */}
+                <img
+                    src="https://media.base44.com/images/public/69f64dbf5c37a4db77e0e302/21d29b7f0_64B1F443-0AD3-403D-B726-ABEF11D14419.png"
+                    alt="edXponential"
+                    className="h-10 w-auto object-contain mx-auto opacity-60"
+                />
+
+                {/* 404 */}
+                <div>
+                    <div className="text-[120px] font-black text-white/[0.04] leading-none select-none mb-2">404</div>
+                    <div className="w-12 h-px bg-white/10 mx-auto mb-6" />
+                    <h2 className="text-2xl font-black text-white mb-3">Page Not Found</h2>
+                    <p className="text-white/30 text-sm leading-relaxed">
+                        The page <span className="text-white/50 font-semibold">"{pageName}"</span> doesn't exist yet.
+                    </p>
+                </div>
+
+                {/* Admin Note */}
+                {isFetched && authData?.isAuthenticated && authData?.user?.role === 'admin' && (
+                    <div className="p-4 bg-white/[0.04] border border-white/[0.08] rounded-2xl text-left">
+                        <p className="text-white/50 text-xs font-black uppercase tracking-wider mb-1">Admin Note</p>
+                        <p className="text-white/30 text-sm leading-relaxed">
+                            This page hasn't been implemented yet. Ask the AI to build it in the chat.
                         </p>
                     </div>
-                    
-                    {/* Admin Note */}
-                    {isFetched && authData.isAuthenticated && authData.user?.role === 'admin' && (
-                        <div className="mt-8 p-4 bg-slate-100 rounded-lg border border-slate-200">
-                            <div className="flex items-start space-x-3">
-                                <div className="flex-shrink-0 w-5 h-5 rounded-full bg-orange-100 flex items-center justify-center mt-0.5">
-                                    <div className="w-2 h-2 rounded-full bg-orange-400"></div>
-                                </div>
-                                <div className="text-left space-y-1">
-                                    <p className="text-sm font-medium text-slate-700">Admin Note</p>
-                                    <p className="text-sm text-slate-600 leading-relaxed">
-                                        This could mean that the AI hasn't implemented this page yet. Ask it to implement it in the chat.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    )}
-                    
-                    {/* Action Button */}
-                    <div className="pt-6">
-                        <button 
-                            onClick={() => window.location.href = '/'} 
-                            className="inline-flex items-center px-4 py-2 text-sm font-medium text-slate-700 bg-white border border-slate-200 rounded-lg hover:bg-slate-50 hover:border-slate-300 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-500"
-                        >
-                            <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                            </svg>
-                            Go Home
-                        </button>
-                    </div>
-                </div>
+                )}
+
+                {/* CTA */}
+                <Link to="/"
+                    className="inline-flex items-center gap-2 bg-white text-[#07080f] font-black text-sm px-6 py-3 rounded-xl hover:bg-zinc-100 transition-all shadow-2xl shadow-white/10">
+                    <ArrowLeft className="w-4 h-4" /> Back to Dashboard
+                </Link>
+
+                <p className="text-white/10 text-[11px] font-black uppercase tracking-widest">edXponential · The Future of Education</p>
             </div>
         </div>
     )
