@@ -108,7 +108,7 @@ export default function OnboardingTour({ onNext, onSkip }) {
   const goPrev = () => setSlideIndex(i => Math.max(0, i - 1));
 
   return (
-    <OnboardingShell step={3} totalSteps={5} label="Platform Tour">
+    <OnboardingShell step={4} totalSteps={5} label="Platform Tour">
       <div className="space-y-6">
         {/* Slide counter */}
         <div className="flex items-center justify-between">

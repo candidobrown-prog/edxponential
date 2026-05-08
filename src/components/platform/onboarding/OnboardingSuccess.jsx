@@ -12,10 +12,10 @@ const PLAN_LABELS = {
 };
 
 const NEXT_STEPS = [
-  { emoji: '👤', label: 'Complete your profile', sub: 'Add your photo, bio, and credentials' },
-  { emoji: '🤝', label: 'Join a community', sub: 'Connect with leaders like you' },
-  { emoji: '🎓', label: 'Book your first edVisor', sub: 'Get strategic coaching from day one' },
-  { emoji: '🧠', label: 'Ask Eddy anything', sub: 'Your AI assistant is ready' },
+  { label: 'Explore your dashboard', sub: 'Your command center is ready' },
+  { label: 'Join a community', sub: 'Connect with leaders like you' },
+  { label: 'Book your first edVisor', sub: 'Get strategic coaching from day one' },
+  { label: 'Ask Eddy anything', sub: 'Your AI assistant is ready' },
 ];
 
 export default function OnboardingSuccess({ onEnter, plan }) {
@@ -57,7 +57,7 @@ export default function OnboardingSuccess({ onEnter, plan }) {
 
       <motion.h1 initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.55, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         className="text-5xl md:text-6xl font-black text-white leading-none tracking-tight mb-5">
-        Welcome to<br />edXponential.
+        Your Future<br />Starts Now.
       </motion.h1>
 
       <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.75 }}
@@ -74,7 +74,7 @@ export default function OnboardingSuccess({ onEnter, plan }) {
               initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.9 + i * 0.07 }}
               className="bg-white/[0.04] border border-white/[0.07] rounded-2xl p-4 text-left">
-              <div className="text-2xl mb-2">{s.emoji}</div>
+              <div className="w-7 h-7 rounded-lg bg-white/10 mb-2" />
               <p className="text-white text-xs font-black mb-0.5">{s.label}</p>
               <p className="text-white/30 text-[11px]">{s.sub}</p>
             </motion.div>

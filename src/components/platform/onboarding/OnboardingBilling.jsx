@@ -60,7 +60,7 @@ export default function OnboardingBilling({ plan, onNext, onBack }) {
   };
 
   return (
-    <OnboardingShell step={5} totalSteps={5} label="Billing">
+    <OnboardingShell step={2} totalSteps={5} label="Billing">
       <div className="space-y-6">
         <div className="text-center">
           <h2 className="text-3xl font-black text-white mb-2">Start your free trial.</h2>
