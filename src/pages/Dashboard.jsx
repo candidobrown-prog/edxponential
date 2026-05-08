@@ -10,6 +10,8 @@ import StudentProgressCard from '../components/dashboard/StudentProgressCard';
 import EdVisorCard from '../components/coaching/EdVisorCard';
 import OnboardingTutorial from '../components/platform/OnboardingTutorial';
 import { AnimatePresence } from 'framer-motion';
+import EdxTooltip from '../components/platform/EdxTooltip';
+import { TOOLTIP } from '../lib/tooltipData';
 
 const ONBOARD_KEY = 'edx_onboarding_dismissed';
 const COMPLETED_KEY = 'edx_onboarding_completed';
@@ -73,10 +75,10 @@ export default function Dashboard() {
 
       {/* Stats */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-        <StatCard title="Active Courses" value={courses.length} icon={BookOpen} accentColor="bg-black" subtitle="Available to enroll" />
-        <StatCard title="edVisors" value={coaches.length} icon={Star} accentColor="bg-black" subtitle="Ready for sessions" />
-        <StatCard title="Communities" value={communities.length} icon={Users} accentColor="bg-black" subtitle="Active groups" />
-        <StatCard title="Courses Completed" value={completedCourses} icon={CheckCircle} accentColor="bg-black" subtitle={`${inProgressCourses} in progress`} />
+        <EdxTooltip data={TOOLTIP.statCourses}><StatCard title="Active Courses" value={courses.length} icon={BookOpen} accentColor="bg-black" subtitle="Available to enroll" /></EdxTooltip>
+        <EdxTooltip data={TOOLTIP.statEdVisors}><StatCard title="edVisors" value={coaches.length} icon={Star} accentColor="bg-black" subtitle="Ready for sessions" /></EdxTooltip>
+        <EdxTooltip data={TOOLTIP.statCommunities}><StatCard title="Communities" value={communities.length} icon={Users} accentColor="bg-black" subtitle="Active groups" /></EdxTooltip>
+        <EdxTooltip data={TOOLTIP.statCompleted}><StatCard title="Courses Completed" value={completedCourses} icon={CheckCircle} accentColor="bg-black" subtitle={`${inProgressCourses} in progress`} /></EdxTooltip>
       </div>
 
       {/* Xschetails CTA */}
@@ -109,53 +111,65 @@ export default function Dashboard() {
               <span className="text-white/50 text-xs font-black">{xschetails.completion_pct || 0}%</span>
             </div>
           </div>
-          <Link to="/xschetails/dashboard" className="group bg-white border border-gray-100 rounded-2xl p-5 hover:border-[#0a0f1e] transition-all">
-            <BarChart3 className="w-5 h-5 text-gray-400 mb-2" />
-            <p className="font-black text-[#0a0f1e] text-sm">Xschetails Dashboard</p>
-            <p className="text-xs text-gray-400 mt-0.5">Performance charts & AI insights</p>
-          </Link>
-          <Link to="/xschetails" className="group bg-white border border-gray-100 rounded-2xl p-5 hover:border-[#0a0f1e] transition-all">
-            <Sparkles className="w-5 h-5 text-gray-400 mb-2" />
-            <p className="font-black text-[#0a0f1e] text-sm">AI Analysis</p>
-            <p className="text-xs text-gray-400 mt-0.5">{xschetails.ai_summary ? 'View your school report' : 'Generate AI insights'}</p>
-          </Link>
+          <EdxTooltip data={TOOLTIP.xschetailsDashboard}>
+            <Link to="/xschetails/dashboard" className="group bg-white border border-gray-100 rounded-2xl p-5 hover:border-[#0a0f1e] transition-all">
+              <BarChart3 className="w-5 h-5 text-gray-400 mb-2" />
+              <p className="font-black text-[#0a0f1e] text-sm">Xschetails Dashboard</p>
+              <p className="text-xs text-gray-400 mt-0.5">Performance charts & AI insights</p>
+            </Link>
+          </EdxTooltip>
+          <EdxTooltip data={TOOLTIP.aiAnalysis}>
+            <Link to="/xschetails" className="group bg-white border border-gray-100 rounded-2xl p-5 hover:border-[#0a0f1e] transition-all">
+              <Sparkles className="w-5 h-5 text-gray-400 mb-2" />
+              <p className="font-black text-[#0a0f1e] text-sm">AI Analysis</p>
+              <p className="text-xs text-gray-400 mt-0.5">{xschetails.ai_summary ? 'View your school report' : 'Generate AI insights'}</p>
+            </Link>
+          </EdxTooltip>
         </div>
       )}
 
       {/* Capital Access Row */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <Link to="/deal-room" className="group bg-foreground text-background rounded-2xl p-5 hover:bg-foreground/90 transition-all col-span-1">
-          <div className="flex items-center justify-between mb-3">
-            <Briefcase className="w-4 h-4 text-white/60" />
-            <ArrowRight className="w-3.5 h-3.5 text-white/40 group-hover:text-white/80 transition-colors" />
-          </div>
-          <h3 className="font-heading text-base font-semibold mb-0.5">Deal Room</h3>
-          <p className="text-white/50 text-xs">Private investment opportunities</p>
-        </Link>
-        <Link to="/pipeline" className="group bg-card border border-border/50 rounded-2xl p-5 hover:border-foreground/20 hover:shadow-sm transition-all">
-          <div className="flex items-center justify-between mb-3">
-            <Layers className="w-4 h-4 text-muted-foreground" />
-            <ArrowRight className="w-3.5 h-3.5 text-muted-foreground group-hover:text-foreground transition-colors" />
-          </div>
-          <h3 className="font-heading text-base font-semibold mb-0.5">My Pipeline</h3>
-          <p className="text-muted-foreground text-xs">Track your investor deal flow</p>
-        </Link>
-        <Link to="/founder-dashboard" className="group bg-card border border-border/50 rounded-2xl p-5 hover:border-foreground/20 hover:shadow-sm transition-all">
-          <div className="flex items-center justify-between mb-3">
-            <TrendingUp className="w-4 h-4 text-muted-foreground" />
-            <ArrowRight className="w-3.5 h-3.5 text-muted-foreground group-hover:text-foreground transition-colors" />
-          </div>
-          <h3 className="font-heading text-base font-semibold mb-0.5">Raise Capital</h3>
-          <p className="text-muted-foreground text-xs">Submit and manage your raise</p>
-        </Link>
-        <Link to="/pricing" className="group bg-card border border-border/50 rounded-2xl p-5 hover:border-foreground/20 hover:shadow-sm transition-all">
-          <div className="flex items-center justify-between mb-3">
-            <CreditCard className="w-4 h-4 text-muted-foreground" />
-            <ArrowRight className="w-3.5 h-3.5 text-muted-foreground group-hover:text-foreground transition-colors" />
-          </div>
-          <h3 className="font-heading text-base font-semibold mb-0.5">Membership</h3>
-          <p className="text-muted-foreground text-xs">edVestor pricing & access tiers</p>
-        </Link>
+        <EdxTooltip data={TOOLTIP.dealRoom}>
+          <Link to="/deal-room" className="group bg-foreground text-background rounded-2xl p-5 hover:bg-foreground/90 transition-all col-span-1">
+            <div className="flex items-center justify-between mb-3">
+              <Briefcase className="w-4 h-4 text-white/60" />
+              <ArrowRight className="w-3.5 h-3.5 text-white/40 group-hover:text-white/80 transition-colors" />
+            </div>
+            <h3 className="font-heading text-base font-semibold mb-0.5">Deal Room</h3>
+            <p className="text-white/50 text-xs">Private investment opportunities</p>
+          </Link>
+        </EdxTooltip>
+        <EdxTooltip data={TOOLTIP.pipeline}>
+          <Link to="/pipeline" className="group bg-card border border-border/50 rounded-2xl p-5 hover:border-foreground/20 hover:shadow-sm transition-all">
+            <div className="flex items-center justify-between mb-3">
+              <Layers className="w-4 h-4 text-muted-foreground" />
+              <ArrowRight className="w-3.5 h-3.5 text-muted-foreground group-hover:text-foreground transition-colors" />
+            </div>
+            <h3 className="font-heading text-base font-semibold mb-0.5">My Pipeline</h3>
+            <p className="text-muted-foreground text-xs">Track your investor deal flow</p>
+          </Link>
+        </EdxTooltip>
+        <EdxTooltip data={TOOLTIP.raiseCapital}>
+          <Link to="/founder-dashboard" className="group bg-card border border-border/50 rounded-2xl p-5 hover:border-foreground/20 hover:shadow-sm transition-all">
+            <div className="flex items-center justify-between mb-3">
+              <TrendingUp className="w-4 h-4 text-muted-foreground" />
+              <ArrowRight className="w-3.5 h-3.5 text-muted-foreground group-hover:text-foreground transition-colors" />
+            </div>
+            <h3 className="font-heading text-base font-semibold mb-0.5">Raise Capital</h3>
+            <p className="text-muted-foreground text-xs">Submit and manage your raise</p>
+          </Link>
+        </EdxTooltip>
+        <EdxTooltip data={TOOLTIP.pricing}>
+          <Link to="/pricing" className="group bg-card border border-border/50 rounded-2xl p-5 hover:border-foreground/20 hover:shadow-sm transition-all">
+            <div className="flex items-center justify-between mb-3">
+              <CreditCard className="w-4 h-4 text-muted-foreground" />
+              <ArrowRight className="w-3.5 h-3.5 text-muted-foreground group-hover:text-foreground transition-colors" />
+            </div>
+            <h3 className="font-heading text-base font-semibold mb-0.5">Membership</h3>
+            <p className="text-muted-foreground text-xs">edVestor pricing & access tiers</p>
+          </Link>
+        </EdxTooltip>
       </div>
 
       {/* My Progress */}
