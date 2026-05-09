@@ -11,7 +11,6 @@ import { Link } from 'react-router-dom';
 import { format } from 'date-fns';
 import MemberCard from '../components/communities/MemberCard';
 import BulkAnnouncementModal from '../components/communities/BulkAnnouncementModal';
-import MemberLeaderboard from '../components/communities/MemberLeaderboard';
 
 const postTypeStyles = {
   discussion: 'bg-gray-100 text-gray-700',
@@ -257,12 +256,9 @@ export default function CommunityDetail() {
       )}
 
       {/* Members Tab */}
-       {activeTab === 'members' && (
-         <div className="space-y-5">
-           {/* Top Contributors Leaderboard */}
-           <MemberLeaderboard members={members} posts={posts} />
-
-           {members.length > 0 && (
+      {activeTab === 'members' && (
+        <div className="space-y-5">
+          {members.length > 0 && (
             <div className="flex flex-col sm:flex-row gap-3">
               <div className="relative flex-1 max-w-sm">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
