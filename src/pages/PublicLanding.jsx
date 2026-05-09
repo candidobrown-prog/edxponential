@@ -249,13 +249,14 @@ export default function PublicLanding() {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="flex items-center gap-3 group cursor-pointer"
+            className="flex items-center gap-2 group cursor-pointer"
             onClick={() => navigate('/')}
           >
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-black to-black/80 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow">
-              <span className="text-white font-black text-xl">X</span>
-            </div>
-            <span className="font-black text-2xl hidden sm:inline">edXponential</span>
+            <img 
+              src="https://media.base44.com/images/public/69f64dbf5c37a4db77e0e302/21d29b7f0_64B1F443-0AD3-403D-B726-ABEF11D14419.png" 
+              alt="edXponential" 
+              className="h-7 w-auto"
+            />
           </motion.div>
 
           {/* Desktop Menu */}

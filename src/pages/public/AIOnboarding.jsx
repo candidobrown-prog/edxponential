@@ -149,10 +149,10 @@ Return a JSON object with:
     <div className="min-h-screen bg-[#080808] text-white flex flex-col">
       {/* Top bar */}
       <div className="flex items-center justify-between px-6 py-5">
-        <Link to="/welcome">
-          <img src="https://media.base44.com/images/public/69f64dbf5c37a4db77e0e302/21d29b7f0_64B1F443-0AD3-403D-B726-ABEF11D14419.png"
-            alt="edXponential" className="h-6 w-auto brightness-0 invert opacity-60" />
-        </Link>
+        <Link to="/">
+           <img src="https://media.base44.com/images/public/69f64dbf5c37a4db77e0e302/21d29b7f0_64B1F443-0AD3-403D-B726-ABEF11D14419.png"
+             alt="edXponential" className="h-6 w-auto brightness-0 invert opacity-60 hover:opacity-80 transition-opacity" />
+         </Link>
         {step > 0 && step < STEPS.length - 1 && (
           <span className="text-xs text-white/25 font-medium">{step} of {STEPS.length - 2}</span>
         )}
