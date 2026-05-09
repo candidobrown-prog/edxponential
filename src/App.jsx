@@ -158,6 +158,9 @@ import EduCartxDashboard from './pages/educartx/EduCartxDashboard';
 import EduCartxOrders from './pages/educartx/EduCartxOrders';
 import EduCartxAICoach from './pages/educartx/EduCartxAICoach';
 import CEOCommandCenter from './pages/CEOCommandCenter';
+import PublicLayout from './components/layout/PublicLayout';
+import PublicPricing from './pages/public/PublicPricing';
+import AIOnboarding from './pages/public/AIOnboarding';
 import ClassifiedxHome from './pages/classifiedx/ClassifiedxHome';
 import ClassifiedxLayout from './components/classifiedx/ClassifiedxLayout';
 import ClassifiedxBuilder from './pages/classifiedx/ClassifiedxBuilder';
@@ -213,7 +216,14 @@ const AuthenticatedApp = () => {
       {showOnboarding && <OnboardingFlow onComplete={handleOnboardingComplete} />}
     </AnimatePresence>
     <Routes>
-      <Route path="/welcome" element={<Landing />} />
+      {/* ── PUBLIC ROUTES (no sidebar, no app chrome) ── */}
+      <Route element={<PublicLayout />}>
+        <Route path="/welcome" element={<Landing />} />
+        <Route path="/pricing" element={<PublicPricing />} />
+        <Route path="/onboarding" element={<AIOnboarding />} />
+      </Route>
+
+      {/* ── AUTHENTICATED APP ROUTES ── */}
       <Route element={<AppLayout />}>
         <Route path="/" element={<Dashboard />} />
         <Route path="/courses" element={<Courses />} />

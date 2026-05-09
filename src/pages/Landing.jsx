@@ -125,14 +125,17 @@ export default function Landing() {
           />
           <div className="hidden md:flex items-center gap-8">
             {NAV_LINKS.map(l => (
-              <a key={l} href="#features" className="text-sm text-white/50 hover:text-white transition-colors duration-200 tracking-wide">{l}</a>
+              l === 'Pricing'
+                ? <Link key={l} to="/pricing" className="text-sm text-white/50 hover:text-white transition-colors duration-200 tracking-wide">{l}</Link>
+                : <a key={l} href="#features" className="text-sm text-white/50 hover:text-white transition-colors duration-200 tracking-wide">{l}</a>
             ))}
           </div>
           <div className="flex items-center gap-3">
             <Link to="/" className="text-sm text-white/50 hover:text-white transition-colors">Sign In</Link>
-            <Link to="/">
+            <Link to="/pricing" className="text-sm text-white/40 hover:text-white transition-colors hidden md:block">Pricing</Link>
+            <Link to="/onboarding">
               <button className="h-9 px-5 rounded-lg bg-white text-black text-sm font-semibold hover:bg-white/90 transition-all duration-200 active:scale-95">
-                Join Now
+                Get Started
               </button>
             </Link>
           </div>
@@ -178,7 +181,7 @@ export default function Landing() {
             initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.4 }}
             className="flex flex-col sm:flex-row gap-3 justify-center"
           >
-            <Link to="/">
+            <Link to="/onboarding">
               <button className="group h-13 px-8 py-3.5 rounded-xl bg-white text-black text-base font-semibold hover:bg-white/90 transition-all duration-200 flex items-center gap-2 active:scale-95">
                 Start Your Journey
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
