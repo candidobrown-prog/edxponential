@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { base44 } from '@/api/base44Client';
 import { X, Send, Loader2, MessageCircle, History, Plus, ChevronRight, Flag, Minimize2 } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 import EddyMessage from './EddyMessage';
+import EddyCharacter from './EddyCharacter';
 import FeedbackModal from './FeedbackModal';
 import { cn } from '@/lib/utils';
 
@@ -30,10 +32,18 @@ export default function EddyChatWindow({ user, onClose }) {
   const [showFeedback, setShowFeedback] = useState(false);
   const [conversations, setConversations] = useState([]);
   const [activeConvId, setActiveConvId] = useState(null);
+  const [showEddyWelcome, setShowEddyWelcome] = useState(true);
   const bottomRef = useRef(null);
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [messages]);
+
+  // Hide Eddy welcome after message appears
+  useEffect(() => {
+    if (messages.length > 1) {
+      setTimeout(() => setShowEddyWelcome(false), 2000);
+    }
   }, [messages]);
 
   useEffect(() => {
@@ -162,16 +172,54 @@ export default function EddyChatWindow({ user, onClose }) {
       )}
 
       {/* Messages */}
-      <div className="flex-1 overflow-y-auto px-4 py-4 space-y-3">
-        {messages.map((msg, i) => (
-          <EddyMessage key={i} message={msg} />
-        ))}
-        {loading && (
-          <div className="flex items-center gap-2 text-gray-400">
-            <Loader2 className="w-4 h-4 animate-spin" />
-            <span className="text-sm">Eddy is thinking...</span>
-          </div>
-        )}
+      <div className="flex-1 overflow-y-auto px-4 py-4 space-y-3 flex flex-col">
+        <AnimatePresence mode="wait">
+          {showEddyWelcome && messages.length === 1 ? (
+            <motion.div
+              key="eddy-welcome"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.8 }}
+              transition={{ duration: 0.5 }}
+              className="flex-1 flex items-center justify-center mb-4"
+            >
+              <div className="text-center">
+                <EddyCharacter size="md" mood="happy" isEntering={true} />
+                <motion.p
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3, duration: 0.4 }}
+                  className="text-sm text-gray-600 font-semibold mt-4"
+                >
+                  Hey there! I'm Eddy 👋
+                </motion.p>
+              </div>
+            </motion.div>
+          ) : (
+            <div key="messages" className="space-y-3">
+              {messages.map((msg, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.05 }}
+                >
+                  <EddyMessage message={msg} />
+                </motion.div>
+              ))}
+              {loading && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  className="flex items-center gap-2 text-gray-400"
+                >
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                  <span className="text-sm">Eddy is thinking...</span>
+                </motion.div>
+              )}
+            </div>
+          )}
+        </AnimatePresence>
         <div ref={bottomRef} />
       </div>
 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 
-export default function EddyCharacter({ speaking = false, mood = 'neutral', size = 'lg' }) {
+export default function EddyCharacter({ speaking = false, mood = 'neutral', size = 'lg', isEntering = false }) {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [blink, setBlink] = useState(false);
   const containerRef = useRef(null);
@@ -55,10 +55,28 @@ export default function EddyCharacter({ speaking = false, mood = 'neutral', size
 
   const current = moodConfig[mood];
 
+  const entranceVariants = {
+    hidden: { opacity: 0, scale: 0.3, y: 50 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      y: 0,
+      transition: {
+        type: 'spring',
+        stiffness: 120,
+        damping: 15,
+        duration: 0.6,
+      },
+    },
+  };
+
   return (
-    <div
+    <motion.div
       ref={containerRef}
       className="flex items-center justify-center"
+      initial={isEntering ? 'hidden' : 'visible'}
+      animate="visible"
+      variants={entranceVariants}
       style={{
         width: currentSize.width,
         height: currentSize.height,
@@ -311,6 +329,6 @@ export default function EddyCharacter({ speaking = false, mood = 'neutral', size
           />
         </motion.g>
       </svg>
-    </div>
+    </motion.div>
   );
 }
