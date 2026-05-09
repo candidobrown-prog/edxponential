@@ -360,7 +360,14 @@ export default function PublicLanding() {
               The Operating System<br />for the Future of Education.
             </motion.h1>
 
-
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 0.8 }}
+              className="text-lg text-black/70 mb-12 leading-relaxed max-w-xl"
+            >
+              edXponential is the world's first human- and AI-powered all-inclusive platform built exclusively for education leaders — founders, executives, principals, and transformational change agents. Access elite courses, private communities, strategic tools, and on-demand edVising and coaching from some of the world's leading education experts.
+            </motion.p>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
