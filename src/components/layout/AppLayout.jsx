@@ -20,12 +20,12 @@ export default function AppLayout() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-background text-foreground dark">
       <SmartNavigation tier={userTier} />
       
       <main className="transition-all duration-300" style={{ marginLeft: sidebarExpanded ? '220px' : '0' }}>
         {/* Header */}
-        <div className="sticky top-0 z-30 h-14 bg-white/95 backdrop-blur-sm border-b border-border px-8 flex items-center justify-between">
+        <div className="sticky top-0 z-30 h-14 bg-background/80 backdrop-blur-sm border-b border-border px-8 flex items-center justify-between">
           <div className="flex-1" />
           <NotificaxionsBar />
         </div>
