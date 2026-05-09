@@ -11,7 +11,11 @@ export default function AppLayout() {
       <main className="ml-64 min-h-screen">
         {/* Premium top bar */}
         <div className="sticky top-0 z-30 bg-background/80 backdrop-blur-xl border-b border-border/50 px-8 py-3 flex items-center justify-between">
-          <span className="text-muted-foreground text-[9px] font-black uppercase tracking-[0.2em] hidden sm:block">The Future of Education Leadership</span>
+          <img
+            src="https://media.base44.com/images/public/69f64dbf5c37a4db77e0e302/21d29b7f0_64B1F443-0AD3-403D-B726-ABEF11D14419.png"
+            alt="edXponential"
+            className="h-8 w-auto hidden sm:block"
+          />
           <NotificaxionsBar />
         </div>
         <div className="max-w-7xl mx-auto px-8 py-8">

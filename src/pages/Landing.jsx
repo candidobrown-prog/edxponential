@@ -48,7 +48,7 @@ export default function Landing() {
           <img
             src="https://media.base44.com/images/public/69f64dbf5c37a4db77e0e302/21d29b7f0_64B1F443-0AD3-403D-B726-ABEF11D14419.png"
             alt="edXponential"
-            className="h-7 w-auto invert"
+            className="h-12 w-auto invert"
           />
           <div className="flex items-center gap-4">
             <Link to="/" className="text-sm text-gray-600 hover:text-black transition-colors font-medium">Sign In</Link>
