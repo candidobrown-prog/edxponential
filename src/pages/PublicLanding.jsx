@@ -989,7 +989,7 @@ export default function PublicLanding() {
                 />
               </div>
               <p className="text-sm text-black/70">
-                The AI-powered operating system for education leaders and innovators.
+                edXponential is the world's first human- and AI-powered all-inclusive platform built exclusively for education leaders — founders, executives, principals, and transformational change agents. Access elite courses, private communities, strategic tools, and on-demand edVising and coaching from some of the world's leading education experts.
               </p>
             </div>
 
