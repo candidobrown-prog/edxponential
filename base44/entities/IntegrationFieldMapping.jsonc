@@ -1,0 +1,87 @@
+{
+  "name": "IntegrationFieldMapping",
+  "type": "object",
+  "properties": {
+    "integration_id": {
+      "type": "string",
+      "description": "Reference to Integration"
+    },
+    "data_type": {
+      "type": "string",
+      "enum": [
+        "student",
+        "staff",
+        "parent",
+        "school",
+        "payroll",
+        "vendor",
+        "payment",
+        "calendar",
+        "course",
+        "attendance",
+        "grade",
+        "task",
+        "message",
+        "form",
+        "application",
+        "financial_record"
+      ],
+      "description": "Type of data being mapped"
+    },
+    "external_field": {
+      "type": "string",
+      "description": "Field name in external system"
+    },
+    "platform_field": {
+      "type": "string",
+      "description": "Field name in edXponential"
+    },
+    "field_type": {
+      "type": "string",
+      "enum": [
+        "text",
+        "email",
+        "phone",
+        "date",
+        "number",
+        "boolean",
+        "array",
+        "object"
+      ],
+      "description": "Data type of field"
+    },
+    "mapping_type": {
+      "type": "string",
+      "enum": [
+        "direct",
+        "transform",
+        "calculate",
+        "lookup"
+      ],
+      "description": "How field is mapped"
+    },
+    "transform_formula": {
+      "type": "string",
+      "description": "Formula for transform/calculate mappings"
+    },
+    "is_required": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether field must be mapped"
+    },
+    "created_by": {
+      "type": "string",
+      "description": "Email of user who created mapping"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Mapping notes"
+    }
+  },
+  "required": [
+    "integration_id",
+    "data_type",
+    "external_field",
+    "platform_field"
+  ]
+}

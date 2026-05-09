@@ -1,0 +1,90 @@
+{
+  "name": "APIKey",
+  "type": "object",
+  "properties": {
+    "organization_id": {
+      "type": "string",
+      "description": "Organization that owns this key"
+    },
+    "key_name": {
+      "type": "string",
+      "description": "Friendly name for the API key"
+    },
+    "key_hash": {
+      "type": "string",
+      "description": "Hashed API key (never expose plaintext)"
+    },
+    "key_prefix": {
+      "type": "string",
+      "description": "First 8 chars of key for display (e.g., 'edx_live_a1b2c3d4')"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "public_api",
+        "webhook_signing",
+        "integration_secret"
+      ],
+      "description": "Type of API key"
+    },
+    "scopes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Permissions granted to this key"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "revoked",
+        "expired"
+      ],
+      "default": "active",
+      "description": "Key status"
+    },
+    "created_by": {
+      "type": "string",
+      "description": "Email of user who created key"
+    },
+    "last_used": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last time key was used"
+    },
+    "expires_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When key expires (optional)"
+    },
+    "rate_limit": {
+      "type": "number",
+      "description": "Requests per minute limit"
+    },
+    "ip_whitelist": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Allowed IP addresses"
+    },
+    "webhook_events": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Webhook events this key receives"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Key description/notes"
+    }
+  },
+  "required": [
+    "organization_id",
+    "key_name",
+    "key_hash",
+    "type"
+  ]
+}

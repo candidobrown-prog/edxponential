@@ -148,6 +148,16 @@ export default function SmartNavigation({ tier = 'Principal Park' }) {
             )}
           </div>
 
+          {/* Integrations Link */}
+          <div className="pt-4 border-t border-border">
+            <Link to="/integrations">
+              <button className="w-full text-left px-3 py-2.5 rounded-lg text-sm text-muted-foreground hover:text-black hover:bg-muted/60 transition-all">
+                <span className="mr-2">🔗</span>
+                Integrations
+              </button>
+            </Link>
+          </div>
+
           {/* Settings */}
           <div className="pt-4 border-t border-border space-y-2">
             <Link to="/profile">

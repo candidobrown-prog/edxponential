@@ -1,0 +1,192 @@
+{
+  "name": "Integration",
+  "type": "object",
+  "properties": {
+    "integration_type": {
+      "type": "string",
+      "enum": [
+        "google_workspace",
+        "microsoft_365",
+        "zoom",
+        "slack",
+        "stripe",
+        "square",
+        "paypal",
+        "quickbooks",
+        "gusto",
+        "adp",
+        "canvas",
+        "schoology",
+        "clever",
+        "classlink",
+        "powerschool",
+        "infinite_campus",
+        "salesforce",
+        "hubspot",
+        "mailchimp",
+        "zapier",
+        "webhooks",
+        "custom_api"
+      ],
+      "description": "Type of integration"
+    },
+    "organization_id": {
+      "type": "string",
+      "description": "Organization that owns this integration"
+    },
+    "name": {
+      "type": "string",
+      "description": "Display name of the integration"
+    },
+    "description": {
+      "type": "string",
+      "description": "What this integration does"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "productivity",
+        "communication",
+        "payment",
+        "hr_payroll",
+        "finance_accounting",
+        "sis_lms",
+        "crm",
+        "storage",
+        "ai",
+        "automation",
+        "other"
+      ],
+      "description": "Integration category"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "connected",
+        "disconnected",
+        "failed",
+        "pending_approval",
+        "paused"
+      ],
+      "default": "disconnected",
+      "description": "Current connection status"
+    },
+    "connection_type": {
+      "type": "string",
+      "enum": [
+        "oauth",
+        "api_key",
+        "webhook",
+        "custom"
+      ],
+      "description": "How the integration authenticates"
+    },
+    "auth_data": {
+      "type": "string",
+      "description": "JSON stringified encrypted auth data (tokens, credentials)"
+    },
+    "permissions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "OAuth scopes or permissions granted"
+    },
+    "sync_enabled": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether automatic syncing is enabled"
+    },
+    "sync_frequency": {
+      "type": "string",
+      "enum": [
+        "hourly",
+        "daily",
+        "weekly",
+        "monthly",
+        "manual",
+        "real_time"
+      ],
+      "default": "daily",
+      "description": "How often to sync data"
+    },
+    "sync_direction": {
+      "type": "string",
+      "enum": [
+        "one_way_import",
+        "one_way_export",
+        "two_way"
+      ],
+      "default": "one_way_import",
+      "description": "Direction of data flow"
+    },
+    "last_sync": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp of last successful sync"
+    },
+    "last_error": {
+      "type": "string",
+      "description": "Last error message if sync failed"
+    },
+    "field_mappings": {
+      "type": "string",
+      "description": "JSON stringified field mapping configuration"
+    },
+    "data_types": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Types of data synced (students, staff, payments, etc)"
+    },
+    "webhook_url": {
+      "type": "string",
+      "description": "Webhook endpoint URL if applicable"
+    },
+    "webhook_secret": {
+      "type": "string",
+      "description": "Webhook signing secret"
+    },
+    "connected_by": {
+      "type": "string",
+      "description": "Email of user who set up the integration"
+    },
+    "connected_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When integration was connected"
+    },
+    "requires_approval": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether admin approval is required"
+    },
+    "approved_by": {
+      "type": "string",
+      "description": "Email of approving admin"
+    },
+    "allowed_roles": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Roles that can use this integration"
+    },
+    "metadata": {
+      "type": "string",
+      "description": "JSON stringified additional config"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Admin notes about the integration"
+    }
+  },
+  "required": [
+    "integration_type",
+    "organization_id",
+    "name",
+    "category",
+    "connection_type"
+  ]
+}

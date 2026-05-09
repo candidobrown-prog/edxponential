@@ -184,6 +184,7 @@ import OpxKanban from './pages/operationx/OpxKanban';
 import VendorPortal from './pages/operationx/VendorPortal';
 import ClassifiedxLayout from './components/classifiedx/ClassifiedxLayout';
 import ClassifiedxBuilder from './pages/classifiedx/ClassifiedxBuilder';
+import Integrations from './pages/Integrations';
 import ClassifiedxStudio from './pages/classifiedx/ClassifiedxStudio';
 import ClassifiedxSyllabus from './pages/classifiedx/ClassifiedxSyllabus';
 import ClassifiedxCourses from './pages/classifiedx/ClassifiedxCourses';
@@ -275,6 +276,7 @@ const AuthenticatedApp = () => {
         <Route path="/admin/feedback" element={<AdminFeedback />} />
         <Route path="/admin/payments" element={<PaymentsDashboard />} />
         <Route path="/admin/executive" element={<ExecutiveDashboard />} />
+        <Route path="/integrations" element={<Integrations />} />
         <Route path="/xschy" element={<XschyXschraiper />} />
         <Route path="/goaled" element={<GoaledXschoolHome />} />
         <Route path="/goaled/my-xschool" element={<MyXschoolPage />} />

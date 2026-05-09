@@ -1,0 +1,96 @@
+{
+  "name": "IntegrationLog",
+  "type": "object",
+  "properties": {
+    "integration_id": {
+      "type": "string",
+      "description": "Reference to Integration record"
+    },
+    "integration_type": {
+      "type": "string",
+      "description": "Type of integration"
+    },
+    "organization_id": {
+      "type": "string",
+      "description": "Organization ID"
+    },
+    "event_type": {
+      "type": "string",
+      "enum": [
+        "connection",
+        "disconnection",
+        "sync_start",
+        "sync_complete",
+        "sync_failed",
+        "webhook_received",
+        "error",
+        "token_refresh",
+        "permission_change"
+      ],
+      "description": "Type of event"
+    },
+    "action": {
+      "type": "string",
+      "description": "Action that occurred"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "success",
+        "failed",
+        "pending",
+        "warning"
+      ],
+      "default": "success",
+      "description": "Result status"
+    },
+    "records_processed": {
+      "type": "number",
+      "description": "Number of records affected"
+    },
+    "data_types": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Types of data involved"
+    },
+    "initiated_by": {
+      "type": "string",
+      "description": "Email of user who initiated"
+    },
+    "error_message": {
+      "type": "string",
+      "description": "Error details if failed"
+    },
+    "sync_direction": {
+      "type": "string",
+      "enum": [
+        "import",
+        "export",
+        "bidirectional"
+      ],
+      "description": "Direction of sync if applicable"
+    },
+    "duration_ms": {
+      "type": "number",
+      "description": "Duration in milliseconds"
+    },
+    "metadata": {
+      "type": "string",
+      "description": "JSON stringified additional details"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the event occurred"
+    }
+  },
+  "required": [
+    "integration_id",
+    "integration_type",
+    "organization_id",
+    "event_type",
+    "status"
+  ]
+}
