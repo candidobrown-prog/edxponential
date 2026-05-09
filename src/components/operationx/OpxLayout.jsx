@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import {
   Command, BarChart3, Users, Building2, Shield, Globe, CreditCard,
   Package, Brain, LayoutDashboard, ChevronLeft, ChevronRight,
-  Bell, Search, Settings, Activity
+  Bell, Search, Settings, Activity, Trello
 } from 'lucide-react';
 
 const NAV = [
@@ -17,6 +17,7 @@ const NAV = [
   { icon: CreditCard, label: 'PayX™', path: '/operationx/payments' },
   { icon: Package, label: 'InvenX™', path: '/operationx/inventory' },
   { icon: Brain, label: 'OpsAI™', path: '/operationx/opsai' },
+  { icon: Trello, label: 'Kanban Board', path: '/operationx/kanban' },
 ];
 
 export default function OpxLayout() {

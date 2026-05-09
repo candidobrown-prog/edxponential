@@ -174,6 +174,7 @@ import OpxVendors from './pages/operationx/OpxVendors';
 import OpxPayments from './pages/operationx/OpxPayments';
 import OpxInventory from './pages/operationx/OpxInventory';
 import OpxOpsAI from './pages/operationx/OpxOpsAI';
+import OpxKanban from './pages/operationx/OpxKanban';
 import ClassifiedxLayout from './components/classifiedx/ClassifiedxLayout';
 import ClassifiedxBuilder from './pages/classifiedx/ClassifiedxBuilder';
 import ClassifiedxStudio from './pages/classifiedx/ClassifiedxStudio';
@@ -477,6 +478,7 @@ const AuthenticatedApp = () => {
         <Route path="/operationx/payments" element={<OpxPayments />} />
         <Route path="/operationx/inventory" element={<OpxInventory />} />
         <Route path="/operationx/opsai" element={<OpxOpsAI />} />
+        <Route path="/operationx/kanban" element={<OpxKanban />} />
       </Route>
 
       <Route path="/ceo-command" element={<CEOCommandCenter />} />
