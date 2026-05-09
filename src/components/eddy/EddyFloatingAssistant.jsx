@@ -3,6 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, Send, Mic, Volume2 } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
 import EddyCharacter from './EddyCharacter';
+import EddyOnboardingTrigger from './EddyOnboardingTrigger';
+import WalkthroughEngine from './WalkthroughEngine';
 
 export default function EddyFloatingAssistant() {
   const [open, setOpen] = useState(false);
@@ -17,6 +19,9 @@ export default function EddyFloatingAssistant() {
   const [loading, setLoading] = useState(false);
   const [speaking, setSpeaking] = useState(false);
   const [user, setUser] = useState(null);
+  const [showWalkthrough, setShowWalkthrough] = useState(false);
+  const [selectedWalkthrough, setSelectedWalkthrough] = useState(null);
+  const [showTrigger, setShowTrigger] = useState(false);
   const messagesEndRef = useRef(null);
 
   useEffect(() => {
@@ -33,6 +38,34 @@ export default function EddyFloatingAssistant() {
 
     setInput('');
     setMessages(m => [...m, { role: 'user', content: message }]);
+
+    // Check for walkthrough triggers
+    const walkthroughTriggers = {
+      'walkthrough': () => setShowTrigger(true),
+      'onboarding': () => setShowTrigger(true),
+      'learn': () => setShowTrigger(true),
+      'basics': () => setShowTrigger(true),
+      'guide': () => setShowTrigger(true),
+      'quick wins': () => setSelectedWalkthrough('quick_wins'),
+      'deep dive': () => setSelectedWalkthrough('deep_dive'),
+      'role': () => setSelectedWalkthrough('my_role'),
+    };
+
+    for (const [trigger, action] of Object.entries(walkthroughTriggers)) {
+      if (message.toLowerCase().includes(trigger)) {
+        action();
+        setMessages(m => [
+          ...m,
+          {
+            role: 'assistant',
+            content: 'Perfect! Let me show you what you\'re looking for.',
+            mood: 'happy',
+          },
+        ]);
+        return;
+      }
+    }
+
     setLoading(true);
     setSpeaking(true);
 
@@ -42,7 +75,7 @@ export default function EddyFloatingAssistant() {
 
 User: ${message}
 
-Respond in 1-2 sentences naturally, as if you're having a conversation. Be personable and helpful.`,
+Respond in 1-2 sentences naturally, as if you're having a conversation. Be personable and helpful. If they ask about getting started or learning the platform, mention you can show them personalized walkthroughs.`,
       });
 
       setMessages(m => [
@@ -55,6 +88,11 @@ Respond in 1-2 sentences naturally, as if you're having a conversation. Be perso
 
     setLoading(false);
     setTimeout(() => setSpeaking(false), 2000);
+  };
+
+  const handleWalkthroughSelect = (option) => {
+    setSelectedWalkthrough(option.id);
+    setShowTrigger(false);
   };
 
   return (
@@ -156,7 +194,18 @@ Respond in 1-2 sentences naturally, as if you're having a conversation. Be perso
                 </motion.div>
               ))}
 
-              {loading && (
+              {/* Walkthrough trigger UI */}
+              {showTrigger && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="bg-white/5 border border-white/10 rounded-xl p-4"
+                >
+                  <EddyOnboardingTrigger onSelect={handleWalkthroughSelect} user={user} />
+                </motion.div>
+              )}
+
+              {loading && !showTrigger && (
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
@@ -203,6 +252,17 @@ Respond in 1-2 sentences naturally, as if you're having a conversation. Be perso
               </button>
             </div>
           </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Walkthrough modal */}
+      <AnimatePresence>
+        {selectedWalkthrough && (
+          <WalkthroughEngine
+            walkthrough={selectedWalkthrough}
+            onClose={() => setSelectedWalkthrough(null)}
+            user={user}
+          />
         )}
       </AnimatePresence>
     </>
