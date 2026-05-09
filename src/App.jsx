@@ -93,6 +93,14 @@ import { AnimatePresence } from 'framer-motion';
 import PaymentsDashboard from './pages/admin/PaymentsDashboard';
 import ExecutiveDashboard from './pages/admin/ExecutiveDashboard';
 import XschyXschraiper from './pages/XschyXschraiper';
+import GoaledXschoolHome from './pages/goaledxschool/GoaledXschoolHome';
+import MyXschoolPage from './pages/goaledxschool/MyXschoolPage';
+import XschInfoPage from './pages/goaledxschool/XschInfoPage';
+import MasterXschedulePage from './pages/goaledxschool/MasterXschedulePage';
+import XschmartGoalxPage from './pages/goaledxschool/XschmartGoalxPage';
+import PerformintxPage from './pages/goaledxschool/PerformintxPage';
+import MasterCalendarPage from './pages/goaledxschool/MasterCalendarPage';
+import GoaledScoresPage from './pages/goaledxschool/GoaledScoresPage';
 
 const ONBOARDING_KEY = 'edx_onboarding_complete';
 
@@ -172,6 +180,14 @@ const AuthenticatedApp = () => {
         <Route path="/admin/payments" element={<PaymentsDashboard />} />
         <Route path="/admin/executive" element={<ExecutiveDashboard />} />
         <Route path="/xschy" element={<XschyXschraiper />} />
+        <Route path="/goaled" element={<GoaledXschoolHome />} />
+        <Route path="/goaled/my-xschool" element={<MyXschoolPage />} />
+        <Route path="/goaled/xschinfo" element={<XschInfoPage />} />
+        <Route path="/goaled/master-xschedule" element={<MasterXschedulePage />} />
+        <Route path="/goaled/xschmart-goalx" element={<XschmartGoalxPage />} />
+        <Route path="/goaled/performintx" element={<PerformintxPage />} />
+        <Route path="/goaled/master-calendar" element={<MasterCalendarPage />} />
+        <Route path="/goaled/scores" element={<GoaledScoresPage />} />
       </Route>
 
       {/* TubedX */}

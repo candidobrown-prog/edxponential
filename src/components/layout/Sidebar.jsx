@@ -12,8 +12,8 @@ import EdxTooltip from '@/components/platform/EdxTooltip';
 import { TOOLTIP } from '@/lib/tooltipData';
 
 const navItems = [
-  { path: '/', icon: LayoutDashboard, label: 'Dashboard', tooltip: TOOLTIP.dashboard },
-  { path: '/my-xschool', icon: School, label: 'My Xschool™', tooltip: TOOLTIP.myXschool },
+  { path: '/', icon: LayoutDashboard, label: 'My Dashboard', tooltip: TOOLTIP.dashboard },
+  { path: '/goaled', icon: School, label: 'Goaled Xschool™', tooltip: TOOLTIP.myXschool },
   { path: '/matching', icon: Target, label: 'AI Matching', tooltip: TOOLTIP.aiMatching },
   { path: '/courses', icon: BookOpen, label: 'Courses', tooltip: TOOLTIP.courses },
   { path: '/coaching', icon: Star, label: 'Coaching', tooltip: TOOLTIP.coaching },
