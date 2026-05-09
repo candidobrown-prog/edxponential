@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { Outlet, Link, useLocation } from 'react-router-dom';
 import {
   LayoutDashboard, BookOpen, ClipboardList, BarChart3,
-  FileText, Bell, Settings, ChevronLeft, ChevronRight,
-  Mic, Star, Users, GraduationCap, Zap, TrendingUp, MessageSquare, Home
+  FileText, Bell, ChevronLeft, ChevronRight,
+  Mic, Star, Users, GraduationCap, MessageSquare, Home,
+  DollarSign, Shield, UserCheck
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -20,9 +21,31 @@ const NAV = [
   { path: '/graiedx/family', icon: MessageSquare, label: 'Family Portal' },
 ];
 
+const PAIY_NAV = [
+  { path: '/graiedx/paiy', icon: DollarSign, label: 'Parent Hub' },
+  { path: '/graiedx/paiy-student', icon: UserCheck, label: 'Student View' },
+  { path: '/graiedx/paiy-teacher', icon: Shield, label: 'Teacher View' },
+];
+
 export default function GraiedxLayout() {
   const [collapsed, setCollapsed] = useState(false);
   const location = useLocation();
+
+  const renderLink = ({ path, icon: Icon, label, exact }) => {
+    const isActive = exact ? location.pathname === path : location.pathname.startsWith(path) && path !== '/graiedx';
+    const isExactActive = path === '/graiedx' && location.pathname === '/graiedx';
+    const active = isActive || isExactActive;
+    return (
+      <Link key={path} to={path} className={cn(
+        'flex items-center gap-2.5 px-3 py-2 rounded-lg transition-all',
+        collapsed && 'justify-center px-0',
+        active ? 'bg-white text-black' : 'text-white/50 hover:bg-white/5 hover:text-white'
+      )}>
+        <Icon className="w-3.5 h-3.5 flex-shrink-0" />
+        {!collapsed && <span className="text-xs font-bold">{label}</span>}
+      </Link>
+    );
+  };
 
   return (
     <div className="flex h-screen bg-[#f8f8f8] overflow-hidden">
@@ -53,21 +76,18 @@ export default function GraiedxLayout() {
 
         {/* Nav */}
         <nav className="flex-1 px-2 py-2 space-y-0.5 overflow-y-auto">
-          {NAV.map(({ path, icon: Icon, label, exact }) => {
-            const isActive = exact ? location.pathname === path : location.pathname.startsWith(path) && path !== '/graiedx';
-            const isExactActive = path === '/graiedx' && location.pathname === '/graiedx';
-            const active = isActive || isExactActive;
-            return (
-              <Link key={path} to={path} className={cn(
-                'flex items-center gap-2.5 px-3 py-2 rounded-lg transition-all',
-                collapsed && 'justify-center px-0',
-                active ? 'bg-white text-black' : 'text-white/50 hover:bg-white/5 hover:text-white'
-              )}>
-                <Icon className="w-3.5 h-3.5 flex-shrink-0" />
-                {!collapsed && <span className="text-xs font-bold">{label}</span>}
-              </Link>
-            );
-          })}
+          {NAV.map(renderLink)}
+
+          {/* Paiy Section */}
+          <div className={cn('pt-3 mt-2 border-t border-white/5', collapsed && 'flex flex-col items-center')}>
+            {!collapsed && (
+              <div className="flex items-center gap-2 px-3 pb-1.5">
+                <DollarSign className="w-3 h-3 text-emerald-400" />
+                <span className="text-[9px] text-emerald-400 font-black uppercase tracking-widest">Paiy Graiedx™</span>
+              </div>
+            )}
+            {PAIY_NAV.map(renderLink)}
+          </div>
         </nav>
 
         {/* Collapse */}

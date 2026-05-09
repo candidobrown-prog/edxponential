@@ -133,6 +133,9 @@ import GraiedxAnalytics from './pages/graiedx/GraiedxAnalytics';
 import GraiedxAlerts from './pages/graiedx/GraiedxAlerts';
 import GraiedxStandards from './pages/graiedx/GraiedxStandards';
 import GraiedxFamily from './pages/graiedx/GraiedxFamily';
+import GraiedxPaiy from './pages/graiedx/GraiedxPaiy';
+import GraiedxPaiyStudent from './pages/graiedx/GraiedxPaiyStudent';
+import GraiedxPaiyTeacher from './pages/graiedx/GraiedxPaiyTeacher';
 
 const ONBOARDING_KEY = 'edx_onboarding_complete';
 
@@ -235,6 +238,9 @@ const AuthenticatedApp = () => {
         <Route path="/graiedx/alerts" element={<GraiedxAlerts />} />
         <Route path="/graiedx/standards" element={<GraiedxStandards />} />
         <Route path="/graiedx/family" element={<GraiedxFamily />} />
+        <Route path="/graiedx/paiy" element={<GraiedxPaiy />} />
+        <Route path="/graiedx/paiy-student" element={<GraiedxPaiyStudent />} />
+        <Route path="/graiedx/paiy-teacher" element={<GraiedxPaiyTeacher />} />
       </Route>
 
       {/* Daida Baixed™ */}
