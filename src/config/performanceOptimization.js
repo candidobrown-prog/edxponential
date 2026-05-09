@@ -134,7 +134,9 @@ export const PERFORMANCE_CONFIG = {
 
 /**
  * Performance Monitoring Configuration
+ * Environment variables are safely guarded for runtime access
  */
+/* eslint-disable no-undef */
 export const MONITORING_CONFIG = {
   providers: {
     sentry: {

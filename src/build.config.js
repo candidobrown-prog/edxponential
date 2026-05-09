@@ -1,7 +1,11 @@
 /**
  * Build Configuration for App Store Distribution
  * Supports iOS, Android, PWA, and desktop builds
+ * 
+ * Note: This file runs in Node.js only during build time
+ * and is not included in the browser bundle.
  */
+/* eslint-disable no-undef */
 
 export const BUILD_CONFIG = {
   // App Metadata
