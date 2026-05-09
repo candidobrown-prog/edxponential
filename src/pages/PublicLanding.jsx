@@ -964,19 +964,14 @@ export default function PublicLanding() {
                 <option value="community" className="text-black">Join the community</option>
                 <option value="explore" className="text-black">Just exploring</option>
               </select>
+              <motion.button
+                type="submit"
+                disabled={loading}
+                className="w-full py-4 bg-white text-black rounded-xl font-bold text-lg hover:bg-white/90 disabled:opacity-50 transition"
+              >
+                {loading ? 'Submitting...' : 'Submit Application'}
+              </motion.button>
             </motion.form>
-          ) : (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="text-center py-12"
-            >
-              <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-6">
-                <CheckCircle className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="display-3 mb-4">Thank You!</h3>
-              <p className="text-xl text-white/80">Check your email for next steps. We'll send your invitation within 24 hours.</p>
-            </motion.div>
           )}
         </div>
       </section>
