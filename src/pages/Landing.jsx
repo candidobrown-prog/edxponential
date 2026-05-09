@@ -152,7 +152,7 @@ export default function Landing() {
     <div className="min-h-screen bg-white font-body text-black overflow-x-hidden">
 
       {/* NAV */}
-      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? 'bg-white/95 backdrop-blur-sm border-b border-border shadow-soft' : 'bg-transparent'}`}>
+      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? 'bg-white border-b border-border/50 shadow-soft' : 'bg-transparent'}`}>
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           <img
             src="https://media.base44.com/images/public/69f64dbf5c37a4db77e0e302/21d29b7f0_64B1F443-0AD3-403D-B726-ABEF11D14419.png"
@@ -213,7 +213,7 @@ export default function Landing() {
             className="flex flex-col sm:flex-row gap-3 justify-center"
           >
             <Link to="/onboarding">
-              <button className="group h-13 px-8 py-3.5 rounded-xl bg-black text-white text-base font-semibold hover:bg-black/85 transition-all duration-200 flex items-center gap-2 active:scale-95">
+              <button className="group h-13 px-8 py-3.5 rounded-xl bg-blue-pure text-white text-base font-semibold hover:bg-blue-light transition-all duration-200 flex items-center gap-2 active:scale-95 shadow-md-soft">
                 Start Your Journey
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </button>
@@ -258,7 +258,7 @@ export default function Landing() {
       </section>
 
       {/* STATS */}
-      <section className="py-20 px-6 border-y border-border bg-muted/30">
+      <section className="py-20 px-6 border-y border-border bg-secondary">
         <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
           {stats.map((s, i) => (
             <motion.div key={i}
@@ -281,8 +281,8 @@ export default function Landing() {
             viewport={{ once: true }} transition={{ duration: 0.6 }}
             className="text-center mb-20"
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-border bg-muted mb-6 text-[10px] text-muted-foreground font-bold tracking-widest uppercase">
-              <Sparkles className="w-3 h-3" /> The Full Platform
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-border bg-white mb-6 text-[10px] text-muted-foreground font-bold tracking-widest uppercase">
+              <Sparkles className="w-3 h-3 text-blue-pure" /> The Full Platform
             </div>
             <h2 className="text-5xl md:text-6xl font-black text-black tracking-[-0.04em] leading-tight mb-5">
               Everything you need<br /><span className="text-muted-foreground">to lead at scale.</span>
@@ -301,8 +301,8 @@ export default function Landing() {
               >
                 <div className="relative">
                   <div className="flex items-center justify-between mb-5">
-                    <div className="w-10 h-10 rounded-xl bg-muted flex items-center justify-center group-hover:bg-black/8 transition-colors">
-                      <f.icon className="w-5 h-5 text-black/60" />
+                    <div className="w-10 h-10 rounded-xl bg-secondary flex items-center justify-center group-hover:bg-blue-glow transition-colors">
+                      <f.icon className="w-5 h-5 text-blue-pure" />
                     </div>
                     <span className="text-[9px] font-black text-muted-foreground uppercase tracking-widest border border-border px-2 py-1 rounded-full">{f.tag}</span>
                   </div>
@@ -319,7 +319,7 @@ export default function Landing() {
       </section>
 
       {/* PLATFORM ECOSYSTEM STRIP */}
-      <section className="py-20 px-6 bg-muted/30 border-y border-border">
+      <section className="py-20 px-6 bg-secondary border-y border-border">
         <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0 }} whileInView={{ opacity: 1 }}
@@ -358,7 +358,7 @@ export default function Landing() {
             viewport={{ once: true }}
             className="text-center mb-24"
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-border bg-muted mb-8 text-[10px] text-muted-foreground font-bold tracking-widest uppercase">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-blue-pure/30 bg-blue-glow mb-8 text-[10px] text-blue-pure font-bold tracking-widest uppercase">
               <Users className="w-3 h-3" /> Trusted by Leaders
             </div>
             <h2 className="text-5xl md:text-6xl font-black text-black tracking-[-0.04em] leading-tight mb-5">
@@ -373,7 +373,7 @@ export default function Landing() {
           <motion.div
             initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mb-20 p-10 rounded-2xl border border-border bg-muted/30 hover:border-foreground/20 transition-all"
+            className="mb-20 p-10 rounded-2xl border border-border bg-secondary hover:border-blue-pure/30 transition-all"
           >
             <div className="flex gap-6 flex-col md:flex-row md:items-center">
               <div className="flex-1">
@@ -384,7 +384,7 @@ export default function Landing() {
                   "{testimonials[0].quote}"
                 </p>
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full bg-black flex items-center justify-center text-white font-black text-sm">
+                  <div className="w-12 h-12 rounded-full bg-blue-pure flex items-center justify-center text-white font-black text-sm">
                     {testimonials[0].avatar}
                   </div>
                   <div>
@@ -409,7 +409,7 @@ export default function Landing() {
                 </div>
                 <p className="text-muted-foreground text-base leading-relaxed mb-6">"{t.quote}"</p>
                 <div className="flex items-center gap-3 pt-4 border-t border-border">
-                  <div className="w-10 h-10 rounded-full bg-muted flex items-center justify-center text-[11px] font-black text-black/60">
+                  <div className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-[11px] font-black text-blue-pure">
                     {t.avatar}
                   </div>
                   <div>
@@ -433,7 +433,7 @@ export default function Landing() {
                 <motion.button key={i}
                   initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }} transition={{ delay: i * 0.1 }}
-                  className="group relative aspect-video rounded-2xl overflow-hidden bg-muted border border-border hover:border-foreground/20 transition-all"
+                  className="group relative aspect-video rounded-2xl overflow-hidden bg-secondary border border-border hover:border-blue-pure/30 transition-all"
                 >
                   {/* Placeholder gradient */}
                   <div className="absolute inset-0 bg-gradient-to-br from-black/20 to-transparent" />
@@ -484,10 +484,10 @@ export default function Landing() {
       </section>
 
       {/* CTA / EMAIL CAPTURE */}
-      <section className="py-32 px-6 bg-muted/30 border-t border-border">
+      <section className="py-32 px-6 bg-white border-t border-border">
         <div className="max-w-2xl mx-auto text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-border bg-white mb-8 text-[10px] text-muted-foreground font-bold tracking-widest uppercase">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-blue-pure/30 bg-blue-glow mb-8 text-[10px] text-blue-pure font-bold tracking-widest uppercase">
               <Zap className="w-3 h-3" /> Limited Access Open
             </div>
             <h2 className="text-5xl md:text-6xl font-black text-black tracking-[-0.04em] leading-tight mb-5">
@@ -526,7 +526,7 @@ export default function Landing() {
                   <button
                     type="submit"
                     disabled={loading}
-                    className="w-full h-13 py-3.5 rounded-xl bg-black text-white text-base font-semibold hover:bg-black/85 transition-all active:scale-[0.99] disabled:opacity-60"
+                    className="w-full h-13 py-3.5 rounded-xl bg-blue-pure text-white text-base font-semibold hover:bg-blue-light transition-all active:scale-[0.99] disabled:opacity-60 shadow-md-soft"
                   >
                     {loading ? 'Joining...' : 'Join edXponential →'}
                   </button>
@@ -538,7 +538,7 @@ export default function Landing() {
       </section>
 
       {/* FOOTER */}
-      <footer className="py-14 px-6 bg-white border-t border-border">
+      <footer className="py-14 px-6 bg-secondary border-t border-border">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-4">
             <img

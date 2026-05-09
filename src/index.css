@@ -10,75 +10,75 @@
     --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
     --font-grotesk: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
 
-    /* Premium white aesthetic */
+    /* Premium Black, White, Gray & Electric Blue */
     --background: 0 0% 100%;
-    --foreground: 0 0% 13%;
+    --foreground: 0 0% 0%;
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 13%;
+    --card-foreground: 0 0% 0%;
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 13%;
-    --primary: 0 0% 0%;
+    --popover-foreground: 0 0% 0%;
+    --primary: 219 100% 50%;
     --primary-foreground: 0 0% 100%;
     --secondary: 0 0% 98%;
-    --secondary-foreground: 0 0% 13%;
+    --secondary-foreground: 0 0% 0%;
     --muted: 0 0% 92%;
-    --muted-foreground: 0 0% 55%;
-    --accent: 0 0% 96%;
-    --accent-foreground: 0 0% 13%;
+    --muted-foreground: 0 0% 40%;
+    --accent: 219 100% 50%;
+    --accent-foreground: 0 0% 100%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
-    --border: 0 0% 94%;
-    --input: 0 0% 97%;
-    --ring: 0 0% 13%;
-    --chart-1: 0 0% 13%;
-    --chart-2: 0 0% 32%;
-    --chart-3: 0 0% 51%;
-    --chart-4: 0 0% 70%;
-    --chart-5: 0 0% 88%;
-    --radius: 0.75rem;
+    --border: 0 0% 90%;
+    --input: 0 0% 98%;
+    --ring: 219 100% 50%;
+    --chart-1: 219 100% 50%;
+    --chart-2: 219 100% 65%;
+    --chart-3: 0 0% 20%;
+    --chart-4: 0 0% 40%;
+    --chart-5: 0 0% 60%;
+    --radius: 0.875rem;
     --sidebar-background: 0 0% 100%;
     --sidebar-foreground: 0 0% 40%;
-    --sidebar-primary: 0 0% 0%;
+    --sidebar-primary: 219 100% 50%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 0 0% 95%;
-    --sidebar-accent-foreground: 0 0% 0%;
-    --sidebar-border: 0 0% 93%;
-    --sidebar-ring: 0 0% 0%;
+    --sidebar-accent: 219 100% 95%;
+    --sidebar-accent-foreground: 219 100% 50%;
+    --sidebar-border: 0 0% 90%;
+    --sidebar-ring: 219 100% 50%;
   }
 
   .dark {
     --background: 0 0% 100%;
-    --foreground: 0 0% 13%;
+    --foreground: 0 0% 0%;
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 13%;
+    --card-foreground: 0 0% 0%;
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 13%;
-    --primary: 0 0% 0%;
+    --popover-foreground: 0 0% 0%;
+    --primary: 219 100% 50%;
     --primary-foreground: 0 0% 100%;
     --secondary: 0 0% 98%;
-    --secondary-foreground: 0 0% 13%;
+    --secondary-foreground: 0 0% 0%;
     --muted: 0 0% 92%;
-    --muted-foreground: 0 0% 55%;
-    --accent: 0 0% 96%;
-    --accent-foreground: 0 0% 13%;
+    --muted-foreground: 0 0% 40%;
+    --accent: 219 100% 50%;
+    --accent-foreground: 0 0% 100%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
-    --border: 0 0% 94%;
-    --input: 0 0% 97%;
-    --ring: 0 0% 13%;
-    --chart-1: 0 0% 13%;
-    --chart-2: 0 0% 32%;
-    --chart-3: 0 0% 51%;
-    --chart-4: 0 0% 70%;
-    --chart-5: 0 0% 88%;
+    --border: 0 0% 90%;
+    --input: 0 0% 98%;
+    --ring: 219 100% 50%;
+    --chart-1: 219 100% 50%;
+    --chart-2: 219 100% 65%;
+    --chart-3: 0 0% 20%;
+    --chart-4: 0 0% 40%;
+    --chart-5: 0 0% 60%;
     --sidebar-background: 0 0% 100%;
     --sidebar-foreground: 0 0% 40%;
-    --sidebar-primary: 0 0% 0%;
+    --sidebar-primary: 219 100% 50%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 0 0% 95%;
-    --sidebar-accent-foreground: 0 0% 0%;
-    --sidebar-border: 0 0% 93%;
-    --sidebar-ring: 0 0% 0%;
+    --sidebar-accent: 219 100% 95%;
+    --sidebar-accent-foreground: 219 100% 50%;
+    --sidebar-border: 0 0% 90%;
+    --sidebar-ring: 219 100% 50%;
   }
 }
 
@@ -113,51 +113,26 @@
 
   /* Premium gradient text */
   .gradient-text {
-    background: linear-gradient(135deg, #ffffff 0%, rgba(255,255,255,0.5) 100%);
+    background: linear-gradient(135deg, #000000 0%, rgba(0,0,0,0.6) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
   .gradient-text-dark {
-    background: linear-gradient(135deg, #000000 0%, rgba(0,0,0,0.5) 100%);
+    background: linear-gradient(135deg, #2563EB 0%, rgba(37, 99, 235, 0.6) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
-  /* Glass morphism */
-  .glass {
-    background: rgba(255, 255, 255, 0.03);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.06);
+  /* Blue glow (subtle, for AI elements) */
+  .glow-blue {
+    box-shadow: 0 0 20px rgba(37, 99, 235, 0.15);
   }
 
-  .glass-dark {
-    background: rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
-    border: 1px solid rgba(255, 255, 255, 0.06);
-  }
-
-  /* Noise texture overlay */
-  .noise::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-    pointer-events: none;
-    border-radius: inherit;
-  }
-
-  /* Glow effects */
-  .glow-white {
-    box-shadow: 0 0 60px rgba(255, 255, 255, 0.08), 0 0 120px rgba(255, 255, 255, 0.04);
-  }
-
-  .glow-sm {
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
+  .glow-blue-sm {
+    box-shadow: 0 0 12px rgba(37, 99, 235, 0.1);
   }
 
   /* Premium card hover */
@@ -166,13 +141,32 @@
   }
 
   .card-hover:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+    border-color: rgba(37, 99, 235, 0.1);
   }
 
   /* Soft shadow for cards */
   .shadow-soft {
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  }
+
+  .shadow-md-soft {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  }
+
+  /* Blue accent highlight */
+  .highlight-blue {
+    color: hsl(219 100% 50%);
+  }
+
+  /* Spacious typography */
+  .text-tight {
+    line-height: 1.2;
+  }
+
+  .text-relaxed {
+    line-height: 1.8;
   }
 
   /* Scrollbar */

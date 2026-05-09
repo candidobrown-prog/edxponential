@@ -49,6 +49,18 @@ module.exports = {
   			border: 'hsl(var(--border))',
   			input: 'hsl(var(--input))',
   			ring: 'hsl(var(--ring))',
+  			blue: {
+  				pure: '#2563EB',
+  				light: '#3B82F6',
+  				glow: 'rgba(37, 99, 235, 0.15)',
+  			},
+  			gray: {
+  				black: '#000000',
+  				charcoal: '#222222',
+  				dark: '#666666',
+  				border: '#EAEAEA',
+  				light: '#F8F8F8',
+  			},
   			chart: {
   				'1': 'hsl(var(--chart-1))',
   				'2': 'hsl(var(--chart-2))',
