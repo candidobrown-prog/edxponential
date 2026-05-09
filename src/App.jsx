@@ -7,7 +7,7 @@ import PageNotFound from './lib/PageNotFound';
 import { AuthProvider, useAuth } from '@/lib/AuthContext';
 import UserNotRegisteredError from '@/components/UserNotRegisteredError';
 import AppLayout from './components/layout/AppLayout';
-import Landing from './pages/Landing';
+import PremiumLanding from './pages/PremiumLanding';
 import Dashboard from './pages/Dashboard';
 import Courses from './pages/Courses';
 import CourseDetail from './pages/CourseDetail';
@@ -177,6 +177,7 @@ import OpxOpsAI from './pages/operationx/OpxOpsAI';
 import OpxKanban from './pages/operationx/OpxKanban';
 import ClassifiedxLayout from './components/classifiedx/ClassifiedxLayout';
 import ClassifiedxBuilder from './pages/classifiedx/ClassifiedxBuilder';
+import PersonalizedDashboard from './pages/PersonalizedDashboard';
 import ClassifiedxStudio from './pages/classifiedx/ClassifiedxStudio';
 import ClassifiedxSyllabus from './pages/classifiedx/ClassifiedxSyllabus';
 import ClassifiedxCourses from './pages/classifiedx/ClassifiedxCourses';
@@ -231,14 +232,14 @@ const AuthenticatedApp = () => {
     <Routes>
       {/* ── PUBLIC ROUTES (no sidebar, no app chrome) ── */}
       <Route element={<PublicLayout />}>
-        <Route path="/welcome" element={<Landing />} />
+        <Route path="/welcome" element={<PremiumLanding />} />
         <Route path="/pricing" element={<PublicPricing />} />
         <Route path="/onboarding" element={<AIOnboarding />} />
       </Route>
 
       {/* ── AUTHENTICATED APP ROUTES ── */}
       <Route element={<AppLayout />}>
-        <Route path="/" element={<Dashboard />} />
+        <Route path="/" element={<PersonalizedDashboard />} />
         <Route path="/courses" element={<Courses />} />
         <Route path="/courses/:id" element={<CourseDetail />} />
         <Route path="/coaching" element={<Coaching />} />

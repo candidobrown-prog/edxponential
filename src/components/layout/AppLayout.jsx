@@ -5,6 +5,7 @@ import Sidebar from './Sidebar';
 import { EdxTooltipRenderer } from '@/components/platform/EdxTooltip';
 import NotificaxionsBar from '@/components/platform/NotificaxionsBar';
 import RoleSwitcher from '@/components/ceo/RoleSwitcher';
+import EddyAssistant from '@/components/eddy/EddyAssistant';
 
 export default function AppLayout() {
   const [user, setUser] = useState(null);
@@ -30,6 +31,7 @@ export default function AppLayout() {
       </main>
       <EdxTooltipRenderer />
       <RoleSwitcher userEmail={user?.email} />
+      <EddyAssistant />
     </div>
   );
 }
