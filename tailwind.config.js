@@ -197,8 +197,8 @@ module.exports = {
         widest: '0.1em',
       },
       boxShadow: {
-        'crimson-glow': '0 0 20px rgba(165, 28, 48, 0.15)',
-        'crimson-sm': '0 2px 8px rgba(165, 28, 48, 0.1)',
+        'crimson-glow': '0 0 20px rgba(220, 38, 38, 0.25)',
+        'crimson-sm': '0 2px 8px rgba(220, 38, 38, 0.15)',
       },
     }
   },
