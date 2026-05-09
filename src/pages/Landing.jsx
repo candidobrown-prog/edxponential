@@ -429,48 +429,48 @@ export default function Landing() {
             {/* Gradient accent line */}
             <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
             <div className="flex gap-6 flex-col md:flex-row md:items-center relative z-10">
-                <div className="flex gap-0.5 mb-6">
-                  {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-black text-black" />)}
+              <div className="flex gap-0.5 mb-6">
+                {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-black text-black" />)}
+              </div>
+              <p className="text-2xl md:text-3xl font-black text-black tracking-[-0.03em] leading-tight mb-6">
+                "{testimonials[0].quote}"
+              </p>
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-full bg-blue-pure flex items-center justify-center text-white font-black text-sm">
+                  {testimonials[0].avatar}
                 </div>
-                <p className="text-2xl md:text-3xl font-black text-black tracking-[-0.03em] leading-tight mb-6">
-                  "{testimonials[0].quote}"
-                </p>
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full bg-blue-pure flex items-center justify-center text-white font-black text-sm">
-                    {testimonials[0].avatar}
-                  </div>
-                  <div>
-                    <div className="font-bold text-black text-lg">{testimonials[0].name}</div>
-                    <div className="text-muted-foreground text-sm">{testimonials[0].title} · {testimonials[0].org}</div>
-                  </div>
-                  </div>
-                  </div>
-                  </motion.div>
+                <div>
+                  <div className="font-bold text-black text-lg">{testimonials[0].name}</div>
+                  <div className="text-muted-foreground text-sm">{testimonials[0].title} · {testimonials[0].org}</div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
 
                   {/* Testimonial grid */}
-        <PremiumGrid cols={2} className="mb-20">
-            {testimonials.slice(1).map((t, i) => (
-              <motion.div key={i}
-                initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }} transition={{ delay: (i + 1) * 0.08 }}
-                className="card-premium p-8 hover-lift"
-              >
-                <div className="flex gap-0.5 mb-5">
-                  {[...Array(5)].map((_, j) => <Star key={j} className="w-3.5 h-3.5 fill-black text-black" />)}
-                </div>
-                <p className="text-muted-foreground text-base leading-relaxed mb-6">"{t.quote}"</p>
-                <div className="flex items-center gap-3 pt-4 border-t border-border">
-                  <div className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-[11px] font-black text-blue-pure">
-                    {t.avatar}
-                  </div>
-                  <div>
-                    <div className="font-bold text-sm text-black">{t.name}</div>
-                    <div className="text-[11px] text-muted-foreground">{t.title} · {t.org}</div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </PremiumGrid>
+                  <PremiumGrid cols={2} className="mb-20">
+                    {testimonials.slice(1).map((t, i) => (
+                      <motion.div key={i}
+                        initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }} transition={{ delay: (i + 1) * 0.08 }}
+                        className="card-premium p-8 hover-lift"
+                      >
+                        <div className="flex gap-0.5 mb-5">
+                          {[...Array(5)].map((_, j) => <Star key={j} className="w-3.5 h-3.5 fill-black text-black" />)}
+                        </div>
+                        <p className="text-muted-foreground text-base leading-relaxed mb-6">"{t.quote}"</p>
+                        <div className="flex items-center gap-3 pt-4 border-t border-border">
+                          <div className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-[11px] font-black text-blue-pure">
+                            {t.avatar}
+                          </div>
+                          <div>
+                            <div className="font-bold text-sm text-black">{t.name}</div>
+                            <div className="text-[11px] text-muted-foreground">{t.title} · {t.org}</div>
+                          </div>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </PremiumGrid>
 
           {/* Impact metrics */}
           <motion.div
