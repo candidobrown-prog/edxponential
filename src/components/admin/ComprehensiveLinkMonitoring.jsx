@@ -48,9 +48,8 @@ export default function ComprehensiveLinkMonitoring() {
     <div className="min-h-screen bg-background p-6">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
-        <div className="mb-12">
-          <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }}>
-            <div className="flex items-center justify-between mb-6">
+        <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} className="mb-12">
+          <div className="flex items-center justify-between mb-6">
               <div>
                 <h1 className="text-4xl font-black text-black mb-2">Link Health Dashboard</h1>
                 <p className="text-muted-foreground">Real-time monitoring of edXponential ecosystem navigation</p>
@@ -66,7 +65,6 @@ export default function ComprehensiveLinkMonitoring() {
                 {scanning ? 'Scanning...' : 'Run Full Scan'}
               </motion.button>
             </div>
-          </motion.div>
 
           {/* KPI Cards */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
