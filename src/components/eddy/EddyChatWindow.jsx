@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { base44 } from '@/api/base44Client';
-import { X, Send, Loader2, MessageCircle, History, Plus, ChevronRight, Flag, Minimize2 } from 'lucide-react';
+import { X, Send, Loader2, MessageCircle, History, Plus, ChevronRight, Flag, Minimize2, BookMarked } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import EddyMessage from './EddyMessage';
 import EddyCharacter from './EddyCharacter';
+import EddyWalkthroughs from './EddyWalkthroughs';
 import FeedbackModal from './FeedbackModal';
 import { cn } from '@/lib/utils';
 
@@ -30,6 +31,7 @@ export default function EddyChatWindow({ user, onClose }) {
   const [loading, setLoading] = useState(false);
   const [showHistory, setShowHistory] = useState(false);
   const [showFeedback, setShowFeedback] = useState(false);
+  const [showWalkthroughs, setShowWalkthroughs] = useState(false);
   const [conversations, setConversations] = useState([]);
   const [activeConvId, setActiveConvId] = useState(null);
   const [showEddyWelcome, setShowEddyWelcome] = useState(true);
@@ -133,6 +135,9 @@ export default function EddyChatWindow({ user, onClose }) {
           </div>
         </div>
         <div className="flex items-center gap-2">
+          <button onClick={() => setShowWalkthroughs(true)} className="text-white/40 hover:text-white p-1.5 rounded-lg hover:bg-white/10 transition-all" title="Platform Walkthroughs">
+            <BookMarked className="w-4 h-4" />
+          </button>
           <button onClick={() => setShowHistory(!showHistory)} className="text-white/40 hover:text-white p-1.5 rounded-lg hover:bg-white/10 transition-all" title="Chat History">
             <History className="w-4 h-4" />
           </button>
@@ -256,6 +261,11 @@ export default function EddyChatWindow({ user, onClose }) {
       </div>
 
       {showFeedback && <FeedbackModal user={user} onClose={() => setShowFeedback(false)} />}
+      <EddyWalkthroughs
+        isOpen={showWalkthroughs}
+        onClose={() => setShowWalkthroughs(false)}
+        onSelectWalkthrough={sendMessage}
+      />
     </div>
   );
 }
