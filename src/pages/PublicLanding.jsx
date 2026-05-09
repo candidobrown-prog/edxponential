@@ -30,6 +30,18 @@ export default function PublicLanding() {
         role: formData.role,
         source: 'landing_request_access'
       });
+      
+      // Send confirmation email
+      try {
+        await base44.integrations.Core.SendEmail({
+          to: formData.email,
+          subject: 'Welcome to edXponential – Your Invitation is Coming',
+          body: `Hi ${formData.fullName},\n\nThank you for requesting access to edXponential! We're excited to have you join our community of educators and leaders.\n\nOur team will review your request and send you an invitation link within 24 hours. Once you receive it, you'll be able to set up your account and start exploring the platform.\n\nIn the meantime, feel free to reach out with any questions.\n\nBest regards,\nThe edXponential Team`
+        });
+      } catch (emailError) {
+        console.warn('Could not send confirmation email:', emailError);
+      }
+      
       setSubmitted(true);
       setTimeout(() => {
         setRequestAccessOpen(false);
@@ -164,7 +176,7 @@ export default function PublicLanding() {
 
           <div className="flex items-center gap-4">
             <button
-              onClick={() => navigate('/')}
+              onClick={() => base44.auth.redirectToLogin('/dashboard')}
               className="text-sm px-4 py-2 hover:bg-black/5 rounded-lg transition"
             >
               Sign In
@@ -238,7 +250,7 @@ export default function PublicLanding() {
               Get Started Free <ArrowRight className="w-5 h-5" />
             </button>
             <button
-              onClick={() => navigate('/')}
+              onClick={() => base44.auth.redirectToLogin('/dashboard')}
               className="px-8 py-4 border border-black/20 rounded-lg font-semibold hover:bg-black/5 transition w-full sm:w-auto"
             >
               View Demo
@@ -449,7 +461,10 @@ export default function PublicLanding() {
               Join hundreds of educators already using edXponential to improve student outcomes.
             </p>
             <button
-              onClick={() => setRequestAccessOpen(true)}
+              onClick={() => {
+                window.scrollTo(0, 0);
+                setRequestAccessOpen(true);
+              }}
               className="px-8 py-4 bg-white text-black rounded-lg font-semibold hover:bg-white/90 transition inline-flex items-center gap-2"
             >
               Request Access Now <ArrowRight className="w-5 h-5" />
