@@ -445,7 +445,6 @@ export default function Landing() {
                   </div>
                   </div>
                   </div>
-                  </div>
                   </motion.div>
 
                   {/* Testimonial grid */}
@@ -472,27 +471,26 @@ export default function Landing() {
               </motion.div>
             ))}
           </PremiumGrid>
-          </motion.div>
 
           {/* Impact metrics */}
           <motion.div
-          initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="border-t border-border pt-20"
+            initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="border-t border-border pt-20"
           >
-          <h3 className="heading-2 mb-12 text-center">Impact at scale</h3>
-          <PremiumGrid cols={4}>
-            {impactMetrics.map((m, i) => (
-              <motion.div key={i}
-                initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }} transition={{ delay: i * 0.08 }}
-                className="text-center"
-              >
-                <div className="display-2 mb-2">{m.value}</div>
-                <div className="label text-muted-foreground">{m.label}</div>
-              </motion.div>
-            ))}
-          </PremiumGrid>
+            <h3 className="heading-2 mb-12 text-center">Impact at scale</h3>
+            <PremiumGrid cols={4}>
+              {impactMetrics.map((m, i) => (
+                <motion.div key={i}
+                  initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }} transition={{ delay: i * 0.08 }}
+                  className="text-center"
+                >
+                  <div className="display-2 mb-2">{m.value}</div>
+                  <div className="label text-muted-foreground">{m.label}</div>
+                </motion.div>
+              ))}
+            </PremiumGrid>
           </motion.div>
           </div>
           </PremiumSection>
