@@ -49,13 +49,6 @@ module.exports = {
           dark: 'hsl(var(--primary-dark))',
           light: 'hsl(var(--primary-light))',
         },
-        crimson: {
-          DEFAULT: 'hsl(var(--crimson-primary))',
-          dark: 'hsl(var(--crimson-dark))',
-          light: 'hsl(var(--crimson-light))',
-          burgundy: 'hsl(var(--crimson-burgundy))',
-          tint: 'hsl(var(--crimson-tint))',
-        },
         secondary: {
           DEFAULT: 'hsl(var(--secondary))',
           foreground: 'hsl(var(--secondary-foreground))'
@@ -81,16 +74,17 @@ module.exports = {
         error: 'hsl(var(--error))',
         'text-secondary': 'hsl(var(--text-secondary))',
         'text-tertiary': 'hsl(var(--text-tertiary))',
-        'black-pure': '#000000',
-        'white-pure': '#FFFFFF',
-        'dark-card': '#0F0F0F',
-        'dark-surface': '#161616',
-        'dark-border': '#262626',
+        blue: {
+          pure: '#2563EB',
+          light: '#3B82F6',
+          glow: 'rgba(37, 99, 235, 0.15)',
+        },
         gray: {
-          charcoal: '#1A1A1A',
-          dark: '#4A4A4A',
-          medium: '#808080',
-          light: '#D1D1D1',
+          black: '#000000',
+          charcoal: '#222222',
+          dark: '#666666',
+          border: '#EAEAEA',
+          light: '#F8F8F8',
         },
         chart: {
           '1': 'hsl(var(--chart-1))',
@@ -195,10 +189,6 @@ module.exports = {
         wide: '0.02em',
         wider: '0.05em',
         widest: '0.1em',
-      },
-      boxShadow: {
-        'crimson-glow': '0 0 20px rgba(220, 38, 38, 0.25)',
-        'crimson-sm': '0 2px 8px rgba(220, 38, 38, 0.15)',
       },
     }
   },

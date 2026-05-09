@@ -179,26 +179,39 @@ export default function Landing() {
         </div>
       </nav>
 
-      {/* HERO */}
-      <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Premium white background */}
+      {/* HERO - Apple-style cinematic hero */}
+      <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+        {/* Layered premium background */}
         <div className="absolute inset-0 bg-background" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_-20%,rgba(0,0,0,0.02),transparent)]" />
+        
+        {/* Cinematic gradient depth */}
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background/50" />
+        
+        {/* Subtle animated particles */}
+        <div className="absolute inset-0 opacity-[0.03]">
+          <div className="absolute top-20 left-10 w-96 h-96 bg-primary rounded-full mix-blend-multiply filter blur-3xl animate-pulse" />
+          <div className="absolute bottom-20 right-10 w-96 h-96 bg-primary/50 rounded-full mix-blend-multiply filter blur-3xl animate-pulse" style={{ animationDelay: '2s' }} />
+        </div>
+        
+        {/* Mesh gradient effect */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(37,99,235,0.08),transparent)]" />
 
         <motion.div style={{ y: heroY, opacity: heroOpacity }} className="relative z-10 max-w-5xl mx-auto px-6 text-center">
+          {/* Premium badge with glassmorphism */}
           <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border bg-white mb-8 text-xs text-black font-medium tracking-widest uppercase">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/30 bg-white/10 backdrop-blur-md mb-8 text-xs text-black font-medium tracking-widest uppercase shadow-sm">
               <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
               Private · Invite-Only · Elite Ecosystem
             </div>
           </motion.div>
 
+          {/* Cinematic hero headline with gradient */}
           <motion.h1
             initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.1 }}
-            className="display-1 text-balance mb-8"
+            className="display-1 text-balance mb-8 leading-[1.1]"
           >
             <span>Where the World's Most<br />Ambitious Education<br />Leaders </span>
-            <span className="text-primary">Build the Future.</span>
+            <span className="bg-gradient-to-r from-primary via-primary to-primary/80 bg-clip-text text-transparent">Build the Future.</span>
           </motion.h1>
 
           <motion.p
@@ -233,63 +246,75 @@ export default function Landing() {
             </a>
           </motion.div>
 
-          {/* Floating platform cards */}
+          {/* Cinematic floating platform ecosystem cards */}
           <motion.div
             initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.6 }}
-            className="mt-20 grid grid-cols-4 md:grid-cols-8 gap-2 max-w-3xl mx-auto"
+            className="mt-24 grid grid-cols-4 md:grid-cols-8 gap-2 max-w-3xl mx-auto"
           >
             {platforms.map((p, i) => (
               <motion.div key={p.name}
                 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.7 + i * 0.05 }}
-                className="flex flex-col items-center gap-1.5 p-3 rounded-xl border border-border bg-muted hover:border-foreground/30 hover:bg-muted/80 transition-all duration-200 cursor-pointer group shadow-soft"
+                whileHover={{ y: -8, transition: { duration: 0.2 } }}
+                className="flex flex-col items-center gap-1.5 p-3 rounded-lg border border-white/40 bg-white/10 backdrop-blur-md hover:border-primary/50 hover:bg-primary/15 transition-all duration-200 cursor-pointer group shadow-lg"
               >
-                <div className="w-7 h-7 rounded-lg bg-black/8 flex items-center justify-center group-hover:bg-black/12 transition-colors">
-                  <span className="text-[8px] font-black text-black/60">{p.tag}</span>
+                <div className="w-7 h-7 rounded-lg bg-primary/20 flex items-center justify-center group-hover:bg-primary/40 transition-colors">
+                  <span className="text-[8px] font-black text-primary">{p.tag}</span>
                 </div>
-                <span className="text-[9px] font-bold text-muted-foreground text-center leading-tight hidden md:block">{p.desc}</span>
+                <span className="text-[9px] font-bold text-black/70 text-center leading-tight hidden md:block">{p.desc}</span>
               </motion.div>
             ))}
           </motion.div>
         </motion.div>
 
-        {/* Scroll hint */}
+        {/* Premium scroll indicator */}
         <motion.div
           initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.2 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3"
         >
-          <span className="text-[10px] text-muted-foreground/60 uppercase tracking-widest">Scroll</span>
-          <motion.div animate={{ y: [0, 6, 0] }} transition={{ repeat: Infinity, duration: 2 }}>
-            <ChevronDown className="w-4 h-4 text-muted-foreground/40" />
+          <span className="text-[10px] text-black/40 uppercase tracking-widest font-semibold">Scroll to explore</span>
+          <motion.div animate={{ y: [0, 8, 0] }} transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }}>
+            <div className="w-6 h-10 border border-black/20 rounded-full flex items-start justify-center pt-2">
+              <motion.div className="w-1 h-2 bg-primary rounded-full" />
+            </div>
           </motion.div>
         </motion.div>
       </section>
 
-      {/* STATS */}
-      <PremiumSection spacing="3xl" className="border-y border-border bg-surface">
-        <PremiumGrid cols={4}>
-          {stats.map((s, i) => (
-            <motion.div key={i}
-              initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }} transition={{ delay: i * 0.1 }}
-              className="text-center"
-            >
-              <div className="display-2 mb-2">{s.value}</div>
-              <div className="label text-muted-foreground">{s.label}</div>
-            </motion.div>
-          ))}
-        </PremiumGrid>
+      {/* IMPACT METRICS - Cinematic Stats Section */}
+      <PremiumSection spacing="3xl" className="border-y border-border bg-gradient-to-b from-white to-surface/50 relative overflow-hidden">
+        {/* Subtle background glow */}
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-primary/5 opacity-50" />
+        <div className="relative z-10">
+          <PremiumGrid cols={4}>
+            {stats.map((s, i) => (
+              <motion.div key={i}
+                initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }} transition={{ delay: i * 0.1 }}
+                className="text-center group"
+              >
+                <motion.div whileHover={{ scale: 1.05 }} className="relative">
+                  <div className="absolute inset-0 bg-primary/10 rounded-xl blur-xl group-hover:bg-primary/20 transition-colors opacity-0 group-hover:opacity-100" />
+                  <div className="relative">
+                    <div className="display-2 mb-2 bg-gradient-to-r from-black via-black to-black/70 bg-clip-text text-transparent">{s.value}</div>
+                    <div className="label text-muted-foreground group-hover:text-black transition-colors">{s.label}</div>
+                  </div>
+                </motion.div>
+              </motion.div>
+            ))}
+          </PremiumGrid>
+        </div>
       </PremiumSection>
 
-      {/* FEATURES */}
-      <PremiumSection id="features">
+      {/* FEATURES - Cinematic Platform Section */}
+      <PremiumSection id="features" spacing="4xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }} transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-20"
         >
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-border bg-surface mb-6 text-[10px] text-muted-foreground font-bold tracking-widest uppercase">
-            <Sparkles className="w-3 h-3 text-primary" /> The Full Platform
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-primary/30 bg-primary/10 mb-6 text-[10px] text-primary font-bold tracking-widest uppercase">
+            <Sparkles className="w-3 h-3" /> The Full Platform
           </div>
           <PremiumHeading
             level={1}
@@ -304,18 +329,22 @@ export default function Landing() {
               <motion.div key={i}
                 initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }} transition={{ delay: i * 0.08 }}
-                className="group card-premium p-7 hover-lift cursor-pointer"
+                whileHover={{ y: -8 }}
+                className="group relative rounded-xl border border-border bg-gradient-to-br from-white to-surface/50 p-7 shadow-sm hover:shadow-lg hover:border-primary/30 transition-all duration-300 cursor-pointer"
               >
-                <div className="relative">
+                {/* Hover glow effect */}
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity" />
+                
+                <div className="relative z-10">
                   <div className="flex items-center justify-between mb-5">
-                    <div className="w-10 h-10 rounded-lg bg-surface flex items-center justify-center group-hover:bg-primary/10 transition-colors">
+                    <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-all shadow-sm">
                       <f.icon className="w-5 h-5 text-primary" />
                     </div>
-                    <span className="label text-muted-foreground border border-border px-2 py-1 rounded-md">{f.tag}</span>
+                    <span className="label text-primary border border-primary/20 bg-primary/5 px-2 py-1 rounded-md group-hover:border-primary/40 group-hover:bg-primary/10 transition-colors">{f.tag}</span>
                     </div>
-                    <h3 className="title font-semibold mb-2.5">{f.title}</h3>
+                    <h3 className="title font-semibold mb-2.5 text-black group-hover:text-primary transition-colors">{f.title}</h3>
                     <p className="body-sm text-muted-foreground">{f.desc}</p>
-                  <div className="mt-5 flex items-center gap-1.5 text-[11px] font-semibold text-muted-foreground group-hover:text-black transition-colors">
+                  <div className="mt-5 flex items-center gap-1.5 text-[11px] font-semibold text-primary group-hover:gap-2 transition-all">
                     Learn more <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
                   </div>
                 </div>
@@ -324,45 +353,62 @@ export default function Landing() {
           </PremiumGrid>
       </PremiumSection>
 
-      {/* PLATFORM ECOSYSTEM STRIP */}
-      <PremiumSection spacing="3xl" className="border-y border-border bg-surface">
-        <motion.div
-          initial={{ opacity: 0 }} whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          className="text-center mb-12"
-        >
-          <p className="label text-muted-foreground mb-4">The Platform Suite</p>
-          <h2 className="heading-1">
-            One ecosystem. <span className="text-muted-foreground">Infinite leverage.</span>
-          </h2>
-        </motion.div>
-        <PremiumGrid cols={4}>
-          {platforms.map((p, i) => (
-            <motion.div key={p.name}
-              initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }} transition={{ delay: i * 0.05 }}
-              className="group card-premium p-5 hover-lift cursor-pointer"
-            >
-              <div className="w-9 h-9 rounded-md bg-muted flex items-center justify-center mb-3 group-hover:bg-primary/10 transition-colors">
-                <span className="text-[10px] font-bold text-muted-foreground">{p.tag}</span>
-              </div>
-              <p className="font-semibold text-sm mb-0.5">{p.name}</p>
-              <p className="body-xs text-muted-foreground">{p.desc}</p>
-            </motion.div>
-          ))}
-        </PremiumGrid>
+      {/* PLATFORM ECOSYSTEM - Cinematic Suite Showcase */}
+      <PremiumSection spacing="4xl" className="border-y border-border bg-gradient-to-b from-surface/50 to-background relative overflow-hidden">
+        {/* Animated background elements */}
+        <div className="absolute inset-0 opacity-[0.02]">
+          <div className="absolute top-0 left-1/3 w-96 h-96 bg-primary rounded-full mix-blend-multiply filter blur-3xl" />
+          <div className="absolute bottom-0 right-1/3 w-96 h-96 bg-primary/30 rounded-full mix-blend-multiply filter blur-3xl" />
+        </div>
+        
+        <div className="relative z-10">
+          <motion.div
+            initial={{ opacity: 0 }} whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <p className="label text-primary mb-4">The Platform Suite</p>
+            <h2 className="heading-1">
+              One ecosystem. <span className="text-muted-foreground">Infinite leverage.</span>
+            </h2>
+          </motion.div>
+          <PremiumGrid cols={4}>
+            {platforms.map((p, i) => (
+              <motion.div key={p.name}
+                initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }} transition={{ delay: i * 0.05 }}
+                whileHover={{ y: -6, scale: 1.02 }}
+                className="group relative rounded-xl border border-border bg-white/50 backdrop-blur-sm p-5 shadow-sm hover:shadow-md hover:border-primary/40 transition-all duration-300 cursor-pointer overflow-hidden"
+              >
+                {/* Gradient overlay on hover */}
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                
+                <div className="relative z-10">
+                  <div className="w-9 h-9 rounded-md bg-primary/15 flex items-center justify-center mb-3 group-hover:bg-primary/25 transition-all shadow-sm">
+                    <span className="text-[10px] font-bold text-primary">{p.tag}</span>
+                  </div>
+                  <p className="font-semibold text-sm mb-0.5 text-black group-hover:text-primary transition-colors">{p.name}</p>
+                  <p className="body-xs text-muted-foreground">{p.desc}</p>
+                </div>
+              </motion.div>
+            ))}
+          </PremiumGrid>
+        </div>
       </PremiumSection>
 
-      {/* PREMIUM TESTIMONIALS */}
-      <PremiumSection>
-        <div className="max-w-6xl mx-auto">
+      {/* TESTIMONIALS - Cinematic Social Proof */}
+      <PremiumSection spacing="4xl" className="relative overflow-hidden bg-gradient-to-b from-background via-white/50 to-surface">
+        {/* Subtle background glow */}
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/3 via-transparent to-primary/3 opacity-40" />
+        
+        <div className="relative z-10 max-w-6xl mx-auto">
           {/* Header */}
           <motion.div
             initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="text-center mb-24"
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-blue-pure/30 bg-blue-glow mb-8 text-[10px] text-blue-pure font-bold tracking-widest uppercase">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-primary/30 bg-primary/10 mb-8 text-[10px] text-primary font-bold tracking-widest uppercase">
               <Users className="w-3 h-3" /> Trusted by Leaders
             </div>
             <h2 className="text-5xl md:text-6xl font-black text-black tracking-[-0.04em] leading-tight mb-5">
@@ -373,105 +419,67 @@ export default function Landing() {
             </p>
           </motion.div>
 
-          {/* Featured testimonial */}
+          {/* Featured testimonial - Premium spotlight */}
           <motion.div
             initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mb-20 p-10 rounded-2xl border border-border bg-secondary hover:border-blue-pure/30 transition-all"
+            whileHover={{ y: -4 }}
+            className="mb-20 p-10 rounded-2xl border border-primary/20 bg-gradient-to-br from-white via-primary/3 to-white/50 shadow-lg hover:shadow-xl hover:border-primary/40 transition-all duration-300 relative overflow-hidden"
           >
-            <div className="flex gap-6 flex-col md:flex-row md:items-center">
-              <div className="flex-1">
-                <div className="flex gap-0.5 mb-6">
-                  {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-black text-black" />)}
+            {/* Gradient accent line */}
+            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
+            <div className="flex gap-6 flex-col md:flex-row md:items-center relative z-10">
+              <div className="flex gap-0.5 mb-6">
+                {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-black text-black" />)}
+              </div>
+              <p className="text-2xl md:text-3xl font-black text-black tracking-[-0.03em] leading-tight mb-6">
+                "{testimonials[0].quote}"
+              </p>
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-full bg-blue-pure flex items-center justify-center text-white font-black text-sm">
+                  {testimonials[0].avatar}
                 </div>
-                <p className="text-2xl md:text-3xl font-black text-black tracking-[-0.03em] leading-tight mb-6">
-                  "{testimonials[0].quote}"
-                </p>
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full bg-blue-pure flex items-center justify-center text-white font-black text-sm">
-                    {testimonials[0].avatar}
-                  </div>
-                  <div>
-                    <div className="font-bold text-black text-lg">{testimonials[0].name}</div>
-                    <div className="text-muted-foreground text-sm">{testimonials[0].title} · {testimonials[0].org}</div>
-                  </div>
+                <div>
+                  <div className="font-bold text-black text-lg">{testimonials[0].name}</div>
+                  <div className="text-muted-foreground text-sm">{testimonials[0].title} · {testimonials[0].org}</div>
                 </div>
               </div>
             </div>
           </motion.div>
 
-          {/* Testimonial grid */}
-        <PremiumGrid cols={2} className="mb-20">
-            {testimonials.slice(1).map((t, i) => (
-              <motion.div key={i}
-                initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }} transition={{ delay: (i + 1) * 0.08 }}
-                className="card-premium p-8 hover-lift"
-              >
-                <div className="flex gap-0.5 mb-5">
-                  {[...Array(5)].map((_, j) => <Star key={j} className="w-3.5 h-3.5 fill-black text-black" />)}
-                </div>
-                <p className="text-muted-foreground text-base leading-relaxed mb-6">"{t.quote}"</p>
-                <div className="flex items-center gap-3 pt-4 border-t border-border">
-                  <div className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-[11px] font-black text-blue-pure">
-                    {t.avatar}
-                  </div>
-                  <div>
-                    <div className="font-bold text-sm text-black">{t.name}</div>
-                    <div className="text-[11px] text-muted-foreground">{t.title} · {t.org}</div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </PremiumGrid>
+                  {/* Testimonial grid */}
+                  <PremiumGrid cols={2} className="mb-20">
+                    {testimonials.slice(1).map((t, i) => (
+                      <motion.div key={i}
+                        initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }} transition={{ delay: (i + 1) * 0.08 }}
+                        className="card-premium p-8 hover-lift"
+                      >
+                        <div className="flex gap-0.5 mb-5">
+                          {[...Array(5)].map((_, j) => <Star key={j} className="w-3.5 h-3.5 fill-black text-black" />)}
+                        </div>
+                        <p className="text-muted-foreground text-base leading-relaxed mb-6">"{t.quote}"</p>
+                        <div className="flex items-center gap-3 pt-4 border-t border-border">
+                          <div className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-[11px] font-black text-blue-pure">
+                            {t.avatar}
+                          </div>
+                          <div>
+                            <div className="font-bold text-sm text-black">{t.name}</div>
+                            <div className="text-[11px] text-muted-foreground">{t.title} · {t.org}</div>
+                          </div>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </PremiumGrid>
 
-          {/* Video testimonials */}
+          {/* Impact metrics */}
           <motion.div
             initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mb-20"
+            className="border-t border-border pt-20"
           >
-            <h3 className="heading-1 mb-8">Watch real leaders</h3>
-            <PremiumGrid cols={3}>
-              {videoTestimonials.map((v, i) => (
-                <motion.button key={i}
-                  initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }} transition={{ delay: i * 0.1 }}
-                  className="group relative aspect-video rounded-2xl overflow-hidden bg-secondary border border-border hover:border-blue-pure/30 transition-all"
-                >
-                  {/* Placeholder gradient */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-black/20 to-transparent" />
-                  
-                  {/* Play button */}
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <motion.div
-                      whileHover={{ scale: 1.1 }}
-                      className="w-16 h-16 rounded-full bg-white flex items-center justify-center group-hover:bg-white/90 transition-colors"
-                    >
-                      <Play className="w-7 h-7 text-black fill-black" />
-                    </motion.div>
-                  </div>
-
-                  {/* Label */}
-                  <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black to-transparent">
-                    <div className="font-bold text-white text-sm">{v.name}</div>
-                    <div className="text-white/70 text-xs">{v.title}</div>
-                  </div>
-                </motion.button>
-              ))}
-              </PremiumGrid>
-              </motion.div>
-
-              {/* Impact metrics */}
-              <motion.div
-              initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="border-t border-border pt-20"
-              >
-              <h3 className="heading-2 mb-12 text-center">
-              Impact at scale
-              </h3>
-              <PremiumGrid cols={4}>
+            <h3 className="heading-2 mb-12 text-center">Impact at scale</h3>
+            <PremiumGrid cols={4}>
               {impactMetrics.map((m, i) => (
                 <motion.div key={i}
                   initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }}
@@ -482,22 +490,28 @@ export default function Landing() {
                   <div className="label text-muted-foreground">{m.label}</div>
                 </motion.div>
               ))}
-              </PremiumGrid>
-              </motion.div>
-              </div>
-              </PremiumSection>
+            </PremiumGrid>
+          </motion.div>
+          </div>
+          </PremiumSection>
 
-              {/* CTA / EMAIL CAPTURE */}
-      <PremiumSection spacing="5xl" className="border-t border-border">
-        <PremiumContainer className="max-w-2xl">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-primary/30 bg-primary/10 mb-8 text-[10px] text-primary font-bold tracking-widest uppercase">
-              <Zap className="w-3 h-3" /> Limited Access Open
-            </div>
-            <h2 className="display-1 leading-tight mb-5">
-              Ready to lead<br /><span className="text-muted-foreground">exponentially?</span>
-            </h2>
-            <p className="subtitle text-muted-foreground mb-12">Join 500+ education leaders already shaping the future of schools, systems, and communities.</p>
+      {/* CTA - Premium Conversion Experience */}
+      <PremiumSection spacing="5xl" className="border-t border-border relative overflow-hidden bg-gradient-to-b from-white to-surface">
+        {/* Cinematic background effects */}
+        <div className="absolute inset-0 opacity-[0.04]">
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-primary rounded-full mix-blend-multiply filter blur-3xl" />
+        </div>
+        
+        <div className="relative z-10">
+          <PremiumContainer className="max-w-2xl">
+            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-primary/40 bg-primary/15 backdrop-blur-sm mb-8 text-[10px] text-primary font-bold tracking-widest uppercase shadow-sm">
+                <Zap className="w-3 h-3" /> Limited Access Open
+              </div>
+              <h2 className="display-1 leading-tight mb-5 bg-gradient-to-r from-black via-black to-black/60 bg-clip-text text-transparent">
+                Ready to lead<br /><span className="text-muted-foreground">exponentially?</span>
+              </h2>
+              <p className="subtitle text-muted-foreground mb-12">Join 500+ education leaders already shaping the future of schools, systems, and communities.</p>
             <AnimatePresence mode="wait">
               {submitted ? (
                 <motion.div key="done"
@@ -530,19 +544,22 @@ export default function Landing() {
                   <button
                     type="submit"
                     disabled={loading}
-                    className="w-full h-13 py-3.5 rounded-xl bg-blue-pure text-white text-base font-semibold hover:bg-blue-light transition-all active:scale-[0.99] disabled:opacity-60 shadow-md-soft"
+                    className="w-full h-13 py-3.5 rounded-xl bg-gradient-to-r from-primary to-primary/90 text-white text-base font-semibold hover:shadow-lg hover:from-primary/95 hover:to-primary/85 transition-all active:scale-[0.98] disabled:opacity-60 shadow-md relative overflow-hidden group"
                   >
-                    {loading ? 'Joining...' : 'Join edXponential →'}
+                    {/* Shimmer effect on hover */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-500" />
+                    <span className="relative">{loading ? 'Joining...' : 'Join edXponential →'}</span>
                   </button>
                 </motion.form>
               )}
             </AnimatePresence>
           </motion.div>
-        </PremiumContainer>
+          </PremiumContainer>
+        </div>
       </PremiumSection>
 
-      {/* FOOTER */}
-      <footer className="py-12 px-6 bg-surface border-t border-border">
+      {/* FOOTER - Premium Brand Footer */}
+      <footer className="py-12 px-6 bg-gradient-to-t from-surface/80 to-white border-t border-border/50 relative overflow-hidden">
         <PremiumContainer className="flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-4">
             <img

@@ -7,23 +7,17 @@ import { base44 } from '@/api/base44Client';
 import { performanceMonitor } from '@/lib/performance';
 import { preloadCriticalAssets } from '@/lib/optimization';
 import PageNotFound from './lib/PageNotFound';
-import SmartPageNotFound from './lib/SmartPageNotFound.jsx';
-import RequestAccessConfirmation from './pages/RequestAccessConfirmation';
-import ComingSoon from './pages/ComingSoon';
-import FoundersSpherePage from './pages/FoundersSpherePage';
-import PrincipalsPage from './pages/PrincipalsPage';
-import PoentialsPage from './pages/Potentials';
-import Contact from './pages/Contact';
 import ErrorBoundary from '@/lib/errorBoundary';
 import { AuthProvider, useAuth } from '@/lib/AuthContext';
 import UserNotRegisteredError from '@/components/UserNotRegisteredError';
 import AppLayout from './components/layout/AppLayout';
-import PublicLanding from './pages/PublicLanding';
+import Landing from './pages/Landing';
 import Dashboard from './pages/Dashboard';
 import Courses from './pages/Courses';
 import CourseDetail from './pages/CourseDetail';
 import Coaching from './pages/Coaching';
 import CoachingDetail from './pages/CoachingDetail';
+import CoachDirectory from './pages/CoachDirectory';
 import EdVisors from './pages/EdVisors';
 import EdVisorDetail from './pages/EdVisorDetail';
 import EdVestors from './pages/EdVestors';
@@ -66,7 +60,7 @@ import Xschetails from './pages/Xschetails';
 import XschetailsDashboard from './pages/XschetailsDashboard';
 import PlatformChatbot from './components/platform/PlatformChatbot';
 import AIAssistantBubble from './components/ai/AIAssistantBubble';
-
+import SmartOnboarding from './components/ai/SmartOnboarding';
 import AdminFeedback from './pages/AdminFeedback';
 import MyXschool from './pages/MyXschool';
 import NotificationPrefs from './pages/NotificationPrefs';
@@ -202,13 +196,19 @@ import ClassifiedxPublish from './pages/classifiedx/ClassifiedxPublish';
 import AdvertiserPortal from './pages/AdvertiserPortal';
 import AdminAdManagement from './pages/AdminAdManagement';
 
+const ONBOARDING_KEY = 'edx_onboarding_complete';
+
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
+  const [showOnboarding, setShowOnboarding] = React.useState(false);
   const [user, setUser] = React.useState(null);
 
   React.useEffect(() => {
     base44.auth.me().then(u => {
       setUser(u);
+      if (!u.onboarding_complete) {
+        setShowOnboarding(true);
+      }
     }).catch(() => {});
   }, []);
 
@@ -235,18 +235,14 @@ const AuthenticatedApp = () => {
   // Render the main app
   return (
     <>
+    {showOnboarding && <SmartOnboarding user={user} onComplete={() => setShowOnboarding(false)} />}
     <Routes>
       {/* ── PUBLIC ROUTES (no sidebar, no app chrome) ── */}
       <Route element={<PublicLayout />}>
-        <Route path="/" element={<PublicLanding />} />
+        <Route path="/" element={<Landing />} />
+        <Route path="/welcome" element={<Landing />} />
         <Route path="/pricing" element={<PublicPricing />} />
         <Route path="/onboarding" element={<AIOnboarding />} />
-        <Route path="/request-access-confirmation" element={<RequestAccessConfirmation />} />
-        <Route path="/founders-sphere" element={<FoundersSpherePage />} />
-        <Route path="/principal-park" element={<PrincipalsPage />} />
-        <Route path="/potentials" element={<PoentialsPage />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/coming-soon" element={<ComingSoon />} />
       </Route>
 
       {/* ── AUTHENTICATED APP ROUTES ── */}
@@ -255,6 +251,7 @@ const AuthenticatedApp = () => {
         <Route path="/courses" element={<Courses />} />
         <Route path="/courses/:id" element={<CourseDetail />} />
         <Route path="/coaching" element={<Coaching />} />
+        <Route path="/coaching/directory" element={<CoachDirectory />} />
         <Route path="/coaching/:id" element={<CoachingDetail />} />
         <Route path="/edvisors" element={<EdVisors />} />
         <Route path="/edvisors/:id" element={<EdVisorDetail />} />
@@ -500,10 +497,7 @@ const AuthenticatedApp = () => {
       </Route>
 
       <Route path="/ceo-command" element={<CEOCommandCenter />} />
-      
-      {/* ── FALLBACK 404 PAGE ── */}
-      <Route path="/404" element={<SmartPageNotFound />} />
-      <Route path="*" element={<SmartPageNotFound />} />
+      <Route path="*" element={<PageNotFound />} />
     </Routes>
     </>
   );
