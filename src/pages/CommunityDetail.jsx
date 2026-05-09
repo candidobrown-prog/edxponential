@@ -6,10 +6,11 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { ArrowLeft, Users, Globe, Lock, MessageSquare, Heart, Send, Search, X } from 'lucide-react';
+import { ArrowLeft, Users, Globe, Lock, MessageSquare, Heart, Send, Search, X, Mail } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { format } from 'date-fns';
 import MemberCard from '../components/communities/MemberCard';
+import BulkAnnouncementModal from '../components/communities/BulkAnnouncementModal';
 
 const postTypeStyles = {
   discussion: 'bg-gray-100 text-gray-700',
@@ -26,6 +27,7 @@ export default function CommunityDetail() {
   const [activeTab, setActiveTab] = useState('discussions');
   const [memberSearch, setMemberSearch] = useState('');
   const [memberFilter, setMemberFilter] = useState('all');
+  const [showAnnouncementModal, setShowAnnouncementModal] = useState(false);
   const queryClient = useQueryClient();
 
   useEffect(() => {
@@ -97,6 +99,7 @@ export default function CommunityDetail() {
 
   const VisibilityIcon = community.visibility === 'public' ? Globe : Lock;
   const isJoined = user && members.some(m => m.user_email === user.email);
+  const isModerator = user && members.some(m => m.user_email === user.email && m.role === 'moderator');
 
   const tabs = [
     { id: 'discussions', label: 'Discussions', count: posts.length },
@@ -139,11 +142,31 @@ export default function CommunityDetail() {
               </Button>
             )}
             {isJoined && (
-              <Badge className="bg-black text-white border-0">Member</Badge>
+              <div className="flex items-center gap-2">
+                {isModerator && (
+                  <Button
+                    onClick={() => setShowAnnouncementModal(true)}
+                    className="bg-black text-white hover:bg-black/85 rounded-xl gap-2"
+                  >
+                    <Mail className="w-4 h-4" />
+                    Send Announcement
+                  </Button>
+                )}
+                <Badge className="bg-black text-white border-0">{isModerator ? 'Moderator' : 'Member'}</Badge>
+              </div>
             )}
           </div>
         </div>
       </div>
+
+      {/* Bulk Announcement Modal */}
+      {showAnnouncementModal && (
+        <BulkAnnouncementModal
+          community={community}
+          members={members}
+          onClose={() => setShowAnnouncementModal(false)}
+        />
+      )}
 
       {/* Tabs */}
       <div className="flex gap-1 bg-muted rounded-xl p-1 w-fit">
