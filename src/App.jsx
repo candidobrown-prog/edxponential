@@ -158,6 +158,7 @@ import EduCartxDashboard from './pages/educartx/EduCartxDashboard';
 import EduCartxOrders from './pages/educartx/EduCartxOrders';
 import EduCartxAICoach from './pages/educartx/EduCartxAICoach';
 import CEOCommandCenter from './pages/CEOCommandCenter';
+import AIInsightDashboard from './pages/AIInsightDashboard';
 import PublicLayout from './components/layout/PublicLayout';
 import PublicPricing from './pages/public/PublicPricing';
 import AIOnboarding from './pages/public/AIOnboarding';
@@ -265,6 +266,7 @@ const AuthenticatedApp = () => {
         <Route path="/goaled/performintx" element={<PerformintxPage />} />
         <Route path="/goaled/master-calendar" element={<MasterCalendarPage />} />
         <Route path="/goaled/scores" element={<GoaledScoresPage />} />
+        <Route path="/ai-insights" element={<AIInsightDashboard />} />
       </Route>
 
       {/* Graiedx™ */}
