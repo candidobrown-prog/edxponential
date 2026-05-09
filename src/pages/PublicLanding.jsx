@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import {
   ArrowRight, Menu, X, ChevronDown, Star, Users, TrendingUp, Zap,
   CheckCircle, MessageCircle, Brain, Rocket, Target, Code, Briefcase,
-  School, BookOpen, BarChart3, Play, Gift, Calendar, MapPin, Clock
+  School, BookOpen, BarChart3, Play, Gift, Calendar, MapPin, Clock, FileText, Folder, ShoppingCart
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { base44 } from '@/api/base44Client';
@@ -28,37 +28,37 @@ const features = [
   {
     title: 'Ask Eddy AI Assistant',
     description: 'Intelligent AI guidance for school operations, curriculum design, and strategic planning.',
-    image: '🤖',
+    Icon: Brain,
     href: '#ask-eddy',
   },
   {
     title: 'FounderX',
     description: 'Complete school-building OS for founders. Strategic planning, pitching, and scaling.',
-    image: '🏗️',
+    Icon: Target,
     href: '#solutions',
   },
   {
     title: 'OperationX',
     description: 'School operations, HR, finance, facilities, and vendor management in one platform.',
-    image: '⚙️',
+    Icon: Code,
     href: '#solutions',
   },
   {
     title: 'OneJob',
     description: 'Education recruitment and employment marketplace for schools and districts.',
-    image: '💼',
+    Icon: Briefcase,
     href: '#marketplace',
   },
   {
     title: 'EduCartX',
     description: 'Education commerce platform for courses, resources, and digital products.',
-    image: '🛒',
+    Icon: ShoppingCart,
     href: '#marketplace',
   },
   {
     title: 'edVestors',
     description: 'Investment network connecting education innovators with capital and advisors.',
-    image: '📈',
+    Icon: TrendingUp,
     href: '#communities',
   },
 ];
@@ -139,21 +139,21 @@ const testimonials = [
     name: 'Sarah Chen',
     role: 'Principal, Lincoln High',
     quote: 'edXponential transformed how we operate. The AI guidance alone saved us 20 hours a week.',
-    avatar: '👩‍💼',
+    avatar: 'SC',
     rating: 5,
   },
   {
     name: 'Marcus Johnson',
     role: 'School Founder & CEO',
     quote: 'I built three schools before. This platform accelerated our growth by 18 months.',
-    avatar: '👨‍💼',
+    avatar: 'MJ',
     rating: 5,
   },
   {
     name: 'Dr. Elena Rodriguez',
     role: 'District Superintendent',
     quote: 'Moving faster, leading stronger, driving results. That\'s not marketing—that\'s reality.',
-    avatar: '👩‍🏫',
+    avatar: 'ER',
     rating: 5,
   },
 ];
@@ -493,7 +493,9 @@ export default function PublicLanding() {
           </motion.div>
 
           <div className="grid md:grid-cols-2 gap-16">
-            {features.map((feature, i) => (
+            {features.map((feature, i) => {
+              const Icon = feature.Icon;
+              return (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 20 }}
@@ -503,7 +505,9 @@ export default function PublicLanding() {
                 whileHover={{ y: -8 }}
                 className="group cursor-pointer"
               >
-                <div className="mb-6 text-6xl">{feature.image}</div>
+                <div className="w-14 h-14 rounded-xl bg-black/5 flex items-center justify-center mb-6 group-hover:bg-black/10 transition-colors">
+                  <Icon className="w-7 h-7 text-black" />
+                </div>
                 <h3 className="heading-2 mb-4 group-hover:text-black transition">{feature.title}</h3>
                 <p className="text-black/70 mb-6 leading-relaxed">{feature.description}</p>
                 <motion.button
@@ -513,7 +517,8 @@ export default function PublicLanding() {
                   Learn More <ArrowRight className="w-4 h-4" />
                 </motion.button>
               </motion.div>
-            ))}
+            );
+            })}
           </div>
         </div>
       </section>
@@ -685,11 +690,13 @@ export default function PublicLanding() {
 
           <div className="grid md:grid-cols-2 gap-8">
             {[
-              { name: 'Founder Circle', members: '2,000+', icon: '🚀' },
-              { name: 'Principal Network', members: '5,000+', icon: '👨‍💼' },
-              { name: 'Investor Group', members: '500+', icon: '📈' },
-              { name: 'Coach Alliance', members: '1,000+', icon: '🎓' },
-            ].map((community, i) => (
+              { name: 'Founder Circle', members: '2,000+', Icon: Rocket },
+              { name: 'Principal Network', members: '5,000+', Icon: Briefcase },
+              { name: 'Investor Group', members: '500+', Icon: TrendingUp },
+              { name: 'Coach Alliance', members: '1,000+', Icon: BookOpen },
+            ].map((community, i) => {
+              const Icon = community.Icon;
+              return (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 20 }}
@@ -699,7 +706,9 @@ export default function PublicLanding() {
                 whileHover={{ y: -4 }}
                 className="p-8 rounded-2xl bg-white border border-black/10 hover:shadow-lg transition-all cursor-pointer group"
               >
-                <div className="text-5xl mb-4">{community.icon}</div>
+                <div className="w-12 h-12 rounded-xl bg-black/5 flex items-center justify-center mb-4 group-hover:bg-black/10 transition-colors">
+                  <Icon className="w-6 h-6 text-black" />
+                </div>
                 <h3 className="heading-2 mb-2">{community.name}</h3>
                 <p className="text-sm text-black/70 mb-4">{community.members} members</p>
                 <motion.button
@@ -709,7 +718,8 @@ export default function PublicLanding() {
                   Join Now <ArrowRight className="w-4 h-4" />
                 </motion.button>
               </motion.div>
-            ))}
+            );
+            })}
           </div>
         </div>
       </section>
@@ -784,11 +794,13 @@ export default function PublicLanding() {
 
           <div className="grid md:grid-cols-4 gap-6">
             {[
-              { name: 'Courses', count: '2,000+', icon: '📚' },
-              { name: 'Templates', count: '5,000+', icon: '📋' },
-              { name: 'Tools', count: '500+', icon: '⚙️' },
-              { name: 'Resources', count: '10,000+', icon: '📁' },
-            ].map((category, i) => (
+              { name: 'Courses', count: '2,000+', Icon: BookOpen },
+              { name: 'Templates', count: '5,000+', Icon: FileText },
+              { name: 'Tools', count: '500+', Icon: Zap },
+              { name: 'Resources', count: '10,000+', Icon: Folder },
+            ].map((category, i) => {
+              const Icon = category.Icon;
+              return (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 20 }}
@@ -798,11 +810,14 @@ export default function PublicLanding() {
                 whileHover={{ y: -4 }}
                 className="p-8 rounded-2xl bg-white border border-black/10 hover:shadow-lg transition-all text-center cursor-pointer"
               >
-                <div className="text-5xl mb-4">{category.icon}</div>
+                <div className="w-12 h-12 rounded-xl bg-black/5 flex items-center justify-center mb-4 mx-auto group-hover:bg-black/10 transition-colors">
+                  <Icon className="w-6 h-6 text-black" />
+                </div>
                 <h3 className="heading-3 mb-2">{category.name}</h3>
                 <p className="text-lg font-black text-black/70">{category.count}</p>
               </motion.div>
-            ))}
+            );
+            })}
           </div>
         </div>
       </section>
@@ -833,7 +848,9 @@ export default function PublicLanding() {
                 className="p-8 rounded-2xl bg-white border border-black/10 hover:shadow-lg transition-all"
               >
                 <div className="flex items-center gap-4 mb-6">
-                  <div className="text-4xl">{testimonial.avatar}</div>
+                  <div className="w-12 h-12 rounded-full bg-black/10 flex items-center justify-center flex-shrink-0 text-xs font-bold text-black/60">
+                    {testimonial.avatar}
+                  </div>
                   <div>
                     <h4 className="font-semibold">{testimonial.name}</h4>
                     <p className="text-sm text-black/70">{testimonial.role}</p>
@@ -958,10 +975,11 @@ export default function PublicLanding() {
           <div className="grid md:grid-cols-4 gap-12 mb-16">
             <div>
               <div className="flex items-center gap-2 mb-6">
-                <div className="w-8 h-8 rounded-lg bg-black flex items-center justify-center text-white text-sm font-black">
-                  X
-                </div>
-                <span className="font-black text-lg">edXponential</span>
+                <img 
+                  src="https://media.base44.com/images/public/69f64dbf5c37a4db77e0e302/21d29b7f0_64B1F443-0AD3-403D-B726-ABEF11D14419.png" 
+                  alt="edXponential" 
+                  className="h-7 w-auto"
+                />
               </div>
               <p className="text-sm text-black/70">
                 The AI-powered operating system for education leaders and innovators.
