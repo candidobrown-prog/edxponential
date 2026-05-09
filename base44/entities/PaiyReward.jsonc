@@ -1,0 +1,142 @@
+{
+  "name": "PaiyReward",
+  "type": "object",
+  "properties": {
+    "incentive_id": {
+      "type": "string"
+    },
+    "parent_email": {
+      "type": "string"
+    },
+    "student_name": {
+      "type": "string"
+    },
+    "student_id": {
+      "type": "string"
+    },
+    "class_name": {
+      "type": "string"
+    },
+    "teacher_email": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "amount": {
+      "type": "number"
+    },
+    "savings_amount": {
+      "type": "number",
+      "default": 0
+    },
+    "spending_amount": {
+      "type": "number",
+      "default": 0
+    },
+    "badge_type": {
+      "type": "string",
+      "enum": [
+        "honor_roll",
+        "perfect_attendance",
+        "most_improved",
+        "assignment_streak",
+        "grade_achievement",
+        "growth_star",
+        "math_master",
+        "reading_champ",
+        "science_explorer",
+        "custom"
+      ],
+      "default": "grade_achievement"
+    },
+    "badge_icon": {
+      "type": "string"
+    },
+    "achievement_message": {
+      "type": "string"
+    },
+    "teacher_note": {
+      "type": "string"
+    },
+    "parent_note": {
+      "type": "string"
+    },
+    "ai_note": {
+      "type": "string"
+    },
+    "parent_action": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "approved_payout",
+        "retained",
+        "partially_paid"
+      ],
+      "default": "pending"
+    },
+    "parent_action_date": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "payment_method": {
+      "type": "string",
+      "enum": [
+        "bank_transfer",
+        "stripe",
+        "paypal",
+        "cash_app",
+        "apple_pay",
+        "google_pay",
+        "venmo",
+        "manual",
+        "educational_savings"
+      ],
+      "default": "manual"
+    },
+    "transaction_ref": {
+      "type": "string"
+    },
+    "student_notified": {
+      "type": "boolean",
+      "default": false
+    },
+    "teacher_notified": {
+      "type": "boolean",
+      "default": false
+    },
+    "parent_notified": {
+      "type": "boolean",
+      "default": false
+    },
+    "celebration_triggered": {
+      "type": "boolean",
+      "default": false
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "earned",
+        "pending_approval",
+        "approved",
+        "paid_out",
+        "retained",
+        "cancelled"
+      ],
+      "default": "earned"
+    },
+    "earned_date": {
+      "type": "string",
+      "format": "date"
+    }
+  },
+  "required": [
+    "parent_email",
+    "student_name",
+    "title",
+    "amount"
+  ]
+}

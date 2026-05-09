@@ -1,0 +1,94 @@
+{
+  "name": "GraiedxClass",
+  "type": "object",
+  "properties": {
+    "teacher_email": {
+      "type": "string"
+    },
+    "teacher_name": {
+      "type": "string"
+    },
+    "class_name": {
+      "type": "string"
+    },
+    "subject": {
+      "type": "string"
+    },
+    "grade_level": {
+      "type": "string"
+    },
+    "section": {
+      "type": "string"
+    },
+    "school_name": {
+      "type": "string"
+    },
+    "school_id": {
+      "type": "string"
+    },
+    "grading_period": {
+      "type": "string",
+      "enum": [
+        "quarter_1",
+        "quarter_2",
+        "quarter_3",
+        "quarter_4",
+        "semester_1",
+        "semester_2",
+        "trimester_1",
+        "trimester_2",
+        "trimester_3",
+        "full_year"
+      ],
+      "default": "quarter_1"
+    },
+    "grading_scale": {
+      "type": "string",
+      "enum": [
+        "percentage",
+        "points",
+        "standards",
+        "mastery",
+        "rubric"
+      ],
+      "default": "percentage"
+    },
+    "student_count": {
+      "type": "number",
+      "default": 0
+    },
+    "class_average": {
+      "type": "number"
+    },
+    "completion_rate": {
+      "type": "number"
+    },
+    "failing_count": {
+      "type": "number",
+      "default": 0
+    },
+    "missing_count": {
+      "type": "number",
+      "default": 0
+    },
+    "room": {
+      "type": "string"
+    },
+    "schedule_time": {
+      "type": "string"
+    },
+    "active": {
+      "type": "boolean",
+      "default": true
+    },
+    "color": {
+      "type": "string",
+      "default": "#000000"
+    }
+  },
+  "required": [
+    "class_name",
+    "subject",
+    "teacher_email"
+  ]
+}

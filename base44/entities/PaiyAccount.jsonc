@@ -1,0 +1,140 @@
+{
+  "name": "PaiyAccount",
+  "type": "object",
+  "properties": {
+    "parent_email": {
+      "type": "string"
+    },
+    "student_name": {
+      "type": "string"
+    },
+    "student_id": {
+      "type": "string"
+    },
+    "family_name": {
+      "type": "string"
+    },
+    "total_deposited": {
+      "type": "number",
+      "default": 0
+    },
+    "total_reserved": {
+      "type": "number",
+      "default": 0
+    },
+    "total_paid_out": {
+      "type": "number",
+      "default": 0
+    },
+    "total_retained": {
+      "type": "number",
+      "default": 0
+    },
+    "available_balance": {
+      "type": "number",
+      "default": 0
+    },
+    "savings_balance": {
+      "type": "number",
+      "default": 0
+    },
+    "spending_balance": {
+      "type": "number",
+      "default": 0
+    },
+    "default_savings_pct": {
+      "type": "number",
+      "default": 20
+    },
+    "default_spending_pct": {
+      "type": "number",
+      "default": 80
+    },
+    "payment_method_linked": {
+      "type": "boolean",
+      "default": false
+    },
+    "payment_method_type": {
+      "type": "string",
+      "enum": [
+        "bank_ach",
+        "stripe",
+        "paypal",
+        "cash_app",
+        "apple_pay",
+        "google_pay",
+        "venmo",
+        "educational_savings",
+        "manual"
+      ],
+      "default": "manual"
+    },
+    "payment_method_label": {
+      "type": "string"
+    },
+    "auto_approve_under": {
+      "type": "number",
+      "default": 0
+    },
+    "require_approval_always": {
+      "type": "boolean",
+      "default": true
+    },
+    "incentives_active": {
+      "type": "number",
+      "default": 0
+    },
+    "rewards_earned": {
+      "type": "number",
+      "default": 0
+    },
+    "rewards_pending": {
+      "type": "number",
+      "default": 0
+    },
+    "streak_days": {
+      "type": "number",
+      "default": 0
+    },
+    "longest_streak": {
+      "type": "number",
+      "default": 0
+    },
+    "gpa_at_enrollment": {
+      "type": "number"
+    },
+    "current_gpa": {
+      "type": "number"
+    },
+    "ai_health_score": {
+      "type": "number"
+    },
+    "ai_last_analysis": {
+      "type": "string"
+    },
+    "notifications_email": {
+      "type": "boolean",
+      "default": true
+    },
+    "notifications_sms": {
+      "type": "boolean",
+      "default": false
+    },
+    "notes": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "paused",
+        "closed"
+      ],
+      "default": "active"
+    }
+  },
+  "required": [
+    "parent_email",
+    "student_name"
+  ]
+}

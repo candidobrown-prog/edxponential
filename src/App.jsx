@@ -121,6 +121,18 @@ import SpedMeetings from './pages/perspedxtives/SpedMeetings';
 import SpedCompliance from './pages/perspedxtives/SpedCompliance';
 import SpedAIGenerator from './pages/perspedxtives/SpedAIGenerator';
 import PerSpEdxtivesLayout from './components/perspedxtives/PerSpEdxtivesLayout';
+import GraiedxHome from './pages/graiedx/GraiedxHome';
+import GraiedxLayout from './components/graiedx/GraiedxLayout';
+import GraiedxDashboard from './pages/graiedx/GraiedxDashboard';
+import GraiedxGradebook from './pages/graiedx/GraiedxGradebook';
+import GraiedxAssignments from './pages/graiedx/GraiedxAssignments';
+import GraiedxStudents from './pages/graiedx/GraiedxStudents';
+import GraiedxVoiceGrading from './pages/graiedx/GraiedxVoiceGrading';
+import GraiedxReports from './pages/graiedx/GraiedxReports';
+import GraiedxAnalytics from './pages/graiedx/GraiedxAnalytics';
+import GraiedxAlerts from './pages/graiedx/GraiedxAlerts';
+import GraiedxStandards from './pages/graiedx/GraiedxStandards';
+import GraiedxFamily from './pages/graiedx/GraiedxFamily';
 
 const ONBOARDING_KEY = 'edx_onboarding_complete';
 
@@ -208,6 +220,21 @@ const AuthenticatedApp = () => {
         <Route path="/goaled/performintx" element={<PerformintxPage />} />
         <Route path="/goaled/master-calendar" element={<MasterCalendarPage />} />
         <Route path="/goaled/scores" element={<GoaledScoresPage />} />
+      </Route>
+
+      {/* Graiedx™ */}
+      <Route path="/graiedx/home" element={<GraiedxHome />} />
+      <Route element={<GraiedxLayout />}>
+        <Route path="/graiedx" element={<GraiedxDashboard />} />
+        <Route path="/graiedx/gradebook" element={<GraiedxGradebook />} />
+        <Route path="/graiedx/assignments" element={<GraiedxAssignments />} />
+        <Route path="/graiedx/students" element={<GraiedxStudents />} />
+        <Route path="/graiedx/voice" element={<GraiedxVoiceGrading />} />
+        <Route path="/graiedx/reports" element={<GraiedxReports />} />
+        <Route path="/graiedx/analytics" element={<GraiedxAnalytics />} />
+        <Route path="/graiedx/alerts" element={<GraiedxAlerts />} />
+        <Route path="/graiedx/standards" element={<GraiedxStandards />} />
+        <Route path="/graiedx/family" element={<GraiedxFamily />} />
       </Route>
 
       {/* Daida Baixed™ */}

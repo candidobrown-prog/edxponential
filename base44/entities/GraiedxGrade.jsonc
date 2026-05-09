@@ -1,0 +1,98 @@
+{
+  "name": "GraiedxGrade",
+  "type": "object",
+  "properties": {
+    "assignment_id": {
+      "type": "string"
+    },
+    "class_id": {
+      "type": "string"
+    },
+    "student_id": {
+      "type": "string"
+    },
+    "student_name": {
+      "type": "string"
+    },
+    "assignment_title": {
+      "type": "string"
+    },
+    "teacher_email": {
+      "type": "string"
+    },
+    "points_possible": {
+      "type": "number"
+    },
+    "points_earned": {
+      "type": "number"
+    },
+    "percentage": {
+      "type": "number"
+    },
+    "letter_grade": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "graded",
+        "missing",
+        "late",
+        "excused",
+        "incomplete",
+        "not_submitted"
+      ],
+      "default": "not_submitted"
+    },
+    "is_missing": {
+      "type": "boolean",
+      "default": false
+    },
+    "is_late": {
+      "type": "boolean",
+      "default": false
+    },
+    "is_excused": {
+      "type": "boolean",
+      "default": false
+    },
+    "teacher_comment": {
+      "type": "string"
+    },
+    "ai_comment": {
+      "type": "string"
+    },
+    "parent_notified": {
+      "type": "boolean",
+      "default": false
+    },
+    "rubric_scores": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "standards_mastery": {
+      "type": "object"
+    },
+    "submitted_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "graded_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "voice_entered": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "required": [
+    "assignment_id",
+    "class_id",
+    "student_id",
+    "student_name",
+    "teacher_email"
+  ]
+}
