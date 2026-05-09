@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { base44 } from '@/api/base44Client';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { ArrowRight, ChevronDown, CheckCircle, Sparkles, Globe, Zap, Shield, Users, BookOpen, TrendingUp, Star, BarChart3, Brain } from 'lucide-react';
+import { ArrowRight, ChevronDown, CheckCircle, Sparkles, Globe, Zap, Shield, Users, BookOpen, TrendingUp, Star, BarChart3, Brain, Play } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 
@@ -54,23 +54,59 @@ const features = [
 
 const testimonials = [
   {
-    name: 'Dr. Amara Osei',
-    title: 'Founder, Horizon Academy Charter',
-    quote: 'edXponential gave me the frameworks and mentorship I needed to triple our enrollment in 18 months. Nothing else comes close.',
-    avatar: 'AO',
+    name: 'Dr. Maya Thompson',
+    title: 'Principal',
+    org: 'Washington Leadership Academy',
+    quote: 'edXponential completely transformed how I lead my school. The platform feels like having an executive leadership team, instructional coach, and AI strategist all in one place. Within weeks, our systems became clearer, our teachers became more aligned, and our culture improved dramatically.',
+    avatar: 'MT',
+    rating: 5,
+    featured: true,
   },
   {
-    name: 'Marcus Webb',
-    title: 'Superintendent, Eastside USD',
-    quote: 'The edVisor sessions were transformative. My advisor pushed me in ways that no consulting firm ever had. This is elite-level support.',
-    avatar: 'MW',
+    name: 'Marcus Ellison',
+    title: 'Founder',
+    org: 'Rise Academy Network',
+    quote: 'As a founder, edXponential helped me move from ideas to execution faster than anything I\'ve ever used. The AI guidance, founder tools, and strategic support are next-level.',
+    avatar: 'ME',
+    rating: 5,
   },
   {
-    name: 'Priya Nair',
-    title: 'CEO, BridgeEd Charter Network',
-    quote: 'The community alone is worth it. I found my co-founder in a discussion thread. The platform changed the trajectory of our school.',
-    avatar: 'PN',
+    name: 'Danielle Brooks',
+    title: 'Executive Leadership Coach',
+    org: 'Education Leaders Network',
+    quote: 'I\'ve used dozens of education platforms, and nothing comes close to the simplicity and power of edXponential. It feels premium, intelligent, and actually designed for how educators work.',
+    avatar: 'DB',
+    rating: 5,
   },
+  {
+    name: 'Kevin Richardson',
+    title: 'Chief Academic Officer',
+    org: 'Metro School District',
+    quote: 'The amount of time edXponential saves our organization is unbelievable. The platform has become the operating system for our leadership team.',
+    avatar: 'KR',
+    rating: 5,
+  },
+  {
+    name: 'Jasmine Carter',
+    title: 'Instructional Leader',
+    org: 'Central High School',
+    quote: 'For the first time in my career, I feel like technology actually understands educators. edXponential feels like the future.',
+    avatar: 'JC',
+    rating: 5,
+  },
+];
+
+const impactMetrics = [
+  { value: '10,000+', label: 'Educators Supported' },
+  { value: '250+', label: 'Schools Impacted' },
+  { value: '1M+', label: 'Instructional Minutes Improved' },
+  { value: '98%', label: 'Leader Satisfaction' },
+];
+
+const videoTestimonials = [
+  { name: 'Dr. Sarah Chen', title: 'Superintendent', org: 'Pacific Education Collective', thumb: 'SC' },
+  { name: 'James Martinez', title: 'School Founder', org: 'Transform Academy', thumb: 'JM' },
+  { name: 'Lisa Wong', title: 'Charter Director', org: 'Innovation School Network', thumb: 'LW' },
 ];
 
 const platforms = [
@@ -313,44 +349,137 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* TESTIMONIALS */}
+      {/* PREMIUM TESTIMONIALS */}
       <section className="py-32 px-6 bg-white">
-        <div className="max-w-5xl mx-auto">
+        <div className="max-w-6xl mx-auto">
+          {/* Header */}
           <motion.div
             initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-24"
           >
-            <div className="flex justify-center gap-0.5 mb-6">
-              {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-black text-black opacity-40" />)}
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-border bg-muted mb-8 text-[10px] text-muted-foreground font-bold tracking-widest uppercase">
+              <Users className="w-3 h-3" /> Trusted by Leaders
             </div>
-            <h2 className="text-4xl md:text-5xl font-black text-black tracking-[-0.04em]">
-              What leaders say.
+            <h2 className="text-5xl md:text-6xl font-black text-black tracking-[-0.04em] leading-tight mb-5">
+              Hear from education leaders<br /><span className="text-muted-foreground">already transforming their schools.</span>
             </h2>
+            <p className="text-muted-foreground max-w-xl mx-auto text-lg leading-relaxed">
+              Real stories from principals, founders, coaches, and executives using edXponential every day.
+            </p>
           </motion.div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {testimonials.map((t, i) => (
+
+          {/* Featured testimonial */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mb-20 p-10 rounded-2xl border border-border bg-muted/30 hover:border-foreground/20 transition-all"
+          >
+            <div className="flex gap-6 flex-col md:flex-row md:items-center">
+              <div className="flex-1">
+                <div className="flex gap-0.5 mb-6">
+                  {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-black text-black" />)}
+                </div>
+                <p className="text-2xl md:text-3xl font-black text-black tracking-[-0.03em] leading-tight mb-6">
+                  "{testimonials[0].quote}"
+                </p>
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-full bg-black flex items-center justify-center text-white font-black text-sm">
+                    {testimonials[0].avatar}
+                  </div>
+                  <div>
+                    <div className="font-bold text-black text-lg">{testimonials[0].name}</div>
+                    <div className="text-muted-foreground text-sm">{testimonials[0].title} · {testimonials[0].org}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Testimonial grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-20">
+            {testimonials.slice(1).map((t, i) => (
               <motion.div key={i}
                 initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }} transition={{ delay: i * 0.1 }}
-                className="p-7 rounded-2xl border border-border bg-white hover:border-foreground/20 hover:shadow-soft transition-all"
+                viewport={{ once: true }} transition={{ delay: (i + 1) * 0.08 }}
+                className="p-8 rounded-2xl border border-border bg-white hover:border-foreground/20 hover:shadow-soft transition-all card-hover"
               >
                 <div className="flex gap-0.5 mb-5">
-                  {[...Array(5)].map((_, j) => <Star key={j} className="w-3 h-3 fill-black/40 text-black/40" />)}
+                  {[...Array(5)].map((_, j) => <Star key={j} className="w-3.5 h-3.5 fill-black text-black" />)}
                 </div>
-                <p className="text-muted-foreground text-sm leading-relaxed mb-6">"{t.quote}"</p>
-                <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-full bg-muted flex items-center justify-center text-[11px] font-black text-black/60">
+                <p className="text-muted-foreground text-base leading-relaxed mb-6">"{t.quote}"</p>
+                <div className="flex items-center gap-3 pt-4 border-t border-border">
+                  <div className="w-10 h-10 rounded-full bg-muted flex items-center justify-center text-[11px] font-black text-black/60">
                     {t.avatar}
                   </div>
                   <div>
-                    <div className="font-bold text-sm text-black tracking-[-0.01em]">{t.name}</div>
-                    <div className="text-[11px] text-muted-foreground">{t.title}</div>
+                    <div className="font-bold text-sm text-black">{t.name}</div>
+                    <div className="text-[11px] text-muted-foreground">{t.title} · {t.org}</div>
                   </div>
                 </div>
               </motion.div>
             ))}
           </div>
+
+          {/* Video testimonials */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mb-20"
+          >
+            <h3 className="text-3xl font-black text-black tracking-[-0.04em] mb-8">Watch real leaders</h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {videoTestimonials.map((v, i) => (
+                <motion.button key={i}
+                  initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }} transition={{ delay: i * 0.1 }}
+                  className="group relative aspect-video rounded-2xl overflow-hidden bg-muted border border-border hover:border-foreground/20 transition-all"
+                >
+                  {/* Placeholder gradient */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-black/20 to-transparent" />
+                  
+                  {/* Play button */}
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <motion.div
+                      whileHover={{ scale: 1.1 }}
+                      className="w-16 h-16 rounded-full bg-white flex items-center justify-center group-hover:bg-white/90 transition-colors"
+                    >
+                      <Play className="w-7 h-7 text-black fill-black" />
+                    </motion.div>
+                  </div>
+
+                  {/* Label */}
+                  <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black to-transparent">
+                    <div className="font-bold text-white text-sm">{v.name}</div>
+                    <div className="text-white/70 text-xs">{v.title}</div>
+                  </div>
+                </motion.button>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Impact metrics */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="border-t border-border pt-20"
+          >
+            <h3 className="text-2xl font-black text-black tracking-[-0.04em] mb-12 text-center">
+              Impact at scale
+            </h3>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+              {impactMetrics.map((m, i) => (
+                <motion.div key={i}
+                  initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }} transition={{ delay: i * 0.08 }}
+                  className="text-center"
+                >
+                  <div className="text-4xl md:text-5xl font-black text-black tracking-[-0.04em] mb-2">{m.value}</div>
+                  <div className="text-xs text-muted-foreground uppercase tracking-widest font-bold">{m.label}</div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
         </div>
       </section>
 
