@@ -1,0 +1,108 @@
+{
+  "name": "AdvertiserCampaign",
+  "type": "object",
+  "properties": {
+    "advertiser_id": {
+      "type": "string",
+      "description": "Reference to AdvertiserAccount"
+    },
+    "name": {
+      "type": "string",
+      "description": "Campaign name"
+    },
+    "description": {
+      "type": "string",
+      "description": "Campaign description"
+    },
+    "budget_total": {
+      "type": "number",
+      "description": "Total campaign budget"
+    },
+    "budget_daily": {
+      "type": "number",
+      "description": "Daily budget limit"
+    },
+    "spend_to_date": {
+      "type": "number",
+      "default": 0,
+      "description": "Amount spent so far"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "pending_approval",
+        "approved",
+        "active",
+        "paused",
+        "completed",
+        "archived"
+      ],
+      "default": "draft",
+      "description": "Campaign status"
+    },
+    "start_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Campaign start date"
+    },
+    "end_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Campaign end date"
+    },
+    "ads_count": {
+      "type": "number",
+      "default": 0,
+      "description": "Number of ads in campaign"
+    },
+    "total_impressions": {
+      "type": "number",
+      "default": 0,
+      "description": "Total impressions across all ads"
+    },
+    "total_clicks": {
+      "type": "number",
+      "default": 0,
+      "description": "Total clicks across all ads"
+    },
+    "total_conversions": {
+      "type": "number",
+      "default": 0,
+      "description": "Total conversions across all ads"
+    },
+    "pricing_model": {
+      "type": "string",
+      "enum": [
+        "cpc",
+        "cpm",
+        "cpa",
+        "flat_rate"
+      ],
+      "default": "cpc",
+      "description": "Pricing model"
+    },
+    "price_per_unit": {
+      "type": "number",
+      "description": "Cost per click/impression/action"
+    },
+    "created_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When campaign was created"
+    },
+    "created_by": {
+      "type": "string",
+      "description": "Email of advertiser"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Campaign notes"
+    }
+  },
+  "required": [
+    "advertiser_id",
+    "name",
+    "budget_total"
+  ]
+}

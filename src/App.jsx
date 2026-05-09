@@ -192,6 +192,8 @@ import ClassifiedxAssessments from './pages/classifiedx/ClassifiedxAssessments';
 import ClassifiedxAnalytics from './pages/classifiedx/ClassifiedxAnalytics';
 import ClassifiedxLMS from './pages/classifiedx/ClassifiedxLMS';
 import ClassifiedxPublish from './pages/classifiedx/ClassifiedxPublish';
+import AdvertiserPortal from './pages/AdvertiserPortal';
+import AdminAdManagement from './pages/AdminAdManagement';
 
 const ONBOARDING_KEY = 'edx_onboarding_complete';
 
@@ -276,7 +278,9 @@ const AuthenticatedApp = () => {
         <Route path="/admin/feedback" element={<AdminFeedback />} />
         <Route path="/admin/payments" element={<PaymentsDashboard />} />
         <Route path="/admin/executive" element={<ExecutiveDashboard />} />
+        <Route path="/admin/ads" element={<AdminAdManagement />} />
         <Route path="/integrations" element={<Integrations />} />
+        <Route path="/advertiser-portal" element={<AdvertiserPortal />} />
         <Route path="/xschy" element={<XschyXschraiper />} />
         <Route path="/goaled" element={<GoaledXschoolHome />} />
         <Route path="/goaled/my-xschool" element={<MyXschoolPage />} />

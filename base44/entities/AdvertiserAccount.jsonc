@@ -1,0 +1,103 @@
+{
+  "name": "AdvertiserAccount",
+  "type": "object",
+  "properties": {
+    "company_name": {
+      "type": "string",
+      "description": "Company/advertiser name"
+    },
+    "email": {
+      "type": "string",
+      "description": "Primary contact email"
+    },
+    "phone": {
+      "type": "string",
+      "description": "Contact phone number"
+    },
+    "website": {
+      "type": "string",
+      "description": "Company website"
+    },
+    "logo_url": {
+      "type": "string",
+      "description": "Company logo"
+    },
+    "industry": {
+      "type": "string",
+      "enum": [
+        "edtech",
+        "ai",
+        "coaching",
+        "finance",
+        "productivity",
+        "university",
+        "nonprofit",
+        "publisher",
+        "conference",
+        "other"
+      ],
+      "description": "Industry category"
+    },
+    "description": {
+      "type": "string",
+      "description": "Company description"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending_approval",
+        "approved",
+        "suspended",
+        "archived"
+      ],
+      "default": "pending_approval",
+      "description": "Account approval status"
+    },
+    "tier": {
+      "type": "string",
+      "enum": [
+        "standard",
+        "premium",
+        "partner"
+      ],
+      "default": "standard",
+      "description": "Advertiser tier"
+    },
+    "total_spend": {
+      "type": "number",
+      "default": 0,
+      "description": "Total spend across all campaigns"
+    },
+    "payment_method_linked": {
+      "type": "boolean",
+      "default": false,
+      "description": "Is payment method on file?"
+    },
+    "account_balance": {
+      "type": "number",
+      "default": 0,
+      "description": "Current account balance"
+    },
+    "approved_by": {
+      "type": "string",
+      "description": "Email of admin who approved"
+    },
+    "suspension_reason": {
+      "type": "string",
+      "description": "Reason for suspension if applicable"
+    },
+    "created_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Account creation date"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Admin notes"
+    }
+  },
+  "required": [
+    "company_name",
+    "email"
+  ]
+}

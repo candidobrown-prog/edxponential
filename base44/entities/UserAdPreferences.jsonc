@@ -1,0 +1,59 @@
+{
+  "name": "UserAdPreferences",
+  "type": "object",
+  "properties": {
+    "user_email": {
+      "type": "string",
+      "description": "User email address"
+    },
+    "ads_enabled": {
+      "type": "boolean",
+      "default": true,
+      "description": "Does user want to see ads?"
+    },
+    "preferred_ad_types": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Types of ads user prefers"
+    },
+    "blocked_advertisers": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Advertiser IDs to block"
+    },
+    "interest_categories": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Interest categories for targeting"
+    },
+    "frequency_preference": {
+      "type": "string",
+      "enum": [
+        "minimal",
+        "moderate",
+        "frequent"
+      ],
+      "default": "moderate",
+      "description": "How often user wants to see ads"
+    },
+    "last_updated": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last update to preferences"
+    },
+    "data_sharing_consent": {
+      "type": "boolean",
+      "default": true,
+      "description": "Does user consent to data usage?"
+    }
+  },
+  "required": [
+    "user_email"
+  ]
+}
