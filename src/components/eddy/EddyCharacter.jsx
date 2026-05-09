@@ -65,21 +65,21 @@ export default function EddyCharacter({ speaking = false, mood = 'neutral', size
       }}
     >
       <svg
-        viewBox="0 0 240 280"
+        viewBox="0 0 240 320"
         width={currentSize.width}
         height={currentSize.height}
         className="filter drop-shadow-2xl"
       >
         <defs>
           {/* Gradient for body */}
-          <radialGradient id="bodyGradient" cx="40%" cy="40%">
-            <stop offset="0%" stopColor="#2a2a2a" />
-            <stop offset="100%" stopColor="#0a0a0a" />
+          <radialGradient id="bodyGradient" cx="35%" cy="35%">
+            <stop offset="0%" stopColor="#1a1a1a" />
+            <stop offset="100%" stopColor="#000000" />
           </radialGradient>
 
           {/* Glow effect */}
           <filter id="glow">
-            <feGaussianBlur stdDeviation="2" result="coloredBlur" />
+            <feGaussianBlur stdDeviation="1.5" result="coloredBlur" />
             <feMerge>
               <feMergeNode in="coloredBlur" />
               <feMergeNode in="SourceGraphic" />
@@ -87,16 +87,17 @@ export default function EddyCharacter({ speaking = false, mood = 'neutral', size
           </filter>
 
           {/* Eye shine */}
-          <radialGradient id="eyeShine" cx="30%" cy="30%">
-            <stop offset="0%" stopColor="#ffffff" stopOpacity="0.8" />
+          <radialGradient id="eyeShine" cx="35%" cy="35%">
+            <stop offset="0%" stopColor="#ffffff" stopOpacity="0.9" />
+            <stop offset="60%" stopColor="#ffffff" stopOpacity="0.3" />
             <stop offset="100%" stopColor="#ffffff" stopOpacity="0" />
           </radialGradient>
         </defs>
 
-        {/* Body - lowercase "e" */}
+        {/* Body - Round character */}
         <motion.g
           animate={{
-            y: speaking ? [0, -5, 0] : [0, 3, 0],
+            y: speaking ? [0, -4, 0] : [0, 2, 0],
           }}
           transition={{
             duration: speaking ? 0.5 : 3,
@@ -104,167 +105,192 @@ export default function EddyCharacter({ speaking = false, mood = 'neutral', size
             ease: 'easeInOut',
           }}
         >
-          {/* Main e shape */}
-          <path
-            d="M 120 60 Q 160 50 170 100 L 170 180 Q 160 230 120 220 Q 80 210 70 180 L 70 100 Q 80 50 120 60 Z"
+          {/* Main body circle */}
+          <circle
+            cx="120"
+            cy="150"
+            r="85"
             fill="url(#bodyGradient)"
             filter="url(#glow)"
           />
 
-          {/* Center opening of e */}
-          <ellipse cx="120" cy="140" rx="35" ry="40" fill="#0a0a0a" opacity="0.5" />
-
-          {/* Highlights */}
-          <ellipse cx="100" cy="90" rx="20" ry="30" fill="white" opacity="0.15" />
-          <ellipse cx="130" cy="200" rx="15" ry="20" fill="white" opacity="0.08" />
+          {/* Body highlight */}
+          <ellipse cx="95" cy="120" rx="25" ry="35" fill="white" opacity="0.08" />
         </motion.g>
 
         {/* Left Eye */}
         <motion.g
           animate={{
-            scaleY: blink ? 0.1 : 1,
+            scaleY: blink ? 0.15 : 1,
           }}
-          transition={{ duration: 0.15 }}
+          transition={{ duration: 0.12 }}
         >
+          {/* Left eye white */}
           <motion.circle
-            cx={80}
-            cy={80}
-            r="18"
+            cx={78}
+            cy={110}
+            r="28"
             fill="white"
-            animate={{ x: mousePos.x }}
-            transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+            animate={{ x: mousePos.x * 0.5 }}
+            transition={{ type: 'spring', stiffness: 400, damping: 35 }}
           />
 
           {/* Left pupil */}
           <motion.circle
-            cx={80}
-            cy={80}
-            r="11"
-            fill="#0a0a0a"
+            cx={78}
+            cy={110}
+            r="18"
+            fill="#000000"
             animate={{
-              x: mousePos.x * 0.6,
-              y: mousePos.y * 0.6,
-              scale: speaking ? 0.9 : 1,
+              x: mousePos.x * 1.2,
+              y: mousePos.y * 1.2,
+              scale: speaking ? 0.85 : 1,
             }}
-            transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+            transition={{ type: 'spring', stiffness: 400, damping: 35 }}
           />
 
-          {/* Left pupil shine */}
-          <circle cx={76} cy={76} r="5" fill="#ffffff" opacity="0.7" />
-
-          {/* Left eye shine */}
-          <circle cx="70" cy="70" r="6" fill="url(#eyeShine)" />
+          {/* Left pupil shine - bright highlight */}
+          <circle cx={72} cy={104} r="8" fill="#ffffff" opacity="0.8" />
+          <circle cx={74} cy={106} r="3" fill="#ffffff" opacity="0.6" />
         </motion.g>
 
         {/* Right Eye */}
         <motion.g
           animate={{
-            scaleY: blink ? 0.1 : 1,
+            scaleY: blink ? 0.15 : 1,
           }}
-          transition={{ duration: 0.15 }}
+          transition={{ duration: 0.12 }}
         >
+          {/* Right eye white */}
           <motion.circle
-            cx={160}
-            cy={80}
-            r="18"
+            cx={162}
+            cy={110}
+            r="28"
             fill="white"
-            animate={{ x: mousePos.x }}
-            transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+            animate={{ x: mousePos.x * 0.5 }}
+            transition={{ type: 'spring', stiffness: 400, damping: 35 }}
           />
 
           {/* Right pupil */}
           <motion.circle
-            cx={160}
-            cy={80}
-            r="11"
-            fill="#0a0a0a"
+            cx={162}
+            cy={110}
+            r="18"
+            fill="#000000"
             animate={{
-              x: mousePos.x * 0.6,
-              y: mousePos.y * 0.6,
-              scale: speaking ? 0.9 : 1,
+              x: mousePos.x * 1.2,
+              y: mousePos.y * 1.2,
+              scale: speaking ? 0.85 : 1,
             }}
-            transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+            transition={{ type: 'spring', stiffness: 400, damping: 35 }}
           />
 
-          {/* Right pupil shine */}
-          <circle cx={156} cy={76} r="5" fill="#ffffff" opacity="0.7" />
-
-          {/* Right eye shine */}
-          <circle cx="150" cy="70" r="6" fill="url(#eyeShine)" />
+          {/* Right pupil shine - bright highlight */}
+          <circle cx={156} cy={104} r="8" fill="#ffffff" opacity="0.8" />
+          <circle cx={158} cy={106} r="3" fill="#ffffff" opacity="0.6" />
         </motion.g>
 
-        {/* Left Eyebrow */}
+        {/* Left Eyebrow - dark curved */}
         <motion.path
-          d="M 65 55 Q 80 45 95 50"
-          stroke="white"
-          strokeWidth="3"
+          d="M 55 80 Q 78 65 100 75"
+          stroke="#000000"
+          strokeWidth="4"
           fill="none"
           strokeLinecap="round"
           animate={{
             rotate: current.browRotation,
           }}
           transition={{ duration: 0.3 }}
-          style={{ transformOrigin: '80px 48px' }}
+          style={{ transformOrigin: '78px 72px' }}
         />
 
-        {/* Right Eyebrow */}
+        {/* Right Eyebrow - dark curved */}
         <motion.path
-          d="M 145 50 Q 160 45 175 55"
-          stroke="white"
-          strokeWidth="3"
+          d="M 140 75 Q 162 65 185 80"
+          stroke="#000000"
+          strokeWidth="4"
           fill="none"
           strokeLinecap="round"
           animate={{
             rotate: -current.browRotation,
           }}
           transition={{ duration: 0.3 }}
-          style={{ transformOrigin: '160px 48px' }}
+          style={{ transformOrigin: '162px 72px' }}
         />
 
         {/* Mouth */}
         <motion.g
           animate={{
-            y: speaking ? -2 : 0,
+            y: speaking ? -3 : 0,
           }}
           transition={{ duration: 0.1 }}
         >
-          {/* Mouth opening */}
+          {/* Mouth opening - red/pink */}
           <motion.ellipse
             cx="120"
-            cy="140"
-            rx="18"
-            ry={current.mouthHeight}
-            fill="white"
+            cy="180"
+            rx="22"
+            ry={current.mouthHeight * 1.2}
+            fill="#ff3d4d"
             animate={{
-              ry: speaking ? current.mouthHeight + 5 : current.mouthHeight,
+              ry: speaking ? current.mouthHeight * 1.8 : current.mouthHeight * 1.2,
             }}
             transition={{ duration: 0.05 }}
           />
 
-          {/* Mouth detail */}
-          {speaking && (
-            <motion.path
-              d="M 105 140 Q 120 150 135 140"
-              stroke="#0a0a0a"
-              strokeWidth="1.5"
-              fill="none"
-              opacity="0.3"
-              animate={{
-                d: [
-                  'M 105 140 Q 120 150 135 140',
-                  'M 105 138 Q 120 145 135 138',
-                  'M 105 140 Q 120 150 135 140',
-                ],
-              }}
-              transition={{ duration: 0.3, repeat: Infinity }}
+          {/* Mouth tongue hint */}
+          {!speaking && (
+            <ellipse
+              cx="120"
+              cy="188"
+              rx="8"
+              ry="6"
+              fill="#ff5a6d"
+              opacity="0.6"
             />
           )}
         </motion.g>
 
-        {/* Floating Animation */}
+        {/* Hands - left waving */}
         <motion.g
           animate={{
-            y: [0, -10, 0],
+            rotate: speaking ? [-5, 15, -5] : 0,
+          }}
+          transition={{
+            duration: 0.6,
+            repeat: speaking ? Infinity : 0,
+            ease: 'easeInOut',
+          }}
+          style={{ transformOrigin: '50px 160px' }}
+        >
+          {/* Left arm */}
+          <rect x="30" y="140" width="25" height="60" rx="12" fill="#000000" />
+          {/* Left hand */}
+          <circle cx="45" cy="205" r="15" fill="#1a1a1a" />
+          <circle cx="40" cy="200" r="6" fill="#1a1a1a" />
+          <circle cx="50" cy="200" r="6" fill="#1a1a1a" />
+        </motion.g>
+
+        {/* Right arm */}
+        <rect x="185" y="140" width="25" height="60" rx="12" fill="#000000" />
+        {/* Right hand */}
+        <circle cx="205" cy="205" r="15" fill="#1a1a1a" />
+        <circle cx="210" cy="200" r="6" fill="#1a1a1a" />
+        <circle cx="200" cy="200" r="6" fill="#1a1a1a" />
+
+        {/* Feet - white shoes */}
+        {/* Left foot */}
+        <ellipse cx="90" cy="245" rx="18" ry="12" fill="#f5f5f5" />
+        <rect x="78" y="254" width="24" height="8" rx="4" fill="#2a2a2a" />
+
+        {/* Right foot */}
+        <ellipse cx="150" cy="245" rx="18" ry="12" fill="#f5f5f5" />
+        <rect x="138" y="254" width="24" height="8" rx="4" fill="#2a2a2a" />
+
+        {/* Floating Animation / Aura glow */}
+        <motion.g
+          animate={{
+            y: [0, -12, 0],
           }}
           transition={{
             duration: 4,
@@ -272,15 +298,15 @@ export default function EddyCharacter({ speaking = false, mood = 'neutral', size
             ease: 'easeInOut',
           }}
         >
-          {/* Soft glow ring */}
+          {/* Soft blue glow ring */}
           <circle
             cx="120"
-            cy="140"
-            r="145"
+            cy="150"
+            r="100"
             fill="none"
-            stroke="#0066ff"
-            strokeWidth="0.5"
-            opacity="0.2"
+            stroke="#4466ff"
+            strokeWidth="1"
+            opacity="0.15"
             filter="url(#glow)"
           />
         </motion.g>
