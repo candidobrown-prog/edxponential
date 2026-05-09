@@ -3,7 +3,7 @@ import { Outlet, Link, useLocation } from 'react-router-dom';
 import {
   GraduationCap, Brain, FileText, Users, BookOpen, BarChart3,
   Target, Shield, Globe, Building2, Layers, Home, ChevronLeft,
-  ChevronRight, Star, Zap
+  ChevronRight, Star, Zap, Flag
 } from 'lucide-react';
 
 const NAV = [
@@ -15,6 +15,7 @@ const NAV = [
   { icon: BarChart3, label: 'Finance', path: '/foundaitionx/finance' },
   { icon: Building2, label: 'Operations', path: '/foundaitionx/operations' },
   { icon: Layers, label: 'Governance', path: '/foundaitionx/governance' },
+  { icon: Star, label: 'Board Tracker', path: '/foundaitionx/board-tracker' },
   { icon: Shield, label: 'Compliance', path: '/foundaitionx/compliance' },
   { icon: Globe, label: 'Strategy', path: '/foundaitionx/strategy' },
 ];

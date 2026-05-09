@@ -146,6 +146,7 @@ import FoundaitionxFinance from './pages/foundaitionx/FoundaitionxFinance';
 import FoundaitionxAcademic from './pages/foundaitionx/FoundaitionxAcademic';
 import FoundaitionxCompliance from './pages/foundaitionx/FoundaitionxCompliance';
 import FoundaitionxGovernance from './pages/foundaitionx/FoundaitionxGovernance';
+import FoundaitionxBoardTracker from './pages/foundaitionx/FoundaitionxBoardTracker';
 import FoundaitionxOperations from './pages/foundaitionx/FoundaitionxOperations';
 import FoundaitionxStrategy from './pages/foundaitionx/FoundaitionxStrategy';
 import ClassifiedxHome from './pages/classifiedx/ClassifiedxHome';
@@ -276,6 +277,7 @@ const AuthenticatedApp = () => {
         <Route path="/foundaitionx/academic" element={<FoundaitionxAcademic />} />
         <Route path="/foundaitionx/compliance" element={<FoundaitionxCompliance />} />
         <Route path="/foundaitionx/governance" element={<FoundaitionxGovernance />} />
+        <Route path="/foundaitionx/board-tracker" element={<FoundaitionxBoardTracker />} />
         <Route path="/foundaitionx/operations" element={<FoundaitionxOperations />} />
         <Route path="/foundaitionx/strategy" element={<FoundaitionxStrategy />} />
       </Route>
