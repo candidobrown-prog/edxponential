@@ -152,12 +152,12 @@ export default function Landing() {
     <div className="min-h-screen bg-white font-body text-black overflow-x-hidden">
 
       {/* NAV */}
-      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? 'bg-white border-b border-border/50 shadow-soft' : 'bg-transparent'}`}>
-        <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? 'bg-white border-b border-border/50 shadow-soft' : 'bg-white'}`}>
+        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
           <img
             src="https://media.base44.com/images/public/69f64dbf5c37a4db77e0e302/21d29b7f0_64B1F443-0AD3-403D-B726-ABEF11D14419.png"
             alt="edXponential"
-            className="h-8 w-auto"
+            className="h-12 w-auto"
           />
           <div className="hidden md:flex items-center gap-8">
             {NAV_LINKS.map(l => (
@@ -186,8 +186,8 @@ export default function Landing() {
 
         <motion.div style={{ y: heroY, opacity: heroOpacity }} className="relative z-10 max-w-5xl mx-auto px-6 text-center">
           <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border bg-muted mb-8 text-xs text-muted-foreground font-medium tracking-widest uppercase">
-              <span className="w-1.5 h-1.5 rounded-full bg-black/40 animate-pulse" />
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border bg-white mb-8 text-xs text-black font-medium tracking-widest uppercase">
+              <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
               Private · Invite-Only · Elite Ecosystem
             </div>
           </motion.div>
@@ -196,9 +196,8 @@ export default function Landing() {
             initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.1 }}
             className="text-[clamp(2.8rem,8vw,7rem)] font-black tracking-[-0.04em] leading-[0.92] mb-8 text-balance text-black"
           >
-            <span>Where the World's Most</span><br />
-            <span className="text-muted-foreground">Ambitious Education</span><br />
-            <span>Leaders Build the Future.</span>
+            <span>Where the World's Most<br />Ambitious Education<br />Leaders </span>
+            <span className="text-primary">Build the Future.</span>
           </motion.h1>
 
           <motion.p

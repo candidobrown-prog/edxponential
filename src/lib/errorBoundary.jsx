@@ -56,6 +56,7 @@ class ErrorBoundary extends React.Component {
               </Link>
             </div>
 
+            {/* eslint-disable-next-line no-undef */}
             {typeof process !== 'undefined' && process.env?.NODE_ENV === 'development' && (
               <details className="mt-6 text-left bg-muted p-4 rounded-lg">
                 <summary className="cursor-pointer text-xs font-semibold text-muted-foreground">
