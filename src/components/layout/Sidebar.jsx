@@ -4,7 +4,7 @@ import {
   LayoutDashboard, BookOpen, Users, User, ChevronLeft, ChevronRight,
   LogOut, Star, DollarSign, Briefcase, Layers, TrendingUp, CreditCard,
   Sparkles, ShieldCheck, Zap, Target, BarChart3, Bell,
-  School, MessageSquare, ShieldAlert, Search, Crown, Brain,
+  School, MessageSquare, ShieldAlert, Search, Crown, Brain, Database,
 } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
 import { cn } from '@/lib/utils';
@@ -13,6 +13,7 @@ import { TOOLTIP } from '@/lib/tooltipData';
 
 const navItems = [
   { path: '/', icon: LayoutDashboard, label: 'My Dashboard', tooltip: TOOLTIP.dashboard },
+  { path: '/daida-baixed', icon: Database, label: 'Daida Baixed™', tooltip: TOOLTIP.dashboard },
   { path: '/goaled', icon: School, label: 'Goaled Xschool™', tooltip: TOOLTIP.myXschool },
   { path: '/perspedxtives', icon: Brain, label: 'PerSpEdxtives™', tooltip: TOOLTIP.dashboard },
   { path: '/matching', icon: Target, label: 'AI Matching', tooltip: TOOLTIP.aiMatching },

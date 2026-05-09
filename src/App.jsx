@@ -101,17 +101,26 @@ import XschmartGoalxPage from './pages/goaledxschool/XschmartGoalxPage';
 import PerformintxPage from './pages/goaledxschool/PerformintxPage';
 import MasterCalendarPage from './pages/goaledxschool/MasterCalendarPage';
 import GoaledScoresPage from './pages/goaledxschool/GoaledScoresPage';
-import PerSpEdxtivesHome from './pages/perspedxtives/PerSpEdxtivesHome.jsx';
-import PerSpEdxtivesDashboard from './pages/perspedxtives/PerSpEdxtivesDashboard.jsx';
-import SpedStudents from './pages/perspedxtives/SpedStudents.jsx';
-import SpedIEPManager from './pages/perspedxtives/SpedIEPManager.jsx';
-import SpedGoals from './pages/perspedxtives/SpedGoals.jsx';
-import SpedServices from './pages/perspedxtives/SpedServices.jsx';
-import SpedSchedule from './pages/perspedxtives/SpedSchedule.jsx';
-import SpedMeetings from './pages/perspedxtives/SpedMeetings.jsx';
-import SpedCompliance from './pages/perspedxtives/SpedCompliance.jsx';
-import SpedAIGenerator from './pages/perspedxtives/SpedAIGenerator.jsx';
-import PerSpEdxtivesLayout from './components/perspedxtives/PerSpEdxtivesLayout.jsx';
+import DaidaBaixedHome from './pages/daidabaixed/DaidaBaixedHome';
+import DaidaLayout from './components/daidabaixed/DaidaLayout';
+import DaidaCommandCenter from './pages/daidabaixed/DaidaCommandCenter';
+import DaidaAcademic from './pages/daidabaixed/DaidaAcademic';
+import DaidaSpedCommand from './pages/daidabaixed/DaidaSpedCommand';
+import DaidaAlerts from './pages/daidabaixed/DaidaAlerts';
+import DaidaReports from './pages/daidabaixed/DaidaReports';
+import DaidaGoals from './pages/daidabaixed/DaidaGoals';
+import DaidaAIForecast from './pages/daidabaixed/DaidaAIForecast';
+import PerSpEdxtivesHome from './pages/perspedxtives/PerSpEdxtivesHome';
+import PerSpEdxtivesDashboard from './pages/perspedxtives/PerSpEdxtivesDashboard';
+import SpedStudents from './pages/perspedxtives/SpedStudents';
+import SpedIEPManager from './pages/perspedxtives/SpedIEPManager';
+import SpedGoals from './pages/perspedxtives/SpedGoals';
+import SpedServices from './pages/perspedxtives/SpedServices';
+import SpedSchedule from './pages/perspedxtives/SpedSchedule';
+import SpedMeetings from './pages/perspedxtives/SpedMeetings';
+import SpedCompliance from './pages/perspedxtives/SpedCompliance';
+import SpedAIGenerator from './pages/perspedxtives/SpedAIGenerator';
+import PerSpEdxtivesLayout from './components/perspedxtives/PerSpEdxtivesLayout';
 
 const ONBOARDING_KEY = 'edx_onboarding_complete';
 
@@ -199,6 +208,18 @@ const AuthenticatedApp = () => {
         <Route path="/goaled/performintx" element={<PerformintxPage />} />
         <Route path="/goaled/master-calendar" element={<MasterCalendarPage />} />
         <Route path="/goaled/scores" element={<GoaledScoresPage />} />
+      </Route>
+
+      {/* Daida Baixed™ */}
+      <Route path="/daida-baixed/home" element={<DaidaBaixedHome />} />
+      <Route element={<DaidaLayout />}>
+        <Route path="/daida-baixed" element={<DaidaCommandCenter />} />
+        <Route path="/daida-baixed/academic" element={<DaidaAcademic />} />
+        <Route path="/daida-baixed/sped" element={<DaidaSpedCommand />} />
+        <Route path="/daida-baixed/alerts" element={<DaidaAlerts />} />
+        <Route path="/daida-baixed/reports" element={<DaidaReports />} />
+        <Route path="/daida-baixed/goals" element={<DaidaGoals />} />
+        <Route path="/daida-baixed/ai-forecast" element={<DaidaAIForecast />} />
       </Route>
 
       {/* PerSpEdxtives™ */}
