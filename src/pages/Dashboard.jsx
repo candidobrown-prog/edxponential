@@ -12,6 +12,7 @@ import OnboardingTutorial from '../components/platform/OnboardingTutorial';
 import { AnimatePresence } from 'framer-motion';
 import EdxTooltip from '../components/platform/EdxTooltip';
 import { TOOLTIP } from '../lib/tooltipData';
+import XschyDashboardWidget from '../components/xschy/XschyDashboardWidget';
 
 const ONBOARD_KEY = 'edx_onboarding_dismissed';
 const COMPLETED_KEY = 'edx_onboarding_completed';
@@ -71,6 +72,7 @@ export default function Dashboard() {
         )}
       </AnimatePresence>
 
+      <XschyDashboardWidget />
       <WelcomeHero userName={user?.full_name} tier={user?.membership_tier} />
 
       {/* Stats */}
