@@ -1,0 +1,47 @@
+{
+  "name": "CoachingSessionFeedback",
+  "type": "object",
+  "properties": {
+    "session_id": {
+      "type": "string",
+      "description": "ID of the coaching session being reviewed"
+    },
+    "executive_email": {
+      "type": "string",
+      "description": "Email of the executive providing feedback"
+    },
+    "coach_email": {
+      "type": "string",
+      "description": "Email of the coach who led the session"
+    },
+    "session_title": {
+      "type": "string",
+      "description": "Title of the coaching session"
+    },
+    "rating": {
+      "type": "integer",
+      "enum": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "description": "Rating from 1-5 stars"
+    },
+    "comment": {
+      "type": "string",
+      "description": "Optional feedback comment from executive"
+    },
+    "submitted_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the feedback was submitted"
+    }
+  },
+  "required": [
+    "session_id",
+    "executive_email",
+    "rating"
+  ]
+}
