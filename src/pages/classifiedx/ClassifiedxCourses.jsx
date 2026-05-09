@@ -9,6 +9,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Link } from 'react-router-dom';
+import ModuleProgressTracker from '@/components/classifiedx/ModuleProgressTracker';
 
 const DEMO_COURSES = [
   {
@@ -90,6 +91,9 @@ export default function ClassifiedxCourses() {
             </div>
           ))}
         </div>
+
+        {/* Module Progress Tracker */}
+        <ModuleProgressTracker courses={DEMO_COURSES} />
 
         {/* Filters */}
         <div className="flex items-center gap-3 mb-6">
