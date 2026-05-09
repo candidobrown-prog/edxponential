@@ -157,6 +157,7 @@ import EduCartxProducts from './pages/educartx/EduCartxProducts';
 import EduCartxDashboard from './pages/educartx/EduCartxDashboard';
 import EduCartxOrders from './pages/educartx/EduCartxOrders';
 import EduCartxAICoach from './pages/educartx/EduCartxAICoach';
+import CEOCommandCenter from './pages/CEOCommandCenter';
 import ClassifiedxHome from './pages/classifiedx/ClassifiedxHome';
 import ClassifiedxLayout from './components/classifiedx/ClassifiedxLayout';
 import ClassifiedxBuilder from './pages/classifiedx/ClassifiedxBuilder';
@@ -441,6 +442,7 @@ const AuthenticatedApp = () => {
       <Route path="/whalledoh/communities" element={<WhalleDohGate><WhalleDohCommunities /></WhalleDohGate>} />
       <Route path="/whalledoh/profiles" element={<WhalleDohGate><WhalleDohProfile /></WhalleDohGate>} />
 
+      <Route path="/ceo-command" element={<CEOCommandCenter />} />
       <Route path="*" element={<PageNotFound />} />
     </Routes>
     </>

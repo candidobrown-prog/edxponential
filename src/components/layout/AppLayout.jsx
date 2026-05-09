@@ -1,16 +1,19 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { base44 } from '@/api/base44Client';
 import { Outlet } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import { EdxTooltipRenderer } from '@/components/platform/EdxTooltip';
 import NotificaxionsBar from '@/components/platform/NotificaxionsBar';
+import RoleSwitcher from '@/components/ceo/RoleSwitcher';
 
 export default function AppLayout() {
+  const [user, setUser] = useState(null);
+  useEffect(() => { base44.auth.me().then(setUser).catch(() => {}); }, []);
+
   return (
     <div className="min-h-screen bg-[#f7f7f7] dark:bg-[#0a0a0a]">
       <Sidebar />
-      {/* Main content — offset by sidebar width */}
       <main className="ml-[220px] min-h-screen transition-all duration-300">
-        {/* Top bar */}
         <div className="sticky top-0 z-30 h-14 bg-[#f7f7f7]/90 dark:bg-[#0a0a0a]/90 backdrop-blur-xl border-b border-black/[0.06] dark:border-white/[0.05] px-8 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <img
@@ -21,12 +24,12 @@ export default function AppLayout() {
           </div>
           <NotificaxionsBar />
         </div>
-        {/* Page content */}
         <div className="max-w-[1400px] mx-auto px-8 py-8">
           <Outlet />
         </div>
       </main>
       <EdxTooltipRenderer />
+      <RoleSwitcher userEmail={user?.email} />
     </div>
   );
 }
