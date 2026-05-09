@@ -7,6 +7,7 @@ import { base44 } from '@/api/base44Client';
 import { performanceMonitor } from '@/lib/performance';
 import { preloadCriticalAssets } from '@/lib/optimization';
 import PageNotFound from './lib/PageNotFound';
+import ErrorBoundary from '@/lib/errorBoundary';
 import { AuthProvider, useAuth } from '@/lib/AuthContext';
 import UserNotRegisteredError from '@/components/UserNotRegisteredError';
 import AppLayout from './components/layout/AppLayout';
@@ -508,15 +509,17 @@ function App() {
   }, []);
 
   return (
-    <AuthProvider>
-      <QueryClientProvider client={queryClientInstance}>
-        <Router>
-          <AuthenticatedApp />
-          <AIAssistantBubble />
-        </Router>
-        <Toaster />
-      </QueryClientProvider>
-    </AuthProvider>
+    <ErrorBoundary>
+      <AuthProvider>
+        <QueryClientProvider client={queryClientInstance}>
+          <Router>
+            <AuthenticatedApp />
+            <AIAssistantBubble />
+          </Router>
+          <Toaster />
+        </QueryClientProvider>
+      </AuthProvider>
+    </ErrorBoundary>
   )
 }
 
