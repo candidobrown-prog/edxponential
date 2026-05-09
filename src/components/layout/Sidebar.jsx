@@ -12,7 +12,7 @@ import EdxTooltip from '@/components/platform/EdxTooltip';
 import { TOOLTIP } from '@/lib/tooltipData';
 
 const navItems = [
-  { path: '/', icon: LayoutDashboard, label: 'My Dashboard', tooltip: TOOLTIP.dashboard },
+  { path: '/', icon: LayoutDashboard, label: 'Dashboard', tooltip: TOOLTIP.dashboard },
   { path: '/graiedx', icon: GraduationCap, label: 'Graiedx™', tooltip: TOOLTIP.dashboard },
   { path: '/daida-baixed', icon: Database, label: 'Daida Baixed™', tooltip: TOOLTIP.dashboard },
   { path: '/goaled', icon: School, label: 'Goaled Xschool™', tooltip: TOOLTIP.myXschool },
@@ -47,7 +47,7 @@ const platformTiers = [
   { to: '/educartx', label: 'EduCartx™', badge: 'EC', tooltip: TOOLTIP.tubedX },
   { to: '/tubedx', label: 'TubedX™', badge: 'TX', tooltip: TOOLTIP.tubedX },
   { to: '/twotrx', label: 'TwotrX', badge: '2X', tooltip: TOOLTIP.twotrX },
-  { to: '/onejob', label: 'OneJob', badge: '1J', tooltip: TOOLTIP.oneJob },
+  { to: '/onejob', label: 'WonJob™', badge: 'WJ', tooltip: TOOLTIP.oneJob },
   { to: '/edxportante', label: 'edXportante', badge: 'eP', tooltip: TOOLTIP.edXportante },
   { to: '/whalledoh', label: 'WhalleDoh™', badge: 'WD', tooltip: TOOLTIP.whalleDoh },
   { to: '/tilii', label: 'TiliiVisxion™', badge: 'TV', tooltip: TOOLTIP.tilii },
@@ -59,29 +59,30 @@ export default function Sidebar() {
 
   return (
     <aside className={cn(
-      'fixed left-0 top-0 h-screen bg-sidebar text-sidebar-foreground flex flex-col transition-all duration-300 z-50',
-      collapsed ? 'w-20' : 'w-64'
+      'fixed left-0 top-0 h-screen flex flex-col transition-all duration-300 z-50 overflow-hidden',
+      'bg-[#090909] border-r border-white/[0.05]',
+      collapsed ? 'w-[60px]' : 'w-[220px]'
     )}>
       {/* Logo */}
-      <div className="px-4 py-5 flex items-center border-b border-sidebar-border/50">
+      <div className={cn('flex items-center border-b border-white/[0.05] flex-shrink-0', collapsed ? 'h-14 justify-center' : 'h-14 px-4')}>
         {collapsed ? (
-          <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg shadow-white/10">
-            <span className="text-black font-heading font-black text-sm tracking-tight">eX</span>
+          <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center shadow-lg shadow-white/10 flex-shrink-0">
+            <span className="text-black font-black text-[11px] tracking-tighter">eX</span>
           </div>
         ) : (
-          <div className="flex flex-col gap-1.5 w-full">
+          <div className="flex flex-col gap-1">
             <img
               src="https://media.base44.com/images/public/69f64dbf5c37a4db77e0e302/21d29b7f0_64B1F443-0AD3-403D-B726-ABEF11D14419.png"
               alt="edXponential"
-              className="h-9 w-auto brightness-0 invert"
+              className="h-7 w-auto brightness-0 invert"
             />
-            <span className="text-white/20 text-[9px] font-black uppercase tracking-[0.2em]">The Future of Education</span>
+            <span className="text-white/20 text-[8px] font-bold uppercase tracking-[0.18em]">Education. Exponentially.</span>
           </div>
         )}
       </div>
 
       {/* Navigation */}
-      <nav className="flex-1 px-3 space-y-0.5 overflow-y-auto py-2">
+      <nav className="flex-1 overflow-y-auto py-3 px-2 space-y-0.5">
         {navItems.map(({ path, icon: Icon, label, tooltip }) => {
           const isActive = path === '/' ? location.pathname === '/' : location.pathname.startsWith(path);
           return (
@@ -89,15 +90,20 @@ export default function Sidebar() {
               <Link
                 to={path}
                 className={cn(
-                  'flex items-center gap-3 px-4 py-2.5 rounded-xl transition-all duration-200',
+                  'flex items-center gap-2.5 rounded-lg transition-all duration-150',
+                  collapsed ? 'h-9 w-9 justify-center mx-auto' : 'h-8 px-3',
                   isActive
-                    ? 'bg-sidebar-accent text-white'
-                    : 'text-sidebar-foreground/70 hover:bg-sidebar-accent/50 hover:text-white'
+                    ? 'bg-white/10 text-white'
+                    : 'text-white/35 hover:bg-white/5 hover:text-white/70'
                 )}
               >
-                <Icon className="w-4 h-4 flex-shrink-0" />
-                {!collapsed && <span className="text-sm font-medium tracking-wide">{label}</span>}
-                {isActive && !collapsed && <div className="ml-auto w-1 h-4 rounded-full bg-white" />}
+                <Icon className={cn('flex-shrink-0', collapsed ? 'w-4 h-4' : 'w-3.5 h-3.5')} />
+                {!collapsed && (
+                  <span className="text-xs font-medium tracking-[-0.01em] truncate">{label}</span>
+                )}
+                {isActive && !collapsed && (
+                  <div className="ml-auto w-1 h-3 rounded-full bg-white/50 flex-shrink-0" />
+                )}
               </Link>
             </EdxTooltip>
           );
@@ -105,47 +111,53 @@ export default function Sidebar() {
       </nav>
 
       {/* Platform Tiers */}
-      <div className="mx-3 my-2">
-        <div className="h-px bg-sidebar-border" />
-      </div>
-      <div className="px-3 mb-1 space-y-0.5">
+      <div className="px-2 pb-1">
+        <div className="h-px bg-white/[0.05] mb-2" />
         {!collapsed && (
-          <p className="text-[10px] font-bold uppercase tracking-widest text-sidebar-foreground/30 px-4 mb-1">Platform Tiers</p>
+          <p className="text-[9px] font-bold uppercase tracking-[0.18em] text-white/20 px-3 mb-1.5">Platform Tiers</p>
         )}
-        {platformTiers.map(({ to, label, badge, tooltip }) => {
-          const active = location.pathname.startsWith(to);
-          return (
-            <EdxTooltip key={to} data={tooltip} delay={500}>
-              <Link to={to}
-                className={cn('flex items-center gap-3 px-4 py-2 rounded-xl transition-all duration-200',
-                  active ? 'bg-sidebar-accent text-white' : 'text-sidebar-foreground/70 hover:bg-sidebar-accent/50 hover:text-white'
-                )}>
-                <div className="w-5 h-5 rounded flex items-center justify-center bg-white/20 flex-shrink-0">
-                  <span className="text-[8px] font-black leading-none">{badge}</span>
-                </div>
-                {!collapsed && <span className="text-sm font-medium tracking-wide">{label}</span>}
-              </Link>
-            </EdxTooltip>
-          );
-        })}
+        <div className="space-y-0.5">
+          {platformTiers.map(({ to, label, badge, tooltip }) => {
+            const active = location.pathname.startsWith(to);
+            return (
+              <EdxTooltip key={to} data={tooltip} delay={500}>
+                <Link to={to}
+                  className={cn(
+                    'flex items-center gap-2.5 rounded-lg transition-all duration-150',
+                    collapsed ? 'h-9 w-9 justify-center mx-auto' : 'h-8 px-3',
+                    active ? 'bg-white/10 text-white' : 'text-white/35 hover:bg-white/5 hover:text-white/70'
+                  )}>
+                  <div className={cn('flex items-center justify-center rounded-md flex-shrink-0', collapsed ? 'w-4 h-4' : 'w-4 h-4', 'bg-white/12')}>
+                    <span className="text-[7px] font-black text-white/70 leading-none">{badge}</span>
+                  </div>
+                  {!collapsed && <span className="text-xs font-medium tracking-[-0.01em] truncate">{label}</span>}
+                </Link>
+              </EdxTooltip>
+            );
+          })}
+        </div>
       </div>
 
-      {/* Sign Out + Collapse */}
-      <div className="px-3 pb-6 space-y-1">
+      {/* Bottom Actions */}
+      <div className="px-2 pb-4 pt-2 space-y-0.5">
+        <div className="h-px bg-white/[0.05] mb-2" />
         <EdxTooltip data={TOOLTIP.signOut} delay={600}>
           <button
             onClick={() => base44.auth.logout()}
-            className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sidebar-foreground/50 hover:text-white hover:bg-sidebar-accent/50 transition-all w-full"
+            className={cn(
+              'flex items-center gap-2.5 rounded-lg text-white/25 hover:text-white/60 hover:bg-white/5 transition-all w-full',
+              collapsed ? 'h-9 w-9 justify-center mx-auto' : 'h-8 px-3'
+            )}
           >
-            <LogOut className="w-4 h-4 flex-shrink-0" />
-            {!collapsed && <span className="text-sm">Sign Out</span>}
+            <LogOut className="w-3.5 h-3.5 flex-shrink-0" />
+            {!collapsed && <span className="text-xs font-medium">Sign Out</span>}
           </button>
         </EdxTooltip>
         <button
           onClick={() => setCollapsed(!collapsed)}
-          className="flex items-center justify-center w-full py-2 rounded-xl text-sidebar-foreground/40 hover:text-white transition-all"
+          className="flex items-center justify-center w-full h-7 rounded-lg text-white/15 hover:text-white/40 transition-all"
         >
-          {collapsed ? <ChevronRight className="w-4 h-4" /> : <ChevronLeft className="w-4 h-4" />}
+          {collapsed ? <ChevronRight className="w-3.5 h-3.5" /> : <ChevronLeft className="w-3.5 h-3.5" />}
         </button>
       </div>
     </aside>

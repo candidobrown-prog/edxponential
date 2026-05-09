@@ -7,7 +7,8 @@ module.exports = {
   		fontFamily: {
   			heading: ['var(--font-heading)'],
   			body: ['var(--font-body)'],
-  			grotesk: ['var(--font-grotesk)']
+  			grotesk: ['var(--font-grotesk)'],
+  			inter: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Helvetica Neue', 'sans-serif'],
   		},
   		borderRadius: {
   			lg: 'var(--radius)',
