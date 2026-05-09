@@ -472,104 +472,30 @@ export default function Landing() {
               </motion.div>
             ))}
           </PremiumGrid>
+          </motion.div>
 
-          {/* Video testimonials */}
+          {/* Impact metrics */}
           <motion.div
-            initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mb-20"
+          initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="border-t border-border pt-20"
           >
-            <h3 className="heading-1 mb-8">Watch real leaders</h3>
-            <PremiumGrid cols={3}>
-              {videoTestimonials.map((v, i) => (
-                <motion.button key={i}
-                  initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }} transition={{ delay: i * 0.1 }}
-                  className="group relative aspect-video rounded-2xl overflow-hidden bg-secondary border border-border hover:border-blue-pure/30 transition-all"
-                >
-                  {/* Placeholder gradient */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-black/20 to-transparent" />
-                  
-                  {/* Play button */}
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <motion.div
-                      whileHover={{ scale: 1.1 }}
-                      className="w-16 h-16 rounded-full bg-white flex items-center justify-center group-hover:bg-white/90 transition-colors"
-                    >
-                      <Play className="w-7 h-7 text-black fill-black" />
-                    </motion.div>
-                  </div>
-
-                  {/* Label */}
-                  <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black to-transparent">
-                    <div className="font-bold text-white text-sm">{v.name}</div>
-                    <div className="text-white/70 text-xs">{v.title}</div>
-                  </div>
-                </motion.button>
-              ))}
-              </PremiumGrid>
-
-              {/* Video testimonials */}
-              <motion.div
-              initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="mb-20"
+          <h3 className="heading-2 mb-12 text-center">Impact at scale</h3>
+          <PremiumGrid cols={4}>
+            {impactMetrics.map((m, i) => (
+              <motion.div key={i}
+                initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }} transition={{ delay: i * 0.08 }}
+                className="text-center"
               >
-              <h3 className="heading-1 mb-8">Watch real leaders</h3>
-              <PremiumGrid cols={3}>
-                {videoTestimonials.map((v, i) => (
-                  <motion.button key={i}
-                    initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }} transition={{ delay: i * 0.1 }}
-                    className="group relative aspect-video rounded-2xl overflow-hidden bg-secondary border border-border hover:border-blue-pure/30 transition-all"
-                  >
-                    {/* Placeholder gradient */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-black/20 to-transparent" />
-
-                    {/* Play button */}
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <motion.div
-                        whileHover={{ scale: 1.1 }}
-                        className="w-16 h-16 rounded-full bg-white flex items-center justify-center group-hover:bg-white/90 transition-colors"
-                      >
-                        <Play className="w-7 h-7 text-black fill-black" />
-                      </motion.div>
-                    </div>
-
-                    {/* Label */}
-                    <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black to-transparent">
-                      <div className="font-bold text-white text-sm">{v.name}</div>
-                      <div className="text-white/70 text-xs">{v.title}</div>
-                    </div>
-                  </motion.button>
-                ))}
-              </PremiumGrid>
+                <div className="display-2 mb-2">{m.value}</div>
+                <div className="label text-muted-foreground">{m.label}</div>
               </motion.div>
-
-              {/* Impact metrics */}
-              <motion.div
-              initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="border-t border-border pt-20"
-              >
-              <h3 className="heading-2 mb-12 text-center">
-                Impact at scale
-              </h3>
-              <PremiumGrid cols={4}>
-                {impactMetrics.map((m, i) => (
-                  <motion.div key={i}
-                    initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }} transition={{ delay: i * 0.08 }}
-                    className="text-center"
-                  >
-                    <div className="display-2 mb-2">{m.value}</div>
-                    <div className="label text-muted-foreground">{m.label}</div>
-                  </motion.div>
-                ))}
-              </PremiumGrid>
-              </motion.div>
-              </div>
-              </PremiumSection>
+            ))}
+          </PremiumGrid>
+          </motion.div>
+          </div>
+          </PremiumSection>
 
       {/* CTA - Premium Conversion Experience */}
       <PremiumSection spacing="5xl" className="border-t border-border relative overflow-hidden bg-gradient-to-b from-white to-surface">
