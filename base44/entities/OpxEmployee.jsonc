@@ -1,0 +1,164 @@
+{
+  "name": "OpxEmployee",
+  "type": "object",
+  "properties": {
+    "first_name": {
+      "type": "string"
+    },
+    "last_name": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "photo_url": {
+      "type": "string"
+    },
+    "job_title": {
+      "type": "string"
+    },
+    "department": {
+      "type": "string",
+      "enum": [
+        "administration",
+        "instruction",
+        "operations",
+        "finance",
+        "hr",
+        "facilities",
+        "technology",
+        "student_services",
+        "special_education",
+        "other"
+      ]
+    },
+    "role": {
+      "type": "string",
+      "enum": [
+        "ceo",
+        "executive_director",
+        "principal",
+        "coo",
+        "hr_director",
+        "finance_director",
+        "operations_manager",
+        "business_manager",
+        "facilities_director",
+        "teacher",
+        "staff",
+        "contractor"
+      ]
+    },
+    "employment_type": {
+      "type": "string",
+      "enum": [
+        "full_time",
+        "part_time",
+        "contractor",
+        "substitute",
+        "intern"
+      ],
+      "default": "full_time"
+    },
+    "hire_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "salary": {
+      "type": "number"
+    },
+    "hourly_rate": {
+      "type": "number"
+    },
+    "pay_frequency": {
+      "type": "string",
+      "enum": [
+        "weekly",
+        "biweekly",
+        "semimonthly",
+        "monthly"
+      ],
+      "default": "biweekly"
+    },
+    "pto_balance": {
+      "type": "number",
+      "default": 0
+    },
+    "pto_used": {
+      "type": "number",
+      "default": 0
+    },
+    "certifications": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "background_check_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "background_check_status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "cleared",
+        "failed",
+        "expired"
+      ],
+      "default": "pending"
+    },
+    "i9_status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "complete",
+        "expired"
+      ],
+      "default": "pending"
+    },
+    "w4_on_file": {
+      "type": "boolean",
+      "default": false
+    },
+    "direct_deposit_linked": {
+      "type": "boolean",
+      "default": false
+    },
+    "benefits_enrolled": {
+      "type": "boolean",
+      "default": false
+    },
+    "emergency_contact_name": {
+      "type": "string"
+    },
+    "emergency_contact_phone": {
+      "type": "string"
+    },
+    "address": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "on_leave",
+        "terminated",
+        "probation"
+      ],
+      "default": "active"
+    }
+  },
+  "required": [
+    "first_name",
+    "last_name",
+    "email",
+    "job_title"
+  ]
+}

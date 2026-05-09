@@ -163,6 +163,17 @@ import PublicLayout from './components/layout/PublicLayout';
 import PublicPricing from './pages/public/PublicPricing';
 import AIOnboarding from './pages/public/AIOnboarding';
 import ClassifiedxHome from './pages/classifiedx/ClassifiedxHome';
+import OperationXHome from './pages/operationx/OperationXHome';
+import OpxLayout from './components/operationx/OpxLayout';
+import OperationXDashboard from './pages/operationx/OperationXDashboard';
+import OpxFinance from './pages/operationx/OpxFinance';
+import OpxHR from './pages/operationx/OpxHR';
+import OpxFacilities from './pages/operationx/OpxFacilities';
+import OpxSafety from './pages/operationx/OpxSafety';
+import OpxVendors from './pages/operationx/OpxVendors';
+import OpxPayments from './pages/operationx/OpxPayments';
+import OpxInventory from './pages/operationx/OpxInventory';
+import OpxOpsAI from './pages/operationx/OpxOpsAI';
 import ClassifiedxLayout from './components/classifiedx/ClassifiedxLayout';
 import ClassifiedxBuilder from './pages/classifiedx/ClassifiedxBuilder';
 import ClassifiedxStudio from './pages/classifiedx/ClassifiedxStudio';
@@ -453,6 +464,20 @@ const AuthenticatedApp = () => {
       <Route path="/whalledoh/ai" element={<WhalleDohGate><WhalleDohAI /></WhalleDohGate>} />
       <Route path="/whalledoh/communities" element={<WhalleDohGate><WhalleDohCommunities /></WhalleDohGate>} />
       <Route path="/whalledoh/profiles" element={<WhalleDohGate><WhalleDohProfile /></WhalleDohGate>} />
+
+      {/* OperationX™ */}
+      <Route path="/operationx/home" element={<OperationXHome />} />
+      <Route element={<OpxLayout />}>
+        <Route path="/operationx" element={<OperationXDashboard />} />
+        <Route path="/operationx/finance" element={<OpxFinance />} />
+        <Route path="/operationx/hr" element={<OpxHR />} />
+        <Route path="/operationx/facilities" element={<OpxFacilities />} />
+        <Route path="/operationx/safety" element={<OpxSafety />} />
+        <Route path="/operationx/vendors" element={<OpxVendors />} />
+        <Route path="/operationx/payments" element={<OpxPayments />} />
+        <Route path="/operationx/inventory" element={<OpxInventory />} />
+        <Route path="/operationx/opsai" element={<OpxOpsAI />} />
+      </Route>
 
       <Route path="/ceo-command" element={<CEOCommandCenter />} />
       <Route path="*" element={<PageNotFound />} />

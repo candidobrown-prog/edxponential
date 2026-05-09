@@ -44,6 +44,7 @@ const navItems = [
 ];
 
 const platformTiers = [
+  { to: '/operationx', label: 'OperationX™', badge: 'OX', tooltip: TOOLTIP.tubedX },
   { to: '/educartx', label: 'EduCartx™', badge: 'EC', tooltip: TOOLTIP.tubedX },
   { to: '/tubedx', label: 'TubedX™', badge: 'TX', tooltip: TOOLTIP.tubedX },
   { to: '/twotrx', label: 'TwotrX', badge: '2X', tooltip: TOOLTIP.twotrX },

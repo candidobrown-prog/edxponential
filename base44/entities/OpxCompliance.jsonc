@@ -1,0 +1,81 @@
+{
+  "name": "OpxCompliance",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string"
+    },
+    "compliance_type": {
+      "type": "string",
+      "enum": [
+        "charter",
+        "state_licensing",
+        "federal",
+        "accreditation",
+        "osha",
+        "fire_safety",
+        "health",
+        "hr_legal",
+        "financial_audit",
+        "title_ix",
+        "idea",
+        "ferpa",
+        "other"
+      ]
+    },
+    "governing_body": {
+      "type": "string"
+    },
+    "due_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "completed_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "assigned_to": {
+      "type": "string"
+    },
+    "document_url": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "auto_renew": {
+      "type": "boolean",
+      "default": false
+    },
+    "renewal_frequency": {
+      "type": "string",
+      "enum": [
+        "monthly",
+        "quarterly",
+        "annually",
+        "biannually",
+        "one_time"
+      ]
+    },
+    "notes": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "upcoming",
+        "in_progress",
+        "submitted",
+        "approved",
+        "overdue",
+        "at_risk"
+      ],
+      "default": "upcoming"
+    }
+  },
+  "required": [
+    "title",
+    "compliance_type",
+    "due_date"
+  ]
+}

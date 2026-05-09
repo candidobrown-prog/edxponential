@@ -1,0 +1,113 @@
+{
+  "name": "OpxVendor",
+  "type": "object",
+  "properties": {
+    "company_name": {
+      "type": "string"
+    },
+    "contact_name": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "address": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "technology",
+        "facilities",
+        "supplies",
+        "food_service",
+        "transportation",
+        "professional_services",
+        "utilities",
+        "insurance",
+        "construction",
+        "curriculum",
+        "staffing",
+        "other"
+      ]
+    },
+    "contract_start": {
+      "type": "string",
+      "format": "date"
+    },
+    "contract_end": {
+      "type": "string",
+      "format": "date"
+    },
+    "contract_value": {
+      "type": "number"
+    },
+    "total_paid_ytd": {
+      "type": "number",
+      "default": 0
+    },
+    "payment_terms": {
+      "type": "string",
+      "enum": [
+        "net_15",
+        "net_30",
+        "net_60",
+        "due_on_receipt",
+        "prepaid"
+      ],
+      "default": "net_30"
+    },
+    "payment_method": {
+      "type": "string",
+      "enum": [
+        "ach",
+        "check",
+        "credit_card",
+        "wire",
+        "manual"
+      ],
+      "default": "ach"
+    },
+    "w9_on_file": {
+      "type": "boolean",
+      "default": false
+    },
+    "insurance_on_file": {
+      "type": "boolean",
+      "default": false
+    },
+    "compliance_status": {
+      "type": "string",
+      "enum": [
+        "compliant",
+        "pending",
+        "non_compliant",
+        "expired"
+      ],
+      "default": "pending"
+    },
+    "rating": {
+      "type": "number"
+    },
+    "notes": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "inactive",
+        "suspended",
+        "pending_review"
+      ],
+      "default": "active"
+    }
+  },
+  "required": [
+    "company_name",
+    "category"
+  ]
+}

@@ -1,0 +1,93 @@
+{
+  "name": "OpxWorkOrder",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "hvac",
+        "plumbing",
+        "electrical",
+        "cleaning",
+        "painting",
+        "it_support",
+        "security",
+        "landscaping",
+        "renovation",
+        "inspection",
+        "emergency",
+        "other"
+      ]
+    },
+    "priority": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "emergency"
+      ],
+      "default": "medium"
+    },
+    "location": {
+      "type": "string"
+    },
+    "room_number": {
+      "type": "string"
+    },
+    "reported_by": {
+      "type": "string"
+    },
+    "assigned_to": {
+      "type": "string"
+    },
+    "vendor_id": {
+      "type": "string"
+    },
+    "estimated_cost": {
+      "type": "number"
+    },
+    "actual_cost": {
+      "type": "number"
+    },
+    "due_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "completed_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "photos_url": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "notes": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "open",
+        "in_progress",
+        "pending_parts",
+        "completed",
+        "cancelled"
+      ],
+      "default": "open"
+    }
+  },
+  "required": [
+    "title",
+    "category",
+    "priority"
+  ]
+}
