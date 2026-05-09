@@ -7,6 +7,13 @@ import { base44 } from '@/api/base44Client';
 import { performanceMonitor } from '@/lib/performance';
 import { preloadCriticalAssets } from '@/lib/optimization';
 import PageNotFound from './lib/PageNotFound';
+import SmartPageNotFound from './lib/SmartPageNotFound.jsx';
+import RequestAccessConfirmation from './pages/RequestAccessConfirmation';
+import ComingSoon from './pages/ComingSoon';
+import FoundersSpherePage from './pages/FoundersSpherePage';
+import PrincipalsPage from './pages/PrincipalsPage';
+import PoentialsPage from './pages/Potentials';
+import Contact from './pages/Contact';
 import ErrorBoundary from '@/lib/errorBoundary';
 import { AuthProvider, useAuth } from '@/lib/AuthContext';
 import UserNotRegisteredError from '@/components/UserNotRegisteredError';
@@ -234,6 +241,12 @@ const AuthenticatedApp = () => {
         <Route path="/" element={<PublicLanding />} />
         <Route path="/pricing" element={<PublicPricing />} />
         <Route path="/onboarding" element={<AIOnboarding />} />
+        <Route path="/request-access-confirmation" element={<RequestAccessConfirmation />} />
+        <Route path="/founders-sphere" element={<FoundersSpherePage />} />
+        <Route path="/principal-park" element={<PrincipalsPage />} />
+        <Route path="/potentials" element={<PoentialsPage />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/coming-soon" element={<ComingSoon />} />
       </Route>
 
       {/* ── AUTHENTICATED APP ROUTES ── */}
@@ -487,7 +500,10 @@ const AuthenticatedApp = () => {
       </Route>
 
       <Route path="/ceo-command" element={<CEOCommandCenter />} />
-      <Route path="*" element={<PageNotFound />} />
+      
+      {/* ── FALLBACK 404 PAGE ── */}
+      <Route path="/404" element={<SmartPageNotFound />} />
+      <Route path="*" element={<SmartPageNotFound />} />
     </Routes>
     </>
   );

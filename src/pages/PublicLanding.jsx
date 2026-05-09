@@ -10,11 +10,9 @@ import { base44 } from '@/api/base44Client';
 
 const navLinks = [
   { label: 'Features', href: '#features' },
-  { label: 'Solutions', href: '#solutions' },
-  { label: 'Pricing', href: '#pricing' },
-  { label: 'Communities', href: '#communities' },
-  { label: 'Marketplace', href: '#marketplace' },
-  { label: 'About', href: '#about' },
+  { label: 'Pricing', href: '/pricing' },
+  { label: 'Communities', href: '/communities' },
+  { label: 'Contact', href: '/contact' },
 ];
 
 const trustIndicators = [
@@ -29,37 +27,37 @@ const features = [
     title: 'Ask Eddy AI Assistant',
     description: 'Intelligent AI guidance for school operations, curriculum design, and strategic planning.',
     Icon: Brain,
-    href: '#ask-eddy',
+    href: '/ask-eddy',
   },
   {
-    title: 'FounderX',
+    title: 'FoundationX',
     description: 'Complete school-building OS for founders. Strategic planning, pitching, and scaling.',
     Icon: Target,
-    href: '#solutions',
+    href: '/foundaitionx/home',
   },
   {
     title: 'OperationX',
     description: 'School operations, HR, finance, facilities, and vendor management in one platform.',
     Icon: Code,
-    href: '#solutions',
+    href: '/operationx/home',
   },
   {
     title: 'OneJob',
     description: 'Education recruitment and employment marketplace for schools and districts.',
     Icon: Briefcase,
-    href: '#marketplace',
+    href: '/onejob',
   },
   {
     title: 'EduCartX',
     description: 'Education commerce platform for courses, resources, and digital products.',
     Icon: ShoppingCart,
-    href: '#marketplace',
+    href: '/educartx',
   },
   {
     title: 'edVestors',
     description: 'Investment network connecting education innovators with capital and advisors.',
     Icon: TrendingUp,
-    href: '#communities',
+    href: '/edvestors',
   },
 ];
 
@@ -261,18 +259,20 @@ export default function PublicLanding() {
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
-              <motion.a
+              <motion.button
                 key={link.label}
-                href={link.href}
-                onClick={(e) => {
-                  e.preventDefault();
-                  scrollToElement(link.href.slice(1));
+                onClick={() => {
+                  if (link.href.startsWith('/')) {
+                    navigate(link.href);
+                  } else {
+                    scrollToElement(link.href.slice(1));
+                  }
                 }}
                 whileHover={{ scale: 1.05 }}
                 className="text-sm font-medium text-text-secondary hover:text-white transition cursor-pointer"
               >
                 {link.label}
-              </motion.a>
+              </motion.button>
             ))}
           </div>
 
@@ -513,7 +513,7 @@ export default function PublicLanding() {
                 <p className="text-text-secondary mb-6 leading-relaxed">{feature.description}</p>
                 <motion.button
                   whileHover={{ x: 4 }}
-                  onClick={() => scrollToElement(feature.href.slice(1))}
+                  onClick={() => navigate(feature.href)}
                    className="text-sm font-semibold text-primary flex items-center gap-2 hover:gap-3 transition-all cursor-pointer"
                 >
                   Learn More <ArrowRight className="w-4 h-4" />
@@ -652,6 +652,7 @@ export default function PublicLanding() {
 
                 <motion.button
                   whileHover={{ scale: 1.02 }}
+                  onClick={() => navigate('/request-access?tier=' + tier.name.toLowerCase().replace(' ', '-'))}
                   className={`w-full py-3 rounded-lg font-semibold mb-8 transition-all ${
                     tier.highlight
                       ? 'bg-primary text-white hover:bg-primary/90 glow-crimson-sm'
@@ -993,27 +994,27 @@ export default function PublicLanding() {
             <div>
               <p className="text-xs font-black uppercase tracking-wider text-text-tertiary mb-3">Platform</p>
               <ul className="space-y-2 text-xs">
-                <li><button className="text-text-secondary hover:text-white transition">Features</button></li>
-                <li><button className="text-text-secondary hover:text-white transition">Solutions</button></li>
-                <li><button className="text-text-secondary hover:text-white transition">Pricing</button></li>
+                <li><button onClick={() => navigate('/#features')} className="text-text-secondary hover:text-white transition">Features</button></li>
+                <li><button onClick={() => navigate('/pricing')} className="text-text-secondary hover:text-white transition">Pricing</button></li>
+                <li><button onClick={() => navigate('/ask-eddy')} className="text-text-secondary hover:text-white transition">Ask Eddy</button></li>
               </ul>
             </div>
 
             <div>
               <p className="text-xs font-black uppercase tracking-wider text-text-tertiary mb-3">Resources</p>
               <ul className="space-y-2 text-xs">
-                <li><button className="text-text-secondary hover:text-white transition">Documentation</button></li>
-                <li><button className="text-text-secondary hover:text-white transition">Blog</button></li>
-                <li><button className="text-text-secondary hover:text-white transition">Support</button></li>
+                <li><button onClick={() => navigate('/courses')} className="text-text-secondary hover:text-white transition">Courses</button></li>
+                <li><button onClick={() => navigate('/communities')} className="text-text-secondary hover:text-white transition">Communities</button></li>
+                <li><button onClick={() => navigate('/contact')} className="text-text-secondary hover:text-white transition">Support</button></li>
               </ul>
             </div>
 
             <div>
               <p className="text-xs font-black uppercase tracking-wider text-text-tertiary mb-3">Legal</p>
               <ul className="space-y-2 text-xs">
-                <li><button className="text-text-secondary hover:text-white transition">Privacy</button></li>
-                <li><button className="text-text-secondary hover:text-white transition">Terms</button></li>
-                <li><button className="text-text-secondary hover:text-white transition">Contact</button></li>
+                <li><button onClick={() => navigate('/coming-soon')} className="text-text-secondary hover:text-white transition">Privacy</button></li>
+                <li><button onClick={() => navigate('/coming-soon')} className="text-text-secondary hover:text-white transition">Terms</button></li>
+                <li><button onClick={() => navigate('/contact')} className="text-text-secondary hover:text-white transition">Contact</button></li>
               </ul>
             </div>
           </div>
@@ -1021,9 +1022,7 @@ export default function PublicLanding() {
           <div className="border-t border-border pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-[11px] text-text-tertiary">© 2026 edXponential. The future of education, built today.</p>
             <div className="flex gap-6">
-              <button className="text-xs text-text-tertiary hover:text-white transition">Twitter</button>
-              <button className="text-xs text-text-tertiary hover:text-white transition">LinkedIn</button>
-              <button className="text-xs text-text-tertiary hover:text-white transition">GitHub</button>
+              <span className="text-xs text-text-tertiary">Coming Soon: Social</span>
             </div>
           </div>
         </div>
