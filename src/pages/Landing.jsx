@@ -487,7 +487,7 @@ export default function Landing() {
               </div>
               </PremiumSection>
 
-      {/* CTA / EMAIL CAPTURE */}
+              {/* CTA / EMAIL CAPTURE */}
       <PremiumSection spacing="5xl" className="border-t border-border">
         <PremiumContainer className="max-w-2xl">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center">
