@@ -149,6 +149,14 @@ import FoundaitionxGovernance from './pages/foundaitionx/FoundaitionxGovernance'
 import FoundaitionxBoardTracker from './pages/foundaitionx/FoundaitionxBoardTracker';
 import FoundaitionxOperations from './pages/foundaitionx/FoundaitionxOperations';
 import FoundaitionxStrategy from './pages/foundaitionx/FoundaitionxStrategy';
+import EduCartxHome from './pages/educartx/EduCartxHome';
+import EduCartxLayout from './components/educartx/EduCartxLayout';
+import EduCartxMarketplace from './pages/educartx/EduCartxMarketplace';
+import EduCartxStorefront from './pages/educartx/EduCartxStorefront';
+import EduCartxProducts from './pages/educartx/EduCartxProducts';
+import EduCartxDashboard from './pages/educartx/EduCartxDashboard';
+import EduCartxOrders from './pages/educartx/EduCartxOrders';
+import EduCartxAICoach from './pages/educartx/EduCartxAICoach';
 import ClassifiedxHome from './pages/classifiedx/ClassifiedxHome';
 import ClassifiedxLayout from './components/classifiedx/ClassifiedxLayout';
 import ClassifiedxBuilder from './pages/classifiedx/ClassifiedxBuilder';
@@ -413,6 +421,17 @@ const AuthenticatedApp = () => {
         <Route path="/tilii/channels" element={<TiliiGate><TiliiDiscover /></TiliiGate>} />
         <Route path="/tilii/live" element={<TiliiGate><TiliiDiscover /></TiliiGate>} />
         <Route path="/tilii/masterclasses" element={<TiliiGate><TiliiDiscover /></TiliiGate>} />
+      </Route>
+
+      {/* EduCartx™ */}
+      <Route path="/educartx" element={<EduCartxHome />} />
+      <Route element={<EduCartxLayout />}>
+        <Route path="/educartx/marketplace" element={<EduCartxMarketplace />} />
+        <Route path="/educartx/storefront" element={<EduCartxStorefront />} />
+        <Route path="/educartx/products" element={<EduCartxProducts />} />
+        <Route path="/educartx/dashboard" element={<EduCartxDashboard />} />
+        <Route path="/educartx/orders" element={<EduCartxOrders />} />
+        <Route path="/educartx/ai-coach" element={<EduCartxAICoach />} />
       </Route>
 
       {/* WhalleDoh — public landing, gated inner pages */}
