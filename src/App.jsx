@@ -13,6 +13,7 @@ import UserNotRegisteredError from '@/components/UserNotRegisteredError';
 import AppLayout from './components/layout/AppLayout';
 import Landing from './pages/Landing';
 import EcosystemLanding from './pages/EcosystemLanding';
+import PublicLanding from './pages/PublicLanding';
 import Dashboard from './pages/Dashboard';
 import Courses from './pages/Courses';
 import CourseDetail from './pages/CourseDetail';
@@ -239,7 +240,7 @@ const AuthenticatedApp = () => {
     <Routes>
       {/* ── PUBLIC ROUTES (no sidebar, no app chrome) ── */}
       <Route element={<PublicLayout />}>
-        <Route path="/" element={<EcosystemLanding />} />
+        <Route path="/" element={<PublicLanding />} />
         <Route path="/welcome" element={<Landing />} />
         <Route path="/ecosystem" element={<EcosystemLanding />} />
         <Route path="/pricing" element={<PublicPricing />} />
