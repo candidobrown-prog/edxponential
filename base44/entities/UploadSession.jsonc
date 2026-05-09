@@ -1,0 +1,62 @@
+{
+  "name": "UploadSession",
+  "type": "object",
+  "properties": {
+    "session_id": {
+      "type": "string",
+      "description": "Unique upload session identifier"
+    },
+    "file_name": {
+      "type": "string",
+      "description": "Name of file being uploaded"
+    },
+    "file_size": {
+      "type": "number",
+      "description": "Total file size in bytes"
+    },
+    "file_type": {
+      "type": "string",
+      "description": "MIME type of file"
+    },
+    "total_chunks": {
+      "type": "number",
+      "description": "Total number of chunks"
+    },
+    "uploaded_chunks": {
+      "type": "string",
+      "description": "JSON stringified array of uploaded chunk info"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "in_progress",
+        "completed",
+        "failed",
+        "cancelled"
+      ],
+      "default": "in_progress",
+      "description": "Upload session status"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Session creation time"
+    },
+    "completed_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Session completion time"
+    },
+    "failed_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Failure timestamp if applicable"
+    }
+  },
+  "required": [
+    "session_id",
+    "file_name",
+    "file_size",
+    "total_chunks"
+  ]
+}

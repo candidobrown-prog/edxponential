@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Toaster } from "@/components/ui/toaster"
 import { QueryClientProvider } from '@tanstack/react-query'
 import { queryClientInstance } from '@/lib/query-client'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { base44 } from '@/api/base44Client';
+import { performanceMonitor } from '@/lib/performance';
+import { preloadCriticalAssets } from '@/lib/optimization';
 import PageNotFound from './lib/PageNotFound';
 import { AuthProvider, useAuth } from '@/lib/AuthContext';
 import UserNotRegisteredError from '@/components/UserNotRegisteredError';
@@ -63,6 +65,7 @@ import NotificationPrefs from './pages/NotificationPrefs';
 import Billing from './pages/Billing';
 import IdentityVerification from './pages/IdentityVerification';
 import AdminEnterprise from './pages/AdminEnterprise';
+import StorageDashboard from './pages/admin/StorageDashboard';
 import TubedXHome from './pages/tubedx/TubedXHome';
 import TubedXDashboard from './pages/tubedx/TubedXDashboard';
 import TubedXVideos from './pages/tubedx/TubedXVideos';
@@ -269,6 +272,7 @@ const AuthenticatedApp = () => {
         <Route path="/billing" element={<Billing />} />
         <Route path="/identity-verification" element={<IdentityVerification />} />
         <Route path="/admin/enterprise" element={<AdminEnterprise />} />
+        <Route path="/admin/storage" element={<StorageDashboard />} />
         <Route path="/admin/feedback" element={<AdminFeedback />} />
         <Route path="/admin/payments" element={<PaymentsDashboard />} />
         <Route path="/admin/executive" element={<ExecutiveDashboard />} />
@@ -494,6 +498,16 @@ const AuthenticatedApp = () => {
 
 
 function App() {
+  useEffect(() => {
+    // Initialize performance monitoring
+    performanceMonitor.trackPageLoad('App');
+    
+    // Preload critical assets
+    preloadCriticalAssets();
+    
+    // Report to monitoring service if available
+    performanceMonitor.reportToMonitoring();
+  }, []);
 
   return (
     <AuthProvider>
