@@ -166,6 +166,7 @@ import PublicLandingPage from './pages/public/PublicLandingPage';
 import ApplyPage from './pages/public/ApplyPage';
 import LoginPage from './pages/auth/LoginPage';
 import ApplicationReview from './pages/admin/ApplicationReview';
+import Questionnaire from './pages/onboarding/Questionnaire';
 import ClassifiedxHome from './pages/classifiedx/ClassifiedxHome';
 import OperationXHome from './pages/operationx/OperationXHome';
 import OpxLayout from './components/operationx/OpxLayout';
@@ -246,6 +247,9 @@ const AuthenticatedApp = () => {
 
       {/* ── ADMIN ROUTES ── */}
       <Route path="/admin/applications" element={<ApplicationReview />} />
+
+      {/* ── ONBOARDING ROUTES ── */}
+      <Route path="/onboarding/questionnaire" element={<Questionnaire />} />
 
       {/* ── AUTHENTICATED APP ROUTES ── */}
       <Route element={<AppLayout />}>
