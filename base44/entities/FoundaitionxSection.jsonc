@@ -1,0 +1,93 @@
+{
+  "name": "FoundaitionxSection",
+  "type": "object",
+  "properties": {
+    "school_id": {
+      "type": "string"
+    },
+    "founder_email": {
+      "type": "string"
+    },
+    "section_type": {
+      "type": "string",
+      "enum": [
+        "vision_mission",
+        "academic_model",
+        "curriculum",
+        "assessment",
+        "culture",
+        "discipline",
+        "operations",
+        "staffing",
+        "finance_budget",
+        "facilities",
+        "transportation",
+        "food_service",
+        "technology",
+        "safety",
+        "sped",
+        "mll",
+        "mtss",
+        "intervention",
+        "family_handbook",
+        "staff_handbook",
+        "board_handbook",
+        "policies",
+        "governance",
+        "strategic_plan",
+        "enrollment_plan",
+        "professional_development",
+        "evaluation",
+        "charter_application",
+        "accountability",
+        "compliance",
+        "leadership",
+        "implementation_timeline",
+        "other"
+      ]
+    },
+    "title": {
+      "type": "string"
+    },
+    "content": {
+      "type": "string"
+    },
+    "ai_generated": {
+      "type": "boolean",
+      "default": false
+    },
+    "ai_score": {
+      "type": "number"
+    },
+    "ai_feedback": {
+      "type": "string"
+    },
+    "word_count": {
+      "type": "number"
+    },
+    "complete": {
+      "type": "boolean",
+      "default": false
+    },
+    "approved": {
+      "type": "boolean",
+      "default": false
+    },
+    "last_edited_by": {
+      "type": "string"
+    },
+    "version": {
+      "type": "number",
+      "default": 1
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "school_id",
+    "founder_email",
+    "section_type",
+    "title"
+  ]
+}

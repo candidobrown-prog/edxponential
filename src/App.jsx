@@ -136,6 +136,18 @@ import GraiedxFamily from './pages/graiedx/GraiedxFamily';
 import GraiedxPaiy from './pages/graiedx/GraiedxPaiy';
 import GraiedxPaiyStudent from './pages/graiedx/GraiedxPaiyStudent';
 import GraiedxPaiyTeacher from './pages/graiedx/GraiedxPaiyTeacher';
+import FoundaitionxHome from './pages/foundaitionx/FoundaitionxHome';
+import FoundaitionxLayout from './components/foundaitionx/FoundaitionxLayout';
+import FoundaitionxBuilder from './pages/foundaitionx/FoundaitionxBuilder';
+import FoundaitionxApplication from './pages/foundaitionx/FoundaitionxApplication';
+import FoundaitionxBoaredX from './pages/foundaitionx/FoundaitionxBoaredX';
+import FoundaitionxDocuments from './pages/foundaitionx/FoundaitionxDocuments';
+import FoundaitionxFinance from './pages/foundaitionx/FoundaitionxFinance';
+import FoundaitionxAcademic from './pages/foundaitionx/FoundaitionxAcademic';
+import FoundaitionxCompliance from './pages/foundaitionx/FoundaitionxCompliance';
+import FoundaitionxGovernance from './pages/foundaitionx/FoundaitionxGovernance';
+import FoundaitionxOperations from './pages/foundaitionx/FoundaitionxOperations';
+import FoundaitionxStrategy from './pages/foundaitionx/FoundaitionxStrategy';
 import ClassifiedxHome from './pages/classifiedx/ClassifiedxHome';
 import ClassifiedxLayout from './components/classifiedx/ClassifiedxLayout';
 import ClassifiedxBuilder from './pages/classifiedx/ClassifiedxBuilder';
@@ -251,6 +263,21 @@ const AuthenticatedApp = () => {
         <Route path="/graiedx/paiy" element={<GraiedxPaiy />} />
         <Route path="/graiedx/paiy-student" element={<GraiedxPaiyStudent />} />
         <Route path="/graiedx/paiy-teacher" element={<GraiedxPaiyTeacher />} />
+      </Route>
+
+      {/* Foundaitionx™ */}
+      <Route path="/foundaitionx/home" element={<FoundaitionxHome />} />
+      <Route element={<FoundaitionxLayout />}>
+        <Route path="/foundaitionx/builder" element={<FoundaitionxBuilder />} />
+        <Route path="/foundaitionx/application" element={<FoundaitionxApplication />} />
+        <Route path="/foundaitionx/boaredx" element={<FoundaitionxBoaredX />} />
+        <Route path="/foundaitionx/documents" element={<FoundaitionxDocuments />} />
+        <Route path="/foundaitionx/finance" element={<FoundaitionxFinance />} />
+        <Route path="/foundaitionx/academic" element={<FoundaitionxAcademic />} />
+        <Route path="/foundaitionx/compliance" element={<FoundaitionxCompliance />} />
+        <Route path="/foundaitionx/governance" element={<FoundaitionxGovernance />} />
+        <Route path="/foundaitionx/operations" element={<FoundaitionxOperations />} />
+        <Route path="/foundaitionx/strategy" element={<FoundaitionxStrategy />} />
       </Route>
 
       {/* Classifiedx™ */}
