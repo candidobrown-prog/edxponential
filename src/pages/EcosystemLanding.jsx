@@ -159,11 +159,11 @@ export default function EcosystemLanding() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/30 bg-primary/10 backdrop-blur-sm mb-8">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-crimson-accent-DEFAULT/30 bg-crimson-accent-light/30 backdrop-blur-sm mb-8">
               <motion.div animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 3, ease: "linear" }}>
-                <Sparkles className="w-4 h-4 text-primary" />
+                <Sparkles className="w-4 h-4 text-crimson-accent-DEFAULT" />
               </motion.div>
-              <span className="text-xs font-semibold text-primary uppercase tracking-wider">The Future of Education</span>
+              <span className="text-xs font-semibold text-crimson-accent-DEFAULT uppercase tracking-wider">The Future of Education</span>
             </div>
           </motion.div>
 
@@ -176,7 +176,7 @@ export default function EcosystemLanding() {
           >
             Where Human Potential
             <br />
-            <span className="bg-gradient-to-r from-primary via-primary to-primary/80 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-crimson-accent-DEFAULT to-crimson-accent-dark bg-clip-text text-transparent">
               Meets AI Intelligence
             </span>
           </motion.h1>
@@ -200,7 +200,7 @@ export default function EcosystemLanding() {
           >
             <SafeLink
               to={ECOSYSTEM_ROUTES.ONBOARDING}
-              className="px-8 py-4 rounded-xl bg-black text-white font-semibold hover:bg-black/80 transition-all hover:shadow-2xl flex items-center gap-2 group"
+              className="px-8 py-4 rounded-xl bg-crimson-accent-DEFAULT text-white font-semibold hover:bg-crimson-accent-dark transition-all hover:shadow-lg hover:shadow-crimson-accent-DEFAULT/30 flex items-center gap-2 group"
             >
               <Wand2 className="w-4 h-4" />
               Start Building

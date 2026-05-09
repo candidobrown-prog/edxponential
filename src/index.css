@@ -22,17 +22,24 @@
     --surface: 0 0% 98%;
     --surface-secondary: 0 0% 96%;
     
-    --primary: 219 100% 50%;
+    --primary: 352 71% 32%;
     --primary-foreground: 0 0% 100%;
-    --primary-dark: 219 100% 40%;
-    --primary-light: 219 100% 60%;
+    --primary-dark: 352 71% 27%;
+    --primary-light: 352 71% 50%;
     
     --secondary: 0 0% 98%;
     --secondary-foreground: 0 0% 0%;
     --muted: 0 0% 92%;
     --muted-foreground: 0 0% 40%;
-    --accent: 219 100% 50%;
+    --accent: 352 71% 32%;
     --accent-foreground: 0 0% 100%;
+    
+    /* Harvard Crimson Palette */
+    --crimson-primary: 352 71% 32%;
+    --crimson-dark: 352 71% 27%;
+    --crimson-light: 352 71% 50%;
+    --crimson-tint: 0 100% 98%;
+    --crimson-burgundy: 352 71% 22%;
     
     --text-secondary: 0 0% 40%;
     --text-tertiary: 0 0% 60%;
@@ -130,10 +137,14 @@
     --border-subtle: 0 0% 15%;
     --input: 0 0% 12%;
     
+    --primary: 352 71% 32%;
+    --primary-dark: 352 71% 27%;
+    --primary-light: 352 71% 50%;
+    
     --sidebar-background: 0 0% 10%;
     --sidebar-foreground: 0 0% 70%;
-    --sidebar-accent: 219 100% 20%;
-    --sidebar-accent-foreground: 219 100% 60%;
+    --sidebar-accent: 352 71% 32%;
+    --sidebar-accent-foreground: 352 71% 50%;
     --sidebar-border: 0 0% 20%;
   }
 }

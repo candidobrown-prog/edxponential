@@ -49,6 +49,13 @@ module.exports = {
           dark: 'hsl(var(--primary-dark))',
           light: 'hsl(var(--primary-light))',
         },
+        crimson: {
+          DEFAULT: 'hsl(var(--crimson-primary))',
+          dark: 'hsl(var(--crimson-dark))',
+          light: 'hsl(var(--crimson-light))',
+          burgundy: 'hsl(var(--crimson-burgundy))',
+          tint: 'hsl(var(--crimson-tint))',
+        },
         secondary: {
           DEFAULT: 'hsl(var(--secondary))',
           foreground: 'hsl(var(--secondary-foreground))'
@@ -78,6 +85,13 @@ module.exports = {
           pure: '#2563EB',
           light: '#3B82F6',
           glow: 'rgba(37, 99, 235, 0.15)',
+        },
+        'crimson-accent': {
+          'DEFAULT': '#A51C30',
+          'dark': '#8B1728',
+          'light': '#F9EDEE',
+          'burgundy': '#6E0F1F',
+          'beige': '#F5F1EC',
         },
         gray: {
           black: '#000000',
@@ -193,6 +207,12 @@ module.exports = {
     }
   },
   plugins: [require("tailwindcss-animate")],
+  extend: {
+    boxShadow: {
+      'crimson-glow': '0 0 20px rgba(165, 28, 48, 0.15)',
+      'crimson-sm': '0 2px 8px rgba(165, 28, 48, 0.1)',
+    }
+  }
   safelist: [
     // Keep essential safety classes
     'display-1', 'display-2', 'display-3',
