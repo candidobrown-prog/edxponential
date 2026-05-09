@@ -242,6 +242,58 @@ export default function PublicLanding() {
 
   return (
     <div className="min-h-screen bg-black text-white overflow-x-hidden">
+      {/* ============ TOP INFO BAR ============ */}
+      <div className="border-b border-white/10 bg-black">
+        <div className="max-w-7xl mx-auto px-6 py-8">
+          <div className="grid md:grid-cols-4 gap-12 mb-6">
+            <div>
+              <div className="flex items-center gap-2 mb-4">
+                <span className="text-sm font-black text-white">edXponential</span>
+              </div>
+              <p className="text-xs text-white/60">
+                The world's first human- and AI-powered all-inclusive platform for education leaders.
+              </p>
+            </div>
+
+            <div>
+              <p className="text-xs font-black uppercase tracking-wider text-white/70 mb-3">Platform</p>
+              <ul className="space-y-2 text-xs">
+                <li><button className="hover:text-white/70 transition">Features</button></li>
+                <li><button className="hover:text-white/70 transition">Solutions</button></li>
+                <li><button className="hover:text-white/70 transition">Pricing</button></li>
+              </ul>
+            </div>
+
+            <div>
+              <p className="text-xs font-black uppercase tracking-wider text-white/70 mb-3">Resources</p>
+              <ul className="space-y-2 text-xs">
+                <li><button className="hover:text-white/70 transition">Documentation</button></li>
+                <li><button className="hover:text-white/70 transition">Blog</button></li>
+                <li><button className="hover:text-white/70 transition">Support</button></li>
+              </ul>
+            </div>
+
+            <div>
+              <p className="text-xs font-black uppercase tracking-wider text-white/70 mb-3">Legal</p>
+              <ul className="space-y-2 text-xs">
+                <li><button className="hover:text-white/70 transition">Privacy</button></li>
+                <li><button className="hover:text-white/70 transition">Terms</button></li>
+                <li><button className="hover:text-white/70 transition">Contact</button></li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="border-t border-white/10 pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
+            <p className="text-[11px] text-white/50">© 2026 edXponential. The future of education, built today.</p>
+            <div className="flex gap-6">
+              <button className="text-xs text-white/70 hover:text-white transition">Twitter</button>
+              <button className="text-xs text-white/70 hover:text-white transition">LinkedIn</button>
+              <button className="text-xs text-white/70 hover:text-white transition">GitHub</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* ============ NAVIGATION ============ */}
       <motion.nav
        initial={{ y: -100 }}
@@ -360,14 +412,7 @@ export default function PublicLanding() {
               The Operating System<br />for the Future of Education.
             </motion.h1>
 
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.8 }}
-              className="subtitle text-white/70 max-w-2xl mb-12"
-            >
-              edXponential is the world's first human- and AI-powered all-inclusive platform built exclusively for education leaders — founders, executives, principals, and transformational change agents. Access elite courses, private communities, strategic tools, and on-demand edVising and coaching from some of the world's leading education experts — all designed to help you move faster, lead stronger, and drive measurable results across your school or district. This isn't traditional professional development. This is accelerated transformation. Whether you're building a school, turning one around, scaling a network, or leading system-level change, edXponential gives you the strategy, support, and execution power to achieve extraordinary outcomes. Apply today — and watch your leadership, your team, your district, and your school community become truly edXponential.
-            </motion.p>
+
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -972,57 +1017,7 @@ export default function PublicLanding() {
         </div>
       </section>
 
-      {/* ============ FOOTER ============ */}
-      <footer className="border-t border-white/10 py-16 px-6 bg-black">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-4 gap-12 mb-16">
-            <div>
-              <div className="flex items-center gap-2 mb-6">
-                <span className="text-lg font-black text-white">edXponential</span>
-              </div>
-              <p className="text-sm text-white/70">
-                edXponential is the world's first human- and AI-powered all-inclusive platform built exclusively for education leaders — founders, executives, principals, and transformational change agents. Access elite courses, private communities, strategic tools, and on-demand edVising and coaching from some of the world's leading education experts.
-              </p>
-            </div>
 
-            <div>
-              <p className="text-xs font-black uppercase tracking-wider text-white/70 mb-4">Platform</p>
-              <ul className="space-y-3 text-sm">
-                <li><button className="hover:text-white/70 transition">Features</button></li>
-                <li><button className="hover:text-white/70 transition">Solutions</button></li>
-                <li><button className="hover:text-white/70 transition">Pricing</button></li>
-              </ul>
-            </div>
-
-            <div>
-              <p className="text-xs font-black uppercase tracking-wider text-white/70 mb-4">Resources</p>
-              <ul className="space-y-3 text-sm">
-                <li><button className="hover:text-white/70 transition">Documentation</button></li>
-                <li><button className="hover:text-white/70 transition">Blog</button></li>
-                <li><button className="hover:text-white/70 transition">Support</button></li>
-              </ul>
-            </div>
-
-            <div>
-              <p className="text-xs font-black uppercase tracking-wider text-white/70 mb-4">Legal</p>
-              <ul className="space-y-3 text-sm">
-                <li><button className="hover:text-white/70 transition">Privacy</button></li>
-                <li><button className="hover:text-white/70 transition">Terms</button></li>
-                <li><button className="hover:text-white/70 transition">Contact</button></li>
-              </ul>
-            </div>
-          </div>
-
-          <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-            <p className="text-xs text-white/60">© 2026 edXponential. The future of education, built today.</p>
-            <div className="flex gap-6">
-              <button className="text-xs text-white/70 hover:text-white transition">Twitter</button>
-              <button className="text-xs text-white/70 hover:text-white transition">LinkedIn</button>
-              <button className="text-xs text-white/70 hover:text-white transition">GitHub</button>
-            </div>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }
