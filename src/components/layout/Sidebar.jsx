@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-
-const PUBLIC_PATHS = ['/', '/welcome', '/pricing', '/onboarding'];
 import {
   LayoutDashboard, BookOpen, Users, User, ChevronLeft, ChevronRight,
   LogOut, Star, DollarSign, Briefcase, Layers, TrendingUp, CreditCard,
@@ -14,7 +12,7 @@ import EdxTooltip from '@/components/platform/EdxTooltip';
 import { TOOLTIP } from '@/lib/tooltipData';
 
 const navItems = [
-  { path: '/dashboard', icon: LayoutDashboard, label: 'Dashboard', tooltip: TOOLTIP.dashboard },
+  { path: '/', icon: LayoutDashboard, label: 'Dashboard', tooltip: TOOLTIP.dashboard },
   { path: '/graiedx', icon: GraduationCap, label: 'Graiedx™', tooltip: TOOLTIP.dashboard },
   { path: '/daida-baixed', icon: Database, label: 'Daida Baixed™', tooltip: TOOLTIP.dashboard },
   { path: '/goaled', icon: School, label: 'Goaled Xschool™', tooltip: TOOLTIP.myXschool },
@@ -59,11 +57,6 @@ const platformTiers = [
 export default function Sidebar() {
   const [collapsed, setCollapsed] = useState(false);
   const location = useLocation();
-
-  // Don't render sidebar on public pages
-  if (PUBLIC_PATHS.includes(location.pathname)) {
-    return null;
-  }
 
   return (
     <aside className={cn(

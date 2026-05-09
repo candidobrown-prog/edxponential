@@ -10,8 +10,6 @@ import {
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { AreaChart, Area, BarChart, Bar, LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
-import SessionFeedbackModal from '@/components/coaching/SessionFeedbackModal';
-import { useSessionFeedback } from '@/hooks/useSessionFeedback';
 
 const REVENUE_DATA = [
   { month: 'Nov', revenue: 24000, members: 180 },
@@ -89,7 +87,6 @@ export default function CEOCommandCenter() {
   const [user, setUser] = useState(null);
   const [tab, setTab] = useState('overview');
   const [flags, setFlags] = useState(FEATURE_FLAGS);
-  const { endedSession, setEndedSession } = useSessionFeedback();
 
   useEffect(() => {
     base44.auth.me().then(setUser).catch(() => {});
@@ -108,14 +105,6 @@ export default function CEOCommandCenter() {
 
   return (
     <div className="min-h-screen bg-[#080808] text-white">
-      {/* Session Feedback Modal */}
-      {endedSession && (
-        <SessionFeedbackModal
-          session={endedSession}
-          onClose={() => setEndedSession(null)}
-        />
-      )}
-
       {/* Header */}
       <div className="border-b border-white/5 px-8 py-4 flex items-center justify-between sticky top-0 z-30 bg-[#080808]/95 backdrop-blur-xl">
         <div className="flex items-center gap-4">

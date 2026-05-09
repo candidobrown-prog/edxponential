@@ -7,9 +7,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Textarea } from '@/components/ui/textarea';
 import {
   CheckCircle, XCircle, Star, AlertCircle, RefreshCw, TrendingUp,
-  DollarSign, Users, Zap, Eye, Lock, Filter, Plus
+  DollarSign, Users, Zap, Eye, Lock, Filter
 } from 'lucide-react';
-import CoachMatchingModal from '../components/admin/CoachMatchingModal';
 
 function formatAmount(n) {
   if (!n) return '—';
@@ -42,7 +41,6 @@ export default function AdminMatchControl() {
   const [computing, setComputing] = useState(false);
   const [notesDeal, setNotesDeal] = useState(null);
   const [notesText, setNotesText] = useState('');
-  const [showCoachModal, setShowCoachModal] = useState(false);
 
   useEffect(() => { base44.auth.me().then(setUser).catch(() => {}); }, []);
 
@@ -66,51 +64,10 @@ export default function AdminMatchControl() {
     queryFn: () => base44.entities.Pipeline.list('-created_date', 200),
   });
 
-  const { data: executives = [] } = useQuery({
-    queryKey: ['admin_executives'],
-    queryFn: () => base44.entities.User.filter({ role: 'admin' }, '-created_date', 100),
-  });
-
-  const { data: coaches = [] } = useQuery({
-    queryKey: ['admin_coaches'],
-    queryFn: async () => {
-      const allUsers = await base44.entities.User.list('-created_date', 500);
-      return allUsers.filter(u => u.role === 'coach' || u.title?.toLowerCase().includes('coach'));
-    },
-  });
-
-  const { data: coachPairings = [] } = useQuery({
-    queryKey: ['coach_pairings'],
-    queryFn: async () => {
-      const sessions = await base44.entities.CoachingSession.list('-created_date', 500);
-      return sessions;
-    },
-  });
-
   const updateDealMutation = useMutation({
     mutationFn: ({ id, data }) => base44.entities.DealRoom.update(id, data),
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ['admin_deals'] }),
   });
-
-  const createCoachSessionMutation = useMutation({
-    mutationFn: (data) => base44.entities.CoachingSession.create(data),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['coach_pairings'] });
-      setShowCoachModal(false);
-    },
-  });
-
-  const handleCoachPair = async (executive, coach) => {
-    await createCoachSessionMutation.mutateAsync({
-      executive_email: executive.email,
-      executive_name: executive.full_name,
-      coach_email: coach.email,
-      coach_name: coach.full_name,
-      status: 'scheduled',
-      specialization: coach.specialization || '',
-      notes: `Manually paired by admin from ${user?.full_name}`,
-    });
-  };
 
   const handleApprove = (deal) => {
     updateDealMutation.mutate({ id: deal.id, data: { status: 'active' } });
@@ -150,7 +107,6 @@ export default function AdminMatchControl() {
     { id: 'opportunities', label: `Opportunities (${deals.length})` },
     { id: 'matches', label: `Top Matches (${matches.filter(m => m.score >= 80).length})` },
     { id: 'intros', label: `Intro Requests (${pendingIntros.length})` },
-    { id: 'coaching', label: `Coach Pairings (${coachPairings.length})` },
   ];
 
   if (user?.role !== 'admin') return (
@@ -437,67 +393,6 @@ export default function AdminMatchControl() {
         </div>
       )}
 
-      {/* Coaching tab */}
-      {activeTab === 'coaching' && (
-        <div className="space-y-4">
-          <div className="flex items-center justify-between">
-            <div>
-              <h3 className="font-heading font-semibold text-sm">Active Coach Pairings</h3>
-              <p className="text-xs text-muted-foreground mt-1">{coachPairings.length} total pairings</p>
-            </div>
-            <Button
-              onClick={() => setShowCoachModal(true)}
-              className="bg-black text-white hover:bg-black/85 rounded-xl gap-2 text-xs"
-            >
-              <Plus className="w-3.5 h-3.5" />
-              New Pairing
-            </Button>
-          </div>
-
-          {coachPairings.length === 0 ? (
-            <div className="text-center py-12 bg-card border border-border/60 rounded-2xl">
-              <Users className="w-10 h-10 text-muted-foreground/30 mx-auto mb-3" />
-              <p className="text-sm text-muted-foreground">No coach pairings yet</p>
-            </div>
-          ) : (
-            <div className="space-y-3">
-              {coachPairings.map(pairing => (
-                <div key={pairing.id} className="bg-card border border-border/60 rounded-2xl p-5">
-                  <div className="flex items-start justify-between gap-4 flex-wrap">
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-2 flex-wrap mb-1">
-                        <span className="font-medium text-sm text-black">{pairing.executive_name}</span>
-                        <span className="text-muted-foreground">→</span>
-                        <span className="font-medium text-sm text-black">{pairing.coach_name}</span>
-                      </div>
-                      <div className="flex flex-wrap gap-3 mt-1 text-xs text-muted-foreground">
-                        <span>{pairing.executive_email}</span>
-                        <span>{pairing.coach_email}</span>
-                      </div>
-                      {pairing.specialization && (
-                        <Badge variant="outline" className="mt-2 text-[9px]">
-                          {pairing.specialization}
-                        </Badge>
-                      )}
-                      {pairing.notes && (
-                        <p className="text-xs text-muted-foreground mt-2 italic">{pairing.notes}</p>
-                      )}
-                    </div>
-                    <Badge variant="outline" className={`text-[9px] uppercase tracking-widest shrink-0 ${
-                      pairing.status === 'scheduled' ? 'bg-sky-50 text-sky-700 border-sky-200' :
-                      pairing.status === 'active' ? 'bg-emerald-50 text-emerald-700 border-emerald-200' :
-                      pairing.status === 'completed' ? 'bg-gray-50 text-gray-700 border-gray-200' : ''
-                    }`}>
-                      {pairing.status}
-                    </Badge>
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-      )}
-
       {/* Admin notes modal */}
       {notesDeal && (
         <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
@@ -510,17 +405,6 @@ export default function AdminMatchControl() {
             </div>
           </div>
         </div>
-      )}
-
-      {/* Coach matching modal */}
-      {showCoachModal && (
-        <CoachMatchingModal
-          executives={executives}
-          coaches={coaches}
-          onClose={() => setShowCoachModal(false)}
-          onPair={handleCoachPair}
-          loading={createCoachSessionMutation.isPending}
-        />
       )}
     </div>
   );

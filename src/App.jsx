@@ -1,13 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Toaster } from "@/components/ui/toaster"
 import { QueryClientProvider } from '@tanstack/react-query'
 import { queryClientInstance } from '@/lib/query-client'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { base44 } from '@/api/base44Client';
-import { performanceMonitor } from '@/lib/performance';
-import { preloadCriticalAssets } from '@/lib/optimization';
 import PageNotFound from './lib/PageNotFound';
-import ErrorBoundary from '@/lib/errorBoundary';
 import { AuthProvider, useAuth } from '@/lib/AuthContext';
 import UserNotRegisteredError from '@/components/UserNotRegisteredError';
 import AppLayout from './components/layout/AppLayout';
@@ -17,7 +13,6 @@ import Courses from './pages/Courses';
 import CourseDetail from './pages/CourseDetail';
 import Coaching from './pages/Coaching';
 import CoachingDetail from './pages/CoachingDetail';
-import CoachDirectory from './pages/CoachDirectory';
 import EdVisors from './pages/EdVisors';
 import EdVisorDetail from './pages/EdVisorDetail';
 import EdVestors from './pages/EdVestors';
@@ -59,15 +54,13 @@ import EdXportanteDashboard from './pages/edxportante/EdXportanteDashboard';
 import Xschetails from './pages/Xschetails';
 import XschetailsDashboard from './pages/XschetailsDashboard';
 import PlatformChatbot from './components/platform/PlatformChatbot';
-import AIAssistantBubble from './components/ai/AIAssistantBubble';
-import SmartOnboarding from './components/ai/SmartOnboarding';
+import AskEddy from './components/eddy/AskEddy';
 import AdminFeedback from './pages/AdminFeedback';
 import MyXschool from './pages/MyXschool';
 import NotificationPrefs from './pages/NotificationPrefs';
 import Billing from './pages/Billing';
 import IdentityVerification from './pages/IdentityVerification';
 import AdminEnterprise from './pages/AdminEnterprise';
-import StorageDashboard from './pages/admin/StorageDashboard';
 import TubedXHome from './pages/tubedx/TubedXHome';
 import TubedXDashboard from './pages/tubedx/TubedXDashboard';
 import TubedXVideos from './pages/tubedx/TubedXVideos';
@@ -182,10 +175,8 @@ import OpxPayments from './pages/operationx/OpxPayments';
 import OpxInventory from './pages/operationx/OpxInventory';
 import OpxOpsAI from './pages/operationx/OpxOpsAI';
 import OpxKanban from './pages/operationx/OpxKanban';
-import VendorPortal from './pages/operationx/VendorPortal';
 import ClassifiedxLayout from './components/classifiedx/ClassifiedxLayout';
 import ClassifiedxBuilder from './pages/classifiedx/ClassifiedxBuilder';
-import Integrations from './pages/Integrations';
 import ClassifiedxStudio from './pages/classifiedx/ClassifiedxStudio';
 import ClassifiedxSyllabus from './pages/classifiedx/ClassifiedxSyllabus';
 import ClassifiedxCourses from './pages/classifiedx/ClassifiedxCourses';
@@ -193,24 +184,23 @@ import ClassifiedxAssessments from './pages/classifiedx/ClassifiedxAssessments';
 import ClassifiedxAnalytics from './pages/classifiedx/ClassifiedxAnalytics';
 import ClassifiedxLMS from './pages/classifiedx/ClassifiedxLMS';
 import ClassifiedxPublish from './pages/classifiedx/ClassifiedxPublish';
-import AdvertiserPortal from './pages/AdvertiserPortal';
-import AdminAdManagement from './pages/AdminAdManagement';
 
 const ONBOARDING_KEY = 'edx_onboarding_complete';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
   const [showOnboarding, setShowOnboarding] = React.useState(false);
-  const [user, setUser] = React.useState(null);
 
   React.useEffect(() => {
-    base44.auth.me().then(u => {
-      setUser(u);
-      if (!u.onboarding_complete) {
-        setShowOnboarding(true);
-      }
-    }).catch(() => {});
+    if (!localStorage.getItem(ONBOARDING_KEY)) {
+      setTimeout(() => setShowOnboarding(true), 600);
+    }
   }, []);
+
+  const handleOnboardingComplete = () => {
+    localStorage.setItem(ONBOARDING_KEY, 'true');
+    setShowOnboarding(false);
+  };
 
   // Show loading spinner while checking app public settings or auth
   if (isLoadingPublicSettings || isLoadingAuth) {
@@ -235,11 +225,12 @@ const AuthenticatedApp = () => {
   // Render the main app
   return (
     <>
-    {showOnboarding && <SmartOnboarding user={user} onComplete={() => setShowOnboarding(false)} />}
+    <AnimatePresence>
+      {showOnboarding && <OnboardingFlow onComplete={handleOnboardingComplete} />}
+    </AnimatePresence>
     <Routes>
       {/* ── PUBLIC ROUTES (no sidebar, no app chrome) ── */}
       <Route element={<PublicLayout />}>
-        <Route path="/" element={<Landing />} />
         <Route path="/welcome" element={<Landing />} />
         <Route path="/pricing" element={<PublicPricing />} />
         <Route path="/onboarding" element={<AIOnboarding />} />
@@ -247,11 +238,10 @@ const AuthenticatedApp = () => {
 
       {/* ── AUTHENTICATED APP ROUTES ── */}
       <Route element={<AppLayout />}>
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/" element={<Dashboard />} />
         <Route path="/courses" element={<Courses />} />
         <Route path="/courses/:id" element={<CourseDetail />} />
         <Route path="/coaching" element={<Coaching />} />
-        <Route path="/coaching/directory" element={<CoachDirectory />} />
         <Route path="/coaching/:id" element={<CoachingDetail />} />
         <Route path="/edvisors" element={<EdVisors />} />
         <Route path="/edvisors/:id" element={<EdVisorDetail />} />
@@ -276,13 +266,9 @@ const AuthenticatedApp = () => {
         <Route path="/billing" element={<Billing />} />
         <Route path="/identity-verification" element={<IdentityVerification />} />
         <Route path="/admin/enterprise" element={<AdminEnterprise />} />
-        <Route path="/admin/storage" element={<StorageDashboard />} />
         <Route path="/admin/feedback" element={<AdminFeedback />} />
         <Route path="/admin/payments" element={<PaymentsDashboard />} />
         <Route path="/admin/executive" element={<ExecutiveDashboard />} />
-        <Route path="/admin/ads" element={<AdminAdManagement />} />
-        <Route path="/integrations" element={<Integrations />} />
-        <Route path="/advertiser-portal" element={<AdvertiserPortal />} />
         <Route path="/xschy" element={<XschyXschraiper />} />
         <Route path="/goaled" element={<GoaledXschoolHome />} />
         <Route path="/goaled/my-xschool" element={<MyXschoolPage />} />
@@ -482,7 +468,6 @@ const AuthenticatedApp = () => {
 
       {/* OperationX™ */}
       <Route path="/operationx/home" element={<OperationXHome />} />
-      <Route path="/operationx/vendor" element={<VendorPortal />} />
       <Route element={<OpxLayout />}>
         <Route path="/operationx" element={<OperationXDashboard />} />
         <Route path="/operationx/finance" element={<OpxFinance />} />
@@ -505,29 +490,18 @@ const AuthenticatedApp = () => {
 
 
 function App() {
-  useEffect(() => {
-    // Initialize performance monitoring
-    performanceMonitor.trackPageLoad('App');
-    
-    // Preload critical assets
-    preloadCriticalAssets();
-    
-    // Report to monitoring service if available
-    performanceMonitor.reportToMonitoring();
-  }, []);
 
   return (
-    <ErrorBoundary>
-      <AuthProvider>
-        <QueryClientProvider client={queryClientInstance}>
-          <Router>
-            <AuthenticatedApp />
-            <AIAssistantBubble />
-          </Router>
-          <Toaster />
-        </QueryClientProvider>
-      </AuthProvider>
-    </ErrorBoundary>
+    <AuthProvider>
+      <QueryClientProvider client={queryClientInstance}>
+        <Router>
+          <AuthenticatedApp />
+          <PlatformChatbot />
+          <AskEddy />
+        </Router>
+        <Toaster />
+      </QueryClientProvider>
+    </AuthProvider>
   )
 }
 

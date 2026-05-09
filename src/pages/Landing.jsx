@@ -2,8 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { base44 } from '@/api/base44Client';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { PremiumSection, PremiumHeading, PremiumGrid, PremiumContainer } from '@/components/premium/PremiumLayout';
-import { ArrowRight, ChevronDown, CheckCircle, Sparkles, Globe, Zap, Shield, Users, BookOpen, TrendingUp, Star, BarChart3, Brain, Play } from 'lucide-react';
+import { ArrowRight, ChevronDown, CheckCircle, Sparkles, Globe, Zap, Shield, Users, BookOpen, TrendingUp, Star, BarChart3, Brain } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 
@@ -55,59 +54,23 @@ const features = [
 
 const testimonials = [
   {
-    name: 'Dr. Maya Thompson',
-    title: 'Principal',
-    org: 'Washington Leadership Academy',
-    quote: 'edXponential completely transformed how I lead my school. The platform feels like having an executive leadership team, instructional coach, and AI strategist all in one place. Within weeks, our systems became clearer, our teachers became more aligned, and our culture improved dramatically.',
-    avatar: 'MT',
-    rating: 5,
-    featured: true,
+    name: 'Dr. Amara Osei',
+    title: 'Founder, Horizon Academy Charter',
+    quote: 'edXponential gave me the frameworks and mentorship I needed to triple our enrollment in 18 months. Nothing else comes close.',
+    avatar: 'AO',
   },
   {
-    name: 'Marcus Ellison',
-    title: 'Founder',
-    org: 'Rise Academy Network',
-    quote: 'As a founder, edXponential helped me move from ideas to execution faster than anything I\'ve ever used. The AI guidance, founder tools, and strategic support are next-level.',
-    avatar: 'ME',
-    rating: 5,
+    name: 'Marcus Webb',
+    title: 'Superintendent, Eastside USD',
+    quote: 'The edVisor sessions were transformative. My advisor pushed me in ways that no consulting firm ever had. This is elite-level support.',
+    avatar: 'MW',
   },
   {
-    name: 'Danielle Brooks',
-    title: 'Executive Leadership Coach',
-    org: 'Education Leaders Network',
-    quote: 'I\'ve used dozens of education platforms, and nothing comes close to the simplicity and power of edXponential. It feels premium, intelligent, and actually designed for how educators work.',
-    avatar: 'DB',
-    rating: 5,
+    name: 'Priya Nair',
+    title: 'CEO, BridgeEd Charter Network',
+    quote: 'The community alone is worth it. I found my co-founder in a discussion thread. The platform changed the trajectory of our school.',
+    avatar: 'PN',
   },
-  {
-    name: 'Kevin Richardson',
-    title: 'Chief Academic Officer',
-    org: 'Metro School District',
-    quote: 'The amount of time edXponential saves our organization is unbelievable. The platform has become the operating system for our leadership team.',
-    avatar: 'KR',
-    rating: 5,
-  },
-  {
-    name: 'Jasmine Carter',
-    title: 'Instructional Leader',
-    org: 'Central High School',
-    quote: 'For the first time in my career, I feel like technology actually understands educators. edXponential feels like the future.',
-    avatar: 'JC',
-    rating: 5,
-  },
-];
-
-const impactMetrics = [
-  { value: '10,000+', label: 'Educators Supported' },
-  { value: '250+', label: 'Schools Impacted' },
-  { value: '1M+', label: 'Instructional Minutes Improved' },
-  { value: '98%', label: 'Leader Satisfaction' },
-];
-
-const videoTestimonials = [
-  { name: 'Dr. Sarah Chen', title: 'Superintendent', org: 'Pacific Education Collective', thumb: 'SC' },
-  { name: 'James Martinez', title: 'School Founder', org: 'Transform Academy', thumb: 'JM' },
-  { name: 'Lisa Wong', title: 'Charter Director', org: 'Innovation School Network', thumb: 'LW' },
 ];
 
 const platforms = [
@@ -150,28 +113,28 @@ export default function Landing() {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
+    <div className="min-h-screen bg-[#080808] font-body text-white overflow-x-hidden">
 
       {/* NAV */}
-      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-card border-b border-border shadow-sm' : 'bg-background'}`}>
-        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? 'glass-dark' : 'bg-transparent'}`}>
+        <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           <img
             src="https://media.base44.com/images/public/69f64dbf5c37a4db77e0e302/21d29b7f0_64B1F443-0AD3-403D-B726-ABEF11D14419.png"
             alt="edXponential"
-            className="h-12 w-auto"
+            className="h-8 w-auto brightness-0 invert"
           />
           <div className="hidden md:flex items-center gap-8">
             {NAV_LINKS.map(l => (
               l === 'Pricing'
-                ? <Link key={l} to="/pricing" className="text-sm text-muted-foreground hover:text-black transition-colors duration-200 tracking-wide">{l}</Link>
-                : <a key={l} href="#features" className="text-sm text-muted-foreground hover:text-black transition-colors duration-200 tracking-wide">{l}</a>
+                ? <Link key={l} to="/pricing" className="text-sm text-white/50 hover:text-white transition-colors duration-200 tracking-wide">{l}</Link>
+                : <a key={l} href="#features" className="text-sm text-white/50 hover:text-white transition-colors duration-200 tracking-wide">{l}</a>
             ))}
           </div>
           <div className="flex items-center gap-3">
-            <Link to="/" className="text-sm text-muted-foreground hover:text-black transition-colors">Sign In</Link>
-            <Link to="/pricing" className="text-sm text-muted-foreground hover:text-black transition-colors hidden md:block">Pricing</Link>
+            <Link to="/" className="text-sm text-white/50 hover:text-white transition-colors">Sign In</Link>
+            <Link to="/pricing" className="text-sm text-white/40 hover:text-white transition-colors hidden md:block">Pricing</Link>
             <Link to="/onboarding">
-              <button className="h-9 px-5 rounded-lg bg-black text-white text-sm font-semibold hover:bg-black/85 transition-all duration-200 active:scale-95">
+              <button className="h-9 px-5 rounded-lg bg-white text-black text-sm font-semibold hover:bg-white/90 transition-all duration-200 active:scale-95">
                 Get Started
               </button>
             </Link>
@@ -179,44 +142,37 @@ export default function Landing() {
         </div>
       </nav>
 
-      {/* HERO - Apple-style cinematic hero */}
-      <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
-        {/* Layered premium background */}
-        <div className="absolute inset-0 bg-background" />
-        
-        {/* Cinematic gradient depth */}
-        <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background/50" />
-        
-        {/* Subtle animated particles */}
-        <div className="absolute inset-0 opacity-[0.03]">
-          <div className="absolute top-20 left-10 w-96 h-96 bg-primary rounded-full mix-blend-multiply filter blur-3xl animate-pulse" />
-          <div className="absolute bottom-20 right-10 w-96 h-96 bg-primary/50 rounded-full mix-blend-multiply filter blur-3xl animate-pulse" style={{ animationDelay: '2s' }} />
-        </div>
-        
-        {/* Mesh gradient effect */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(37,99,235,0.08),transparent)]" />
+      {/* HERO */}
+      <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden">
+        {/* Atmospheric background */}
+        <div className="absolute inset-0 bg-[#080808]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_-20%,rgba(255,255,255,0.06),transparent)]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-white/[0.015] blur-[120px] pointer-events-none" />
+
+        {/* Grid lines */}
+        <div className="absolute inset-0 opacity-[0.03]"
+          style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)', backgroundSize: '80px 80px' }} />
 
         <motion.div style={{ y: heroY, opacity: heroOpacity }} className="relative z-10 max-w-5xl mx-auto px-6 text-center">
-          {/* Premium badge with glassmorphism */}
           <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/30 bg-white/10 backdrop-blur-md mb-8 text-xs text-black font-medium tracking-widest uppercase shadow-sm">
-              <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/5 mb-8 text-xs text-white/50 font-medium tracking-widest uppercase">
+              <span className="w-1.5 h-1.5 rounded-full bg-white/40 animate-pulse" />
               Private · Invite-Only · Elite Ecosystem
             </div>
           </motion.div>
 
-          {/* Cinematic hero headline with gradient */}
           <motion.h1
             initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.1 }}
-            className="display-1 text-balance mb-8 leading-[1.1]"
+            className="text-[clamp(2.8rem,8vw,7rem)] font-black tracking-[-0.04em] leading-[0.92] mb-8 text-balance"
           >
-            <span>Where the World's Most<br />Ambitious Education<br />Leaders </span>
-            <span className="bg-gradient-to-r from-primary via-primary to-primary/80 bg-clip-text text-transparent">Build the Future.</span>
+            <span className="text-white">Where the World's Most</span><br />
+            <span className="text-white/25">Ambitious Education</span><br />
+            <span className="text-white">Leaders Build the Future.</span>
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.25 }}
-            className="subtitle text-muted-foreground max-w-2xl mx-auto mb-12"
+            className="text-white/40 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-12 tracking-[-0.01em]"
           >
             edXponential is the operating system for school founders, executives, principals, investors, and educators. Access. Execution. Capital. Community.
           </motion.p>
@@ -226,303 +182,206 @@ export default function Landing() {
             className="flex flex-col sm:flex-row gap-3 justify-center"
           >
             <Link to="/onboarding">
-              <motion.button
-                whileHover={{ y: -2 }}
-                whileTap={{ scale: 0.98 }}
-                className="group h-11 px-8 rounded-lg bg-foreground text-background text-base font-semibold hover:shadow-lg transition-all duration-200 flex items-center gap-2 shadow-md"
-              >
+              <button className="group h-13 px-8 py-3.5 rounded-xl bg-white text-black text-base font-semibold hover:bg-white/90 transition-all duration-200 flex items-center gap-2 active:scale-95">
                 Start Your Journey
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </motion.button>
+              </button>
             </Link>
             <a href="#features">
-              <motion.button
-                whileHover={{ y: -2 }}
-                whileTap={{ scale: 0.98 }}
-                className="h-11 px-8 rounded-lg border border-border bg-background text-foreground text-base font-semibold hover:bg-muted transition-all duration-200 flex items-center gap-2"
-              >
-                Explore <ChevronDown className="w-4 h-4" />
-              </motion.button>
+              <button className="h-13 px-8 py-3.5 rounded-xl border border-white/12 text-white/70 text-base hover:border-white/25 hover:text-white transition-all duration-200 flex items-center gap-2">
+                Explore Platform <ChevronDown className="w-4 h-4" />
+              </button>
             </a>
           </motion.div>
 
-          {/* Cinematic floating platform ecosystem cards */}
+          {/* Floating platform cards */}
           <motion.div
             initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.6 }}
-            className="mt-24 grid grid-cols-4 md:grid-cols-8 gap-2 max-w-3xl mx-auto"
+            className="mt-20 grid grid-cols-4 md:grid-cols-8 gap-2 max-w-3xl mx-auto"
           >
             {platforms.map((p, i) => (
               <motion.div key={p.name}
                 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.7 + i * 0.05 }}
-                whileHover={{ y: -8, transition: { duration: 0.2 } }}
-                className="flex flex-col items-center gap-1.5 p-3 rounded-lg border border-white/40 bg-white/10 backdrop-blur-md hover:border-primary/50 hover:bg-primary/15 transition-all duration-200 cursor-pointer group shadow-lg"
+                className="flex flex-col items-center gap-1.5 p-3 rounded-xl border border-white/6 bg-white/3 hover:border-white/15 hover:bg-white/6 transition-all duration-200 cursor-pointer group"
               >
-                <div className="w-7 h-7 rounded-lg bg-primary/20 flex items-center justify-center group-hover:bg-primary/40 transition-colors">
-                  <span className="text-[8px] font-black text-primary">{p.tag}</span>
+                <div className="w-7 h-7 rounded-lg bg-white/10 flex items-center justify-center group-hover:bg-white/15 transition-colors">
+                  <span className="text-[8px] font-black text-white/70">{p.tag}</span>
                 </div>
-                <span className="text-[9px] font-bold text-black/70 text-center leading-tight hidden md:block">{p.desc}</span>
+                <span className="text-[9px] font-bold text-white/30 text-center leading-tight hidden md:block">{p.desc}</span>
               </motion.div>
             ))}
           </motion.div>
         </motion.div>
 
-        {/* Premium scroll indicator */}
+        {/* Scroll hint */}
         <motion.div
           initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.2 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3"
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
         >
-          <span className="text-[10px] text-black/40 uppercase tracking-widest font-semibold">Scroll to explore</span>
-          <motion.div animate={{ y: [0, 8, 0] }} transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }}>
-            <div className="w-6 h-10 border border-black/20 rounded-full flex items-start justify-center pt-2">
-              <motion.div className="w-1 h-2 bg-primary rounded-full" />
-            </div>
+          <span className="text-[10px] text-white/20 uppercase tracking-widest">Scroll</span>
+          <motion.div animate={{ y: [0, 6, 0] }} transition={{ repeat: Infinity, duration: 2 }}>
+            <ChevronDown className="w-4 h-4 text-white/20" />
           </motion.div>
         </motion.div>
       </section>
 
-      {/* IMPACT METRICS - Cinematic Stats Section */}
-      <PremiumSection spacing="3xl" className="border-y border-border bg-gradient-to-b from-white to-surface/50 relative overflow-hidden">
-        {/* Subtle background glow */}
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-primary/5 opacity-50" />
-        <div className="relative z-10">
-          <PremiumGrid cols={4}>
-            {stats.map((s, i) => (
-              <motion.div key={i}
-                initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }} transition={{ delay: i * 0.1 }}
-                className="text-center group"
-              >
-                <motion.div whileHover={{ scale: 1.05 }} className="relative">
-                  <div className="absolute inset-0 bg-primary/10 rounded-xl blur-xl group-hover:bg-primary/20 transition-colors opacity-0 group-hover:opacity-100" />
-                  <div className="relative">
-                    <div className="display-2 mb-2 bg-gradient-to-r from-black via-black to-black/70 bg-clip-text text-transparent">{s.value}</div>
-                    <div className="label text-muted-foreground group-hover:text-black transition-colors">{s.label}</div>
-                  </div>
-                </motion.div>
-              </motion.div>
-            ))}
-          </PremiumGrid>
+      {/* STATS */}
+      <section className="py-20 px-6 border-y border-white/6 bg-[#0a0a0a]">
+        <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
+          {stats.map((s, i) => (
+            <motion.div key={i}
+              initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }} transition={{ delay: i * 0.1 }}
+              className="text-center"
+            >
+              <div className="text-4xl md:text-5xl font-black text-white tracking-[-0.04em] mb-2">{s.value}</div>
+              <div className="text-xs text-white/30 tracking-widest uppercase">{s.label}</div>
+            </motion.div>
+          ))}
         </div>
-      </PremiumSection>
+      </section>
 
-      {/* FEATURES - Cinematic Platform Section */}
-      <PremiumSection id="features" spacing="4xl">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }} transition={{ duration: 0.6 }}
-          className="text-center mb-20"
-        >
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-primary/30 bg-primary/10 mb-6 text-[10px] text-primary font-bold tracking-widest uppercase">
-            <Sparkles className="w-3 h-3" /> The Full Platform
-          </div>
-          <PremiumHeading
-            level={1}
-            subtitle="Six integrated pillars that compound on each other — intelligence, capital, community, compliance, commerce, and careers."
+      {/* FEATURES */}
+      <section id="features" className="py-32 px-6 bg-[#080808]">
+        <div className="max-w-6xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }} transition={{ duration: 0.6 }}
+            className="text-center mb-20"
           >
-            Everything you need<br /><span className="text-muted-foreground">to lead at scale.</span>
-          </PremiumHeading>
-        </motion.div>
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/8 bg-white/4 mb-6 text-[10px] text-white/40 font-bold tracking-widest uppercase">
+              <Sparkles className="w-3 h-3" /> The Full Platform
+            </div>
+            <h2 className="text-5xl md:text-6xl font-black text-white tracking-[-0.04em] leading-tight mb-5">
+              Everything you need<br /><span className="text-white/25">to lead at scale.</span>
+            </h2>
+            <p className="text-white/35 max-w-xl mx-auto text-lg leading-relaxed">
+              Six integrated pillars that compound on each other — intelligence, capital, community, compliance, commerce, and careers.
+            </p>
+          </motion.div>
 
-        <PremiumGrid cols={3}>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {features.map((f, i) => (
               <motion.div key={i}
                 initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }} transition={{ delay: i * 0.08 }}
-                whileHover={{ y: -8 }}
-                className="group relative rounded-xl border border-border bg-gradient-to-br from-white to-surface/50 p-7 shadow-sm hover:shadow-lg hover:border-primary/30 transition-all duration-300 cursor-pointer"
+                className="group relative p-7 rounded-2xl border border-white/6 bg-white/[0.025] hover:border-white/12 hover:bg-white/[0.04] transition-all duration-300 card-hover cursor-pointer"
               >
-                {/* Hover glow effect */}
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity" />
-                
-                <div className="relative z-10">
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="relative">
                   <div className="flex items-center justify-between mb-5">
-                    <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-all shadow-sm">
-                      <f.icon className="w-5 h-5 text-primary" />
+                    <div className="w-10 h-10 rounded-xl bg-white/8 flex items-center justify-center group-hover:bg-white/12 transition-colors">
+                      <f.icon className="w-5 h-5 text-white/60" />
                     </div>
-                    <span className="label text-primary border border-primary/20 bg-primary/5 px-2 py-1 rounded-md group-hover:border-primary/40 group-hover:bg-primary/10 transition-colors">{f.tag}</span>
-                    </div>
-                    <h3 className="title font-semibold mb-2.5 text-black group-hover:text-primary transition-colors">{f.title}</h3>
-                    <p className="body-sm text-muted-foreground">{f.desc}</p>
-                  <div className="mt-5 flex items-center gap-1.5 text-[11px] font-semibold text-primary group-hover:gap-2 transition-all">
+                    <span className="text-[9px] font-black text-white/25 uppercase tracking-widest border border-white/8 px-2 py-1 rounded-full">{f.tag}</span>
+                  </div>
+                  <h3 className="text-base font-bold text-white mb-2.5 leading-snug tracking-[-0.02em]">{f.title}</h3>
+                  <p className="text-sm text-white/35 leading-relaxed">{f.desc}</p>
+                  <div className="mt-5 flex items-center gap-1.5 text-[11px] font-semibold text-white/25 group-hover:text-white/50 transition-colors">
                     Learn more <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
                   </div>
                 </div>
               </motion.div>
             ))}
-          </PremiumGrid>
-      </PremiumSection>
-
-      {/* PLATFORM ECOSYSTEM - Cinematic Suite Showcase */}
-      <PremiumSection spacing="4xl" className="border-y border-border bg-gradient-to-b from-surface/50 to-background relative overflow-hidden">
-        {/* Animated background elements */}
-        <div className="absolute inset-0 opacity-[0.02]">
-          <div className="absolute top-0 left-1/3 w-96 h-96 bg-primary rounded-full mix-blend-multiply filter blur-3xl" />
-          <div className="absolute bottom-0 right-1/3 w-96 h-96 bg-primary/30 rounded-full mix-blend-multiply filter blur-3xl" />
+          </div>
         </div>
-        
-        <div className="relative z-10">
+      </section>
+
+      {/* PLATFORM ECOSYSTEM STRIP */}
+      <section className="py-20 px-6 bg-[#0a0a0a] border-y border-white/5">
+        <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0 }} whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-14"
           >
-            <p className="label text-primary mb-4">The Platform Suite</p>
-            <h2 className="heading-1">
-              One ecosystem. <span className="text-muted-foreground">Infinite leverage.</span>
+            <p className="text-xs text-white/25 uppercase tracking-widest mb-4 font-bold">The Platform Suite</p>
+            <h2 className="text-4xl font-black text-white tracking-[-0.04em]">
+              One ecosystem. <span className="text-white/25">Infinite leverage.</span>
             </h2>
           </motion.div>
-          <PremiumGrid cols={4}>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
             {platforms.map((p, i) => (
               <motion.div key={p.name}
                 initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }} transition={{ delay: i * 0.05 }}
-                whileHover={{ y: -6, scale: 1.02 }}
-                className="group relative rounded-xl border border-border bg-white/50 backdrop-blur-sm p-5 shadow-sm hover:shadow-md hover:border-primary/40 transition-all duration-300 cursor-pointer overflow-hidden"
+                className="group p-5 rounded-2xl border border-white/6 bg-white/[0.02] hover:border-white/12 hover:bg-white/[0.04] transition-all duration-200 cursor-pointer"
               >
-                {/* Gradient overlay on hover */}
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                
-                <div className="relative z-10">
-                  <div className="w-9 h-9 rounded-md bg-primary/15 flex items-center justify-center mb-3 group-hover:bg-primary/25 transition-all shadow-sm">
-                    <span className="text-[10px] font-bold text-primary">{p.tag}</span>
-                  </div>
-                  <p className="font-semibold text-sm mb-0.5 text-black group-hover:text-primary transition-colors">{p.name}</p>
-                  <p className="body-xs text-muted-foreground">{p.desc}</p>
+                <div className="w-9 h-9 rounded-xl bg-white/8 flex items-center justify-center mb-3 group-hover:bg-white/12 transition-colors">
+                  <span className="text-[10px] font-black text-white/60">{p.tag}</span>
                 </div>
+                <p className="font-bold text-sm text-white mb-0.5 tracking-[-0.02em]">{p.name}</p>
+                <p className="text-[11px] text-white/30">{p.desc}</p>
               </motion.div>
             ))}
-          </PremiumGrid>
+          </div>
         </div>
-      </PremiumSection>
+      </section>
 
-      {/* TESTIMONIALS - Cinematic Social Proof */}
-      <PremiumSection spacing="4xl" className="relative overflow-hidden bg-gradient-to-b from-background via-white/50 to-surface">
-        {/* Subtle background glow */}
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/3 via-transparent to-primary/3 opacity-40" />
-        
-        <div className="relative z-10 max-w-6xl mx-auto">
-          {/* Header */}
+      {/* TESTIMONIALS */}
+      <section className="py-32 px-6 bg-[#080808]">
+        <div className="max-w-5xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-24"
+            className="text-center mb-16"
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-primary/30 bg-primary/10 mb-8 text-[10px] text-primary font-bold tracking-widest uppercase">
-              <Users className="w-3 h-3" /> Trusted by Leaders
+            <div className="flex justify-center gap-0.5 mb-6">
+              {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-white text-white opacity-80" />)}
             </div>
-            <h2 className="text-5xl md:text-6xl font-black text-black tracking-[-0.04em] leading-tight mb-5">
-              Hear from education leaders<br /><span className="text-muted-foreground">already transforming their schools.</span>
+            <h2 className="text-4xl md:text-5xl font-black text-white tracking-[-0.04em]">
+              What leaders say.
             </h2>
-            <p className="text-muted-foreground max-w-xl mx-auto text-lg leading-relaxed">
-              Real stories from principals, founders, coaches, and executives using edXponential every day.
-            </p>
           </motion.div>
-
-          {/* Featured testimonial - Premium spotlight */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            whileHover={{ y: -4 }}
-            className="mb-20 p-10 rounded-2xl border border-primary/20 bg-gradient-to-br from-white via-primary/3 to-white/50 shadow-lg hover:shadow-xl hover:border-primary/40 transition-all duration-300 relative overflow-hidden"
-          >
-            {/* Gradient accent line */}
-            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
-            <div className="flex gap-6 flex-col md:flex-row md:items-center relative z-10">
-              <div className="flex gap-0.5 mb-6">
-                {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-black text-black" />)}
-              </div>
-              <p className="text-2xl md:text-3xl font-black text-black tracking-[-0.03em] leading-tight mb-6">
-                "{testimonials[0].quote}"
-              </p>
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-blue-pure flex items-center justify-center text-white font-black text-sm">
-                  {testimonials[0].avatar}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            {testimonials.map((t, i) => (
+              <motion.div key={i}
+                initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }} transition={{ delay: i * 0.1 }}
+                className="p-7 rounded-2xl border border-white/6 bg-white/[0.025] hover:border-white/10 transition-all"
+              >
+                <div className="flex gap-0.5 mb-5">
+                  {[...Array(5)].map((_, j) => <Star key={j} className="w-3 h-3 fill-white/60 text-white/60" />)}
                 </div>
-                <div>
-                  <div className="font-bold text-black text-lg">{testimonials[0].name}</div>
-                  <div className="text-muted-foreground text-sm">{testimonials[0].title} · {testimonials[0].org}</div>
+                <p className="text-white/55 text-sm leading-relaxed mb-6">"{t.quote}"</p>
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center text-[11px] font-black text-white/60">
+                    {t.avatar}
+                  </div>
+                  <div>
+                    <div className="font-bold text-sm text-white/80 tracking-[-0.01em]">{t.name}</div>
+                    <div className="text-[11px] text-white/30">{t.title}</div>
+                  </div>
                 </div>
-              </div>
-            </div>
-          </motion.div>
-
-                  {/* Testimonial grid */}
-                  <PremiumGrid cols={2} className="mb-20">
-                    {testimonials.slice(1).map((t, i) => (
-                      <motion.div key={i}
-                        initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }} transition={{ delay: (i + 1) * 0.08 }}
-                        className="card-premium p-8 hover-lift"
-                      >
-                        <div className="flex gap-0.5 mb-5">
-                          {[...Array(5)].map((_, j) => <Star key={j} className="w-3.5 h-3.5 fill-black text-black" />)}
-                        </div>
-                        <p className="text-muted-foreground text-base leading-relaxed mb-6">"{t.quote}"</p>
-                        <div className="flex items-center gap-3 pt-4 border-t border-border">
-                          <div className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-[11px] font-black text-blue-pure">
-                            {t.avatar}
-                          </div>
-                          <div>
-                            <div className="font-bold text-sm text-black">{t.name}</div>
-                            <div className="text-[11px] text-muted-foreground">{t.title} · {t.org}</div>
-                          </div>
-                        </div>
-                      </motion.div>
-                    ))}
-                  </PremiumGrid>
-
-          {/* Impact metrics */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="border-t border-border pt-20"
-          >
-            <h3 className="heading-2 mb-12 text-center">Impact at scale</h3>
-            <PremiumGrid cols={4}>
-              {impactMetrics.map((m, i) => (
-                <motion.div key={i}
-                  initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }} transition={{ delay: i * 0.08 }}
-                  className="text-center"
-                >
-                  <div className="display-2 mb-2">{m.value}</div>
-                  <div className="label text-muted-foreground">{m.label}</div>
-                </motion.div>
-              ))}
-            </PremiumGrid>
-          </motion.div>
+              </motion.div>
+            ))}
           </div>
-          </PremiumSection>
-
-      {/* CTA - Premium Conversion Experience */}
-      <PremiumSection spacing="5xl" className="border-t border-border relative overflow-hidden bg-gradient-to-b from-white to-surface">
-        {/* Cinematic background effects */}
-        <div className="absolute inset-0 opacity-[0.04]">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-primary rounded-full mix-blend-multiply filter blur-3xl" />
         </div>
-        
-        <div className="relative z-10">
-          <PremiumContainer className="max-w-2xl">
-            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-primary/40 bg-primary/15 backdrop-blur-sm mb-8 text-[10px] text-primary font-bold tracking-widest uppercase shadow-sm">
-                <Zap className="w-3 h-3" /> Limited Access Open
-              </div>
-              <h2 className="display-1 leading-tight mb-5 bg-gradient-to-r from-black via-black to-black/60 bg-clip-text text-transparent">
-                Ready to lead<br /><span className="text-muted-foreground">exponentially?</span>
-              </h2>
-              <p className="subtitle text-muted-foreground mb-12">Join 500+ education leaders already shaping the future of schools, systems, and communities.</p>
+      </section>
+
+      {/* CTA / EMAIL CAPTURE */}
+      <section className="py-32 px-6 bg-[#0a0a0a] border-t border-white/6">
+        <div className="max-w-2xl mx-auto text-center">
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/8 bg-white/4 mb-8 text-[10px] text-white/40 font-bold tracking-widest uppercase">
+              <Zap className="w-3 h-3" /> Limited Access Open
+            </div>
+            <h2 className="text-5xl md:text-6xl font-black text-white tracking-[-0.04em] leading-tight mb-5">
+              Ready to lead<br /><span className="text-white/25">exponentially?</span>
+            </h2>
+            <p className="text-white/35 mb-12 text-lg leading-relaxed">Join 500+ education leaders already shaping the future of schools, systems, and communities.</p>
             <AnimatePresence mode="wait">
               {submitted ? (
                 <motion.div key="done"
                   initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }}
                   className="flex flex-col items-center gap-4"
                 >
-                  <div className="w-14 h-14 rounded-full bg-muted flex items-center justify-center">
-                    <CheckCircle className="w-7 h-7 text-black/60" />
+                  <div className="w-14 h-14 rounded-full bg-white/8 flex items-center justify-center">
+                    <CheckCircle className="w-7 h-7 text-white/70" />
                   </div>
-                  <p className="text-black/60 text-lg">You're on the list.</p>
-                  <p className="text-muted-foreground text-sm">We'll be in touch soon.</p>
+                  <p className="text-white/60 text-lg">You're on the list.</p>
+                  <p className="text-white/30 text-sm">We'll be in touch soon.</p>
                 </motion.div>
               ) : (
                 <motion.form key="form" onSubmit={handleCapture} className="space-y-3">
@@ -531,7 +390,7 @@ export default function Landing() {
                     placeholder="Your full name"
                     value={name}
                     onChange={e => setName(e.target.value)}
-                    className="w-full h-13 px-5 py-3.5 rounded-xl bg-white border border-border text-black placeholder:text-muted-foreground text-sm focus:outline-none focus:border-foreground/50 transition-colors shadow-soft"
+                    className="w-full h-13 px-5 py-3.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder:text-white/25 text-sm focus:outline-none focus:border-white/25 transition-colors"
                   />
                   <input
                     type="email"
@@ -539,42 +398,39 @@ export default function Landing() {
                     value={email}
                     onChange={e => setEmail(e.target.value)}
                     required
-                    className="w-full h-13 px-5 py-3.5 rounded-xl bg-white border border-border text-black placeholder:text-muted-foreground text-sm focus:outline-none focus:border-foreground/50 transition-colors shadow-soft"
+                    className="w-full h-13 px-5 py-3.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder:text-white/25 text-sm focus:outline-none focus:border-white/25 transition-colors"
                   />
                   <button
                     type="submit"
                     disabled={loading}
-                    className="w-full h-13 py-3.5 rounded-xl bg-gradient-to-r from-primary to-primary/90 text-white text-base font-semibold hover:shadow-lg hover:from-primary/95 hover:to-primary/85 transition-all active:scale-[0.98] disabled:opacity-60 shadow-md relative overflow-hidden group"
+                    className="w-full h-13 py-3.5 rounded-xl bg-white text-black text-base font-semibold hover:bg-white/90 transition-all active:scale-[0.99] disabled:opacity-60"
                   >
-                    {/* Shimmer effect on hover */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-500" />
-                    <span className="relative">{loading ? 'Joining...' : 'Join edXponential →'}</span>
+                    {loading ? 'Joining...' : 'Join edXponential →'}
                   </button>
                 </motion.form>
               )}
             </AnimatePresence>
           </motion.div>
-          </PremiumContainer>
         </div>
-      </PremiumSection>
+      </section>
 
-      {/* FOOTER - Premium Brand Footer */}
-      <footer className="py-12 px-6 bg-gradient-to-t from-surface/80 to-white border-t border-border/50 relative overflow-hidden">
-        <PremiumContainer className="flex flex-col md:flex-row items-center justify-between gap-6">
+      {/* FOOTER */}
+      <footer className="py-14 px-6 bg-[#080808] border-t border-white/5">
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-4">
             <img
               src="https://media.base44.com/images/public/69f64dbf5c37a4db77e0e302/21d29b7f0_64B1F443-0AD3-403D-B726-ABEF11D14419.png"
               alt="edXponential"
-              className="h-6 w-auto opacity-60"
+              className="h-6 w-auto brightness-0 invert opacity-40"
             />
           </div>
           <div className="flex items-center gap-8">
             {['Privacy', 'Terms', 'Contact', 'Press'].map(l => (
-              <a key={l} href="#" className="text-xs text-muted-foreground hover:text-black transition-colors">{l}</a>
+              <a key={l} href="#" className="text-xs text-white/20 hover:text-white/50 transition-colors">{l}</a>
             ))}
           </div>
-          <p className="caption text-muted-foreground">© 2026 edXponential. Built for education leaders.</p>
-        </PremiumContainer>
+          <p className="text-xs text-white/15">© 2026 edXponential. Built for education leaders.</p>
+        </div>
       </footer>
     </div>
   );

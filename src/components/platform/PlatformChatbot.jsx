@@ -1,10 +1,7 @@
-import { useState, useEffect, useRef } from 'react';
-import { useLocation } from 'react-router-dom';
+import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MessageCircle, X, Send, RefreshCw, Sparkles } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
-
-const PUBLIC_PATHS = ['/', '/welcome', '/pricing', '/onboarding'];
 
 const QUICK_PROMPTS = [
   'Help me complete my Xschetails',
@@ -19,7 +16,6 @@ const QUICK_PROMPTS = [
 
 export default function PlatformChatbot() {
   const [open, setOpen] = useState(false);
-  const location = useLocation();
   const [messages, setMessages] = useState([
     {
       role: 'assistant',
@@ -74,11 +70,6 @@ Respond in 2-4 short paragraphs. Be specific, actionable, and reference the user
     setMessages(m => [...m, { role: 'assistant', content: result }]);
     setLoading(false);
   };
-
-  // Hide on public pages
-  if (PUBLIC_PATHS.includes(location.pathname)) {
-    return null;
-  }
 
   return (
     <>
