@@ -60,7 +60,7 @@ export default function LinkErrorBoundary({
         </motion.p>
 
         {/* Error Details (Dev Only) */}
-        {error && typeof process !== 'undefined' && process.env?.NODE_ENV === 'development' && (
+        {error && import.meta.env.DEV && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

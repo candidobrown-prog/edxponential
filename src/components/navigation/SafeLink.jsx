@@ -53,8 +53,10 @@ export const SafeLink = React.forwardRef(({
       if (isExternal) {
         const target = newTab ? '_blank' : '_self';
         window.open(url, target, newTab ? 'noopener,noreferrer' : '');
+        linkValidator.trackNavigation(window.location.pathname, url, true);
       } else {
         const navigated = await safeNavigate(navigate, url, setError);
+        linkValidator.trackNavigation(window.location.pathname, url, navigated);
         if (!navigated && fallbackRoute) {
           navigate(fallbackRoute);
         }
@@ -64,6 +66,7 @@ export const SafeLink = React.forwardRef(({
       setError(err.message);
       onError?.(err);
       linkValidator.reportBrokenLink(url, { error: err.message });
+      linkValidator.trackNavigation(window.location.pathname, url, false);
     } finally {
       if (showLoadingState) {
         setIsLoading(false);
