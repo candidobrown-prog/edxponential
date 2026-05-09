@@ -136,6 +136,16 @@ import GraiedxFamily from './pages/graiedx/GraiedxFamily';
 import GraiedxPaiy from './pages/graiedx/GraiedxPaiy';
 import GraiedxPaiyStudent from './pages/graiedx/GraiedxPaiyStudent';
 import GraiedxPaiyTeacher from './pages/graiedx/GraiedxPaiyTeacher';
+import ClassifiedxHome from './pages/classifiedx/ClassifiedxHome';
+import ClassifiedxLayout from './components/classifiedx/ClassifiedxLayout';
+import ClassifiedxBuilder from './pages/classifiedx/ClassifiedxBuilder';
+import ClassifiedxStudio from './pages/classifiedx/ClassifiedxStudio';
+import ClassifiedxSyllabus from './pages/classifiedx/ClassifiedxSyllabus';
+import ClassifiedxCourses from './pages/classifiedx/ClassifiedxCourses';
+import ClassifiedxAssessments from './pages/classifiedx/ClassifiedxAssessments';
+import ClassifiedxAnalytics from './pages/classifiedx/ClassifiedxAnalytics';
+import ClassifiedxLMS from './pages/classifiedx/ClassifiedxLMS';
+import ClassifiedxPublish from './pages/classifiedx/ClassifiedxPublish';
 
 const ONBOARDING_KEY = 'edx_onboarding_complete';
 
@@ -241,6 +251,19 @@ const AuthenticatedApp = () => {
         <Route path="/graiedx/paiy" element={<GraiedxPaiy />} />
         <Route path="/graiedx/paiy-student" element={<GraiedxPaiyStudent />} />
         <Route path="/graiedx/paiy-teacher" element={<GraiedxPaiyTeacher />} />
+      </Route>
+
+      {/* Classifiedx™ */}
+      <Route path="/classifiedx/home" element={<ClassifiedxHome />} />
+      <Route element={<ClassifiedxLayout />}>
+        <Route path="/classifiedx/builder" element={<ClassifiedxBuilder />} />
+        <Route path="/classifiedx/studio" element={<ClassifiedxStudio />} />
+        <Route path="/classifiedx/syllabus" element={<ClassifiedxSyllabus />} />
+        <Route path="/classifiedx/courses" element={<ClassifiedxCourses />} />
+        <Route path="/classifiedx/assessments" element={<ClassifiedxAssessments />} />
+        <Route path="/classifiedx/analytics" element={<ClassifiedxAnalytics />} />
+        <Route path="/classifiedx/lms" element={<ClassifiedxLMS />} />
+        <Route path="/classifiedx/publish" element={<ClassifiedxPublish />} />
       </Route>
 
       {/* Daida Baixed™ */}
