@@ -204,15 +204,13 @@ module.exports = {
         wider: '0.05em',
         widest: '0.1em',
       },
+      boxShadow: {
+        'crimson-glow': '0 0 20px rgba(165, 28, 48, 0.15)',
+        'crimson-sm': '0 2px 8px rgba(165, 28, 48, 0.1)',
+      },
     }
   },
   plugins: [require("tailwindcss-animate")],
-  extend: {
-    boxShadow: {
-      'crimson-glow': '0 0 20px rgba(165, 28, 48, 0.15)',
-      'crimson-sm': '0 2px 8px rgba(165, 28, 48, 0.1)',
-    }
-  }
   safelist: [
     // Keep essential safety classes
     'display-1', 'display-2', 'display-3',
