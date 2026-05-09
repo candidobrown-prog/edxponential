@@ -361,16 +361,16 @@ export default function PublicLanding() {
               transition={{ delay: 0.2, duration: 0.8 }}
               className="display-1 mb-8 leading-[1.1]"
             >
-              The Future of Education Starts Here
+              The Operating System<br />for the Future of Education.
             </motion.h1>
 
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.8 }}
-              className="subtitle text-black/70 max-w-md mb-12"
+              className="subtitle text-black/70 max-w-2xl mb-12"
             >
-              edXponential is the all-in-one AI-powered ecosystem helping educators, founders, principals, and innovators build better schools, stronger systems, thriving communities, and transformational outcomes.
+              edXponential is the world's first human- and AI-powered all-inclusive platform built exclusively for education leaders — founders, executives, principals, and transformational change agents. Access elite courses, private communities, strategic tools, and on-demand edVising and coaching from some of the world's leading education experts — all designed to help you move faster, lead stronger, and drive measurable results across your school or district. This isn't traditional professional development. This is accelerated transformation. Whether you're building a school, turning one around, scaling a network, or leading system-level change, edXponential gives you the strategy, support, and execution power to achieve extraordinary outcomes. Apply today — and watch your leadership, your team, your district, and your school community become truly edXponential.
             </motion.p>
 
             <motion.div
