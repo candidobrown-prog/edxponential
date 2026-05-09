@@ -251,7 +251,8 @@ export default function PublicLanding() {
             transition={{ duration: 0.6 }}
             className="text-5xl md:text-6xl font-black leading-tight mb-6"
           >
-            Accelerated Transformation for Education Leaders
+            The Operating System for the Future of Education<br />
+            <span className="text-black/70">Because We need a New System</span>
           </motion.h1>
 
           <motion.p
