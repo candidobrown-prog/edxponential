@@ -241,12 +241,12 @@ export default function PublicLanding() {
   };
 
   return (
-    <div className="min-h-screen bg-white text-black overflow-x-hidden">
+    <div className="min-h-screen bg-black text-white overflow-x-hidden">
       {/* ============ NAVIGATION ============ */}
       <motion.nav
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-white/80 border-b border-black/10"
+       initial={{ y: -100 }}
+       animate={{ y: 0 }}
+       className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-black/80 border-b border-white/10"
       >
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           <motion.div
@@ -255,11 +255,7 @@ export default function PublicLanding() {
             className="flex items-center gap-2 group cursor-pointer"
             onClick={() => navigate('/')}
           >
-            <img 
-              src="https://media.base44.com/images/public/69f64dbf5c37a4db77e0e302/21d29b7f0_64B1F443-0AD3-403D-B726-ABEF11D14419.png" 
-              alt="edXponential" 
-              className="h-7 w-auto"
-            />
+            <span className="text-lg font-black text-black">edXponential</span>
           </motion.div>
 
           {/* Desktop Menu */}
@@ -273,7 +269,7 @@ export default function PublicLanding() {
                   scrollToElement(link.href.slice(1));
                 }}
                 whileHover={{ scale: 1.05 }}
-                className="text-sm font-medium hover:text-black/70 transition cursor-pointer"
+                className="text-sm font-medium hover:text-white/70 transition cursor-pointer"
               >
                 {link.label}
               </motion.a>
@@ -284,14 +280,14 @@ export default function PublicLanding() {
             <motion.button
               whileHover={{ scale: 1.05 }}
               onClick={() => navigate('/dashboard')}
-              className="hidden sm:block text-sm px-4 py-2 hover:bg-black/5 rounded-lg transition"
+              className="hidden sm:block text-sm px-4 py-2 hover:bg-white/10 rounded-lg transition"
             >
               Sign In
             </motion.button>
             <motion.button
               whileHover={{ scale: 1.05 }}
               onClick={() => setShowAccessModal(true)}
-              className="text-sm px-6 py-2 bg-black text-white rounded-lg font-semibold hover:bg-black/80 transition"
+              className="text-sm px-6 py-2 bg-white text-black rounded-lg font-semibold hover:bg-white/80 transition"
             >
               Request Access
             </motion.button>
@@ -312,7 +308,7 @@ export default function PublicLanding() {
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
-              className="md:hidden border-t border-black/10 bg-white"
+              className="md:hidden border-t border-white/10 bg-black"
             >
               <div className="px-6 py-4 space-y-3">
                 {navLinks.map((link) => (
@@ -323,7 +319,7 @@ export default function PublicLanding() {
                       e.preventDefault();
                       scrollToElement(link.href.slice(1));
                     }}
-                    className="block w-full text-left text-sm font-medium hover:text-black/70 py-2 cursor-pointer"
+                    className="block w-full text-left text-sm font-medium hover:text-white/70 py-2 cursor-pointer"
                   >
                     {link.label}
                   </a>
@@ -336,7 +332,7 @@ export default function PublicLanding() {
 
       {/* ============ HERO SECTION ============ */}
       <section className="pt-40 pb-32 px-6 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-black/2 via-transparent to-transparent pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-b from-white/2 via-transparent to-transparent pointer-events-none" />
 
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center relative z-10">
           {/* Left Content */}
@@ -349,7 +345,7 @@ export default function PublicLanding() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.1 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-black/10 bg-black/2 mb-8"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/5 mb-8"
             >
               <Rocket className="w-4 h-4" />
               <span className="text-xs font-semibold uppercase tracking-wider">The Future of Education</span>
@@ -368,7 +364,7 @@ export default function PublicLanding() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.8 }}
-              className="subtitle text-black/70 max-w-2xl mb-12"
+              className="subtitle text-white/70 max-w-2xl mb-12"
             >
               edXponential is the world's first human- and AI-powered all-inclusive platform built exclusively for education leaders — founders, executives, principals, and transformational change agents. Access elite courses, private communities, strategic tools, and on-demand edVising and coaching from some of the world's leading education experts — all designed to help you move faster, lead stronger, and drive measurable results across your school or district. This isn't traditional professional development. This is accelerated transformation. Whether you're building a school, turning one around, scaling a network, or leading system-level change, edXponential gives you the strategy, support, and execution power to achieve extraordinary outcomes. Apply today — and watch your leadership, your team, your district, and your school community become truly edXponential.
             </motion.p>
@@ -383,7 +379,7 @@ export default function PublicLanding() {
                 whileHover={{ scale: 1.02, y: -2 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={() => setShowAccessModal(true)}
-                className="px-8 py-4 bg-black text-white rounded-lg font-semibold hover:shadow-xl transition-all flex items-center justify-center gap-2 text-lg"
+                className="px-8 py-4 bg-white text-black rounded-lg font-semibold hover:shadow-xl transition-all flex items-center justify-center gap-2 text-lg"
               >
                 Request Access <ArrowRight className="w-5 h-5" />
               </motion.button>
@@ -421,9 +417,9 @@ export default function PublicLanding() {
               <motion.div
                 animate={{ y: [0, -20, 0] }}
                 transition={{ repeat: Infinity, duration: 4 }}
-                className="absolute top-0 right-0 w-48 h-40 bg-white border border-black/10 rounded-2xl p-6 shadow-lg"
+                className="absolute top-0 right-0 w-48 h-40 bg-white/10 border border-white/20 rounded-2xl p-6 shadow-lg"
               >
-                <div className="text-xs font-semibold text-black/60 mb-4">AI Dashboard</div>
+                <div className="text-xs font-semibold text-white/60 mb-4">AI Dashboard</div>
                 <div className="space-y-2">
                   <div className="h-2 bg-black/10 rounded w-24" />
                   <div className="h-2 bg-black/10 rounded w-32" />
@@ -434,9 +430,9 @@ export default function PublicLanding() {
               <motion.div
                 animate={{ y: [0, 20, 0] }}
                 transition={{ repeat: Infinity, duration: 5, delay: 1 }}
-                className="absolute top-40 left-0 w-48 h-40 bg-white border border-black/10 rounded-2xl p-6 shadow-lg"
+                className="absolute top-40 left-0 w-48 h-40 bg-white/10 border border-white/20 rounded-2xl p-6 shadow-lg"
               >
-                <div className="text-xs font-semibold text-black/60 mb-4">Communities</div>
+                <div className="text-xs font-semibold text-white/60 mb-4">Communities</div>
                 <div className="flex gap-2">
                   <div className="w-8 h-8 bg-black/10 rounded-full" />
                   <div className="w-8 h-8 bg-black/10 rounded-full" />
@@ -447,10 +443,10 @@ export default function PublicLanding() {
               <motion.div
                 animate={{ y: [0, -15, 0] }}
                 transition={{ repeat: Infinity, duration: 4.5, delay: 0.5 }}
-                className="absolute bottom-0 right-12 w-48 h-40 bg-white border border-black/10 rounded-2xl p-6 shadow-lg"
+                className="absolute bottom-0 right-12 w-48 h-40 bg-white/10 border border-white/20 rounded-2xl p-6 shadow-lg"
               >
-                <div className="text-xs font-semibold text-black/60 mb-4">Analytics</div>
-                <div className="h-16 bg-black/5 rounded" />
+                <div className="text-xs font-semibold text-white/60 mb-4">Analytics</div>
+                <div className="h-16 bg-white/5 rounded" />
               </motion.div>
             </div>
           </motion.div>
@@ -458,7 +454,7 @@ export default function PublicLanding() {
       </section>
 
       {/* ============ SOCIAL PROOF ============ */}
-      <section className="py-20 px-6 bg-black/2">
+      <section className="py-20 px-6 bg-white/5">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0 }}
@@ -474,8 +470,8 @@ export default function PublicLanding() {
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
               >
-                <div className="display-2 text-black mb-2">{stat.value}</div>
-                <p className="text-sm text-black/60">{stat.label}</p>
+                <div className="display-2 text-white mb-2">{stat.value}</div>
+                <p className="text-sm text-white/60">{stat.label}</p>
               </motion.div>
             ))}
           </motion.div>
@@ -492,7 +488,7 @@ export default function PublicLanding() {
             className="text-center mb-24"
           >
             <h2 className="heading-1 mb-6">Powerful Features Built for You</h2>
-            <p className="text-xl text-black/70 max-w-2xl mx-auto font-medium">
+            <p className="text-xl text-white/70 max-w-2xl mx-auto font-medium">
               From AI-powered guidance to school operations, we've built everything you need to thrive.
             </p>
           </motion.div>
@@ -510,14 +506,14 @@ export default function PublicLanding() {
                 whileHover={{ y: -8 }}
                 className="group cursor-pointer"
               >
-                <div className="w-14 h-14 rounded-xl bg-black/5 flex items-center justify-center mb-6 group-hover:bg-black/10 transition-colors">
-                  <Icon className="w-7 h-7 text-black" />
+                <div className="w-14 h-14 rounded-xl bg-white/10 flex items-center justify-center mb-6 group-hover:bg-white/20 transition-colors">
+                  <Icon className="w-7 h-7 text-white" />
                 </div>
                 <h3 className="heading-2 mb-4 group-hover:text-black transition">{feature.title}</h3>
-                <p className="text-black/70 mb-6 leading-relaxed">{feature.description}</p>
+                <p className="text-white/70 mb-6 leading-relaxed">{feature.description}</p>
                 <motion.button
                   whileHover={{ x: 4 }}
-                  className="text-sm font-semibold text-black flex items-center gap-2 hover:gap-3 transition-all"
+                   className="text-sm font-semibold text-white flex items-center gap-2 hover:gap-3 transition-all"
                 >
                   Learn More <ArrowRight className="w-4 h-4" />
                 </motion.button>
@@ -529,7 +525,7 @@ export default function PublicLanding() {
       </section>
 
       {/* ============ ASK EDDY SHOWCASE ============ */}
-      <section id="ask-eddy" className="py-32 px-6 bg-black text-white relative overflow-hidden">
+      <section id="ask-eddy" className="py-32 px-6 bg-black/50 text-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl" />
         </div>
@@ -607,7 +603,7 @@ export default function PublicLanding() {
             className="text-center mb-24"
           >
             <h2 className="heading-1 mb-6">Membership for Every Path</h2>
-            <p className="text-xl text-black/70 max-w-2xl mx-auto font-medium">
+            <p className="text-xl text-white/70 max-w-2xl mx-auto font-medium">
               Choose your membership. All tiers include world-class support and platform access.
             </p>
           </motion.div>
@@ -623,32 +619,32 @@ export default function PublicLanding() {
                 whileHover={{ y: -8 }}
                 className={`rounded-2xl p-8 transition-all border flex flex-col ${
                   tier.highlight
-                    ? 'border-black bg-black text-white shadow-2xl md:col-span-3 md:max-w-md md:mx-auto'
-                    : 'border-black/10 bg-white hover:shadow-xl hover:border-black/20'
+                    ? 'border-white bg-white text-black shadow-2xl md:col-span-3 md:max-w-md md:mx-auto'
+                    : 'border-white/10 bg-white/5 hover:shadow-xl hover:border-white/20'
                 }`}
               >
                 {tier.highlight && (
-                  <div className="text-xs font-black uppercase tracking-wider text-white/60 mb-4">
+                  <div className={`text-xs font-black uppercase tracking-wider ${tier.highlight ? 'text-black/60' : 'text-white/60'} mb-4`}>
                     Most Popular
                   </div>
                 )}
 
                 <h3 className="heading-2 mb-2">{tier.name}</h3>
-                <p className={`text-sm mb-6 ${tier.highlight ? 'text-white/70' : 'text-black/70'}`}>
+                <p className={`text-sm mb-6 ${tier.highlight ? 'text-black/70' : 'text-white/70'}`}>
                   {tier.description}
                 </p>
 
                 <div className="mb-2">
                   <span className="display-2">{tier.price}</span>
                   {tier.period && (
-                    <span className={tier.highlight ? 'text-white/70' : 'text-black/70'}>
+                    <span className={tier.highlight ? 'text-black/70' : 'text-white/70'}>
                       {tier.period}
                     </span>
                   )}
                 </div>
                 
                 {tier.trial && (
-                  <p className={`text-xs mb-8 font-medium ${tier.highlight ? 'text-white/60' : 'text-black/60'}`}>
+                  <p className={`text-xs mb-8 font-medium ${tier.highlight ? 'text-black/60' : 'text-white/60'}`}>
                     {tier.trial}
                   </p>
                 )}
@@ -657,8 +653,8 @@ export default function PublicLanding() {
                   whileHover={{ scale: 1.02 }}
                   className={`w-full py-3 rounded-lg font-semibold mb-8 transition-all ${
                     tier.highlight
-                      ? 'bg-white text-black hover:bg-white/90'
-                      : 'bg-black text-white hover:bg-black/80'
+                      ? 'bg-black text-white hover:bg-black/80'
+                      : 'bg-white text-black hover:bg-white/90'
                   }`}
                 >
                   {tier.cta}
@@ -679,7 +675,7 @@ export default function PublicLanding() {
       </section>
 
       {/* ============ COMMUNITIES SECTION ============ */}
-      <section id="communities" className="py-32 px-6 bg-black/2">
+      <section id="communities" className="py-32 px-6 bg-white/5">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -688,7 +684,7 @@ export default function PublicLanding() {
             className="text-center mb-24"
           >
             <h2 className="heading-1 mb-6">Join Global Communities</h2>
-            <p className="text-xl text-black/70 max-w-2xl mx-auto font-medium">
+            <p className="text-xl text-white/70 max-w-2xl mx-auto font-medium">
               Connect with educators, founders, investors, and innovators. Share ideas, get support, scale impact.
             </p>
           </motion.div>
@@ -709,13 +705,13 @@ export default function PublicLanding() {
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
                 whileHover={{ y: -4 }}
-                className="p-8 rounded-2xl bg-white border border-black/10 hover:shadow-lg transition-all cursor-pointer group"
+                className="p-8 rounded-2xl bg-white/5 border border-white/10 hover:shadow-lg transition-all cursor-pointer group"
               >
-                <div className="w-12 h-12 rounded-xl bg-black/5 flex items-center justify-center mb-4 group-hover:bg-black/10 transition-colors">
-                  <Icon className="w-6 h-6 text-black" />
+                <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center mb-4 group-hover:bg-white/20 transition-colors">
+                  <Icon className="w-6 h-6 text-white" />
                 </div>
                 <h3 className="heading-2 mb-2">{community.name}</h3>
-                <p className="text-sm text-black/70 mb-4">{community.members} members</p>
+                <p className="text-sm text-white/70 mb-4">{community.members} members</p>
                 <motion.button
                   whileHover={{ x: 4 }}
                   className="text-sm font-semibold flex items-center gap-2 hover:gap-3 transition-all"
@@ -739,7 +735,7 @@ export default function PublicLanding() {
             className="text-center mb-24"
           >
             <h2 className="heading-1 mb-6">Upcoming Events</h2>
-            <p className="text-xl text-black/70 max-w-2xl mx-auto font-medium">
+            <p className="text-xl text-white/70 max-w-2xl mx-auto font-medium">
               Network, learn, and grow with education leaders from around the world.
             </p>
           </motion.div>
@@ -753,10 +749,10 @@ export default function PublicLanding() {
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
                 whileHover={{ y: -4 }}
-                className="p-8 rounded-2xl bg-white border border-black/10 hover:shadow-lg transition-all"
+                className="p-8 rounded-2xl bg-white/5 border border-white/10 hover:shadow-lg transition-all"
               >
                 <h3 className="heading-2 mb-6">{event.name}</h3>
-                <div className="space-y-4 text-sm text-black/70">
+                <div className="space-y-4 text-sm text-white/70">
                   <div className="flex items-center gap-3">
                     <Calendar className="w-5 h-5" />
                     <span>{event.date}</span>
@@ -772,7 +768,7 @@ export default function PublicLanding() {
                 </div>
                 <motion.button
                   whileHover={{ scale: 1.05 }}
-                  className="mt-6 w-full py-3 bg-black text-white rounded-lg font-semibold hover:bg-black/80 transition"
+                  className="mt-6 w-full py-3 bg-white text-black rounded-lg font-semibold hover:bg-white/90 transition"
                 >
                   Learn More
                 </motion.button>
@@ -783,7 +779,7 @@ export default function PublicLanding() {
       </section>
 
       {/* ============ MARKETPLACE SECTION ============ */}
-      <section id="marketplace" className="py-32 px-6 bg-black/2">
+      <section id="marketplace" className="py-32 px-6 bg-white/5">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -792,7 +788,7 @@ export default function PublicLanding() {
             className="text-center mb-24"
           >
             <h2 className="heading-1 mb-6">EduCartX Marketplace</h2>
-            <p className="text-xl text-black/70 max-w-2xl mx-auto font-medium">
+            <p className="text-xl text-white/70 max-w-2xl mx-auto font-medium">
               Discover thousands of resources, courses, and tools built by educators for educators.
             </p>
           </motion.div>
@@ -813,13 +809,13 @@ export default function PublicLanding() {
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
                 whileHover={{ y: -4 }}
-                className="p-8 rounded-2xl bg-white border border-black/10 hover:shadow-lg transition-all text-center cursor-pointer"
+                className="p-8 rounded-2xl bg-white/5 border border-white/10 hover:shadow-lg transition-all text-center cursor-pointer"
               >
-                <div className="w-12 h-12 rounded-xl bg-black/5 flex items-center justify-center mb-4 mx-auto group-hover:bg-black/10 transition-colors">
-                  <Icon className="w-6 h-6 text-black" />
+                <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center mb-4 mx-auto group-hover:bg-white/20 transition-colors">
+                  <Icon className="w-6 h-6 text-white" />
                 </div>
                 <h3 className="heading-3 mb-2">{category.name}</h3>
-                <p className="text-lg font-black text-black/70">{category.count}</p>
+                <p className="text-lg font-black text-white/70">{category.count}</p>
               </motion.div>
             );
             })}
@@ -837,7 +833,7 @@ export default function PublicLanding() {
             className="text-center mb-24"
           >
             <h2 className="heading-1 mb-6">Stories of Transformation</h2>
-            <p className="text-xl text-black/70 max-w-2xl mx-auto font-medium">
+            <p className="text-xl text-white/70 max-w-2xl mx-auto font-medium">
               Real leaders, real results, real impact.
             </p>
           </motion.div>
@@ -850,15 +846,15 @@ export default function PublicLanding() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="p-8 rounded-2xl bg-white border border-black/10 hover:shadow-lg transition-all"
+                className="p-8 rounded-2xl bg-white/5 border border-white/10 hover:shadow-lg transition-all"
               >
                 <div className="flex items-center gap-4 mb-6">
-                  <div className="w-12 h-12 rounded-full bg-black/10 flex items-center justify-center flex-shrink-0 text-xs font-bold text-black/60">
+                  <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0 text-xs font-bold text-white/60">
                     {testimonial.avatar}
                   </div>
                   <div>
                     <h4 className="font-semibold">{testimonial.name}</h4>
-                    <p className="text-sm text-black/70">{testimonial.role}</p>
+                     <p className="text-sm text-white/70">{testimonial.role}</p>
                   </div>
                 </div>
                 <div className="flex gap-1 mb-4">
@@ -866,7 +862,7 @@ export default function PublicLanding() {
                     <Star key={i} className="w-4 h-4 fill-black" />
                   ))}
                 </div>
-                <p className="text-black/80 italic">"{testimonial.quote}"</p>
+                <p className="text-white/80 italic">"{testimonial.quote}"</p>
               </motion.div>
             ))}
           </div>
@@ -874,7 +870,7 @@ export default function PublicLanding() {
       </section>
 
       {/* ============ REQUEST ACCESS SECTION ============ */}
-      <section id="request-access" className="py-32 px-6 bg-black text-white relative overflow-hidden">
+      <section id="request-access" className="py-32 px-6 bg-black/80 text-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute bottom-0 left-0 w-96 h-96 bg-white rounded-full blur-3xl" />
         </div>
@@ -887,7 +883,7 @@ export default function PublicLanding() {
             className="text-center mb-12"
           >
             <h2 className="display-2 mb-6">Join edXponential Today</h2>
-            <p className="text-xl text-white/80 font-medium">
+            <p className="text-xl text-white/70 font-medium">
               Be part of the movement transforming education. Request access and join thousands of leaders building the future.
             </p>
           </motion.div>
@@ -903,7 +899,7 @@ export default function PublicLanding() {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={() => setShowAccessModal(true)}
-                className="w-full py-4 bg-white text-black rounded-xl font-bold text-lg hover:bg-white/90 transition"
+                className="w-full py-4 bg-white text-black rounded-xl font-bold text-lg hover:bg-white/80 transition"
               >
                 Start Your Application
               </motion.button>
@@ -977,56 +973,52 @@ export default function PublicLanding() {
       </section>
 
       {/* ============ FOOTER ============ */}
-      <footer className="border-t border-black/10 py-16 px-6 bg-white">
+      <footer className="border-t border-white/10 py-16 px-6 bg-black">
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-4 gap-12 mb-16">
             <div>
               <div className="flex items-center gap-2 mb-6">
-                <img 
-                  src="https://media.base44.com/images/public/69f64dbf5c37a4db77e0e302/21d29b7f0_64B1F443-0AD3-403D-B726-ABEF11D14419.png" 
-                  alt="edXponential" 
-                  className="h-7 w-auto"
-                />
+                <span className="text-lg font-black text-white">edXponential</span>
               </div>
-              <p className="text-sm text-black/70">
+              <p className="text-sm text-white/70">
                 edXponential is the world's first human- and AI-powered all-inclusive platform built exclusively for education leaders — founders, executives, principals, and transformational change agents. Access elite courses, private communities, strategic tools, and on-demand edVising and coaching from some of the world's leading education experts.
               </p>
             </div>
 
             <div>
-              <p className="text-xs font-black uppercase tracking-wider text-black/70 mb-4">Platform</p>
+              <p className="text-xs font-black uppercase tracking-wider text-white/70 mb-4">Platform</p>
               <ul className="space-y-3 text-sm">
-                <li><button className="hover:text-black/70 transition">Features</button></li>
-                <li><button className="hover:text-black/70 transition">Solutions</button></li>
-                <li><button className="hover:text-black/70 transition">Pricing</button></li>
+                <li><button className="hover:text-white/70 transition">Features</button></li>
+                <li><button className="hover:text-white/70 transition">Solutions</button></li>
+                <li><button className="hover:text-white/70 transition">Pricing</button></li>
               </ul>
             </div>
 
             <div>
-              <p className="text-xs font-black uppercase tracking-wider text-black/70 mb-4">Resources</p>
+              <p className="text-xs font-black uppercase tracking-wider text-white/70 mb-4">Resources</p>
               <ul className="space-y-3 text-sm">
-                <li><button className="hover:text-black/70 transition">Documentation</button></li>
-                <li><button className="hover:text-black/70 transition">Blog</button></li>
-                <li><button className="hover:text-black/70 transition">Support</button></li>
+                <li><button className="hover:text-white/70 transition">Documentation</button></li>
+                <li><button className="hover:text-white/70 transition">Blog</button></li>
+                <li><button className="hover:text-white/70 transition">Support</button></li>
               </ul>
             </div>
 
             <div>
-              <p className="text-xs font-black uppercase tracking-wider text-black/70 mb-4">Legal</p>
+              <p className="text-xs font-black uppercase tracking-wider text-white/70 mb-4">Legal</p>
               <ul className="space-y-3 text-sm">
-                <li><button className="hover:text-black/70 transition">Privacy</button></li>
-                <li><button className="hover:text-black/70 transition">Terms</button></li>
-                <li><button className="hover:text-black/70 transition">Contact</button></li>
+                <li><button className="hover:text-white/70 transition">Privacy</button></li>
+                <li><button className="hover:text-white/70 transition">Terms</button></li>
+                <li><button className="hover:text-white/70 transition">Contact</button></li>
               </ul>
             </div>
           </div>
 
-          <div className="border-t border-black/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-            <p className="text-xs text-black/60">© 2026 edXponential. The future of education, built today.</p>
+          <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+            <p className="text-xs text-white/60">© 2026 edXponential. The future of education, built today.</p>
             <div className="flex gap-6">
-              <button className="text-xs text-black/70 hover:text-black transition">Twitter</button>
-              <button className="text-xs text-black/70 hover:text-black transition">LinkedIn</button>
-              <button className="text-xs text-black/70 hover:text-black transition">GitHub</button>
+              <button className="text-xs text-white/70 hover:text-white transition">Twitter</button>
+              <button className="text-xs text-white/70 hover:text-white transition">LinkedIn</button>
+              <button className="text-xs text-white/70 hover:text-white transition">GitHub</button>
             </div>
           </div>
         </div>
