@@ -128,25 +128,25 @@ export default function PublicLanding() {
 
   const pricingTiers = [
     {
-      name: 'Leader',
-      price: '$199',
-      period: '/month',
-      description: 'For emerging leaders',
-      features: ['Access to all courses', 'Private community access', 'Monthly coaching session', '1 integrated platform', 'Email support']
+      name: 'Potentials',
+      price: 'Free',
+      description: 'For students & learners',
+      features: ['Access to courses', 'Community', 'Basic analytics']
     },
     {
-      name: 'Transformational',
-      price: '$599',
+      name: 'Principal Park',
+      price: '$499',
       period: '/month',
-      description: 'For school founders & principals',
-      features: ['Full course library', 'Unlimited community access', 'Weekly expert coaching', '4 integrated platforms', 'Priority support', 'Custom intelligence dashboards'],
+      description: 'For school leaders',
+      features: ['Full school OS', 'AI dashboards', 'Team collaboration', 'Analytics suite'],
       highlighted: true
     },
     {
-      name: 'Visionary',
-      price: 'Custom',
-      description: 'For district leaders & executives',
-      features: ['Complete platform access', 'Dedicated advisory board', 'Daily expert access', 'All 8 platforms unlocked', '24/7 concierge support', 'Custom implementation']
+      name: 'Founders Sphere',
+      price: '$299',
+      period: '/month',
+      description: 'For entrepreneurs',
+      features: ['School builder', 'AI planning', 'Board support', 'Founder network']
     }
   ];
 
