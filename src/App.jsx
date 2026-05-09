@@ -231,6 +231,7 @@ const AuthenticatedApp = () => {
     <Routes>
       {/* ── PUBLIC ROUTES (no sidebar, no app chrome) ── */}
       <Route element={<PublicLayout />}>
+        <Route path="/" element={<Landing />} />
         <Route path="/welcome" element={<Landing />} />
         <Route path="/pricing" element={<PublicPricing />} />
         <Route path="/onboarding" element={<AIOnboarding />} />
@@ -238,7 +239,7 @@ const AuthenticatedApp = () => {
 
       {/* ── AUTHENTICATED APP ROUTES ── */}
       <Route element={<AppLayout />}>
-        <Route path="/" element={<Dashboard />} />
+        <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/courses" element={<Courses />} />
         <Route path="/courses/:id" element={<CourseDetail />} />
         <Route path="/coaching" element={<Coaching />} />
