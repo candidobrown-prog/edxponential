@@ -321,9 +321,8 @@ export default function Landing() {
                 </div>
               </motion.div>
             ))}
-          </div>
-        </div>
-      </section>
+          </PremiumGrid>
+      </PremiumSection>
 
       {/* PLATFORM ECOSYSTEM STRIP */}
       <PremiumSection spacing="3xl" className="border-y border-border bg-surface">
@@ -338,25 +337,24 @@ export default function Landing() {
           </h2>
         </motion.div>
         <PremiumGrid cols={4}>
-            {platforms.map((p, i) => (
-              <motion.div key={p.name}
-                initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }} transition={{ delay: i * 0.05 }}
-                className="group card-premium p-5 hover-lift cursor-pointer"
-              >
-                <div className="w-9 h-9 rounded-md bg-muted flex items-center justify-center mb-3 group-hover:bg-primary/10 transition-colors">
-                  <span className="text-[10px] font-bold text-muted-foreground">{p.tag}</span>
-                </div>
-                <p className="font-semibold text-sm mb-0.5">{p.name}</p>
-                <p className="body-xs text-muted-foreground">{p.desc}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+          {platforms.map((p, i) => (
+            <motion.div key={p.name}
+              initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }} transition={{ delay: i * 0.05 }}
+              className="group card-premium p-5 hover-lift cursor-pointer"
+            >
+              <div className="w-9 h-9 rounded-md bg-muted flex items-center justify-center mb-3 group-hover:bg-primary/10 transition-colors">
+                <span className="text-[10px] font-bold text-muted-foreground">{p.tag}</span>
+              </div>
+              <p className="font-semibold text-sm mb-0.5">{p.name}</p>
+              <p className="body-xs text-muted-foreground">{p.desc}</p>
+            </motion.div>
+          ))}
+        </PremiumGrid>
+      </PremiumSection>
 
       {/* PREMIUM TESTIMONIALS */}
-      <section className="py-32 px-6 bg-white">
+      <PremiumSection>
         <div className="max-w-6xl mx-auto">
           {/* Header */}
           <motion.div
@@ -461,19 +459,19 @@ export default function Landing() {
                   </div>
                 </motion.button>
               ))}
-            </PremiumGrid>
-          </motion.div>
+              </PremiumGrid>
+              </motion.div>
 
-          {/* Impact metrics */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="border-t border-border pt-20"
-          >
-            <h3 className="heading-2 mb-12 text-center">
+              {/* Impact metrics */}
+              <motion.div
+              initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="border-t border-border pt-20"
+              >
+              <h3 className="heading-2 mb-12 text-center">
               Impact at scale
-            </h3>
-            <PremiumGrid cols={4}>
+              </h3>
+              <PremiumGrid cols={4}>
               {impactMetrics.map((m, i) => (
                 <motion.div key={i}
                   initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }}
@@ -484,9 +482,10 @@ export default function Landing() {
                   <div className="label text-muted-foreground">{m.label}</div>
                 </motion.div>
               ))}
-            </PremiumGrid>
-          </motion.div>
-      </PremiumSection>
+              </PremiumGrid>
+              </motion.div>
+              </div>
+              </PremiumSection>
 
       {/* CTA / EMAIL CAPTURE */}
       <PremiumSection spacing="5xl" className="border-t border-border">
@@ -543,8 +542,8 @@ export default function Landing() {
       </PremiumSection>
 
       {/* FOOTER */}
-      <footer className="py-14 px-6 bg-secondary border-t border-border">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+      <footer className="py-12 px-6 bg-surface border-t border-border">
+        <PremiumContainer className="flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-4">
             <img
               src="https://media.base44.com/images/public/69f64dbf5c37a4db77e0e302/21d29b7f0_64B1F443-0AD3-403D-B726-ABEF11D14419.png"
@@ -557,8 +556,8 @@ export default function Landing() {
               <a key={l} href="#" className="text-xs text-muted-foreground hover:text-black transition-colors">{l}</a>
             ))}
           </div>
-          <p className="text-xs text-muted-foreground">© 2026 edXponential. Built for education leaders.</p>
-        </div>
+          <p className="caption text-muted-foreground">© 2026 edXponential. Built for education leaders.</p>
+        </PremiumContainer>
       </footer>
     </div>
   );
