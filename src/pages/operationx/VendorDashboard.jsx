@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FileText, Upload, CheckCircle, Clock, AlertCircle, Plus, Download, Eye, X } from 'lucide-react';
+import { FileText, Upload, CheckCircle, Clock, AlertCircle, Plus, Download, Eye } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
+import VendorInvoiceSubmission from '@/components/operationx/VendorInvoiceSubmission';
+import VendorComplianceDocs from '@/components/operationx/VendorComplianceDocs';
 
 export default function VendorDashboard({ vendor }) {
   const [tab, setTab] = useState('invoices'); // invoices, compliance, documents
@@ -233,10 +235,7 @@ export default function VendorDashboard({ vendor }) {
           >
             <div className="flex items-center justify-between">
               <h2 className="text-2xl font-bold text-white">Compliance Documents</h2>
-              <button className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white text-black font-semibold hover:bg-white/90 transition-all">
-                <Upload className="w-4 h-4" />
-                Upload Document
-              </button>
+              <VendorComplianceDocs vendorId={vendor.id} onUpload={() => {}} />
             </div>
 
             <div className="space-y-3">
@@ -282,43 +281,14 @@ export default function VendorDashboard({ vendor }) {
       {/* Invoice Form Modal */}
       <AnimatePresence>
         {showInvoiceForm && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50"
-          >
-            <motion.div
-              initial={{ scale: 0.95, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.95, opacity: 0 }}
-              className="bg-[#0a0a0a] border border-white/10 rounded-2xl p-6 max-w-md w-full"
-            >
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="text-lg font-bold text-white">Submit Invoice</h3>
-                <button onClick={() => setShowInvoiceForm(false)} className="text-white/60 hover:text-white">
-                  <X className="w-5 h-5" />
-                </button>
-              </div>
-              <div className="space-y-4">
-                <div>
-                  <label className="block text-sm font-semibold text-white/80 mb-2">Invoice Number</label>
-                  <input type="text" placeholder="INV-2026-..." className="w-full px-3 py-2 rounded-lg bg-white/5 border border-white/10 text-white placeholder:text-white/30 focus:outline-none focus:border-white/30" />
-                </div>
-                <div>
-                  <label className="block text-sm font-semibold text-white/80 mb-2">Amount</label>
-                  <input type="number" placeholder="0.00" className="w-full px-3 py-2 rounded-lg bg-white/5 border border-white/10 text-white placeholder:text-white/30 focus:outline-none focus:border-white/30" />
-                </div>
-                <div>
-                  <label className="block text-sm font-semibold text-white/80 mb-2">Description</label>
-                  <textarea placeholder="Invoice details..." rows="3" className="w-full px-3 py-2 rounded-lg bg-white/5 border border-white/10 text-white placeholder:text-white/30 focus:outline-none focus:border-white/30" />
-                </div>
-                <button onClick={() => setShowInvoiceForm(false)} className="w-full px-4 py-2.5 rounded-lg bg-white text-black font-semibold hover:bg-white/90 transition-all">
-                  Submit Invoice
-                </button>
-              </div>
-            </motion.div>
-          </motion.div>
+          <VendorInvoiceSubmission
+            vendor={vendor}
+            onClose={() => setShowInvoiceForm(false)}
+            onSubmit={() => {
+              setShowInvoiceForm(false);
+              // Refresh invoices
+            }}
+          />
         )}
       </AnimatePresence>
     </div>
