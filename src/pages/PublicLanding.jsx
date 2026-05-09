@@ -66,30 +66,64 @@ const features = [
 const tiers = [
   {
     name: 'Potentials',
-    price: 'Free',
+    price: '$29',
+    period: '/month',
     description: 'For learners and explorers',
-    features: ['Access to courses', 'Community basics', 'AI guidance', 'Resource library'],
-    cta: 'Get Started',
+    trial: '7-day free trial',
+    features: ['Access to courses', 'Community basics', 'AI guidance', 'Resource library', 'Certificate program'],
+    cta: 'Start Free Trial',
     color: 'from-slate-500 to-slate-600',
   },
   {
     name: 'Principal Park',
-    price: '$499',
+    price: '$49',
     period: '/month',
     description: 'For school leaders',
-    features: ['Full school OS', 'AI dashboards', 'Team collaboration', 'Advanced analytics', 'Priority support'],
+    trial: '7-day free trial',
+    features: ['School dashboard', 'Team collaboration', 'AI guidance', 'Analytics suite', 'Priority support'],
     cta: 'Start Free Trial',
     highlight: true,
     color: 'from-primary to-primary/80',
   },
   {
     name: 'Founders Sphere',
-    price: '$299',
+    price: '$99',
     period: '/month',
     description: 'For founders and entrepreneurs',
-    features: ['School builder tools', 'Pitch optimization', 'Board support', 'Founder network', 'AI planning'],
-    cta: 'Apply Now',
+    trial: '7 days for $19',
+    features: ['School builder tools', 'Pitch optimization', 'Board support', 'Founder network', 'AI planning', 'Investor directory'],
+    cta: 'Start Trial',
     color: 'from-crimson-accent-DEFAULT to-crimson-accent-dark',
+  },
+  {
+    name: 'Executive Entourage',
+    price: '$129',
+    period: '/month',
+    description: 'For district leaders and executives',
+    trial: '7-day free trial',
+    features: ['Full district OS', 'Advanced analytics', 'Team management', 'Executive dashboards', '24/7 support', 'Custom integrations'],
+    cta: 'Start Free Trial',
+    color: 'from-purple-600 to-purple-700',
+  },
+  {
+    name: 'edVisors',
+    price: 'Apply',
+    period: '',
+    description: 'Elite advisory network for educators',
+    trial: '$99 acceptance fee + $249/month',
+    features: ['Premium coaching platform', 'Revenue sharing (up to $15K/month)', 'Private community', 'Course hosting', 'Lead generation'],
+    cta: 'Apply Now',
+    color: 'from-orange-600 to-orange-700',
+  },
+  {
+    name: 'edVestors',
+    price: 'Custom',
+    period: '',
+    description: 'Invitation-based investor platform',
+    trial: 'Private pricing',
+    features: ['Deal room access', 'Founder network', 'Investment opportunities', 'Due diligence tools', 'Custom dashboard'],
+    cta: 'Request Invite',
+    color: 'from-emerald-600 to-emerald-700',
   },
 ];
 
@@ -567,18 +601,18 @@ export default function PublicLanding() {
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-6">
             {tiers.map((tier, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
+                transition={{ delay: i * 0.08 }}
                 whileHover={{ y: -8 }}
-                className={`rounded-2xl p-8 transition-all border ${
+                className={`rounded-2xl p-8 transition-all border flex flex-col ${
                   tier.highlight
-                    ? 'border-black bg-black text-white shadow-2xl md:scale-105'
+                    ? 'border-black bg-black text-white shadow-2xl md:col-span-3 md:max-w-md md:mx-auto'
                     : 'border-black/10 bg-white hover:shadow-xl hover:border-black/20'
                 }`}
               >
@@ -593,7 +627,7 @@ export default function PublicLanding() {
                   {tier.description}
                 </p>
 
-                <div className="mb-8">
+                <div className="mb-2">
                   <span className="display-2">{tier.price}</span>
                   {tier.period && (
                     <span className={tier.highlight ? 'text-white/70' : 'text-black/70'}>
@@ -601,6 +635,12 @@ export default function PublicLanding() {
                     </span>
                   )}
                 </div>
+                
+                {tier.trial && (
+                  <p className={`text-xs mb-8 font-medium ${tier.highlight ? 'text-white/60' : 'text-black/60'}`}>
+                    {tier.trial}
+                  </p>
+                )}
 
                 <motion.button
                   whileHover={{ scale: 1.02 }}
@@ -613,10 +653,10 @@ export default function PublicLanding() {
                   {tier.cta}
                 </motion.button>
 
-                <ul className="space-y-3">
+                <ul className="space-y-3 flex-1">
                   {tier.features.map((feature, j) => (
-                    <li key={j} className="flex items-center gap-3 text-sm">
-                      <CheckCircle className="w-4 h-4 flex-shrink-0" />
+                    <li key={j} className="flex items-start gap-3 text-sm">
+                      <CheckCircle className="w-4 h-4 flex-shrink-0 mt-0.5" />
                       <span>{feature}</span>
                     </li>
                   ))}
