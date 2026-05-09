@@ -185,12 +185,12 @@ export default function PublicLanding() {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="flex items-center gap-3"
+            className="flex items-center gap-2"
           >
-            <div className="w-10 h-10 rounded-lg bg-black flex items-center justify-center">
-              <span className="text-white font-black text-lg">E</span>
+            <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-black to-black/80 flex items-center justify-center shadow-lg">
+              <span className="text-white font-black text-2xl">X</span>
             </div>
-            <span className="font-black text-xl hidden sm:inline">edXponential</span>
+            <span className="font-black text-2xl hidden sm:inline bg-gradient-to-r from-black to-crimson-accent-DEFAULT bg-clip-text text-transparent">edXponential</span>
           </motion.div>
 
           {/* Desktop Menu */}
@@ -209,7 +209,7 @@ export default function PublicLanding() {
             </button>
             <button
               onClick={() => setRequestAccessOpen(true)}
-              className="text-sm px-4 py-2 bg-black text-white rounded-lg hover:bg-black/90 transition"
+              className="text-sm px-4 py-2 bg-gradient-to-r from-crimson-accent-DEFAULT to-crimson-accent-dark text-white rounded-lg hover:shadow-lg transition font-semibold"
             >
               Request Access
             </button>
@@ -249,19 +249,20 @@ export default function PublicLanding() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-5xl md:text-6xl font-black leading-tight mb-6"
+            className="text-6xl md:text-7xl font-black leading-[1.1] mb-8"
           >
-            The Operating System for the Future of Education<br />
-            <span className="text-black/70">Because We need a New System</span>
+            The Operating System<br />
+            <span className="bg-gradient-to-r from-crimson-accent-DEFAULT via-crimson-accent-dark to-black bg-clip-text text-transparent">for the Future of Education</span><br />
+            <span className="text-2xl md:text-3xl text-black/60 font-bold">Because We Need a New System</span>
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-xl md:text-2xl text-black/60 mb-8 leading-relaxed"
+            className="text-xl md:text-2xl text-black/70 mb-8 leading-relaxed font-medium max-w-3xl"
           >
-            The world's first human- and AI-powered all-inclusive platform for founders, principals, executives, and transformational change agents. Elite courses, private communities, strategic tools, and on-demand expert coaching—all designed to help you move faster, lead stronger, and drive measurable results.
+            The world's first <span className="text-crimson-accent-DEFAULT font-black">human- and AI-powered all-in-one operating system</span> for founders, principals, executives, and transformational change agents. Elite courses, private communities, <span className="text-crimson-accent-DEFAULT font-black">strategic intelligence</span>, and on-demand expert coaching—all designed to help you move faster, lead stronger, and drive measurable results.
           </motion.p>
 
           <motion.div
@@ -272,13 +273,13 @@ export default function PublicLanding() {
           >
             <button
               onClick={() => setRequestAccessOpen(true)}
-              className="px-8 py-4 bg-black text-white rounded-lg font-semibold hover:bg-black/90 transition flex items-center gap-2 w-full sm:w-auto justify-center"
+              className="px-8 py-4 bg-gradient-to-r from-crimson-accent-DEFAULT to-crimson-accent-dark text-white rounded-lg font-black hover:shadow-lg hover:shadow-crimson-accent-DEFAULT/30 transition flex items-center gap-2 w-full sm:w-auto justify-center text-lg"
             >
               Get Started Free <ArrowRight className="w-5 h-5" />
             </button>
             <button
               onClick={() => base44.auth.redirectToLogin('/dashboard')}
-              className="px-8 py-4 border border-black/20 rounded-lg font-semibold hover:bg-black/5 transition w-full sm:w-auto"
+              className="px-8 py-4 border-2 border-black rounded-lg font-semibold hover:bg-black hover:text-white transition w-full sm:w-auto"
             >
               View Demo
             </button>
@@ -304,9 +305,9 @@ export default function PublicLanding() {
              viewport={{ once: true }}
              className="text-center mb-16"
            >
-             <h2 className="text-4xl md:text-5xl font-black mb-4">Built for Every Leadership Challenge</h2>
-             <p className="text-xl text-black/60 max-w-2xl mx-auto">
-               From school founding to district transformation, strategic intelligence to daily execution. Everything you need to lead with confidence.
+             <h2 className="text-5xl md:text-6xl font-black mb-6">Built for Every <span className="text-crimson-accent-DEFAULT">Leadership Challenge</span></h2>
+             <p className="text-xl text-black/70 max-w-3xl mx-auto font-medium">
+               From school founding to district transformation, strategic intelligence to daily execution. <span className="text-crimson-accent-DEFAULT font-black">Everything you need to lead with confidence.</span>
              </p>
            </motion.div>
 
@@ -325,8 +326,8 @@ export default function PublicLanding() {
                    <div className="w-12 h-12 rounded-lg bg-black flex items-center justify-center text-white mb-6">
                      <Icon className="w-6 h-6" />
                    </div>
-                   <h3 className="text-xl font-bold mb-3">{feature.title}</h3>
-                   <p className="text-black/60">{feature.description}</p>
+                   <h3 className="text-xl font-black mb-3">{feature.title}</h3>
+                   <p className="text-black/70 font-medium">{feature.description}</p>
                  </motion.div>
                );
              })}
@@ -340,8 +341,8 @@ export default function PublicLanding() {
                viewport={{ once: true }}
                className="text-center mb-16"
              >
-               <h3 className="text-3xl font-bold mb-4">Eight Integrated Platforms</h3>
-               <p className="text-xl text-black/60 max-w-2xl mx-auto">
+               <h3 className="text-4xl font-black mb-6">Eight Integrated <span className="text-crimson-accent-DEFAULT">Platforms</span></h3>
+               <p className="text-xl text-black/70 max-w-2xl mx-auto font-medium">
                  A complete ecosystem of specialized tools, all working together seamlessly
                </p>
              </motion.div>
@@ -380,8 +381,8 @@ export default function PublicLanding() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-black mb-4">Trusted by Education Leaders</h2>
-            <p className="text-xl text-black/60">Founders, principals, superintendents, and change agents who've achieved extraordinary results</p>
+            <h2 className="text-5xl md:text-6xl font-black mb-6">Trusted by Education <span className="text-crimson-accent-DEFAULT">Leaders</span></h2>
+            <p className="text-xl text-black/70 font-medium">Founders, principals, superintendents, and change agents who've achieved extraordinary results</p>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -414,8 +415,8 @@ export default function PublicLanding() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-black mb-4">Investment in Your Transformation</h2>
-            <p className="text-xl text-black/60">Choose your path. All tiers include unlimited platform access and elite expert support.</p>
+            <h2 className="text-5xl md:text-6xl font-black mb-6">Investment in Your <span className="text-crimson-accent-DEFAULT">Transformation</span></h2>
+            <p className="text-xl text-black/70 font-medium">Choose your path. All tiers include unlimited platform access and elite expert support.</p>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -513,15 +514,18 @@ export default function PublicLanding() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 px-6 bg-black text-white">
-        <div className="max-w-4xl mx-auto text-center">
+      <section className="py-24 px-6 bg-gradient-to-br from-black via-black to-crimson-accent-dark/20 text-white relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-crimson-accent-DEFAULT rounded-full blur-3xl" />
+        </div>
+        <div className="max-w-4xl mx-auto text-center relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl md:text-5xl font-black mb-6">The Future of Education Leadership Starts Now</h2>
-            <p className="text-xl text-white/70 mb-8">
+            <h2 className="text-5xl md:text-6xl font-black mb-6">The Future of Education Leadership <span className="text-crimson-accent-light">Starts Now</span></h2>
+            <p className="text-xl text-white/80 mb-8 font-medium">
               Move faster. Lead stronger. Drive measurable results. Apply today and join the leaders transforming education.
             </p>
             <button
@@ -529,7 +533,7 @@ export default function PublicLanding() {
                 window.scrollTo(0, 0);
                 setRequestAccessOpen(true);
               }}
-              className="px-8 py-4 bg-white text-black rounded-lg font-semibold hover:bg-white/90 transition inline-flex items-center gap-2"
+              className="px-8 py-4 bg-gradient-to-r from-crimson-accent-light to-crimson-accent-DEFAULT text-white rounded-lg font-black hover:shadow-2xl hover:shadow-crimson-accent-DEFAULT/50 transition inline-flex items-center gap-2 text-lg"
             >
               Request Access Now <ArrowRight className="w-5 h-5" />
             </button>
