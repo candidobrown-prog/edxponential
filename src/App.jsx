@@ -91,6 +91,7 @@ import XschoresCultureLog from './pages/xschores/XschoresCultureLog';
 import XschoresReports from './pages/xschores/XschoresReports';
 import { AnimatePresence } from 'framer-motion';
 import PaymentsDashboard from './pages/admin/PaymentsDashboard';
+import ExecutiveDashboard from './pages/admin/ExecutiveDashboard';
 
 const ONBOARDING_KEY = 'edx_onboarding_complete';
 
@@ -168,6 +169,7 @@ const AuthenticatedApp = () => {
         <Route path="/admin/enterprise" element={<AdminEnterprise />} />
         <Route path="/admin/feedback" element={<AdminFeedback />} />
         <Route path="/admin/payments" element={<PaymentsDashboard />} />
+        <Route path="/admin/executive" element={<ExecutiveDashboard />} />
       </Route>
 
       {/* TubedX */}

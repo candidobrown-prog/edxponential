@@ -4,7 +4,7 @@ import {
   LayoutDashboard, BookOpen, Users, User, ChevronLeft, ChevronRight,
   LogOut, Star, DollarSign, Briefcase, Layers, TrendingUp, CreditCard,
   Sparkles, ShieldCheck, Zap, Target, Building2, BarChart3, Bell,
-  School, Play, MessageSquare, ShieldAlert, Search,
+  School, Play, MessageSquare, ShieldAlert, Search, Crown,
 } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
 import { cn } from '@/lib/utils';
@@ -29,6 +29,7 @@ const navItems = [
   { path: '/admin-match-control', icon: ShieldCheck, label: 'Match Control', tooltip: TOOLTIP.matchControl },
   { path: '/admin/feedback', icon: MessageSquare, label: 'Feedback Admin', tooltip: TOOLTIP.feedbackAdmin },
   { path: '/admin/payments', icon: CreditCard, label: 'Payment Command', tooltip: TOOLTIP.billing },
+  { path: '/admin/executive', icon: Crown, label: 'Executive Dashboard', tooltip: TOOLTIP.matchControl },
   { path: '/xschores', icon: ShieldAlert, label: 'Xschores™', tooltip: TOOLTIP.xschores },
   { path: '/whalledoh', icon: Search, label: 'WhalleDoh™', tooltip: TOOLTIP.whalleDoh },
   { path: '/billing', icon: CreditCard, label: 'Billing', tooltip: TOOLTIP.billing },
