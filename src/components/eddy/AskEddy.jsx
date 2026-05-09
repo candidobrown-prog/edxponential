@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { base44 } from '@/api/base44Client';
 import { MessageCircle } from 'lucide-react';
-import EddyChatWindow from './EddyChatWindow';
 
 const PUBLIC_PATHS = ['/', '/welcome', '/pricing', '/onboarding'];
 
@@ -39,7 +38,7 @@ export default function AskEddy() {
           </button>
         )}
       </div>
-      {open && <EddyChatWindow user={user} onClose={() => setOpen(false)} />}
+
     </>
   );
 }

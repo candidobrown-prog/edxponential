@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MessageCircle, X, Send, Sparkles, Volume2, VolumeX } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
-import EddyCharacter from './EddyCharacter';
 
 const QUICK_SUGGESTIONS = [
   'Show me my platform overview',
@@ -129,12 +128,13 @@ Respond warmly and helpfully in 1-2 sentences. Be specific, actionable, and refe
             </div>
 
             {/* Messages */}
-            <div className="flex-1 overflow-y-auto p-4 space-y-4">
-              {messages.length === 0 ? (
-                <div className="h-full flex flex-col items-center justify-center gap-4">
-                  <EddyCharacter size="md" expression="friendly" />
-                </div>
-              ) : (
+             <div className="flex-1 overflow-y-auto p-4 space-y-4">
+               {messages.length === 0 ? (
+                 <div className="h-full flex flex-col items-center justify-center gap-4">
+                   <Sparkles className="w-12 h-12 text-white/30" />
+                   <p className="text-white/60 text-sm">Ask me anything about edXponential...</p>
+                 </div>
+               ) : (
                 messages.map((msg, i) => (
                   <motion.div
                     key={i}

@@ -57,8 +57,8 @@ import EdXportanteDashboard from './pages/edxportante/EdXportanteDashboard';
 import Xschetails from './pages/Xschetails';
 import XschetailsDashboard from './pages/XschetailsDashboard';
 import PlatformChatbot from './components/platform/PlatformChatbot';
-import EddyOnboardingFlow from './components/platform/EddyOnboardingFlow';
-import EddyFloatingAssistant from './components/eddy/EddyFloatingAssistant';
+import AIAssistantBubble from './components/ai/AIAssistantBubble';
+import SmartOnboarding from './components/ai/SmartOnboarding';
 import AdminFeedback from './pages/AdminFeedback';
 import MyXschool from './pages/MyXschool';
 import NotificationPrefs from './pages/NotificationPrefs';
@@ -195,14 +195,14 @@ const ONBOARDING_KEY = 'edx_onboarding_complete';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
-  const [showEddyOnboarding, setShowEddyOnboarding] = React.useState(false);
+  const [showOnboarding, setShowOnboarding] = React.useState(false);
   const [user, setUser] = React.useState(null);
 
   React.useEffect(() => {
     base44.auth.me().then(u => {
       setUser(u);
-      if (!u.eddy_onboarding_complete) {
-        setShowEddyOnboarding(true);
+      if (!u.onboarding_complete) {
+        setShowOnboarding(true);
       }
     }).catch(() => {});
   }, []);
@@ -230,9 +230,7 @@ const AuthenticatedApp = () => {
   // Render the main app
   return (
     <>
-    <AnimatePresence mode="wait">
-      {showEddyOnboarding && <EddyOnboardingFlow onComplete={() => setShowEddyOnboarding(false)} />}
-    </AnimatePresence>
+    {showOnboarding && <SmartOnboarding user={user} onComplete={() => setShowOnboarding(false)} />}
     <Routes>
       {/* ── PUBLIC ROUTES (no sidebar, no app chrome) ── */}
       <Route element={<PublicLayout />}>
@@ -514,7 +512,7 @@ function App() {
       <QueryClientProvider client={queryClientInstance}>
         <Router>
           <AuthenticatedApp />
-          <EddyFloatingAssistant />
+          <AIAssistantBubble />
         </Router>
         <Toaster />
       </QueryClientProvider>

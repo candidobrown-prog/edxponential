@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
-import { ChevronRight, ArrowLeft } from 'lucide-react';
-import EddyCharacter from '@/components/eddy/EddyCharacter';
+import { ChevronRight, ArrowLeft, Sparkles } from 'lucide-react';
 
 const QUESTIONS = [
   {
@@ -94,8 +93,8 @@ export default function OnboardingQuestions({ responses, onComplete, onBack }) {
             className="text-center mb-12"
           >
             <div className="flex justify-center mb-8">
-              <EddyCharacter mood="thoughtful" size="md" />
-            </div>
+               <Sparkles className="w-16 h-16 text-white/30" />
+             </div>
             <h2 className="text-4xl font-black text-white tracking-[-0.03em] mb-3">
               {currentQuestion.title}
             </h2>
