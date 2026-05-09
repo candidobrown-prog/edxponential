@@ -71,7 +71,7 @@ export default function SmartNavigation({ tier = 'Principal Park' }) {
       {/* Mobile Toggle */}
       <button
         onClick={() => setExpanded(!expanded)}
-        className="lg:hidden fixed bottom-6 right-6 z-40 w-12 h-12 rounded-xl bg-black border border-white/10 flex items-center justify-center text-white hover:border-white/20 transition-all"
+        className="lg:hidden fixed bottom-6 right-6 z-40 w-12 h-12 rounded-xl bg-black text-white flex items-center justify-center hover:bg-black/85 transition-all shadow-soft"
       >
         {expanded ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
       </button>
@@ -80,19 +80,19 @@ export default function SmartNavigation({ tier = 'Principal Park' }) {
       <motion.div
         initial={false}
         animate={{ width: expanded ? 220 : 0 }}
-        className="hidden lg:block fixed left-0 top-0 h-screen bg-[#080808] border-r border-white/5 overflow-hidden transition-all duration-300 z-40"
+        className="hidden lg:block fixed left-0 top-0 h-screen bg-white border-r border-border overflow-hidden transition-all duration-300 z-40"
       >
         <div className="w-220 p-6 space-y-8 h-full overflow-y-auto">
           {/* Logo */}
           <div className="space-y-1">
-            <p className="text-[10px] uppercase tracking-widest font-bold text-white/40">
+            <p className="text-[10px] uppercase tracking-widest font-bold text-muted-foreground">
               {tier}
             </p>
           </div>
 
           {/* Main Navigation */}
           <div className="space-y-2">
-            <p className="text-[10px] uppercase tracking-widest font-bold text-white/30 px-3 mb-3">
+            <p className="text-[10px] uppercase tracking-widest font-bold text-muted-foreground px-3 mb-3">
               My Tools
             </p>
             {config.main.map(item => (
@@ -100,8 +100,8 @@ export default function SmartNavigation({ tier = 'Principal Park' }) {
                 <button
                   className={`w-full text-left px-3 py-2.5 rounded-lg text-sm transition-all ${
                     location.pathname === item.path
-                      ? 'bg-white/10 text-white font-semibold'
-                      : 'text-white/50 hover:text-white/80'
+                      ? 'bg-muted text-black font-semibold'
+                      : 'text-muted-foreground hover:text-black hover:bg-muted/60'
                   }`}
                 >
                   <span className="mr-2">{item.icon}</span>
@@ -115,7 +115,7 @@ export default function SmartNavigation({ tier = 'Principal Park' }) {
           <div>
             <button
               onClick={() => setShowSecondary(!showSecondary)}
-              className="w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-sm text-white/50 hover:text-white/80 transition-all group"
+              className="w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-sm text-muted-foreground hover:text-black hover:bg-muted/60 transition-all group"
             >
               <span>
                 <span className="mr-2">⭐</span>
@@ -138,7 +138,7 @@ export default function SmartNavigation({ tier = 'Principal Park' }) {
               >
                 {config.secondary.map(item => (
                   <Link key={item.path} to={item.path}>
-                    <button className="w-full text-left px-3 py-2 rounded-lg text-xs text-white/30 hover:text-white/60 transition-all">
+                    <button className="w-full text-left px-3 py-2 rounded-lg text-xs text-muted-foreground hover:text-black hover:bg-muted/40 transition-all">
                       <span className="mr-2">{item.icon}</span>
                       {item.label}
                     </button>
@@ -149,9 +149,9 @@ export default function SmartNavigation({ tier = 'Principal Park' }) {
           </div>
 
           {/* Settings */}
-          <div className="pt-4 border-t border-white/5 space-y-2">
+          <div className="pt-4 border-t border-border space-y-2">
             <Link to="/profile">
-              <button className="w-full text-left px-3 py-2.5 rounded-lg text-sm text-white/50 hover:text-white/80 transition-all">
+              <button className="w-full text-left px-3 py-2.5 rounded-lg text-sm text-muted-foreground hover:text-black hover:bg-muted/60 transition-all">
                 <span className="mr-2">⚙️</span>
                 Settings
               </button>
@@ -166,16 +166,16 @@ export default function SmartNavigation({ tier = 'Principal Park' }) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="lg:hidden fixed inset-0 top-14 z-30 bg-[#080808]/95 backdrop-blur-xl p-6 space-y-6 overflow-y-auto"
+          className="lg:hidden fixed inset-0 top-14 z-30 bg-white/95 backdrop-blur-sm p-6 space-y-6 overflow-y-auto"
         >
           <div>
-            <p className="text-[10px] uppercase tracking-widest font-bold text-white/30 mb-3">
+            <p className="text-[10px] uppercase tracking-widest font-bold text-muted-foreground mb-3">
               Main Tools
             </p>
             <div className="space-y-2">
               {config.main.map(item => (
                 <Link key={item.path} to={item.path} onClick={() => setExpanded(false)}>
-                  <button className="w-full text-left px-4 py-3 rounded-lg text-white/70 hover:text-white hover:bg-white/5 transition-all">
+                  <button className="w-full text-left px-4 py-3 rounded-lg text-muted-foreground hover:text-black hover:bg-muted/60 transition-all">
                     <span className="mr-2">{item.icon}</span>
                     {item.label}
                   </button>
@@ -185,13 +185,13 @@ export default function SmartNavigation({ tier = 'Principal Park' }) {
           </div>
 
           <div>
-            <p className="text-[10px] uppercase tracking-widest font-bold text-white/30 mb-3">
+            <p className="text-[10px] uppercase tracking-widest font-bold text-muted-foreground mb-3">
               Explore
             </p>
             <div className="space-y-2">
               {config.secondary.map(item => (
                 <Link key={item.path} to={item.path} onClick={() => setExpanded(false)}>
-                  <button className="w-full text-left px-4 py-3 rounded-lg text-white/50 hover:text-white/70 hover:bg-white/5 transition-all">
+                  <button className="w-full text-left px-4 py-3 rounded-lg text-muted-foreground hover:text-black hover:bg-muted/60 transition-all">
                     <span className="mr-2">{item.icon}</span>
                     {item.label}
                   </button>

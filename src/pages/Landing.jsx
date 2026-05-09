@@ -113,28 +113,28 @@ export default function Landing() {
   };
 
   return (
-    <div className="min-h-screen bg-[#080808] font-body text-white overflow-x-hidden">
+    <div className="min-h-screen bg-white font-body text-black overflow-x-hidden">
 
       {/* NAV */}
-      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? 'glass-dark' : 'bg-transparent'}`}>
+      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? 'bg-white/95 backdrop-blur-sm border-b border-border shadow-soft' : 'bg-transparent'}`}>
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           <img
             src="https://media.base44.com/images/public/69f64dbf5c37a4db77e0e302/21d29b7f0_64B1F443-0AD3-403D-B726-ABEF11D14419.png"
             alt="edXponential"
-            className="h-8 w-auto brightness-0 invert"
+            className="h-8 w-auto"
           />
           <div className="hidden md:flex items-center gap-8">
             {NAV_LINKS.map(l => (
               l === 'Pricing'
-                ? <Link key={l} to="/pricing" className="text-sm text-white/50 hover:text-white transition-colors duration-200 tracking-wide">{l}</Link>
-                : <a key={l} href="#features" className="text-sm text-white/50 hover:text-white transition-colors duration-200 tracking-wide">{l}</a>
+                ? <Link key={l} to="/pricing" className="text-sm text-muted-foreground hover:text-black transition-colors duration-200 tracking-wide">{l}</Link>
+                : <a key={l} href="#features" className="text-sm text-muted-foreground hover:text-black transition-colors duration-200 tracking-wide">{l}</a>
             ))}
           </div>
           <div className="flex items-center gap-3">
-            <Link to="/" className="text-sm text-white/50 hover:text-white transition-colors">Sign In</Link>
-            <Link to="/pricing" className="text-sm text-white/40 hover:text-white transition-colors hidden md:block">Pricing</Link>
+            <Link to="/" className="text-sm text-muted-foreground hover:text-black transition-colors">Sign In</Link>
+            <Link to="/pricing" className="text-sm text-muted-foreground hover:text-black transition-colors hidden md:block">Pricing</Link>
             <Link to="/onboarding">
-              <button className="h-9 px-5 rounded-lg bg-white text-black text-sm font-semibold hover:bg-white/90 transition-all duration-200 active:scale-95">
+              <button className="h-9 px-5 rounded-lg bg-black text-white text-sm font-semibold hover:bg-black/85 transition-all duration-200 active:scale-95">
                 Get Started
               </button>
             </Link>
@@ -144,35 +144,30 @@ export default function Landing() {
 
       {/* HERO */}
       <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Atmospheric background */}
-        <div className="absolute inset-0 bg-[#080808]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_-20%,rgba(255,255,255,0.06),transparent)]" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-white/[0.015] blur-[120px] pointer-events-none" />
-
-        {/* Grid lines */}
-        <div className="absolute inset-0 opacity-[0.03]"
-          style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)', backgroundSize: '80px 80px' }} />
+        {/* Clean white background */}
+        <div className="absolute inset-0 bg-white" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_-20%,rgba(0,0,0,0.02),transparent)]" />
 
         <motion.div style={{ y: heroY, opacity: heroOpacity }} className="relative z-10 max-w-5xl mx-auto px-6 text-center">
           <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/5 mb-8 text-xs text-white/50 font-medium tracking-widest uppercase">
-              <span className="w-1.5 h-1.5 rounded-full bg-white/40 animate-pulse" />
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border bg-muted mb-8 text-xs text-muted-foreground font-medium tracking-widest uppercase">
+              <span className="w-1.5 h-1.5 rounded-full bg-black/40 animate-pulse" />
               Private · Invite-Only · Elite Ecosystem
             </div>
           </motion.div>
 
           <motion.h1
             initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.1 }}
-            className="text-[clamp(2.8rem,8vw,7rem)] font-black tracking-[-0.04em] leading-[0.92] mb-8 text-balance"
+            className="text-[clamp(2.8rem,8vw,7rem)] font-black tracking-[-0.04em] leading-[0.92] mb-8 text-balance text-black"
           >
-            <span className="text-white">Where the World's Most</span><br />
-            <span className="text-white/25">Ambitious Education</span><br />
-            <span className="text-white">Leaders Build the Future.</span>
+            <span>Where the World's Most</span><br />
+            <span className="text-muted-foreground">Ambitious Education</span><br />
+            <span>Leaders Build the Future.</span>
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.25 }}
-            className="text-white/40 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-12 tracking-[-0.01em]"
+            className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-12 tracking-[-0.01em]"
           >
             edXponential is the operating system for school founders, executives, principals, investors, and educators. Access. Execution. Capital. Community.
           </motion.p>
@@ -182,13 +177,13 @@ export default function Landing() {
             className="flex flex-col sm:flex-row gap-3 justify-center"
           >
             <Link to="/onboarding">
-              <button className="group h-13 px-8 py-3.5 rounded-xl bg-white text-black text-base font-semibold hover:bg-white/90 transition-all duration-200 flex items-center gap-2 active:scale-95">
+              <button className="group h-13 px-8 py-3.5 rounded-xl bg-black text-white text-base font-semibold hover:bg-black/85 transition-all duration-200 flex items-center gap-2 active:scale-95">
                 Start Your Journey
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </button>
             </Link>
             <a href="#features">
-              <button className="h-13 px-8 py-3.5 rounded-xl border border-white/12 text-white/70 text-base hover:border-white/25 hover:text-white transition-all duration-200 flex items-center gap-2">
+              <button className="h-13 px-8 py-3.5 rounded-xl border border-border text-foreground text-base hover:border-foreground/50 hover:bg-muted transition-all duration-200 flex items-center gap-2">
                 Explore Platform <ChevronDown className="w-4 h-4" />
               </button>
             </a>
@@ -203,12 +198,12 @@ export default function Landing() {
               <motion.div key={p.name}
                 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.7 + i * 0.05 }}
-                className="flex flex-col items-center gap-1.5 p-3 rounded-xl border border-white/6 bg-white/3 hover:border-white/15 hover:bg-white/6 transition-all duration-200 cursor-pointer group"
+                className="flex flex-col items-center gap-1.5 p-3 rounded-xl border border-border bg-muted hover:border-foreground/30 hover:bg-muted/80 transition-all duration-200 cursor-pointer group shadow-soft"
               >
-                <div className="w-7 h-7 rounded-lg bg-white/10 flex items-center justify-center group-hover:bg-white/15 transition-colors">
-                  <span className="text-[8px] font-black text-white/70">{p.tag}</span>
+                <div className="w-7 h-7 rounded-lg bg-black/8 flex items-center justify-center group-hover:bg-black/12 transition-colors">
+                  <span className="text-[8px] font-black text-black/60">{p.tag}</span>
                 </div>
-                <span className="text-[9px] font-bold text-white/30 text-center leading-tight hidden md:block">{p.desc}</span>
+                <span className="text-[9px] font-bold text-muted-foreground text-center leading-tight hidden md:block">{p.desc}</span>
               </motion.div>
             ))}
           </motion.div>
@@ -219,15 +214,15 @@ export default function Landing() {
           initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.2 }}
           className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
         >
-          <span className="text-[10px] text-white/20 uppercase tracking-widest">Scroll</span>
+          <span className="text-[10px] text-muted-foreground/60 uppercase tracking-widest">Scroll</span>
           <motion.div animate={{ y: [0, 6, 0] }} transition={{ repeat: Infinity, duration: 2 }}>
-            <ChevronDown className="w-4 h-4 text-white/20" />
+            <ChevronDown className="w-4 h-4 text-muted-foreground/40" />
           </motion.div>
         </motion.div>
       </section>
 
       {/* STATS */}
-      <section className="py-20 px-6 border-y border-white/6 bg-[#0a0a0a]">
+      <section className="py-20 px-6 border-y border-border bg-muted/30">
         <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
           {stats.map((s, i) => (
             <motion.div key={i}
@@ -235,50 +230,49 @@ export default function Landing() {
               viewport={{ once: true }} transition={{ delay: i * 0.1 }}
               className="text-center"
             >
-              <div className="text-4xl md:text-5xl font-black text-white tracking-[-0.04em] mb-2">{s.value}</div>
-              <div className="text-xs text-white/30 tracking-widest uppercase">{s.label}</div>
+              <div className="text-4xl md:text-5xl font-black text-black tracking-[-0.04em] mb-2">{s.value}</div>
+              <div className="text-xs text-muted-foreground tracking-widest uppercase">{s.label}</div>
             </motion.div>
           ))}
         </div>
       </section>
 
       {/* FEATURES */}
-      <section id="features" className="py-32 px-6 bg-[#080808]">
+      <section id="features" className="py-32 px-6 bg-white">
         <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }} transition={{ duration: 0.6 }}
             className="text-center mb-20"
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/8 bg-white/4 mb-6 text-[10px] text-white/40 font-bold tracking-widest uppercase">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-border bg-muted mb-6 text-[10px] text-muted-foreground font-bold tracking-widest uppercase">
               <Sparkles className="w-3 h-3" /> The Full Platform
             </div>
-            <h2 className="text-5xl md:text-6xl font-black text-white tracking-[-0.04em] leading-tight mb-5">
-              Everything you need<br /><span className="text-white/25">to lead at scale.</span>
+            <h2 className="text-5xl md:text-6xl font-black text-black tracking-[-0.04em] leading-tight mb-5">
+              Everything you need<br /><span className="text-muted-foreground">to lead at scale.</span>
             </h2>
-            <p className="text-white/35 max-w-xl mx-auto text-lg leading-relaxed">
+            <p className="text-muted-foreground max-w-xl mx-auto text-lg leading-relaxed">
               Six integrated pillars that compound on each other — intelligence, capital, community, compliance, commerce, and careers.
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {features.map((f, i) => (
               <motion.div key={i}
                 initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }} transition={{ delay: i * 0.08 }}
-                className="group relative p-7 rounded-2xl border border-white/6 bg-white/[0.025] hover:border-white/12 hover:bg-white/[0.04] transition-all duration-300 card-hover cursor-pointer"
+                className="group relative p-7 rounded-2xl border border-border bg-white hover:border-foreground/20 hover:shadow-soft transition-all duration-300 card-hover cursor-pointer"
               >
-                <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                 <div className="relative">
                   <div className="flex items-center justify-between mb-5">
-                    <div className="w-10 h-10 rounded-xl bg-white/8 flex items-center justify-center group-hover:bg-white/12 transition-colors">
-                      <f.icon className="w-5 h-5 text-white/60" />
+                    <div className="w-10 h-10 rounded-xl bg-muted flex items-center justify-center group-hover:bg-black/8 transition-colors">
+                      <f.icon className="w-5 h-5 text-black/60" />
                     </div>
-                    <span className="text-[9px] font-black text-white/25 uppercase tracking-widest border border-white/8 px-2 py-1 rounded-full">{f.tag}</span>
+                    <span className="text-[9px] font-black text-muted-foreground uppercase tracking-widest border border-border px-2 py-1 rounded-full">{f.tag}</span>
                   </div>
-                  <h3 className="text-base font-bold text-white mb-2.5 leading-snug tracking-[-0.02em]">{f.title}</h3>
-                  <p className="text-sm text-white/35 leading-relaxed">{f.desc}</p>
-                  <div className="mt-5 flex items-center gap-1.5 text-[11px] font-semibold text-white/25 group-hover:text-white/50 transition-colors">
+                  <h3 className="text-base font-bold text-black mb-2.5 leading-snug tracking-[-0.02em]">{f.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{f.desc}</p>
+                  <div className="mt-5 flex items-center gap-1.5 text-[11px] font-semibold text-muted-foreground group-hover:text-black transition-colors">
                     Learn more <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
                   </div>
                 </div>
@@ -289,30 +283,30 @@ export default function Landing() {
       </section>
 
       {/* PLATFORM ECOSYSTEM STRIP */}
-      <section className="py-20 px-6 bg-[#0a0a0a] border-y border-white/5">
+      <section className="py-20 px-6 bg-muted/30 border-y border-border">
         <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0 }} whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             className="text-center mb-14"
           >
-            <p className="text-xs text-white/25 uppercase tracking-widest mb-4 font-bold">The Platform Suite</p>
-            <h2 className="text-4xl font-black text-white tracking-[-0.04em]">
-              One ecosystem. <span className="text-white/25">Infinite leverage.</span>
+            <p className="text-xs text-muted-foreground uppercase tracking-widest mb-4 font-bold">The Platform Suite</p>
+            <h2 className="text-4xl font-black text-black tracking-[-0.04em]">
+              One ecosystem. <span className="text-muted-foreground">Infinite leverage.</span>
             </h2>
           </motion.div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {platforms.map((p, i) => (
               <motion.div key={p.name}
                 initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }} transition={{ delay: i * 0.05 }}
-                className="group p-5 rounded-2xl border border-white/6 bg-white/[0.02] hover:border-white/12 hover:bg-white/[0.04] transition-all duration-200 cursor-pointer"
+                className="group p-5 rounded-2xl border border-border bg-white hover:border-foreground/20 hover:shadow-soft transition-all duration-200 cursor-pointer"
               >
-                <div className="w-9 h-9 rounded-xl bg-white/8 flex items-center justify-center mb-3 group-hover:bg-white/12 transition-colors">
-                  <span className="text-[10px] font-black text-white/60">{p.tag}</span>
+                <div className="w-9 h-9 rounded-xl bg-muted flex items-center justify-center mb-3 group-hover:bg-black/8 transition-colors">
+                  <span className="text-[10px] font-black text-black/60">{p.tag}</span>
                 </div>
-                <p className="font-bold text-sm text-white mb-0.5 tracking-[-0.02em]">{p.name}</p>
-                <p className="text-[11px] text-white/30">{p.desc}</p>
+                <p className="font-bold text-sm text-black mb-0.5 tracking-[-0.02em]">{p.name}</p>
+                <p className="text-[11px] text-muted-foreground">{p.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -320,7 +314,7 @@ export default function Landing() {
       </section>
 
       {/* TESTIMONIALS */}
-      <section className="py-32 px-6 bg-[#080808]">
+      <section className="py-32 px-6 bg-white">
         <div className="max-w-5xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }}
@@ -328,30 +322,30 @@ export default function Landing() {
             className="text-center mb-16"
           >
             <div className="flex justify-center gap-0.5 mb-6">
-              {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-white text-white opacity-80" />)}
+              {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-black text-black opacity-40" />)}
             </div>
-            <h2 className="text-4xl md:text-5xl font-black text-white tracking-[-0.04em]">
+            <h2 className="text-4xl md:text-5xl font-black text-black tracking-[-0.04em]">
               What leaders say.
             </h2>
           </motion.div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {testimonials.map((t, i) => (
               <motion.div key={i}
                 initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }} transition={{ delay: i * 0.1 }}
-                className="p-7 rounded-2xl border border-white/6 bg-white/[0.025] hover:border-white/10 transition-all"
+                className="p-7 rounded-2xl border border-border bg-white hover:border-foreground/20 hover:shadow-soft transition-all"
               >
                 <div className="flex gap-0.5 mb-5">
-                  {[...Array(5)].map((_, j) => <Star key={j} className="w-3 h-3 fill-white/60 text-white/60" />)}
+                  {[...Array(5)].map((_, j) => <Star key={j} className="w-3 h-3 fill-black/40 text-black/40" />)}
                 </div>
-                <p className="text-white/55 text-sm leading-relaxed mb-6">"{t.quote}"</p>
+                <p className="text-muted-foreground text-sm leading-relaxed mb-6">"{t.quote}"</p>
                 <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center text-[11px] font-black text-white/60">
+                  <div className="w-9 h-9 rounded-full bg-muted flex items-center justify-center text-[11px] font-black text-black/60">
                     {t.avatar}
                   </div>
                   <div>
-                    <div className="font-bold text-sm text-white/80 tracking-[-0.01em]">{t.name}</div>
-                    <div className="text-[11px] text-white/30">{t.title}</div>
+                    <div className="font-bold text-sm text-black tracking-[-0.01em]">{t.name}</div>
+                    <div className="text-[11px] text-muted-foreground">{t.title}</div>
                   </div>
                 </div>
               </motion.div>
@@ -361,27 +355,27 @@ export default function Landing() {
       </section>
 
       {/* CTA / EMAIL CAPTURE */}
-      <section className="py-32 px-6 bg-[#0a0a0a] border-t border-white/6">
+      <section className="py-32 px-6 bg-muted/30 border-t border-border">
         <div className="max-w-2xl mx-auto text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/8 bg-white/4 mb-8 text-[10px] text-white/40 font-bold tracking-widest uppercase">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-border bg-white mb-8 text-[10px] text-muted-foreground font-bold tracking-widest uppercase">
               <Zap className="w-3 h-3" /> Limited Access Open
             </div>
-            <h2 className="text-5xl md:text-6xl font-black text-white tracking-[-0.04em] leading-tight mb-5">
-              Ready to lead<br /><span className="text-white/25">exponentially?</span>
+            <h2 className="text-5xl md:text-6xl font-black text-black tracking-[-0.04em] leading-tight mb-5">
+              Ready to lead<br /><span className="text-muted-foreground">exponentially?</span>
             </h2>
-            <p className="text-white/35 mb-12 text-lg leading-relaxed">Join 500+ education leaders already shaping the future of schools, systems, and communities.</p>
+            <p className="text-muted-foreground mb-12 text-lg leading-relaxed">Join 500+ education leaders already shaping the future of schools, systems, and communities.</p>
             <AnimatePresence mode="wait">
               {submitted ? (
                 <motion.div key="done"
                   initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }}
                   className="flex flex-col items-center gap-4"
                 >
-                  <div className="w-14 h-14 rounded-full bg-white/8 flex items-center justify-center">
-                    <CheckCircle className="w-7 h-7 text-white/70" />
+                  <div className="w-14 h-14 rounded-full bg-muted flex items-center justify-center">
+                    <CheckCircle className="w-7 h-7 text-black/60" />
                   </div>
-                  <p className="text-white/60 text-lg">You're on the list.</p>
-                  <p className="text-white/30 text-sm">We'll be in touch soon.</p>
+                  <p className="text-black/60 text-lg">You're on the list.</p>
+                  <p className="text-muted-foreground text-sm">We'll be in touch soon.</p>
                 </motion.div>
               ) : (
                 <motion.form key="form" onSubmit={handleCapture} className="space-y-3">
@@ -390,7 +384,7 @@ export default function Landing() {
                     placeholder="Your full name"
                     value={name}
                     onChange={e => setName(e.target.value)}
-                    className="w-full h-13 px-5 py-3.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder:text-white/25 text-sm focus:outline-none focus:border-white/25 transition-colors"
+                    className="w-full h-13 px-5 py-3.5 rounded-xl bg-white border border-border text-black placeholder:text-muted-foreground text-sm focus:outline-none focus:border-foreground/50 transition-colors shadow-soft"
                   />
                   <input
                     type="email"
@@ -398,12 +392,12 @@ export default function Landing() {
                     value={email}
                     onChange={e => setEmail(e.target.value)}
                     required
-                    className="w-full h-13 px-5 py-3.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder:text-white/25 text-sm focus:outline-none focus:border-white/25 transition-colors"
+                    className="w-full h-13 px-5 py-3.5 rounded-xl bg-white border border-border text-black placeholder:text-muted-foreground text-sm focus:outline-none focus:border-foreground/50 transition-colors shadow-soft"
                   />
                   <button
                     type="submit"
                     disabled={loading}
-                    className="w-full h-13 py-3.5 rounded-xl bg-white text-black text-base font-semibold hover:bg-white/90 transition-all active:scale-[0.99] disabled:opacity-60"
+                    className="w-full h-13 py-3.5 rounded-xl bg-black text-white text-base font-semibold hover:bg-black/85 transition-all active:scale-[0.99] disabled:opacity-60"
                   >
                     {loading ? 'Joining...' : 'Join edXponential →'}
                   </button>
@@ -415,21 +409,21 @@ export default function Landing() {
       </section>
 
       {/* FOOTER */}
-      <footer className="py-14 px-6 bg-[#080808] border-t border-white/5">
+      <footer className="py-14 px-6 bg-white border-t border-border">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-4">
             <img
               src="https://media.base44.com/images/public/69f64dbf5c37a4db77e0e302/21d29b7f0_64B1F443-0AD3-403D-B726-ABEF11D14419.png"
               alt="edXponential"
-              className="h-6 w-auto brightness-0 invert opacity-40"
+              className="h-6 w-auto opacity-60"
             />
           </div>
           <div className="flex items-center gap-8">
             {['Privacy', 'Terms', 'Contact', 'Press'].map(l => (
-              <a key={l} href="#" className="text-xs text-white/20 hover:text-white/50 transition-colors">{l}</a>
+              <a key={l} href="#" className="text-xs text-muted-foreground hover:text-black transition-colors">{l}</a>
             ))}
           </div>
-          <p className="text-xs text-white/15">© 2026 edXponential. Built for education leaders.</p>
+          <p className="text-xs text-muted-foreground">© 2026 edXponential. Built for education leaders.</p>
         </div>
       </footer>
     </div>
