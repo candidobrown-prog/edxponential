@@ -1,0 +1,69 @@
+{
+  "name": "AccessApplication",
+  "type": "object",
+  "properties": {
+    "full_name": {
+      "type": "string",
+      "description": "Applicant's full name"
+    },
+    "work_email": {
+      "type": "string",
+      "description": "Work email address"
+    },
+    "role": {
+      "type": "string",
+      "enum": [
+        "founder",
+        "superintendent",
+        "principal",
+        "teacher",
+        "coach",
+        "investor",
+        "consultant",
+        "parent",
+        "student",
+        "other"
+      ],
+      "description": "Professional role"
+    },
+    "organization": {
+      "type": "string",
+      "description": "School or organization name"
+    },
+    "primary_interest": {
+      "type": "string",
+      "description": "Primary interest in edXponential"
+    },
+    "ai_recommendation": {
+      "type": "string",
+      "description": "AI-recommended membership tier"
+    },
+    "recommendation_reason": {
+      "type": "string",
+      "description": "Why this tier was recommended"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "submitted",
+        "under_review",
+        "approved",
+        "rejected"
+      ],
+      "default": "submitted",
+      "description": "Application status"
+    },
+    "submitted_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When application was submitted"
+    }
+  },
+  "required": [
+    "full_name",
+    "work_email",
+    "role",
+    "organization",
+    "primary_interest"
+  ]
+}

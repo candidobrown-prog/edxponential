@@ -179,11 +179,14 @@ const events = [
   },
 ];
 
+import RequestAccessModal from '../components/landing/RequestAccessModal';
+
 export default function PublicLanding() {
   const navigate = useNavigate();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [expandedFaq, setExpandedFaq] = useState(null);
   const [activeFeature, setActiveFeature] = useState(0);
+  const [showAccessModal, setShowAccessModal] = useState(false);
   const [formData, setFormData] = useState({
     fullName: '',
     role: '',
@@ -262,14 +265,18 @@ export default function PublicLanding() {
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
-              <motion.button
+              <motion.a
                 key={link.label}
-                onClick={() => scrollToElement(link.href.slice(1))}
+                href={link.href}
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollToElement(link.href.slice(1));
+                }}
                 whileHover={{ scale: 1.05 }}
-                className="text-sm font-medium hover:text-black/70 transition"
+                className="text-sm font-medium hover:text-black/70 transition cursor-pointer"
               >
                 {link.label}
-              </motion.button>
+              </motion.a>
             ))}
           </div>
 
@@ -283,7 +290,7 @@ export default function PublicLanding() {
             </motion.button>
             <motion.button
               whileHover={{ scale: 1.05 }}
-              onClick={() => scrollToElement('request-access')}
+              onClick={() => setShowAccessModal(true)}
               className="text-sm px-6 py-2 bg-black text-white rounded-lg font-semibold hover:bg-black/80 transition"
             >
               Request Access
@@ -309,13 +316,17 @@ export default function PublicLanding() {
             >
               <div className="px-6 py-4 space-y-3">
                 {navLinks.map((link) => (
-                  <button
+                  <a
                     key={link.label}
-                    onClick={() => scrollToElement(link.href.slice(1))}
-                    className="block w-full text-left text-sm font-medium hover:text-black/70 py-2"
+                    href={link.href}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      scrollToElement(link.href.slice(1));
+                    }}
+                    className="block w-full text-left text-sm font-medium hover:text-black/70 py-2 cursor-pointer"
                   >
                     {link.label}
-                  </button>
+                  </a>
                 ))}
               </div>
             </motion.div>
@@ -369,13 +380,13 @@ export default function PublicLanding() {
               className="flex flex-col sm:flex-row gap-4 mb-16"
             >
               <motion.button
-                whileHover={{ scale: 1.02, y: -2 }}
-                whileTap={{ scale: 0.98 }}
-                onClick={() => scrollToElement('request-access')}
-                className="px-8 py-4 bg-black text-white rounded-lg font-semibold hover:shadow-xl transition-all flex items-center justify-center gap-2 text-lg"
-              >
-                Request Access <ArrowRight className="w-5 h-5" />
-              </motion.button>
+                 whileHover={{ scale: 1.02, y: -2 }}
+                 whileTap={{ scale: 0.98 }}
+                 onClick={() => setShowAccessModal(true)}
+                 className="px-8 py-4 bg-black text-white rounded-lg font-semibold hover:shadow-xl transition-all flex items-center justify-center gap-2 text-lg"
+               >
+                 Request Access <ArrowRight className="w-5 h-5" />
+               </motion.button>
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 className="px-8 py-4 border-2 border-black rounded-lg font-semibold hover:bg-black/2 transition flex items-center justify-center gap-2"
@@ -888,6 +899,22 @@ export default function PublicLanding() {
           </motion.div>
 
           {!submitted ? (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center"
+            >
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={() => setShowAccessModal(true)}
+                className="w-full py-4 bg-white text-black rounded-xl font-bold text-lg hover:bg-white/90 transition"
+              >
+                Start Your Application
+              </motion.button>
+            </motion.div>
+          ) : (
             <motion.form
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -943,29 +970,20 @@ export default function PublicLanding() {
                 <option value="community" className="text-black">Join the community</option>
                 <option value="explore" className="text-black">Just exploring</option>
               </select>
-              <motion.button
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                type="submit"
-                disabled={loading}
-                className="w-full py-4 bg-white text-black rounded-xl font-bold text-lg hover:bg-white/90 transition disabled:opacity-60 disabled:cursor-not-allowed"
-              >
-                {loading ? 'Submitting...' : 'Request Access'}
-              </motion.button>
-            </motion.form>
-          ) : (
-            <motion.div
+              </motion.form>
+              ) : (
+              <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               className="text-center py-12"
-            >
+              >
               <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-6">
                 <CheckCircle className="w-8 h-8 text-white" />
               </div>
               <h3 className="display-3 mb-4">Thank You!</h3>
               <p className="text-xl text-white/80">Check your email for next steps. We'll send your invitation within 24 hours.</p>
-            </motion.div>
-          )}
+              </motion.div>
+              )}
         </div>
       </section>
 
