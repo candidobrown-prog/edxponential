@@ -513,7 +513,8 @@ export default function PublicLanding() {
                 <p className="text-black/60 mb-6 leading-relaxed">{feature.description}</p>
                 <motion.button
                   whileHover={{ x: 4 }}
-                   className="text-sm font-semibold text-primary flex items-center gap-2 hover:gap-3 transition-all"
+                  onClick={() => scrollToElement(feature.href.slice(1))}
+                   className="text-sm font-semibold text-primary flex items-center gap-2 hover:gap-3 transition-all cursor-pointer"
                 >
                   Learn More <ArrowRight className="w-4 h-4" />
                 </motion.button>
@@ -705,6 +706,7 @@ export default function PublicLanding() {
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
                 whileHover={{ y: -4 }}
+                onClick={() => navigate('/communities')}
                 className="p-8 rounded-2xl bg-white border border-black/10 hover:shadow-md transition-all cursor-pointer group"
               >
                 <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/15 transition-colors">
@@ -714,6 +716,7 @@ export default function PublicLanding() {
                 <p className="text-sm text-black/60 mb-4">{community.members} members</p>
                 <motion.button
                   whileHover={{ x: 4 }}
+                  onClick={(e) => { e.stopPropagation(); navigate('/communities'); }}
                   className="text-sm font-semibold text-primary flex items-center gap-2 hover:gap-3 transition-all"
                 >
                   Join Now <ArrowRight className="w-4 h-4" />
@@ -768,7 +771,8 @@ export default function PublicLanding() {
                 </div>
                 <motion.button
                   whileHover={{ scale: 1.05 }}
-                  className="mt-6 w-full py-3 bg-primary text-white rounded-lg font-semibold hover:bg-primary/90 transition"
+                  onClick={() => setShowAccessModal(true)}
+                  className="mt-6 w-full py-3 bg-primary text-white rounded-lg font-semibold hover:bg-primary/90 transition cursor-pointer"
                 >
                   Learn More
                 </motion.button>
@@ -795,10 +799,10 @@ export default function PublicLanding() {
 
           <div className="grid md:grid-cols-4 gap-6">
             {[
-              { name: 'Courses', count: '2,000+', Icon: BookOpen },
-              { name: 'Templates', count: '5,000+', Icon: FileText },
-              { name: 'Tools', count: '500+', Icon: Zap },
-              { name: 'Resources', count: '10,000+', Icon: Folder },
+              { name: 'Courses', count: '2,000+', Icon: BookOpen, path: '/courses' },
+              { name: 'Templates', count: '5,000+', Icon: FileText, path: '/classifiedx/studio' },
+              { name: 'Tools', count: '500+', Icon: Zap, path: '/integrations' },
+              { name: 'Resources', count: '10,000+', Icon: Folder, path: '/educartx/marketplace' },
             ].map((category, i) => {
               const Icon = category.Icon;
               return (
@@ -809,6 +813,7 @@ export default function PublicLanding() {
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
                 whileHover={{ y: -4 }}
+                onClick={() => navigate(category.path)}
                 className="p-8 rounded-2xl bg-white border border-black/10 hover:shadow-md transition-all text-center cursor-pointer"
               >
                 <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4 mx-auto group-hover:bg-primary/15 transition-colors">
