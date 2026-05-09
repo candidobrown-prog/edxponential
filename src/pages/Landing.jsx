@@ -555,8 +555,8 @@ export default function Landing() {
             </AnimatePresence>
           </motion.div>
           </PremiumContainer>
-        </div>
-      </PremiumSection>
+          </div>
+          </PremiumSection>
 
       {/* FOOTER - Premium Brand Footer */}
       <footer className="py-12 px-6 bg-gradient-to-t from-surface/80 to-white border-t border-border/50 relative overflow-hidden">
