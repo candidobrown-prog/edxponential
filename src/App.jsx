@@ -17,6 +17,7 @@ import Courses from './pages/Courses';
 import CourseDetail from './pages/CourseDetail';
 import Coaching from './pages/Coaching';
 import CoachingDetail from './pages/CoachingDetail';
+import CoachDirectory from './pages/CoachDirectory';
 import EdVisors from './pages/EdVisors';
 import EdVisorDetail from './pages/EdVisorDetail';
 import EdVestors from './pages/EdVestors';
@@ -250,6 +251,7 @@ const AuthenticatedApp = () => {
         <Route path="/courses" element={<Courses />} />
         <Route path="/courses/:id" element={<CourseDetail />} />
         <Route path="/coaching" element={<Coaching />} />
+        <Route path="/coaching/directory" element={<CoachDirectory />} />
         <Route path="/coaching/:id" element={<CoachingDetail />} />
         <Route path="/edvisors" element={<EdVisors />} />
         <Route path="/edvisors/:id" element={<EdVisorDetail />} />
