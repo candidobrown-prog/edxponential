@@ -5,8 +5,10 @@ import {
   ChevronDown, Star, Lock, Unlock, MessageCircle, Code, 
   Briefcase, School, BookOpen, BarChart3, Brain, Rocket
 } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { base44 } from '@/api/base44Client';
+import SafeLink from '@/components/navigation/SafeLink';
+import { ECOSYSTEM_ROUTES } from '@/lib/linkValidator';
 
 export default function EcosystemLanding() {
   const [hoveredCard, setHoveredCard] = useState(null);
@@ -93,15 +95,21 @@ export default function EcosystemLanding() {
             <a href="#ecosystem" className="text-sm text-muted-foreground hover:text-black transition">Ecosystem</a>
             <a href="#ai" className="text-sm text-muted-foreground hover:text-black transition">AI</a>
             <a href="#pricing" className="text-sm text-muted-foreground hover:text-black transition">Pricing</a>
-            <Link to="/dashboard" className="text-sm text-muted-foreground hover:text-black transition">Enter</Link>
+            <SafeLink to={ECOSYSTEM_ROUTES.DASHBOARD} className="text-sm text-muted-foreground hover:text-black transition">Enter</SafeLink>
           </div>
           <div className="flex items-center gap-3">
-            <button className="px-4 py-2 text-sm font-semibold text-primary hover:bg-primary/5 rounded-lg transition">
+            <SafeLink
+              to={ECOSYSTEM_ROUTES.SIGNIN}
+              className="px-4 py-2 text-sm font-semibold text-primary hover:bg-primary/5 rounded-lg transition"
+            >
               Sign In
-            </button>
-            <button className="px-4 py-2 text-sm font-semibold text-white bg-black hover:bg-black/80 rounded-lg transition">
+            </SafeLink>
+            <SafeLink
+              to={ECOSYSTEM_ROUTES.ONBOARDING}
+              className="px-4 py-2 text-sm font-semibold text-white bg-black hover:bg-black/80 rounded-lg transition"
+            >
               Start Free
-            </button>
+            </SafeLink>
           </div>
         </div>
       </motion.nav>
@@ -157,17 +165,27 @@ export default function EcosystemLanding() {
             transition={{ duration: 0.7, delay: 0.3 }}
             className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-20"
           >
-            <button className="px-8 py-4 rounded-xl bg-black text-white font-semibold hover:bg-black/80 transition-all hover:shadow-xl flex items-center gap-2 group">
+            <SafeLink
+              to={ECOSYSTEM_ROUTES.ONBOARDING}
+              className="px-8 py-4 rounded-xl bg-black text-white font-semibold hover:bg-black/80 transition-all hover:shadow-xl flex items-center gap-2 group"
+            >
               Start Building
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </button>
-            <button className="px-8 py-4 rounded-xl border border-border bg-white hover:bg-surface transition-all flex items-center gap-2 group">
+            </SafeLink>
+            <SafeLink
+              href={ECOSYSTEM_ROUTES.WEBSITE}
+              external
+              className="px-8 py-4 rounded-xl border border-border bg-white hover:bg-surface transition-all flex items-center gap-2 group"
+            >
               <Play className="w-4 h-4" />
               Watch Demo
-            </button>
-            <button className="px-8 py-4 rounded-xl border border-primary/30 bg-primary/10 text-primary font-semibold hover:bg-primary/20 transition-all">
+            </SafeLink>
+            <SafeLink
+              to={ECOSYSTEM_ROUTES.EDVESTORS}
+              className="px-8 py-4 rounded-xl border border-primary/30 bg-primary/10 text-primary font-semibold hover:bg-primary/20 transition-all"
+            >
               Apply as EdVisor
-            </button>
+            </SafeLink>
           </motion.div>
 
           {/* Scroll indicator */}
@@ -364,13 +382,16 @@ export default function EcosystemLanding() {
                     </li>
                   ))}
                 </ul>
-                <button className={`w-full py-3 rounded-lg font-semibold transition-all ${
-                  tier.highlight
-                    ? 'bg-black text-white hover:bg-black/80'
-                    : 'border border-border hover:bg-surface'
-                }`}>
+                <SafeLink
+                  to={ECOSYSTEM_ROUTES.ONBOARDING}
+                  className={`w-full py-3 rounded-lg font-semibold transition-all block text-center ${
+                    tier.highlight
+                      ? 'bg-black text-white hover:bg-black/80'
+                      : 'border border-border hover:bg-surface'
+                  }`}
+                >
                   {tier.cta}
-                </button>
+                </SafeLink>
               </motion.div>
             ))}
           </div>
@@ -437,25 +458,25 @@ export default function EcosystemLanding() {
             <div>
               <p className="text-xs font-semibold uppercase tracking-wider mb-4 text-muted-foreground">Platform</p>
               <ul className="space-y-2 text-sm">
-                <li><a href="#" className="text-muted-foreground hover:text-black transition">Ecosystem</a></li>
-                <li><a href="#" className="text-muted-foreground hover:text-black transition">Marketplace</a></li>
-                <li><a href="#" className="text-muted-foreground hover:text-black transition">Founders</a></li>
+                <li><SafeLink to={ECOSYSTEM_ROUTES.ECOSYSTEM} className="text-muted-foreground hover:text-black transition">Ecosystem</SafeLink></li>
+                <li><SafeLink to={ECOSYSTEM_ROUTES.EDUCARTX} className="text-muted-foreground hover:text-black transition">Marketplace</SafeLink></li>
+                <li><SafeLink to={ECOSYSTEM_ROUTES.DEAL_ROOM} className="text-muted-foreground hover:text-black transition">Founders</SafeLink></li>
               </ul>
             </div>
             <div>
               <p className="text-xs font-semibold uppercase tracking-wider mb-4 text-muted-foreground">Resources</p>
               <ul className="space-y-2 text-sm">
-                <li><a href="#" className="text-muted-foreground hover:text-black transition">Documentation</a></li>
-                <li><a href="#" className="text-muted-foreground hover:text-black transition">Support</a></li>
-                <li><a href="#" className="text-muted-foreground hover:text-black transition">Blog</a></li>
+                <li><SafeLink href={ECOSYSTEM_ROUTES.WEBSITE} external newTab className="text-muted-foreground hover:text-black transition">Documentation</SafeLink></li>
+                <li><SafeLink href={ECOSYSTEM_ROUTES.SUPPORT} external newTab className="text-muted-foreground hover:text-black transition">Support</SafeLink></li>
+                <li><SafeLink href={ECOSYSTEM_ROUTES.BLOG} external newTab className="text-muted-foreground hover:text-black transition">Blog</SafeLink></li>
               </ul>
             </div>
             <div>
               <p className="text-xs font-semibold uppercase tracking-wider mb-4 text-muted-foreground">Legal</p>
               <ul className="space-y-2 text-sm">
-                <li><a href="#" className="text-muted-foreground hover:text-black transition">Privacy</a></li>
-                <li><a href="#" className="text-muted-foreground hover:text-black transition">Terms</a></li>
-                <li><a href="#" className="text-muted-foreground hover:text-black transition">Contact</a></li>
+                <li><SafeLink href={ECOSYSTEM_ROUTES.WEBSITE} external newTab className="text-muted-foreground hover:text-black transition">Privacy</SafeLink></li>
+                <li><SafeLink href={ECOSYSTEM_ROUTES.WEBSITE} external newTab className="text-muted-foreground hover:text-black transition">Terms</SafeLink></li>
+                <li><SafeLink to={ECOSYSTEM_ROUTES.DASHBOARD} className="text-muted-foreground hover:text-black transition">Contact</SafeLink></li>
               </ul>
             </div>
           </div>
@@ -463,9 +484,15 @@ export default function EcosystemLanding() {
             <p className="text-xs text-muted-foreground">© 2026 edXponential. Built for visionary leaders.</p>
             <div className="flex items-center gap-6">
               {['Twitter', 'LinkedIn', 'GitHub'].map(platform => (
-                <a key={platform} href="#" className="text-xs text-muted-foreground hover:text-black transition">
+                <SafeLink
+                  key={platform}
+                  href={`https://${platform.toLowerCase()}.com/edxponential`}
+                  external
+                  newTab
+                  className="text-xs text-muted-foreground hover:text-black transition"
+                >
                   {platform}
-                </a>
+                </SafeLink>
               ))}
             </div>
           </div>
