@@ -1,0 +1,65 @@
+{
+  "name": "AccessRequest",
+  "type": "object",
+  "properties": {
+    "first_name": {
+      "type": "string"
+    },
+    "last_name": {
+      "type": "string"
+    },
+    "work_email": {
+      "type": "string"
+    },
+    "organization": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "industry": {
+      "type": "string",
+      "enum": [
+        "k12",
+        "higher_ed",
+        "edtech",
+        "nonprofit",
+        "corporate",
+        "government",
+        "other"
+      ]
+    },
+    "linkedin_profile": {
+      "type": "string"
+    },
+    "source": {
+      "type": "string",
+      "enum": [
+        "linkedin",
+        "manual"
+      ]
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "approved",
+        "rejected"
+      ],
+      "default": "pending"
+    },
+    "approved_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "first_name",
+    "last_name",
+    "work_email",
+    "organization"
+  ]
+}
