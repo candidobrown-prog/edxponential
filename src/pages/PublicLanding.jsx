@@ -380,18 +380,12 @@ export default function PublicLanding() {
               className="flex flex-col sm:flex-row gap-4 mb-16"
             >
               <motion.button
-                 whileHover={{ scale: 1.02, y: -2 }}
-                 whileTap={{ scale: 0.98 }}
-                 onClick={() => setShowAccessModal(true)}
-                 className="px-8 py-4 bg-black text-white rounded-lg font-semibold hover:shadow-xl transition-all flex items-center justify-center gap-2 text-lg"
-               >
-                 Request Access <ArrowRight className="w-5 h-5" />
-               </motion.button>
-              <motion.button
-                whileHover={{ scale: 1.02 }}
-                className="px-8 py-4 border-2 border-black rounded-lg font-semibold hover:bg-black/2 transition flex items-center justify-center gap-2"
+                whileHover={{ scale: 1.02, y: -2 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={() => setShowAccessModal(true)}
+                className="px-8 py-4 bg-black text-white rounded-lg font-semibold hover:shadow-xl transition-all flex items-center justify-center gap-2 text-lg"
               >
-                <Play className="w-4 h-4" /> Watch Demo
+                Request Access <ArrowRight className="w-5 h-5" />
               </motion.button>
             </motion.div>
 
@@ -970,20 +964,20 @@ export default function PublicLanding() {
                 <option value="community" className="text-black">Join the community</option>
                 <option value="explore" className="text-black">Just exploring</option>
               </select>
-              </motion.form>
-              ) : (
-              <motion.div
+            </motion.form>
+          ) : (
+            <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               className="text-center py-12"
-              >
+            >
               <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-6">
                 <CheckCircle className="w-8 h-8 text-white" />
               </div>
               <h3 className="display-3 mb-4">Thank You!</h3>
               <p className="text-xl text-white/80">Check your email for next steps. We'll send your invitation within 24 hours.</p>
-              </motion.div>
-              )}
+            </motion.div>
+          )}
         </div>
       </section>
 
