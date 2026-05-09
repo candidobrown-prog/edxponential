@@ -136,11 +136,12 @@ export const PERFORMANCE_CONFIG = {
  * Performance Monitoring Configuration
  * Environment variables are safely guarded for runtime access
  */
-/* eslint-disable no-undef */
+// eslint-disable-next-line no-undef
 export const MONITORING_CONFIG = {
   providers: {
     sentry: {
       enabled: true,
+      // eslint-disable-next-line no-undef
       dsn: typeof process !== 'undefined' ? process.env?.REACT_APP_SENTRY_DSN : undefined,
       tracesSampleRate: 0.1,
       enableInboundFilters: true,
@@ -148,11 +149,14 @@ export const MONITORING_CONFIG = {
     },
     firebase: {
       enabled: true,
+      // eslint-disable-next-line no-undef
       projectId: typeof process !== 'undefined' ? process.env?.REACT_APP_FIREBASE_PROJECT_ID : undefined,
+      // eslint-disable-next-line no-undef
       measurementId: typeof process !== 'undefined' ? process.env?.REACT_APP_FIREBASE_MEASUREMENT_ID : undefined,
     },
     posthog: {
       enabled: true,
+      // eslint-disable-next-line no-undef
       apiKey: typeof process !== 'undefined' ? process.env?.REACT_APP_POSTHOG_KEY : undefined,
       apiHost: 'https://app.posthog.com',
       capturePageView: true,
