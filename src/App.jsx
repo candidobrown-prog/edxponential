@@ -162,6 +162,10 @@ import AIInsightDashboard from './pages/AIInsightDashboard';
 import PublicLayout from './components/layout/PublicLayout';
 import PublicPricing from './pages/public/PublicPricing';
 import AIOnboarding from './pages/public/AIOnboarding';
+import PublicLandingPage from './pages/public/PublicLandingPage';
+import ApplyPage from './pages/public/ApplyPage';
+import LoginPage from './pages/auth/LoginPage';
+import ApplicationReview from './pages/admin/ApplicationReview';
 import ClassifiedxHome from './pages/classifiedx/ClassifiedxHome';
 import OperationXHome from './pages/operationx/OperationXHome';
 import OpxLayout from './components/operationx/OpxLayout';
@@ -232,14 +236,20 @@ const AuthenticatedApp = () => {
     <Routes>
       {/* ── PUBLIC ROUTES (no sidebar, no app chrome) ── */}
       <Route element={<PublicLayout />}>
+        <Route path="/" element={<PublicLandingPage />} />
+        <Route path="/apply" element={<ApplyPage />} />
+        <Route path="/signin" element={<LoginPage />} />
         <Route path="/welcome" element={<PremiumLanding />} />
         <Route path="/pricing" element={<PublicPricing />} />
         <Route path="/onboarding" element={<AIOnboarding />} />
       </Route>
 
+      {/* ── ADMIN ROUTES ── */}
+      <Route path="/admin/applications" element={<ApplicationReview />} />
+
       {/* ── AUTHENTICATED APP ROUTES ── */}
       <Route element={<AppLayout />}>
-        <Route path="/" element={<PersonalizedDashboard />} />
+        <Route path="/dashboard" element={<PersonalizedDashboard />} />
         <Route path="/courses" element={<Courses />} />
         <Route path="/courses/:id" element={<CourseDetail />} />
         <Route path="/coaching" element={<Coaching />} />
