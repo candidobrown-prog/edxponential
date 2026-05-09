@@ -241,59 +241,7 @@ export default function PublicLanding() {
   };
 
   return (
-    <div className="min-h-screen bg-white text-black overflow-x-hidden">
-      {/* ============ TOP INFO BAR ============ */}
-      <div className="border-b border-black/8 bg-white">
-        <div className="max-w-7xl mx-auto px-6 py-8">
-          <div className="grid md:grid-cols-4 gap-12 mb-6">
-            <div>
-              <div className="flex items-center gap-2 mb-4">
-                <span className="text-sm font-black text-black">edXponential</span>
-              </div>
-              <p className="text-xs text-black/60">
-                The world's first human- and AI-powered all-inclusive platform for education leaders.
-              </p>
-            </div>
-
-            <div>
-              <p className="text-xs font-black uppercase tracking-wider text-black/50 mb-3">Platform</p>
-              <ul className="space-y-2 text-xs">
-                <li><button className="text-black/70 hover:text-black transition">Features</button></li>
-                <li><button className="text-black/70 hover:text-black transition">Solutions</button></li>
-                <li><button className="text-black/70 hover:text-black transition">Pricing</button></li>
-              </ul>
-            </div>
-
-            <div>
-              <p className="text-xs font-black uppercase tracking-wider text-black/50 mb-3">Resources</p>
-              <ul className="space-y-2 text-xs">
-                <li><button className="text-black/70 hover:text-black transition">Documentation</button></li>
-                <li><button className="text-black/70 hover:text-black transition">Blog</button></li>
-                <li><button className="text-black/70 hover:text-black transition">Support</button></li>
-              </ul>
-            </div>
-
-            <div>
-              <p className="text-xs font-black uppercase tracking-wider text-black/50 mb-3">Legal</p>
-              <ul className="space-y-2 text-xs">
-                <li><button className="text-black/70 hover:text-black transition">Privacy</button></li>
-                <li><button className="text-black/70 hover:text-black transition">Terms</button></li>
-                <li><button className="text-black/70 hover:text-black transition">Contact</button></li>
-              </ul>
-            </div>
-          </div>
-
-          <div className="border-t border-black/8 pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
-            <p className="text-[11px] text-black/40">© 2026 edXponential. The future of education, built today.</p>
-            <div className="flex gap-6">
-              <button className="text-xs text-black/50 hover:text-black transition">Twitter</button>
-              <button className="text-xs text-black/50 hover:text-black transition">LinkedIn</button>
-              <button className="text-xs text-black/50 hover:text-black transition">GitHub</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
+    <div className="min-h-screen bg-white text-black overflow-x-hidden flex flex-col">
       {/* ============ NAVIGATION ============ */}
       <motion.nav
        initial={{ y: -100 }}
@@ -1017,7 +965,57 @@ export default function PublicLanding() {
         </div>
       </section>
 
+      {/* ============ FOOTER ============ */}
+      <footer className="border-t border-black/8 bg-white mt-auto">
+        <div className="max-w-7xl mx-auto px-6 py-8">
+          <div className="grid md:grid-cols-4 gap-12 mb-6">
+            <div>
+              <div className="flex items-center gap-2 mb-4">
+                <span className="text-sm font-black text-black">edXponential</span>
+              </div>
+              <p className="text-xs text-black/60">
+                The world's first human- and AI-powered all-inclusive platform for education leaders.
+              </p>
+            </div>
 
+            <div>
+              <p className="text-xs font-black uppercase tracking-wider text-black/50 mb-3">Platform</p>
+              <ul className="space-y-2 text-xs">
+                <li><button className="text-black/70 hover:text-black transition">Features</button></li>
+                <li><button className="text-black/70 hover:text-black transition">Solutions</button></li>
+                <li><button className="text-black/70 hover:text-black transition">Pricing</button></li>
+              </ul>
+            </div>
+
+            <div>
+              <p className="text-xs font-black uppercase tracking-wider text-black/50 mb-3">Resources</p>
+              <ul className="space-y-2 text-xs">
+                <li><button className="text-black/70 hover:text-black transition">Documentation</button></li>
+                <li><button className="text-black/70 hover:text-black transition">Blog</button></li>
+                <li><button className="text-black/70 hover:text-black transition">Support</button></li>
+              </ul>
+            </div>
+
+            <div>
+              <p className="text-xs font-black uppercase tracking-wider text-black/50 mb-3">Legal</p>
+              <ul className="space-y-2 text-xs">
+                <li><button className="text-black/70 hover:text-black transition">Privacy</button></li>
+                <li><button className="text-black/70 hover:text-black transition">Terms</button></li>
+                <li><button className="text-black/70 hover:text-black transition">Contact</button></li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="border-t border-black/8 pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
+            <p className="text-[11px] text-black/40">© 2026 edXponential. The future of education, built today.</p>
+            <div className="flex gap-6">
+              <button className="text-xs text-black/50 hover:text-black transition">Twitter</button>
+              <button className="text-xs text-black/50 hover:text-black transition">LinkedIn</button>
+              <button className="text-xs text-black/50 hover:text-black transition">GitHub</button>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
