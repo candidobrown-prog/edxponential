@@ -11,8 +11,6 @@ import ErrorBoundary from '@/lib/errorBoundary';
 import { AuthProvider, useAuth } from '@/lib/AuthContext';
 import UserNotRegisteredError from '@/components/UserNotRegisteredError';
 import AppLayout from './components/layout/AppLayout';
-import Landing from './pages/Landing';
-import EcosystemLanding from './pages/EcosystemLanding';
 import PublicLanding from './pages/PublicLanding';
 import Dashboard from './pages/Dashboard';
 import Courses from './pages/Courses';
@@ -61,7 +59,7 @@ import Xschetails from './pages/Xschetails';
 import XschetailsDashboard from './pages/XschetailsDashboard';
 import PlatformChatbot from './components/platform/PlatformChatbot';
 import AIAssistantBubble from './components/ai/AIAssistantBubble';
-import SmartOnboarding from './components/ai/SmartOnboarding';
+
 import AdminFeedback from './pages/AdminFeedback';
 import MyXschool from './pages/MyXschool';
 import NotificationPrefs from './pages/NotificationPrefs';
@@ -197,19 +195,13 @@ import ClassifiedxPublish from './pages/classifiedx/ClassifiedxPublish';
 import AdvertiserPortal from './pages/AdvertiserPortal';
 import AdminAdManagement from './pages/AdminAdManagement';
 
-const ONBOARDING_KEY = 'edx_onboarding_complete';
-
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
-  const [showOnboarding, setShowOnboarding] = React.useState(false);
   const [user, setUser] = React.useState(null);
 
   React.useEffect(() => {
     base44.auth.me().then(u => {
       setUser(u);
-      if (!u.onboarding_complete) {
-        setShowOnboarding(true);
-      }
     }).catch(() => {});
   }, []);
 
@@ -236,13 +228,10 @@ const AuthenticatedApp = () => {
   // Render the main app
   return (
     <>
-    {showOnboarding && <SmartOnboarding user={user} onComplete={() => setShowOnboarding(false)} />}
     <Routes>
       {/* ── PUBLIC ROUTES (no sidebar, no app chrome) ── */}
       <Route element={<PublicLayout />}>
         <Route path="/" element={<PublicLanding />} />
-        <Route path="/welcome" element={<Landing />} />
-        <Route path="/ecosystem" element={<EcosystemLanding />} />
         <Route path="/pricing" element={<PublicPricing />} />
         <Route path="/onboarding" element={<AIOnboarding />} />
       </Route>
