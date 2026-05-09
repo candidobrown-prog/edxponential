@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   ArrowRight, Menu, X, ChevronDown, Check, Users, Zap,
-  BookOpen, BarChart3, Shield, Lightbulb, MessageCircle
+  BookOpen, BarChart3, Shield, Lightbulb, MessageCircle, Brain,
+  Rocket, Target, TrendingUp, Code, Briefcase, School
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { base44 } from '@/api/base44Client';
@@ -55,99 +56,124 @@ export default function PublicLanding() {
 
   const features = [
     {
-      icon: BookOpen,
-      title: 'Smart Curriculum',
-      description: 'AI-powered course building and content generation'
+      icon: Brain,
+      title: 'AI-Powered Leadership Tools',
+      description: 'Strategic planning, decision-making, and execution frameworks powered by advanced AI'
     },
     {
-      icon: BarChart3,
-      title: 'Real-Time Analytics',
-      description: 'Dashboard insights into student progress and outcomes'
+      icon: BookOpen,
+      title: 'Elite Courses & Curricula',
+      description: 'Expert-designed programs on leadership, operations, finance, and transformational change'
     },
     {
       icon: Users,
-      title: 'Team Collaboration',
-      description: 'Built-in tools for teachers, staff, and administrators'
+      title: 'Private Communities',
+      description: 'Connect with like-minded education leaders, founders, and changemakers'
     },
     {
-      icon: Zap,
-      title: 'Fast Performance',
-      description: 'Lightning-quick load times and seamless navigation'
+      icon: MessageCircle,
+      title: 'On-Demand EdVising & Coaching',
+      description: 'Access to world-class education experts for guidance tailored to your goals'
+    },
+    {
+      icon: BarChart3,
+      title: 'Strategic Intelligence',
+      description: 'Real-time data, insights, and predictive analytics for smarter leadership decisions'
+    },
+    {
+      icon: Target,
+      title: 'Execution Frameworks',
+      description: 'Proven systems to move faster, scale impact, and achieve measurable results'
+    },
+    {
+      icon: Rocket,
+      title: 'School Building Suite',
+      description: 'Complete tools for founding, scaling, and turning around schools and districts'
     },
     {
       icon: Shield,
-      title: 'Enterprise Security',
-      description: 'Bank-level encryption and data protection'
-    },
-    {
-      icon: Lightbulb,
-      title: 'AI Assistant',
-      description: 'Get help anytime with our built-in Eddy assistant'
+      title: 'Enterprise-Grade Security',
+      description: 'Bank-level encryption and FERPA compliance for complete data protection'
     }
+  ];
+
+  const platforms = [
+    { name: 'Graiedx', icon: BookOpen, description: 'Teacher grading and classroom management platform' },
+    { name: 'Foundaitionx', icon: Briefcase, description: 'School governance and board management suite' },
+    { name: 'OperationX', icon: Target, description: 'Operations and facility management system' },
+    { name: 'Daida Baixed', icon: Brain, description: 'Academic performance and intelligence command center' },
+    { name: 'EduCartx', icon: Zap, description: 'Education marketplace and commerce platform' },
+    { name: 'Classifiedx', icon: Code, description: 'Curriculum design and content creation studio' },
+    { name: 'PerSpEdxtives', icon: Users, description: 'Special education and IEP management system' },
+    { name: 'Xschores', icon: TrendingUp, description: 'School culture and performance benchmarking' }
   ];
 
   const testimonials = [
     {
       name: 'Sarah Chen',
       role: 'Principal, Lincoln High School',
-      quote: 'This platform transformed how we track student progress. We\'ve seen a 28% improvement in data-driven decision making.'
+      quote: 'edXponential didn\'t just change our operations—it transformed our entire approach to leadership. The coaching alone is worth every penny.'
     },
     {
       name: 'Marcus Johnson',
-      role: 'EdTech Founder',
-      quote: 'The AI insights are game-changing. We\'re saving hours every week on curriculum planning.'
+      role: 'School Founder & CEO',
+      quote: 'I\'ve built three schools now. This platform is the strategic partner I needed from day one. It\'s accelerated our growth by 18 months.'
     },
     {
       name: 'Dr. Elena Rodriguez',
       role: 'District Superintendent',
-      quote: 'Enterprise-grade security with simple, elegant design. This is exactly what education needed.'
+      quote: 'Moving faster, leading stronger, driving results. That\'s not marketing language—that\'s exactly what\'s happening in our district since we started using edXponential.'
     }
   ];
 
   const pricingTiers = [
     {
-      name: 'Starter',
-      price: '$99',
+      name: 'Leader',
+      price: '$199',
       period: '/month',
-      description: 'Perfect for small teams',
-      features: ['Up to 50 students', 'Basic analytics', 'Team collaboration', 'Email support']
+      description: 'For emerging leaders',
+      features: ['Access to all courses', 'Private community access', 'Monthly coaching session', '1 integrated platform', 'Email support']
     },
     {
-      name: 'Professional',
-      price: '$299',
+      name: 'Transformational',
+      price: '$599',
       period: '/month',
-      description: 'For growing schools',
-      features: ['Up to 500 students', 'Advanced analytics', 'AI curriculum builder', 'Priority support', 'Custom integrations'],
+      description: 'For school founders & principals',
+      features: ['Full course library', 'Unlimited community access', 'Weekly expert coaching', '4 integrated platforms', 'Priority support', 'Custom intelligence dashboards'],
       highlighted: true
     },
     {
-      name: 'Enterprise',
+      name: 'Visionary',
       price: 'Custom',
-      description: 'For districts & large organizations',
-      features: ['Unlimited students', 'Full analytics suite', 'Dedicated support', 'Custom SIS integration', 'On-premise options']
+      description: 'For district leaders & executives',
+      features: ['Complete platform access', 'Dedicated advisory board', 'Daily expert access', 'All 8 platforms unlocked', '24/7 concierge support', 'Custom implementation']
     }
   ];
 
   const faqs = [
     {
+      q: 'Who is edXponential for?',
+      a: 'School founders, principals, superintendents, district leaders, and anyone committed to transformational change in education. If you\'re leading a school or organization, this is built for you.'
+    },
+    {
       q: 'How do I get started?',
-      a: 'Click "Request Access" above, and our team will send you an invitation within 24 hours. Then you\'ll go through our quick onboarding to set up your account.'
+      a: 'Click "Request Access" to apply. Our team reviews applications within 24 hours and sends invitations to qualified leaders. You\'ll be onboarded directly with a success specialist.'
+    },
+    {
+      q: 'What does "expert coaching" include?',
+      a: 'Access to world-class education experts, founders, and strategic advisors. Monthly or weekly sessions depending on your tier, covering leadership, operations, fundraising, turnarounds, and scaling.'
     },
     {
       q: 'Is my data secure?',
-      a: 'Yes. We use industry-leading encryption, FERPA compliance, and regular security audits. Your data is never sold or shared.'
+      a: 'Absolutely. Enterprise-grade encryption, full FERPA compliance, regular security audits. Your data is never sold or shared with anyone.'
     },
     {
-      q: 'Can I import existing data?',
-      a: 'Absolutely. We support CSV, Excel, and direct integration with most major SIS platforms. Our import wizard makes it painless.'
+      q: 'What if I\'m not ready to commit?',
+      a: 'Request access and we\'ll invite you to a 14-day trial of the Transformational plan. Experience the full platform, coaching, and community completely risk-free.'
     },
     {
-      q: 'What kind of support do you offer?',
-      a: 'All tiers include email support and access to our AI assistant. Professional and Enterprise plans get priority support and a dedicated account manager.'
-    },
-    {
-      q: 'Do you offer a free trial?',
-      a: 'Yes. Request access and we\'ll set you up with a 30-day trial of the Professional plan.'
+      q: 'Can I switch tiers?',
+      a: 'Yes. Upgrade or downgrade anytime. We\'ll adjust your access and billing immediately.'
     }
   ];
 
@@ -225,7 +251,7 @@ export default function PublicLanding() {
             transition={{ duration: 0.6 }}
             className="text-5xl md:text-6xl font-black leading-tight mb-6"
           >
-            The Future of Education is Here
+            Accelerated Transformation for Education Leaders
           </motion.h1>
 
           <motion.p
@@ -234,7 +260,7 @@ export default function PublicLanding() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-xl md:text-2xl text-black/60 mb-8 leading-relaxed"
           >
-            AI-powered platform for schools and educators. Smart curriculum, real-time insights, and tools that actually work.
+            The world's first human- and AI-powered all-inclusive platform for founders, principals, executives, and transformational change agents. Elite courses, private communities, strategic tools, and on-demand expert coaching—all designed to help you move faster, lead stronger, and drive measurable results.
           </motion.p>
 
           <motion.div
@@ -272,38 +298,75 @@ export default function PublicLanding() {
       <section id="features" className="py-24 px-6 bg-black/2">
         <div className="max-w-6xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl font-black mb-4">Everything You Need</h2>
-            <p className="text-xl text-black/60 max-w-2xl mx-auto">
-              Built for educators, by educators. Powerful enough for districts, simple enough for single teachers.
-            </p>
-          </motion.div>
+             initial={{ opacity: 0, y: 20 }}
+             whileInView={{ opacity: 1, y: 0 }}
+             viewport={{ once: true }}
+             className="text-center mb-16"
+           >
+             <h2 className="text-4xl md:text-5xl font-black mb-4">Built for Every Leadership Challenge</h2>
+             <p className="text-xl text-black/60 max-w-2xl mx-auto">
+               From school founding to district transformation, strategic intelligence to daily execution. Everything you need to lead with confidence.
+             </p>
+           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {features.map((feature, i) => {
-              const Icon = feature.icon;
-              return (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.05 }}
-                  className="p-8 rounded-xl bg-white border border-black/10 hover:border-black/30 hover:shadow-lg transition"
-                >
-                  <div className="w-12 h-12 rounded-lg bg-black flex items-center justify-center text-white mb-6">
-                    <Icon className="w-6 h-6" />
-                  </div>
-                  <h3 className="text-xl font-bold mb-3">{feature.title}</h3>
-                  <p className="text-black/60">{feature.description}</p>
-                </motion.div>
-              );
-            })}
-          </div>
+           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+             {features.map((feature, i) => {
+               const Icon = feature.icon;
+               return (
+                 <motion.div
+                   key={i}
+                   initial={{ opacity: 0, y: 20 }}
+                   whileInView={{ opacity: 1, y: 0 }}
+                   viewport={{ once: true }}
+                   transition={{ delay: i * 0.05 }}
+                   className="p-8 rounded-xl bg-white border border-black/10 hover:border-black/30 hover:shadow-lg transition"
+                 >
+                   <div className="w-12 h-12 rounded-lg bg-black flex items-center justify-center text-white mb-6">
+                     <Icon className="w-6 h-6" />
+                   </div>
+                   <h3 className="text-xl font-bold mb-3">{feature.title}</h3>
+                   <p className="text-black/60">{feature.description}</p>
+                 </motion.div>
+               );
+             })}
+           </div>
+
+           {/* Integrated Systems Section */}
+           <div className="mt-24">
+             <motion.div
+               initial={{ opacity: 0, y: 20 }}
+               whileInView={{ opacity: 1, y: 0 }}
+               viewport={{ once: true }}
+               className="text-center mb-16"
+             >
+               <h3 className="text-3xl font-bold mb-4">Eight Integrated Platforms</h3>
+               <p className="text-xl text-black/60 max-w-2xl mx-auto">
+                 A complete ecosystem of specialized tools, all working together seamlessly
+               </p>
+             </motion.div>
+
+             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+               {platforms.map((platform, i) => {
+                 const Icon = platform.icon;
+                 return (
+                   <motion.div
+                     key={i}
+                     initial={{ opacity: 0, y: 20 }}
+                     whileInView={{ opacity: 1, y: 0 }}
+                     viewport={{ once: true }}
+                     transition={{ delay: i * 0.05 }}
+                     className="p-6 rounded-xl bg-white border border-black/10 hover:border-black/30 hover:shadow-lg transition text-center group"
+                   >
+                     <div className="w-12 h-12 rounded-lg bg-black flex items-center justify-center text-white mb-4 mx-auto group-hover:scale-110 transition-transform">
+                       <Icon className="w-6 h-6" />
+                     </div>
+                     <h4 className="font-bold mb-2">{platform.name}</h4>
+                     <p className="text-sm text-black/60">{platform.description}</p>
+                   </motion.div>
+                 );
+               })}
+             </div>
+           </div>
         </div>
       </section>
 
@@ -316,8 +379,8 @@ export default function PublicLanding() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-black mb-4">Loved by Educators</h2>
-            <p className="text-xl text-black/60">See what schools and leaders are saying</p>
+            <h2 className="text-4xl md:text-5xl font-black mb-4">Trusted by Education Leaders</h2>
+            <p className="text-xl text-black/60">Founders, principals, superintendents, and change agents who've achieved extraordinary results</p>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -350,8 +413,8 @@ export default function PublicLanding() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-black mb-4">Simple, Transparent Pricing</h2>
-            <p className="text-xl text-black/60">Choose the plan that fits your needs</p>
+            <h2 className="text-4xl md:text-5xl font-black mb-4">Investment in Your Transformation</h2>
+            <p className="text-xl text-black/60">Choose your path. All tiers include unlimited platform access and elite expert support.</p>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -456,9 +519,9 @@ export default function PublicLanding() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl md:text-5xl font-black mb-6">Ready to Transform Your School?</h2>
+            <h2 className="text-4xl md:text-5xl font-black mb-6">The Future of Education Leadership Starts Now</h2>
             <p className="text-xl text-white/70 mb-8">
-              Join hundreds of educators already using edXponential to improve student outcomes.
+              Move faster. Lead stronger. Drive measurable results. Apply today and join the leaders transforming education.
             </p>
             <button
               onClick={() => {
