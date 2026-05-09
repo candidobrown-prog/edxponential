@@ -101,6 +101,17 @@ import XschmartGoalxPage from './pages/goaledxschool/XschmartGoalxPage';
 import PerformintxPage from './pages/goaledxschool/PerformintxPage';
 import MasterCalendarPage from './pages/goaledxschool/MasterCalendarPage';
 import GoaledScoresPage from './pages/goaledxschool/GoaledScoresPage';
+import PerSpEdxtivesHome from './pages/perspedxtives/PerSpEdxtivesHome.jsx';
+import PerSpEdxtivesDashboard from './pages/perspedxtives/PerSpEdxtivesDashboard.jsx';
+import SpedStudents from './pages/perspedxtives/SpedStudents.jsx';
+import SpedIEPManager from './pages/perspedxtives/SpedIEPManager.jsx';
+import SpedGoals from './pages/perspedxtives/SpedGoals.jsx';
+import SpedServices from './pages/perspedxtives/SpedServices.jsx';
+import SpedSchedule from './pages/perspedxtives/SpedSchedule.jsx';
+import SpedMeetings from './pages/perspedxtives/SpedMeetings.jsx';
+import SpedCompliance from './pages/perspedxtives/SpedCompliance.jsx';
+import SpedAIGenerator from './pages/perspedxtives/SpedAIGenerator.jsx';
+import PerSpEdxtivesLayout from './components/perspedxtives/PerSpEdxtivesLayout.jsx';
 
 const ONBOARDING_KEY = 'edx_onboarding_complete';
 
@@ -188,6 +199,20 @@ const AuthenticatedApp = () => {
         <Route path="/goaled/performintx" element={<PerformintxPage />} />
         <Route path="/goaled/master-calendar" element={<MasterCalendarPage />} />
         <Route path="/goaled/scores" element={<GoaledScoresPage />} />
+      </Route>
+
+      {/* PerSpEdxtives™ */}
+      <Route path="/perspedxtives/home" element={<PerSpEdxtivesHome />} />
+      <Route element={<PerSpEdxtivesLayout />}>
+        <Route path="/perspedxtives" element={<PerSpEdxtivesDashboard />} />
+        <Route path="/perspedxtives/students" element={<SpedStudents />} />
+        <Route path="/perspedxtives/ieps" element={<SpedIEPManager />} />
+        <Route path="/perspedxtives/goals" element={<SpedGoals />} />
+        <Route path="/perspedxtives/services" element={<SpedServices />} />
+        <Route path="/perspedxtives/schedule" element={<SpedSchedule />} />
+        <Route path="/perspedxtives/meetings" element={<SpedMeetings />} />
+        <Route path="/perspedxtives/compliance" element={<SpedCompliance />} />
+        <Route path="/perspedxtives/ai-generator" element={<SpedAIGenerator />} />
       </Route>
 
       {/* TubedX */}

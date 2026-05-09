@@ -3,8 +3,8 @@ import { Link, useLocation } from 'react-router-dom';
 import {
   LayoutDashboard, BookOpen, Users, User, ChevronLeft, ChevronRight,
   LogOut, Star, DollarSign, Briefcase, Layers, TrendingUp, CreditCard,
-  Sparkles, ShieldCheck, Zap, Target, Building2, BarChart3, Bell,
-  School, Play, MessageSquare, ShieldAlert, Search, Crown,
+  Sparkles, ShieldCheck, Zap, Target, BarChart3, Bell,
+  School, MessageSquare, ShieldAlert, Search, Crown, Brain,
 } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
 import { cn } from '@/lib/utils';
@@ -14,6 +14,7 @@ import { TOOLTIP } from '@/lib/tooltipData';
 const navItems = [
   { path: '/', icon: LayoutDashboard, label: 'My Dashboard', tooltip: TOOLTIP.dashboard },
   { path: '/goaled', icon: School, label: 'Goaled Xschool™', tooltip: TOOLTIP.myXschool },
+  { path: '/perspedxtives', icon: Brain, label: 'PerSpEdxtives™', tooltip: TOOLTIP.dashboard },
   { path: '/matching', icon: Target, label: 'AI Matching', tooltip: TOOLTIP.aiMatching },
   { path: '/courses', icon: BookOpen, label: 'Courses', tooltip: TOOLTIP.courses },
   { path: '/coaching', icon: Star, label: 'Coaching', tooltip: TOOLTIP.coaching },
