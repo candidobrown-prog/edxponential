@@ -1,222 +1,290 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 
-const eyeVariants = {
-  blink: {
-    scaleY: [1, 0.1, 1],
-    transition: { duration: 0.3 },
-  },
-  look: {
-    x: [0, 4, 0],
-    transition: { duration: 0.6 },
-  },
-};
+export default function EddyCharacter({ speaking = false, mood = 'neutral', size = 'lg' }) {
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [blink, setBlink] = useState(false);
+  const containerRef = useRef(null);
 
-const bodyVariants = {
-  idle: {
-    y: [0, -3, 0],
-    transition: { duration: 3, repeat: Infinity, ease: 'easeInOut' },
-  },
-  wave: {
-    rotate: [0, 15, -10, 15, 0],
-    transition: { duration: 0.8, times: [0, 0.25, 0.5, 0.75, 1] },
-  },
-  nod: {
-    rotateZ: [0, -8, 8, -8, 0],
-    transition: { duration: 0.8, times: [0, 0.25, 0.5, 0.75, 1] },
-  },
-};
+  const sizeMap = {
+    sm: { width: 100, height: 120 },
+    md: { width: 150, height: 180 },
+    lg: { width: 240, height: 280 },
+    xl: { width: 320, height: 380 },
+  };
 
-const mouthVariants = {
-  smile: { scaleY: 1, transition: { duration: 0.3 } },
-  neutral: { scaleY: 0.5, transition: { duration: 0.3 } },
-};
+  const currentSize = sizeMap[size];
 
-export default function EddyCharacter({ 
-  size = 'md', 
-  state = 'idle', 
-  expression = 'friendly',
-  animateEmotion = 'none',
-  showText = false,
-  text = ''
-}) {
-  const [blinkTrigger, setBlinkTrigger] = useState(0);
-  const sizeMap = { sm: 80, md: 140, lg: 200, xl: 280 };
-  const dimension = sizeMap[size];
+  // Track mouse movement for eye tracking
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      if (containerRef.current) {
+        const rect = containerRef.current.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
 
+        const angle = Math.atan2(e.clientY - centerY, e.clientX - centerX);
+        setMousePos({
+          x: Math.cos(angle) * 8,
+          y: Math.sin(angle) * 8,
+        });
+      }
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
+  // Blink animation
   useEffect(() => {
     const blinkInterval = setInterval(() => {
-      setBlinkTrigger(t => t + 1);
+      setBlink(true);
+      setTimeout(() => setBlink(false), 150);
     }, 4000 + Math.random() * 2000);
+
     return () => clearInterval(blinkInterval);
   }, []);
 
-  const expressionMap = {
-    friendly: { eyeOpacity: 1, mouthScale: 1 },
-    excited: { eyeOpacity: 1, mouthScale: 1.2 },
-    thinking: { eyeOpacity: 0.8, mouthScale: 0.6 },
-    confident: { eyeOpacity: 1, mouthScale: 0.9 },
+  const moodConfig = {
+    neutral: { eyeScale: 1, browRotation: 0, mouthHeight: 12 },
+    happy: { eyeScale: 1.1, browRotation: -5, mouthHeight: 18 },
+    excited: { eyeScale: 1.2, browRotation: -8, mouthHeight: 22 },
+    thinking: { eyeScale: 0.95, browRotation: 3, mouthHeight: 8 },
+    sad: { eyeScale: 0.9, browRotation: 8, mouthHeight: 4 },
   };
 
-  const exp = expressionMap[expression] || expressionMap.friendly;
+  const current = moodConfig[mood];
 
   return (
-    <div className="flex flex-col items-center gap-4">
-      <motion.div
-        style={{ width: dimension, height: dimension }}
-        variants={bodyVariants}
-        initial="idle"
-        animate={animateEmotion === 'wave' ? 'wave' : animateEmotion === 'nod' ? 'nod' : 'idle'}
-        className="relative flex items-center justify-center"
+    <div
+      ref={containerRef}
+      className="flex items-center justify-center"
+      style={{
+        width: currentSize.width,
+        height: currentSize.height,
+      }}
+    >
+      <svg
+        viewBox="0 0 240 280"
+        width={currentSize.width}
+        height={currentSize.height}
+        className="filter drop-shadow-2xl"
       >
-        {/* Main body - lowercase e */}
-        <svg
-          viewBox="0 0 100 100"
-          width="100%"
-          height="100%"
-          className="drop-shadow-2xl"
-        >
-          <defs>
-            <linearGradient id="eGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#1a1a1a" />
-              <stop offset="50%" stopColor="#0a0a0a" />
-              <stop offset="100%" stopColor="#050505" />
-            </linearGradient>
-            <filter id="glossShine">
-              <feGaussianBlur in="SourceGraphic" stdDeviation="2" />
-            </filter>
-          </defs>
+        <defs>
+          {/* Gradient for body */}
+          <radialGradient id="bodyGradient" cx="40%" cy="40%">
+            <stop offset="0%" stopColor="#2a2a2a" />
+            <stop offset="100%" stopColor="#0a0a0a" />
+          </radialGradient>
 
-          {/* e shape body */}
+          {/* Glow effect */}
+          <filter id="glow">
+            <feGaussianBlur stdDeviation="2" result="coloredBlur" />
+            <feMerge>
+              <feMergeNode in="coloredBlur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+
+          {/* Eye shine */}
+          <radialGradient id="eyeShine" cx="30%" cy="30%">
+            <stop offset="0%" stopColor="#ffffff" stopOpacity="0.8" />
+            <stop offset="100%" stopColor="#ffffff" stopOpacity="0" />
+          </radialGradient>
+        </defs>
+
+        {/* Body - lowercase "e" */}
+        <motion.g
+          animate={{
+            y: speaking ? [0, -5, 0] : [0, 3, 0],
+          }}
+          transition={{
+            duration: speaking ? 0.5 : 3,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          }}
+        >
+          {/* Main e shape */}
           <path
-            d="M 30 20 Q 40 15 50 15 Q 70 15 75 25 Q 80 35 75 45 L 35 45 Q 35 50 50 50 Q 70 50 75 50 L 75 60 Q 70 65 50 65 Q 30 65 25 55 Q 20 45 20 35 Q 20 25 30 20 Z"
-            fill="url(#eGradient)"
-            stroke="#333"
-            strokeWidth="0.5"
+            d="M 120 60 Q 160 50 170 100 L 170 180 Q 160 230 120 220 Q 80 210 70 180 L 70 100 Q 80 50 120 60 Z"
+            fill="url(#bodyGradient)"
+            filter="url(#glow)"
           />
 
-          {/* Glossy highlight */}
-          <ellipse
-            cx="35"
-            cy="30"
-            rx="8"
-            ry="12"
-            fill="white"
-            opacity="0.15"
-            filter="url(#glossShine)"
-          />
+          {/* Center opening of e */}
+          <ellipse cx="120" cy="140" rx="35" ry="40" fill="#0a0a0a" opacity="0.5" />
 
-          {/* Left eye */}
-          <motion.g
-            initial="idle"
-            animate={blinkTrigger % 2 === 0 ? 'blink' : 'idle'}
-            variants={eyeVariants}
-            transformOrigin="40 35"
-          >
-            <circle cx="40" cy="35" r="6" fill="white" opacity={exp.eyeOpacity} />
-            <circle cx="40" cy="35" r="3.5" fill="#0a0f1e" />
-            <circle cx="41.5" cy="33" r="1.2" fill="white" />
-          </motion.g>
+          {/* Highlights */}
+          <ellipse cx="100" cy="90" rx="20" ry="30" fill="white" opacity="0.15" />
+          <ellipse cx="130" cy="200" rx="15" ry="20" fill="white" opacity="0.08" />
+        </motion.g>
 
-          {/* Right eye */}
-          <motion.g
-            initial="idle"
-            animate={blinkTrigger % 2 === 0 ? 'blink' : 'idle'}
-            variants={eyeVariants}
-            transformOrigin="60 35"
-          >
-            <circle cx="60" cy="35" r="6" fill="white" opacity={exp.eyeOpacity} />
-            <circle cx="60" cy="35" r="3.5" fill="#0a0f1e" />
-            <circle cx="61.5" cy="33" r="1.2" fill="white" />
-          </motion.g>
-
-          {/* Left eyebrow */}
-          <motion.path
-            d="M 35 28 Q 40 26 45 27"
-            stroke="white"
-            strokeWidth="1.2"
-            fill="none"
-            strokeLinecap="round"
-            animate={{
-              d: animateEmotion === 'excited' 
-                ? "M 35 26 Q 40 23 45 24"
-                : "M 35 28 Q 40 26 45 27",
-            }}
-            transition={{ duration: 0.3 }}
-          />
-
-          {/* Right eyebrow */}
-          <motion.path
-            d="M 55 27 Q 60 26 65 28"
-            stroke="white"
-            strokeWidth="1.2"
-            fill="none"
-            strokeLinecap="round"
-            animate={{
-              d: animateEmotion === 'excited'
-                ? "M 55 24 Q 60 23 65 26"
-                : "M 55 27 Q 60 26 65 28",
-            }}
-            transition={{ duration: 0.3 }}
-          />
-
-          {/* Mouth */}
-          <motion.path
-            d={expression === 'thinking' ? "M 45 52 Q 50 51 55 52" : "M 45 52 Q 50 54 55 52"}
-            stroke="white"
-            strokeWidth="1.2"
-            fill="none"
-            strokeLinecap="round"
-            animate={expression === 'friendly' ? 'smile' : 'neutral'}
-            variants={mouthVariants}
-            opacity={0.9}
-          />
-        </svg>
-
-        {/* T-shirt with edXponential text (SVG overlay) */}
-        <svg
-          viewBox="0 0 100 100"
-          width={dimension * 0.6}
-          height={dimension * 0.4}
-          className="absolute bottom-2"
-          style={{ pointerEvents: 'none' }}
+        {/* Left Eye */}
+        <motion.g
+          animate={{
+            scaleY: blink ? 0.1 : 1,
+          }}
+          transition={{ duration: 0.15 }}
         >
-          <rect
-            x="20"
-            y="50"
-            width="60"
-            height="35"
-            rx="3"
-            fill="#000"
-            stroke="#333"
-            strokeWidth="0.5"
-          />
-          <text
-            x="50"
-            y="72"
-            textAnchor="middle"
-            fontSize="6"
+          <motion.circle
+            cx={80}
+            cy={80}
+            r="18"
             fill="white"
-            fontWeight="bold"
-            fontFamily="Inter, sans-serif"
-            letterSpacing="0.3"
-          >
-            edXponential
-          </text>
-        </svg>
-      </motion.div>
+            animate={{ x: mousePos.x }}
+            transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+          />
 
-      {/* Text below character */}
-      {showText && text && (
-        <motion.div
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4 }}
-          className="text-center max-w-xs"
+          {/* Left pupil */}
+          <motion.circle
+            cx={80}
+            cy={80}
+            r="11"
+            fill="#0a0a0a"
+            animate={{
+              x: mousePos.x * 0.6,
+              y: mousePos.y * 0.6,
+              scale: speaking ? 0.9 : 1,
+            }}
+            transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+          />
+
+          {/* Left pupil shine */}
+          <circle cx={76} cy={76} r="5" fill="#ffffff" opacity="0.7" />
+
+          {/* Left eye shine */}
+          <circle cx="70" cy="70" r="6" fill="url(#eyeShine)" />
+        </motion.g>
+
+        {/* Right Eye */}
+        <motion.g
+          animate={{
+            scaleY: blink ? 0.1 : 1,
+          }}
+          transition={{ duration: 0.15 }}
         >
-          <p className="text-white/90 text-sm leading-relaxed font-medium">{text}</p>
-        </motion.div>
-      )}
+          <motion.circle
+            cx={160}
+            cy={80}
+            r="18"
+            fill="white"
+            animate={{ x: mousePos.x }}
+            transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+          />
+
+          {/* Right pupil */}
+          <motion.circle
+            cx={160}
+            cy={80}
+            r="11"
+            fill="#0a0a0a"
+            animate={{
+              x: mousePos.x * 0.6,
+              y: mousePos.y * 0.6,
+              scale: speaking ? 0.9 : 1,
+            }}
+            transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+          />
+
+          {/* Right pupil shine */}
+          <circle cx={156} cy={76} r="5" fill="#ffffff" opacity="0.7" />
+
+          {/* Right eye shine */}
+          <circle cx="150" cy="70" r="6" fill="url(#eyeShine)" />
+        </motion.g>
+
+        {/* Left Eyebrow */}
+        <motion.path
+          d="M 65 55 Q 80 45 95 50"
+          stroke="white"
+          strokeWidth="3"
+          fill="none"
+          strokeLinecap="round"
+          animate={{
+            rotate: current.browRotation,
+          }}
+          transition={{ duration: 0.3 }}
+          style={{ transformOrigin: '80px 48px' }}
+        />
+
+        {/* Right Eyebrow */}
+        <motion.path
+          d="M 145 50 Q 160 45 175 55"
+          stroke="white"
+          strokeWidth="3"
+          fill="none"
+          strokeLinecap="round"
+          animate={{
+            rotate: -current.browRotation,
+          }}
+          transition={{ duration: 0.3 }}
+          style={{ transformOrigin: '160px 48px' }}
+        />
+
+        {/* Mouth */}
+        <motion.g
+          animate={{
+            y: speaking ? -2 : 0,
+          }}
+          transition={{ duration: 0.1 }}
+        >
+          {/* Mouth opening */}
+          <motion.ellipse
+            cx="120"
+            cy="140"
+            rx="18"
+            ry={current.mouthHeight}
+            fill="white"
+            animate={{
+              ry: speaking ? current.mouthHeight + 5 : current.mouthHeight,
+            }}
+            transition={{ duration: 0.05 }}
+          />
+
+          {/* Mouth detail */}
+          {speaking && (
+            <motion.path
+              d="M 105 140 Q 120 150 135 140"
+              stroke="#0a0a0a"
+              strokeWidth="1.5"
+              fill="none"
+              opacity="0.3"
+              animate={{
+                d: [
+                  'M 105 140 Q 120 150 135 140',
+                  'M 105 138 Q 120 145 135 138',
+                  'M 105 140 Q 120 150 135 140',
+                ],
+              }}
+              transition={{ duration: 0.3, repeat: Infinity }}
+            />
+          )}
+        </motion.g>
+
+        {/* Floating Animation */}
+        <motion.g
+          animate={{
+            y: [0, -10, 0],
+          }}
+          transition={{
+            duration: 4,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          }}
+        >
+          {/* Soft glow ring */}
+          <circle
+            cx="120"
+            cy="140"
+            r="145"
+            fill="none"
+            stroke="#0066ff"
+            strokeWidth="0.5"
+            opacity="0.2"
+            filter="url(#glow)"
+          />
+        </motion.g>
+      </svg>
     </div>
   );
 }

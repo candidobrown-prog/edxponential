@@ -55,10 +55,8 @@ import EdXportanteDashboard from './pages/edxportante/EdXportanteDashboard';
 import Xschetails from './pages/Xschetails';
 import XschetailsDashboard from './pages/XschetailsDashboard';
 import PlatformChatbot from './components/platform/PlatformChatbot';
-import AskEddy from './components/eddy/AskEddy';
-import EddyOnboarding from './components/eddy/EddyOnboarding';
-import EddyWelcomeModal from './components/eddy/EddyWelcomeModal';
-import EddyAssistant from './components/eddy/EddyAssistant';
+import EddyOnboardingFlow from './components/platform/EddyOnboardingFlow';
+import EddyFloatingAssistant from './components/eddy/EddyFloatingAssistant';
 import AdminFeedback from './pages/AdminFeedback';
 import MyXschool from './pages/MyXschool';
 import NotificationPrefs from './pages/NotificationPrefs';
@@ -194,8 +192,6 @@ const ONBOARDING_KEY = 'edx_onboarding_complete';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
-  const [showOnboarding, setShowOnboarding] = React.useState(false);
-  const [showEddyWelcome, setShowEddyWelcome] = React.useState(false);
   const [showEddyOnboarding, setShowEddyOnboarding] = React.useState(false);
   const [user, setUser] = React.useState(null);
 
@@ -203,21 +199,10 @@ const AuthenticatedApp = () => {
     base44.auth.me().then(u => {
       setUser(u);
       if (!u.eddy_onboarding_complete) {
-        setShowEddyWelcome(true);
+        setShowEddyOnboarding(true);
       }
     }).catch(() => {});
   }, []);
-
-  React.useEffect(() => {
-    if (!localStorage.getItem(ONBOARDING_KEY)) {
-      setTimeout(() => setShowOnboarding(true), 600);
-    }
-  }, []);
-
-  const handleOnboardingComplete = () => {
-    localStorage.setItem(ONBOARDING_KEY, 'true');
-    setShowOnboarding(false);
-  };
 
   // Show loading spinner while checking app public settings or auth
   if (isLoadingPublicSettings || isLoadingAuth) {
@@ -242,10 +227,8 @@ const AuthenticatedApp = () => {
   // Render the main app
   return (
     <>
-    <AnimatePresence>
-      {showOnboarding && <OnboardingFlow onComplete={handleOnboardingComplete} />}
-      {showEddyWelcome && user && <EddyWelcomeModal user={user} onDismiss={() => setShowEddyWelcome(false)} />}
-      {showEddyOnboarding && <EddyOnboarding onComplete={() => { setShowEddyOnboarding(false); setShowEddyWelcome(false); }} />}
+    <AnimatePresence mode="wait">
+      {showEddyOnboarding && <EddyOnboardingFlow onComplete={() => setShowEddyOnboarding(false)} />}
     </AnimatePresence>
     <Routes>
       {/* ── PUBLIC ROUTES (no sidebar, no app chrome) ── */}
@@ -517,9 +500,7 @@ function App() {
       <QueryClientProvider client={queryClientInstance}>
         <Router>
           <AuthenticatedApp />
-          <PlatformChatbot />
-          <AskEddy />
-          <EddyAssistant />
+          <EddyFloatingAssistant />
         </Router>
         <Toaster />
       </QueryClientProvider>
