@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FileText, Upload, CheckCircle, Clock, AlertCircle, Plus, Download, Eye } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
-import VendorInvoiceSubmission from '../../components/operationx/VendorInvoiceSubmission';
-import VendorComplianceDocs from '../../components/operationx/VendorComplianceDocs';
+import VendorInvoiceSubmission from '@/components/operationx/VendorInvoiceSubmission';
+import VendorComplianceDocs from '@/components/operationx/VendorComplianceDocs';
 
 export default function VendorDashboard({ vendor }) {
   const [tab, setTab] = useState('invoices'); // invoices, compliance, documents
