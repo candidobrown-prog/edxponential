@@ -4,17 +4,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, Lock, ChevronRight, ChevronLeft, Cpu, Users, Settings } from 'lucide-react';
 
 export default function PublicLandingPage() {
-  const [panelOpen, setPanelOpen] = useState(true);
-
   return (
     <div className="min-h-screen bg-white flex flex-col">
       {/* Header */}
-      <header className="border-b border-slate-200 px-6 py-4 flex items-center justify-between">
-        <img
-          src="https://media.base44.com/images/public/69f64dbf5c37a4db77e0e302/21d29b7f0_64B1F443-0AD3-403D-B726-ABEF11D14419.png"
-          alt="edXponential"
-          className="h-6 w-auto"
-        />
+      <header className="border-b border-slate-200 px-8 py-6 flex items-center justify-between">
+        <h1 className="text-3xl font-black text-black tracking-tight">edXponential</h1>
         <Link to="/signin" className="text-sm font-semibold text-black hover:text-slate-600">
           Sign In
         </Link>
@@ -22,8 +16,8 @@ export default function PublicLandingPage() {
 
       {/* Main Content */}
       <div className="flex-1 flex overflow-hidden">
-        {/* Left Side - Content */}
-        <div className="flex-1 flex items-center justify-center px-6 py-24 overflow-auto">
+        {/* Content */}
+        <div className="flex-1 flex items-center justify-center px-8 py-24 overflow-auto">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="w-full max-w-3xl">
             <div className="text-center mb-12">
               <div className="inline-flex items-center gap-2 rounded-full bg-slate-100 px-4 py-2 mb-6">
@@ -76,40 +70,7 @@ export default function PublicLandingPage() {
           </motion.div>
         </div>
 
-        {/* Right Side - Brand Panel */}
-        <AnimatePresence>
-          {panelOpen && (
-            <motion.div
-              initial={{ x: 400, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              exit={{ x: 400, opacity: 0 }}
-              transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-              className="w-80 bg-black border-l border-slate-800 flex flex-col items-center justify-center p-8 relative"
-            >
-              <div className="text-center">
-                <img
-                  src="https://media.base44.com/images/public/69f64dbf5c37a4db77e0e302/21d29b7f0_64B1F443-0AD3-403D-B726-ABEF11D14419.png"
-                  alt="edXponential"
-                  className="h-12 w-auto brightness-0 invert mb-8 mx-auto"
-                />
-                <h2 className="text-5xl font-black text-white tracking-tight leading-tight">
-                  edXponential
-                </h2>
-                <p className="text-white/60 text-sm mt-6 leading-relaxed">
-                  The AI Operating System for Education Leaders
-                </p>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
 
-        {/* Toggle Button */}
-        <button
-          onClick={() => setPanelOpen(!panelOpen)}
-          className="absolute right-0 top-1/2 -translate-y-1/2 w-10 h-10 bg-black border border-slate-700 rounded-l-lg text-white flex items-center justify-center hover:bg-slate-900 transition-all z-10"
-        >
-          {panelOpen ? <ChevronRight className="w-5 h-5" /> : <ChevronLeft className="w-5 h-5" />}
-        </button>
       </div>
 
       {/* Footer */}
