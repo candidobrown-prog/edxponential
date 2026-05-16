@@ -8,29 +8,19 @@ import WelcomeHero from '../components/dashboard/WelcomeHero';
 import StatCard from '../components/dashboard/StatCard';
 import StudentProgressCard from '../components/dashboard/StudentProgressCard';
 import EdVisorCard from '../components/coaching/EdVisorCard';
-import OnboardingTutorial from '../components/platform/OnboardingTutorial';
-import { AnimatePresence } from 'framer-motion';
 import EdxTooltip from '../components/platform/EdxTooltip';
 import { TOOLTIP } from '../lib/tooltipData';
 import XschyDashboardWidget from '../components/xschy/XschyDashboardWidget';
 
-const ONBOARD_KEY = 'edx_onboarding_dismissed';
-const COMPLETED_KEY = 'edx_onboarding_completed';
-
 export default function Dashboard() {
   const [user, setUser] = useState(null);
   const [xschetails, setXschetails] = useState(null);
-  const [showOnboarding, setShowOnboarding] = useState(false);
 
   useEffect(() => {
     base44.auth.me().then(async u => {
       setUser(u);
       const records = await base44.entities.Xschetails.filter({ user_email: u.email }, '-created_date', 1);
       if (records.length > 0) setXschetails(records[0]);
-      // Show onboarding if not dismissed/completed
-      if (!localStorage.getItem(COMPLETED_KEY) && !localStorage.getItem(ONBOARD_KEY)) {
-        setTimeout(() => setShowOnboarding(true), 1000);
-      }
     }).catch(() => {});
   }, []);
 
@@ -60,18 +50,6 @@ export default function Dashboard() {
 
   return (
     <div className="space-y-8">
-      <AnimatePresence>
-        {showOnboarding && (
-          <OnboardingTutorial
-            userRole={user?.role}
-            onClose={() => {
-              setShowOnboarding(false);
-              localStorage.setItem(ONBOARD_KEY, 'true');
-            }}
-          />
-        )}
-      </AnimatePresence>
-
       <XschyDashboardWidget />
       <WelcomeHero userName={user?.full_name} tier={user?.membership_tier} />
 

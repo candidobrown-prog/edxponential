@@ -169,7 +169,6 @@ import GitHubPRDashboard from './pages/GitHubPRDashboard';
 import AIInsightDashboard from './pages/AIInsightDashboard';
 import PublicLayout from './components/layout/PublicLayout';
 import PublicPricing from './pages/public/PublicPricing';
-import AIOnboarding from './pages/public/AIOnboarding';
 import ClassifiedxHome from './pages/classifiedx/ClassifiedxHome';
 import OperationXHome from './pages/operationx/OperationXHome';
 import OpxLayout from './components/operationx/OpxLayout';
@@ -250,7 +249,6 @@ const AuthenticatedApp = () => {
       <Route element={<PublicLayout />}>
         <Route path="/welcome" element={<PremiumLanding />} />
         <Route path="/pricing" element={<PublicPricing />} />
-        <Route path="/onboarding" element={<AIOnboarding />} />
       </Route>
 
       {/* ── AUTHENTICATED APP ROUTES ── */}
