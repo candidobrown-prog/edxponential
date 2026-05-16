@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useOnboarding, ONBOARDING_STEPS } from '@/lib/OnboardingContext';
+import { useAuth } from '@/lib/AuthContext';
 
 const ONBOARDING_ROUTES = [
   '/onboarding/questionnaire',
@@ -11,11 +12,13 @@ const ONBOARDING_ROUTES = [
 
 export default function OnboardingGate({ children }) {
   const { onboardingStatus, getCurrentStep, isFullyOnboarded } = useOnboarding();
+  const { isAuthenticated, isLoadingAuth } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
 
   useEffect(() => {
     if (onboardingStatus === null) return; // still loading
+    if (isLoadingAuth || !isAuthenticated) return; // wait for auth — login screen handles this
 
     const currentPath = location.pathname;
     const onOnboardingRoute = ONBOARDING_ROUTES.some(r => currentPath.startsWith(r));
@@ -42,8 +45,8 @@ export default function OnboardingGate({ children }) {
     }
   }, [onboardingStatus, location.pathname]);
 
-  // Show loading spinner while checking status
-  if (onboardingStatus === null) {
+  // Show loading spinner while checking status (only after auth is confirmed)
+  if (isAuthenticated && onboardingStatus === null) {
     return (
       <div className="fixed inset-0 flex items-center justify-center bg-white">
         <div className="w-8 h-8 border-4 border-gray-200 border-t-black rounded-full animate-spin" />
