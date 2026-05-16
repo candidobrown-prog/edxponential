@@ -5,6 +5,7 @@ const stripe = new Stripe(Deno.env.get('STRIPE_SECRET_KEY'));
 
 // Price catalog — map product_type to Stripe price IDs
 const PRICE_MAP = {
+  subscription_starter_monthly: 'price_1TXfZwBbfspRwLeFnS5SU3JN',
   subscription_pro_monthly: 'price_1TUsXOBbfspRwLeFiTDL4MP9',
   subscription_pro_yearly: 'price_1TUsXNBbfspRwLeFElMb9Q1n',
   subscription_enterprise_monthly: 'price_1TUsXOBbfspRwLeFQU2UxcdS',
