@@ -44,10 +44,12 @@ export const OnboardingProvider = ({ children }) => {
   };
 
   const isFullyOnboarded = () => {
+    if (localStorage.getItem('edx_onboarding_complete')) return true;
     if (!onboardingStatus) return false;
     return onboardingStatus.dashboardUnlocked ||
-      (onboardingStatus.paymentMethodAdded &&
-        (onboardingStatus.subscriptionStatus === 'trialing' || onboardingStatus.subscriptionStatus === 'active'));
+      onboardingStatus.paymentMethodAdded ||
+      onboardingStatus.subscriptionStatus === 'trialing' ||
+      onboardingStatus.subscriptionStatus === 'active';
   };
 
   return (

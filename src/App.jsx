@@ -196,7 +196,7 @@ import ClassifiedxPublish from './pages/classifiedx/ClassifiedxPublish';
 const ONBOARDING_KEY = 'edx_onboarding_complete';
 
 const AuthenticatedApp = () => {
-  const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
+  const { isAuthenticated, isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
   const [showOnboarding, setShowOnboarding] = React.useState(false);
 
   React.useEffect(() => {
@@ -219,12 +219,17 @@ const AuthenticatedApp = () => {
     );
   }
 
+  // Always require authentication
+  if (!isAuthenticated && !isLoadingAuth) {
+    navigateToLogin();
+    return null;
+  }
+
   // Handle authentication errors
   if (authError) {
     if (authError.type === 'user_not_registered') {
       return <UserNotRegisteredError />;
     } else if (authError.type === 'auth_required') {
-      // Redirect to login automatically
       navigateToLogin();
       return null;
     }

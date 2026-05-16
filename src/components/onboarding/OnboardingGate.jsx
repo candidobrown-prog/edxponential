@@ -10,6 +10,12 @@ const ONBOARDING_ROUTES = [
   '/onboarding/checkout',
 ];
 
+const EXEMPT_ROUTES = [
+  '/checkout/success',
+  '/welcome',
+  '/pricing',
+];
+
 export default function OnboardingGate({ children }) {
   const { onboardingStatus, getCurrentStep, isFullyOnboarded } = useOnboarding();
   const { isAuthenticated, isLoadingAuth } = useAuth();
@@ -22,6 +28,8 @@ export default function OnboardingGate({ children }) {
 
     const currentPath = location.pathname;
     const onOnboardingRoute = ONBOARDING_ROUTES.some(r => currentPath.startsWith(r));
+    const isExempt = EXEMPT_ROUTES.some(r => currentPath.startsWith(r));
+    if (isExempt) return;
 
     if (isFullyOnboarded()) {
       // User is fully onboarded — if they're on an onboarding route, send to dashboard

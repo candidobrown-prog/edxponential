@@ -1,20 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { useOnboarding } from '@/lib/OnboardingContext';
+import { base44 } from '@/api/base44Client';
 import { ChevronRight, Loader2 } from 'lucide-react';
 
 export default function CheckoutSuccess() {
-  const { refresh } = useOnboarding();
   const navigate = useNavigate();
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    // Give the webhook a moment to process, then refresh onboarding state
+    // Mark dashboard as unlocked immediately, then navigate
     const timer = setTimeout(async () => {
-      await refresh();
+      try {
+        await base44.auth.updateMe({ dashboard_unlocked: true, payment_method_added: true });
+      } catch (e) { /* ignore */ }
       setReady(true);
-    }, 2000);
+    }, 1800);
     return () => clearTimeout(timer);
   }, []);
 
@@ -58,7 +59,10 @@ export default function CheckoutSuccess() {
         </div>
 
         <button
-          onClick={() => navigate('/')}
+          onClick={() => {
+            localStorage.setItem('edx_onboarding_complete', 'true');
+            navigate('/', { replace: true });
+          }}
           disabled={!ready}
           className="flex items-center justify-center gap-2 w-full h-12 rounded-full bg-orange-500 text-white text-sm font-bold hover:bg-orange-600 active:scale-[0.98] transition-all disabled:opacity-40"
         >
