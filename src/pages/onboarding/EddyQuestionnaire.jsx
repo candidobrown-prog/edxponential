@@ -83,7 +83,6 @@ const BUDGET_RANGES = [
 
 const STEPS = [
   { id: 'intro',      label: 'Welcome' },
-  { id: 'identity',   label: 'About You' },
   { id: 'role',       label: 'Your Role' },
   { id: 'goals',      label: 'Goals' },
   { id: 'needs',      label: 'Dashboard' },
@@ -125,7 +124,6 @@ export default function EddyQuestionnaire() {
   const navigate = useNavigate();
 
   const [form, setForm] = useState({
-    first_name: '', last_name: '', organization: '', country: '', state_region: '',
     role: '',
     goals: [],
     dashboard_needs: [],
@@ -145,7 +143,6 @@ export default function EddyQuestionnaire() {
   const setSingle = (field, value) => setForm(f => ({ ...f, [field]: value }));
 
   const canAdvance = () => {
-    if (step.id === 'identity')   return form.first_name.trim() && form.last_name.trim();
     if (step.id === 'role')       return !!form.role;
     if (step.id === 'goals')      return form.goals.length > 0;
     if (step.id === 'needs')      return form.dashboard_needs.length > 0;
@@ -158,12 +155,7 @@ export default function EddyQuestionnaire() {
     setSaving(true);
     try {
       await base44.auth.updateMe({
-        first_name: form.first_name,
-        last_name: form.last_name,
         role_type: form.role,
-        organization_name: form.organization,
-        country: form.country,
-        state_region: form.state_region,
         goals: form.goals,
         dashboard_needs: form.dashboard_needs,
         experience_level: form.experience_level,
@@ -217,33 +209,6 @@ export default function EddyQuestionnaire() {
                 <p className="text-lg text-gray-500 leading-relaxed max-w-sm mx-auto">
                   Welcome to edXponential. I'm your AI learning and leadership guide. I'll ask a few quick questions to understand your goals, recommend the right membership, and build a dashboard tailored to you.
                 </p>
-              </div>
-            )}
-
-            {/* ── Identity ── */}
-            {step.id === 'identity' && (
-              <div>
-                <h2 className="text-4xl font-black text-black tracking-tight mb-2">Tell us about yourself.</h2>
-                <p className="text-base text-gray-400 mb-8">We'll use this to personalize your experience.</p>
-                <div className="space-y-4">
-                  {[
-                    ['first_name', 'First Name'],
-                    ['last_name', 'Last Name'],
-                    ['organization', 'Organization'],
-                    ['country', 'Country'],
-                    ['state_region', 'State / Region'],
-                  ].map(([field, label]) => (
-                    <div key={field}>
-                      <label className="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-1.5">{label}</label>
-                      <input
-                        value={form[field]}
-                        onChange={e => setSingle(field, e.target.value)}
-                        placeholder={label}
-                        className="w-full h-12 px-4 rounded-2xl border border-gray-200 text-sm font-medium text-black placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent transition-all"
-                      />
-                    </div>
-                  ))}
-                </div>
               </div>
             )}
 
