@@ -63,7 +63,7 @@ export default function LinkedInOnboarding() {
         organization: formData.organization,
         goals: formData.goals,
         interests: formData.interests,
-        linkedInData,
+        linkedinData,
       };
 
       await generatePersonalizedDashboard(
@@ -128,7 +128,7 @@ export default function LinkedInOnboarding() {
           transition={{ duration: 0.5 }}
           className="w-full max-w-md"
         >
-          {step === 'confirm' && linkedInData && (
+          {step === 'confirm' && linkedinData && (
             <>
               <div className="mb-8">
                 <h1 className="text-3xl font-black text-black tracking-tight mb-2">

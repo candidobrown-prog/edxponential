@@ -162,11 +162,6 @@ import AIInsightDashboard from './pages/AIInsightDashboard';
 import PublicLayout from './components/layout/PublicLayout';
 import PublicPricing from './pages/public/PublicPricing';
 import AIOnboarding from './pages/public/AIOnboarding';
-import PublicLandingPage from './pages/public/PublicLandingPage';
-import ApplyPage from './pages/public/ApplyPage';
-import LoginPage from './pages/auth/LoginPage';
-import ApplicationReview from './pages/admin/ApplicationReview';
-import Questionnaire from './pages/onboarding/Questionnaire';
 import ClassifiedxHome from './pages/classifiedx/ClassifiedxHome';
 import OperationXHome from './pages/operationx/OperationXHome';
 import OpxLayout from './components/operationx/OpxLayout';
@@ -237,23 +232,14 @@ const AuthenticatedApp = () => {
     <Routes>
       {/* ── PUBLIC ROUTES (no sidebar, no app chrome) ── */}
       <Route element={<PublicLayout />}>
-        <Route path="/" element={<PublicLandingPage />} />
-        <Route path="/apply" element={<ApplyPage />} />
-        <Route path="/signin" element={<LoginPage />} />
         <Route path="/welcome" element={<PremiumLanding />} />
         <Route path="/pricing" element={<PublicPricing />} />
         <Route path="/onboarding" element={<AIOnboarding />} />
       </Route>
 
-      {/* ── ADMIN ROUTES ── */}
-      <Route path="/admin/applications" element={<ApplicationReview />} />
-
-      {/* ── ONBOARDING ROUTES ── */}
-      <Route path="/onboarding/questionnaire" element={<Questionnaire />} />
-
       {/* ── AUTHENTICATED APP ROUTES ── */}
       <Route element={<AppLayout />}>
-        <Route path="/dashboard" element={<PersonalizedDashboard />} />
+        <Route path="/" element={<PersonalizedDashboard />} />
         <Route path="/courses" element={<Courses />} />
         <Route path="/courses/:id" element={<CourseDetail />} />
         <Route path="/coaching" element={<Coaching />} />
@@ -505,36 +491,19 @@ const AuthenticatedApp = () => {
 
 
 function App() {
+
   return (
     <AuthProvider>
       <QueryClientProvider client={queryClientInstance}>
         <Router>
-          <AuthenticatedAppWrapper />
+          <AuthenticatedApp />
           <PlatformChatbot />
+          <AskEddy />
         </Router>
         <Toaster />
       </QueryClientProvider>
     </AuthProvider>
   )
-}
-
-function AuthenticatedAppWrapper() {
-  const { isLoadingAuth } = useAuth();
-
-  if (isLoadingAuth) {
-    return (
-      <div className="fixed inset-0 flex items-center justify-center">
-        <div className="w-8 h-8 border-4 border-slate-200 border-t-slate-800 rounded-full animate-spin"></div>
-      </div>
-    );
-  }
-
-  return (
-    <>
-      <AuthenticatedApp />
-      <AskEddy />
-    </>
-  );
 }
 
 export default App
