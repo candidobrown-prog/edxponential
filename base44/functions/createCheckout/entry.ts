@@ -3,7 +3,6 @@ import Stripe from 'npm:stripe@14.21.0';
 
 const stripe = new Stripe(Deno.env.get('STRIPE_SECRET_KEY'));
 
-// Price catalog — map product_type to Stripe price IDs
 const PRICE_MAP = {
   subscription_starter_monthly: 'price_1TXfZwBbfspRwLeFnS5SU3JN',
   subscription_pro_monthly: 'price_1TUsXOBbfspRwLeFiTDL4MP9',
@@ -24,16 +23,15 @@ Deno.serve(async (req) => {
     const user = await base44.auth.me();
     if (!user) return Response.json({ error: 'Unauthorized' }, { status: 401 });
 
-    const { product_type, price_id, amount, currency = 'usd', description, brand, product_name, custom_price, metadata = {} } = await req.json();
+    const body = await req.json();
+    const { product_type, price_id, amount, currency = 'usd', description, brand, product_name, metadata = {} } = body;
 
-    // Resolve price — use custom price_id, catalog lookup, or dynamic price
-    let lineItems;
     const resolvedPriceId = price_id || PRICE_MAP[product_type];
+    let lineItems;
 
     if (resolvedPriceId) {
       lineItems = [{ price: resolvedPriceId, quantity: 1 }];
     } else if (amount) {
-      // Dynamic price for custom amounts (donations, investments, custom bookings)
       lineItems = [{
         price_data: {
           currency,
@@ -51,13 +49,23 @@ Deno.serve(async (req) => {
     }
 
     const origin = req.headers.get('origin') || 'https://app.base44.com';
+    const isSubscription = !!(resolvedPriceId && product_type?.includes('subscription'));
+    const isOnboarding = metadata?.onboarding === 'true';
 
-    const session = await stripe.checkout.sessions.create({
-      mode: resolvedPriceId && (product_type?.includes('subscription') || PRICE_MAP[product_type]?.includes('monthly') || PRICE_MAP[product_type]?.includes('yearly')) ? 'subscription' : 'payment',
+    const successUrl = isOnboarding
+      ? `${origin}/checkout/success?session_id={CHECKOUT_SESSION_ID}`
+      : `${origin}/billing?payment=success&session_id={CHECKOUT_SESSION_ID}`;
+
+    const cancelUrl = isOnboarding
+      ? `${origin}/onboarding/checkout?payment=cancelled`
+      : `${origin}/billing?payment=cancelled`;
+
+    const sessionConfig = {
+      mode: isSubscription ? 'subscription' : 'payment',
       line_items: lineItems,
       customer_email: user.email,
-      success_url: `${origin}/billing?payment=success&session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${origin}/billing?payment=cancelled`,
+      success_url: successUrl,
+      cancel_url: cancelUrl,
       allow_promotion_codes: true,
       billing_address_collection: 'auto',
       payment_method_types: ['card'],
@@ -70,9 +78,14 @@ Deno.serve(async (req) => {
         product_name: product_name || '',
         ...metadata,
       },
-    });
+    };
 
-    // Record pending transaction
+    if (isSubscription) {
+      sessionConfig.subscription_data = { trial_period_days: 14 };
+    }
+
+    const session = await stripe.checkout.sessions.create(sessionConfig);
+
     await base44.entities.Transaction.create({
       stripe_session_id: session.id,
       user_email: user.email,

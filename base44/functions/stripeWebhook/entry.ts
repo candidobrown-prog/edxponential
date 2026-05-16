@@ -22,6 +22,47 @@ Deno.serve(async (req) => {
       const session = event.data.object;
       const meta = session.metadata || {};
 
+      // Send confirmation email for onboarding checkouts
+      if (meta.onboarding === 'true' && session.customer_email) {
+        const userEmail = session.customer_email;
+        const packageName = meta.package || 'Your Package';
+        const trialStart = new Date();
+        const trialEnd = new Date(trialStart.getTime() + 14 * 24 * 60 * 60 * 1000);
+        const fmt = (d) => d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+
+        const users = await base44.asServiceRole.entities.User.filter({ email: userEmail });
+        const firstName = users.length > 0 ? (users[0].first_name || users[0].full_name?.split(' ')[0] || 'there') : 'there';
+
+        await base44.asServiceRole.integrations.Core.SendEmail({
+          to: userEmail,
+          subject: 'Welcome to edXponential — Your 14-Day Free Trial Has Started',
+          body: `Hi ${firstName},
+
+Welcome to edXponential. Your 14-day free trial has officially started.
+
+Selected Package: ${packageName}
+Total Due Today: $0.00
+Trial Start Date: ${fmt(trialStart)}
+Trial End Date: ${fmt(trialEnd)}
+Next Billing Date: ${fmt(trialEnd)}
+
+You will not be charged today. Your card will only be charged after your 14-day free trial ends unless you cancel before the trial expiration date.
+
+Your dashboard is now unlocked. Eddy will guide you through completing your profile, exploring your recommended tools, joining cohorts, and accessing the resources aligned to your goals.
+
+Access your dashboard: https://app.base44.com
+
+Manage your billing: https://app.base44.com/billing
+
+Need help? Contact us at hello@edxponential.com
+
+Welcome to the future of learning, leadership, and education.
+
+The edXponential Team`,
+        });
+        console.log(`Confirmation email sent to ${userEmail}`);
+      }
+
       // Update transaction to completed
       const existing = await base44.asServiceRole.entities.Transaction.filter({ stripe_session_id: session.id });
       if (existing.length > 0) {

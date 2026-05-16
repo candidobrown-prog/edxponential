@@ -96,6 +96,7 @@ import EddyQuestionnaire from './pages/onboarding/EddyQuestionnaire';
 import EddyRecommendation from './pages/onboarding/EddyRecommendation';
 import OnboardingPricing from './pages/onboarding/OnboardingPricing';
 import OnboardingCheckout from './pages/onboarding/OnboardingCheckout';
+import CheckoutSuccess from './pages/onboarding/CheckoutSuccess';
 import PaymentsDashboard from './pages/admin/PaymentsDashboard';
 import ExecutiveDashboard from './pages/admin/ExecutiveDashboard';
 import XschyXschraiper from './pages/XschyXschraiper';
@@ -244,6 +245,7 @@ const AuthenticatedApp = () => {
       <Route path="/onboarding/recommendation" element={<EddyRecommendation />} />
       <Route path="/onboarding/pricing" element={<OnboardingPricing />} />
       <Route path="/onboarding/checkout" element={<OnboardingCheckout />} />
+      <Route path="/checkout/success" element={<CheckoutSuccess />} />
       {/* ── PUBLIC ROUTES (no sidebar, no app chrome) ── */}
       <Route element={<PublicLayout />}>
         <Route path="/welcome" element={<PremiumLanding />} />
