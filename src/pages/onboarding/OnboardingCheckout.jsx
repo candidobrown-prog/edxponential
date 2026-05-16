@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { base44 } from '@/api/base44Client';
 import { useOnboarding } from '@/lib/OnboardingContext';
-import { Loader2, ShieldCheck, CreditCard } from 'lucide-react';
+import { Loader2, Check } from 'lucide-react';
 
 const PACKAGE_PRICE_MAP = {
   'Leading Learner': 'subscription_starter_monthly',
@@ -12,7 +12,7 @@ const PACKAGE_PRICE_MAP = {
 };
 
 export default function OnboardingCheckout() {
-  const { user, refresh } = useOnboarding();
+  const { user } = useOnboarding();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -47,41 +47,44 @@ export default function OnboardingCheckout() {
   };
 
   return (
-    <div className="min-h-screen bg-white flex flex-col items-center justify-center px-4 py-12">
-      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="w-full max-w-md">
+    <div className="min-h-screen bg-white flex flex-col items-center justify-center px-6 py-12">
+      <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }} className="w-full max-w-md">
 
-        {/* Eddy message */}
-        <div className="flex items-start gap-3 mb-8">
-          <div className="w-10 h-10 rounded-xl bg-black flex items-center justify-center flex-shrink-0 mt-1">
-            <span className="text-white font-black text-sm">E</span>
+        {/* Eddy header */}
+        <div className="flex items-center gap-3 mb-10">
+          <div className="w-12 h-12 rounded-2xl bg-black flex items-center justify-center flex-shrink-0 shadow-sm">
+            <span className="text-white font-black text-base tracking-tight">E</span>
           </div>
-          <div className="bg-gray-50 rounded-2xl rounded-tl-none px-4 py-3">
-            <p className="text-sm text-gray-700 leading-relaxed">
-              Almost there, {user?.first_name || 'friend'}! Add your card to start your <strong>14-day free trial</strong>. You won't be charged until your trial ends — and you can cancel anytime.
-            </p>
+          <div>
+            <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-0.5">Almost there</p>
+            <h1 className="text-2xl font-black text-black tracking-tight">Start Your Free Trial</h1>
           </div>
         </div>
 
+        <p className="text-base text-gray-500 leading-relaxed mb-8">
+          Add your card to activate your <strong className="text-black">14-day free trial</strong>. You will not be charged until your trial ends, and you can cancel anytime.
+        </p>
+
         {/* Package summary */}
         <div className="rounded-2xl border border-gray-200 overflow-hidden mb-6">
-          <div className="bg-black px-6 py-5">
-            <p className="text-gray-400 text-xs uppercase tracking-widest mb-1">Your Selected Package</p>
-            <h2 className="text-xl font-black text-white">{selectedPackage}</h2>
-            <p className="text-orange-400 text-sm font-semibold mt-1">14-day free trial · then billed monthly</p>
+          <div className="px-6 py-5 border-b border-gray-100">
+            <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-1">Selected Package</p>
+            <h2 className="text-xl font-black text-black tracking-tight">{selectedPackage}</h2>
+            <p className="text-sm text-orange-500 font-semibold mt-1">14-day free trial, then billed monthly</p>
           </div>
           <div className="px-6 py-5 space-y-3">
-            <div className="flex items-center gap-3 text-sm text-gray-600">
-              <ShieldCheck className="w-4 h-4 text-green-500 flex-shrink-0" />
-              No charge for 14 days
-            </div>
-            <div className="flex items-center gap-3 text-sm text-gray-600">
-              <ShieldCheck className="w-4 h-4 text-green-500 flex-shrink-0" />
-              Cancel anytime before trial ends
-            </div>
-            <div className="flex items-center gap-3 text-sm text-gray-600">
-              <ShieldCheck className="w-4 h-4 text-green-500 flex-shrink-0" />
-              Secure checkout via Stripe
-            </div>
+            {[
+              'No charge for 14 days',
+              'Cancel anytime before trial ends',
+              'Secure checkout via Stripe',
+            ].map(item => (
+              <div key={item} className="flex items-center gap-3 text-sm text-gray-600">
+                <div className="w-4 h-4 rounded-full bg-orange-100 flex items-center justify-center flex-shrink-0">
+                  <Check className="w-2.5 h-2.5 text-orange-500" />
+                </div>
+                {item}
+              </div>
+            ))}
           </div>
         </div>
 
@@ -90,12 +93,12 @@ export default function OnboardingCheckout() {
         <button
           onClick={handleCheckout}
           disabled={loading}
-          className="w-full h-13 py-3.5 rounded-xl bg-orange-500 text-white font-bold text-base hover:bg-orange-600 transition-all flex items-center justify-center gap-3 disabled:opacity-40 disabled:cursor-not-allowed shadow-lg shadow-orange-200"
+          className="w-full h-12 rounded-xl bg-orange-500 text-white font-bold text-sm hover:bg-orange-600 active:scale-[0.98] transition-all flex items-center justify-center gap-2 disabled:opacity-30 disabled:cursor-not-allowed"
         >
-          {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : (<><CreditCard className="w-5 h-5" /> Start My Free Trial</>)}
+          {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : 'Start My Free Trial'}
         </button>
         <p className="text-center text-xs text-gray-400 mt-3">
-          Powered by Stripe · Your card info is never stored by us
+          Powered by Stripe. Your card info is never stored by us.
         </p>
       </motion.div>
     </div>
