@@ -90,6 +90,12 @@ import XschoresBenchmarks from './pages/xschores/XschoresBenchmarks';
 import XschoresCultureLog from './pages/xschores/XschoresCultureLog';
 import XschoresReports from './pages/xschores/XschoresReports';
 import { AnimatePresence } from 'framer-motion';
+import { OnboardingProvider } from '@/lib/OnboardingContext';
+import OnboardingGate from '@/components/onboarding/OnboardingGate';
+import EddyQuestionnaire from './pages/onboarding/EddyQuestionnaire';
+import EddyRecommendation from './pages/onboarding/EddyRecommendation';
+import OnboardingPricing from './pages/onboarding/OnboardingPricing';
+import OnboardingCheckout from './pages/onboarding/OnboardingCheckout';
 import PaymentsDashboard from './pages/admin/PaymentsDashboard';
 import ExecutiveDashboard from './pages/admin/ExecutiveDashboard';
 import XschyXschraiper from './pages/XschyXschraiper';
@@ -226,11 +232,18 @@ const AuthenticatedApp = () => {
 
   // Render the main app
   return (
+    <OnboardingProvider>
+    <OnboardingGate>
     <>
     <AnimatePresence>
       {showOnboarding && <OnboardingFlow onComplete={handleOnboardingComplete} />}
     </AnimatePresence>
     <Routes>
+      {/* ── ONBOARDING ROUTES ── */}
+      <Route path="/onboarding/questionnaire" element={<EddyQuestionnaire />} />
+      <Route path="/onboarding/recommendation" element={<EddyRecommendation />} />
+      <Route path="/onboarding/pricing" element={<OnboardingPricing />} />
+      <Route path="/onboarding/checkout" element={<OnboardingCheckout />} />
       {/* ── PUBLIC ROUTES (no sidebar, no app chrome) ── */}
       <Route element={<PublicLayout />}>
         <Route path="/welcome" element={<PremiumLanding />} />
@@ -488,6 +501,8 @@ const AuthenticatedApp = () => {
       <Route path="*" element={<PageNotFound />} />
     </Routes>
     </>
+    </OnboardingGate>
+    </OnboardingProvider>
   );
 };
 

@@ -75,8 +75,60 @@ Deno.serve(async (req) => {
       }
     }
 
-    if (event.type === 'customer.subscription.deleted') {
-      console.log('Subscription cancelled:', event.data.object.id);
+    // Sync subscription status to user profile
+    if (['customer.subscription.created', 'customer.subscription.updated', 'customer.subscription.deleted'].includes(event.type)) {
+      const sub = event.data.object;
+      const customerId = sub.customer;
+      const status = sub.status; // trialing, active, canceled, past_due, etc.
+
+      // Find user by stripe_customer_id stored in their profile via Transaction
+      const transactions = await base44.asServiceRole.entities.Transaction.filter({ stripe_customer_id: customerId });
+      if (transactions.length > 0) {
+        const userEmail = transactions[0].user_email;
+        const users = await base44.asServiceRole.entities.User.filter({ email: userEmail });
+        if (users.length > 0) {
+          const dashboardUnlocked = status === 'trialing' || status === 'active';
+          await base44.asServiceRole.entities.User.update(users[0].id, {
+            subscription_status: status,
+            stripe_subscription_id: sub.id,
+            stripe_customer_id: customerId,
+            payment_method_added: true,
+            dashboard_unlocked: dashboardUnlocked,
+            trial_end_date: sub.trial_end ? new Date(sub.trial_end * 1000).toISOString() : null,
+          });
+          console.log(`Updated user ${userEmail} subscription status to ${status}`);
+        }
+      }
+    }
+
+    if (event.type === 'checkout.session.completed') {
+      // Also mark payment_method_added on checkout complete for subscriptions
+      const session = event.data.object;
+      if (session.mode === 'subscription' && session.customer_email) {
+        const users = await base44.asServiceRole.entities.User.filter({ email: session.customer_email });
+        if (users.length > 0) {
+          await base44.asServiceRole.entities.User.update(users[0].id, {
+            payment_method_added: true,
+            stripe_customer_id: session.customer || '',
+          });
+        }
+      }
+    }
+
+    if (event.type === 'invoice.payment_failed') {
+      const invoice = event.data.object;
+      const customerId = invoice.customer;
+      const transactions = await base44.asServiceRole.entities.Transaction.filter({ stripe_customer_id: customerId });
+      if (transactions.length > 0) {
+        const userEmail = transactions[0].user_email;
+        const users = await base44.asServiceRole.entities.User.filter({ email: userEmail });
+        if (users.length > 0) {
+          await base44.asServiceRole.entities.User.update(users[0].id, {
+            subscription_status: 'past_due',
+            dashboard_unlocked: false,
+          });
+        }
+      }
     }
 
     return Response.json({ received: true });
