@@ -72,13 +72,12 @@ export default function Sidebar() {
           </div> :
 
         <div className="flex flex-col gap-1 w-full">
-            
-
-
-
+            <img src="https://media.base44.com/images/public/69f64dbf5c37a4db77e0e302/21d29b7f0_64B1F443-0AD3-403D-B726-ABEF11D14419.png"
+          alt="edXponential"
+          className="w-full h-auto brightness-0 invert object-contain"
+          style={{ maxHeight: '32px', objectFit: 'contain', objectPosition: 'left' }} />
           
-          
-            
+            <span className="text-white/20 text-[8px] font-bold uppercase tracking-[0.18em]">Education. Exponentially.</span>
           </div>
         }
       </div>
