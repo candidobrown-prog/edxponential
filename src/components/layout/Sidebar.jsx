@@ -65,7 +65,7 @@ export default function Sidebar() {
       collapsed ? 'w-[60px]' : 'w-[220px]'
     )}>
       {/* Logo */}
-      <div className={cn('flex items-center border-b border-white/[0.05] flex-shrink-0', collapsed ? 'h-14 justify-center' : 'h-14 px-4')}>
+      <div className={cn("flex items-center border-b border-white/[0.05] flex-shrink-0 bg-[hsl(var(--background))]", collapsed ? 'h-14 justify-center' : 'h-14 px-4')}>
         {collapsed ?
         <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center shadow-lg shadow-white/10 flex-shrink-0">
             <span className="text-black font-black text-[11px] tracking-tighter">eX</span>
@@ -75,7 +75,7 @@ export default function Sidebar() {
             <img src="https://media.base44.com/images/public/69f64dbf5c37a4db77e0e302/21d29b7f0_64B1F443-0AD3-403D-B726-ABEF11D14419.png"
 
           alt="edXponential"
-          className="w-full h-auto brightness-0 invert object-contain"
+          className="w-full h-auto brightness-0 invert object-contain hidden"
           style={{ maxHeight: '32px', objectFit: 'contain', objectPosition: 'left' }} />
           
             <span className="text-white/20 text-[8px] font-bold uppercase tracking-[0.18em] hidden">Education. Exponentially.</span>
