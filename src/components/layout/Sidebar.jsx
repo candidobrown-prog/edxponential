@@ -77,7 +77,7 @@ export default function Sidebar() {
           className="w-full h-auto brightness-0 invert object-contain"
           style={{ maxHeight: '32px', objectFit: 'contain', objectPosition: 'left' }} />
           
-            <span className="text-white/20 text-[8px] font-bold uppercase tracking-[0.18em]">Education. Exponentially.</span>
+            <span className="text-white/20 text-[8px] font-bold uppercase tracking-[0.18em]"></span>
           </div>
         }
       </div>
