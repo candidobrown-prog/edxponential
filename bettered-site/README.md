@@ -87,6 +87,21 @@ Never commit keys. `.env*` files are git-ignored.
 - **Color:** Navy `#0B1F3A`, Harbor `#1A5FB4`, Signal `#FFC20E`, Paper `#F6F4EE`. Accent points are squares, matching the mark.
 - After changing the logo, run `node scripts/gen-images.mjs` to regenerate `og-default.png` and `apple-touch-icon.png`.
 
+## EdSolution icons and the body metaphor
+
+School Health is the heart (culture and climate; a culture problem is a heart condition), Leader Development the head, Teacher Development the hands, Intensive Care the whole body. Icons live in `src/templates/icons.mjs` (heart, head, hand, body), each with a gold plus for care; `icon` on each solution in `site.mjs` picks one.
+
+## Background video hero
+
+The home hero switches to a full-bleed background video when `src/assets/video/hero.mp4` exists. To add one:
+
+```bash
+scripts/encode-hero-video.sh path/to/licensed-clip.mp4 [start-seconds] [duration-seconds]
+node build.mjs
+```
+
+The script writes `hero.mp4`, `hero.webm` and `hero-poster.jpg` (1920 px wide, no audio). Use a licensed clip with model releases for anyone identifiable, 10 to 20 seconds, that loops well. The video is muted, never plays for visitors who prefer reduced motion, pauses when the tab is hidden, and has a visible pause button. Delete the three files to return to the standard hero.
+
 ## Motion system
 
 Tokens at the top of `styles.css` (`--m-*` durations, `--d-*` distances, `--e-*` easings). Behaviour in `main.js`:

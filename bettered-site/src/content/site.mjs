@@ -101,11 +101,11 @@ export const method = [
 
 export const solutions = [
   {
-    slug: 'school-health', n: '01', name: 'School Health', sub: 'Culture & climate', role: 'Where every treatment starts', intensity: 2,
-    short: 'Belonging, safety and high expectations, so adults can do their best work and children can learn.',
+    slug: 'school-health', n: '01', name: 'School Health', sub: 'Culture & climate', role: 'The heart', icon: 'heart', intensity: 2,
+    short: 'The heart of the school, where every treatment starts: belonging, safety and high expectations, so adults can do their best work and children can learn.',
     cta: 'Talk about School Health', contactType: 'culture',
-    hero: 'Conditions come first.',
-    lead: 'Children learn where they feel safe, known and expected to succeed. Adults teach well where expectations are clear and support is real. Every BetterEd engagement begins with the conditions, because nothing else holds without them.',
+    hero: 'Culture is the heart of a school.',
+    lead: 'When a school has a culture and climate problem, it has a heart condition. Children learn where they feel safe, known and expected to succeed. Adults teach well where expectations are clear and support is real. Every BetterEd treatment starts here, because nothing else holds without a healthy heart.',
     why: [
       'Culture is not a poster or a discipline policy. It is what adults and children do, every day, when no one is checking. When the conditions are weak, every other improvement leaks away: coaching does not stick, leaders spend their days on incidents, and good teachers leave.',
       'We treat culture as an institutional condition, not a student problem. Children are not the problem. The routines, expectations and relationships the adults build are where we start.',
@@ -125,7 +125,7 @@ export const solutions = [
     related: ['leader-development', 'intensive-care'],
   },
   {
-    slug: 'leader-development', n: '02', name: 'Leader Development', sub: 'Principals & leadership teams', role: 'The head', intensity: 2,
+    slug: 'leader-development', n: '02', name: 'Leader Development', sub: 'Principals & leadership teams', role: 'The head', icon: 'head', intensity: 2,
     short: 'Heavy is the head that wears the crown. We build leaders who diagnose, decide and develop adults.',
     cta: 'Develop your leaders', contactType: 'leadership',
     hero: 'Heavy is the head that wears the crown.',
@@ -149,7 +149,7 @@ export const solutions = [
     related: ['teacher-development', 'school-health'],
   },
   {
-    slug: 'teacher-development', n: '03', name: 'Teacher Development', sub: 'Instruction in the classroom', role: 'The hands', intensity: 2,
+    slug: 'teacher-development', n: '03', name: 'Teacher Development', sub: 'Instruction in the classroom', role: 'The hands', icon: 'hand', intensity: 2,
     short: 'Teachers are where learning happens. We coach reading, writing and math instruction in the classroom.',
     cta: 'Strengthen teaching', contactType: 'educator',
     hero: 'Teachers are where learning happens.',
@@ -172,11 +172,11 @@ export const solutions = [
     related: ['leader-development', 'intensive-care'],
   },
   {
-    slug: 'intensive-care', n: '04', name: 'Intensive Care', sub: 'Whole-school turnaround', role: 'When it is everything', intensity: 4, intensive: true,
-    short: 'When it is not one thing, it is everything: culture, leadership and teaching together, until the school is healthy on its own.',
+    slug: 'intensive-care', n: '04', name: 'Intensive Care', sub: 'Whole-school turnaround', role: 'The whole body', icon: 'body', intensity: 4, intensive: true,
+    short: 'When it is not one condition but the whole body: heart, head and hands treated together, until the school is healthy on its own.',
     cta: 'Talk about Intensive Care', contactType: 'turnaround',
-    hero: 'When it is not one thing, it is everything.',
-    lead: 'Intensive Care is whole-school turnaround: culture, leadership, teaching, systems and measurement treated together, with more time, more intensity and more attention, until the school is healthy on its own.',
+    hero: 'When it is the whole body, we treat the whole body.',
+    lead: 'Intensive Care is whole-school turnaround: the heart, head and hands of a school (culture, leadership and teaching), plus its systems and measurement, treated together, with more time, more intensity and more attention, until the school is healthy on its own.',
     why: [
       'Some schools are not struggling for one reason. Culture is unstable, leadership is stretched, instruction is uneven, systems are fragmented and every problem feeds the next. Fixing one at a time does not work, because the others undo it.',
       'Turnaround is integrated work. We diagnose across every domain, agree the few priorities that unlock the rest, and stay in the building at the intensity the school needs. We do not promise timelines. We name measures, report them, and adjust.',

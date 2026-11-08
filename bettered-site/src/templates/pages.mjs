@@ -1,5 +1,11 @@
 import { site, method, solutions, mastery, shiDomains, shiBands, founder, team, caseStudies, insights } from '../content/site.mjs';
 import { claim } from '../content/claims.mjs';
+import { icon } from './icons.mjs';
+import { existsSync } from 'node:fs';
+
+/* Background video hero: switches on when src/assets/video/hero.mp4 exists (see scripts/encode-hero-video.sh). */
+const HERO_VIDEO = existsSync('src/assets/video/hero.mp4');
+const HERO_WEBM = existsSync('src/assets/video/hero.webm');
 import { html, esc, layout, crossArt, methodSpine, stageStrip, rulePoint, kicker, tagline, btn, linkArrow, ctaPair, breadcrumb, closing, evidenceNote, metric, ldOrg, ldBreadcrumb } from './lib.mjs';
 
 const sol = (slug) => solutions.find((s) => s.slug === slug);
@@ -33,7 +39,7 @@ function modelFigure({ caption = true } = {}) {
   const pos = { 'school-health': 'l', 'leader-development': 't', 'teacher-development': 'r', 'intensive-care': 'b' };
   return html`<div class="model">
     <ul class="model-grid" role="list" aria-label="The BetterEd Model">
-      ${solutions.map((s) => `<li class="m-${pos[s.slug]}"><a href="/solutions/${s.slug}/"><span class="m-n">${s.n}</span><span class="m-name">${esc(s.name)}</span></a></li>`)}
+      ${solutions.map((s) => `<li class="m-${pos[s.slug]}"><a href="/solutions/${s.slug}/">${icon(s.icon)}<span class="m-name">${esc(s.name)}</span><span class="m-role">${esc(s.role)}</span></a></li>`)}
       <li class="m-c"><a href="/approach/#stages"><span class="m-name">Diagnosis</span></a></li>
     </ul>
     ${caption ? html`<div class="model-copy stack"><h3>The BetterEd Model</h3><p>Each arm of the cross is one EdSolution. The gold center is the diagnosis, and it decides which arms a school needs, in what order, and at what level of care.</p>${linkArrow('How the diagnosis works', '/approach/#stages')}</div>` : ''}
@@ -45,7 +51,7 @@ function solutionsList({ dark = false, heading = true } = {}) {
     ${solutions.map((s) => html`<li><a class="solution-row${s.intensive ? ' is-intensive' : ''}" href="/solutions/${s.slug}/" data-track="EdSolution viewed" data-track-label="${esc(s.name)}" data-reveal>
       <span class="num">${s.n}</span>
       <h3>${esc(s.name)}<span class="sol-sub">${esc(s.sub)}</span></h3>
-      <span class="role">${esc(s.role)}</span>
+      <span class="role">${icon(s.icon)}<span>${esc(s.role)}</span></span>
       <span class="desc">${esc(s.short)}</span>
       <span class="go" aria-hidden="true">→</span>
     </a></li>`)}
@@ -99,7 +105,30 @@ function evidenceStrip({ dark = false } = {}) {
 /* ---------- pages ---------- */
 export function home(latest = []) {
   const body = html`
-  <section class="hero" aria-labelledby="hero-h">
+  ${HERO_VIDEO ? html`<section class="hero hero-video band-ink" aria-labelledby="hero-h">
+    <div class="hero-media" aria-hidden="true">
+      <video class="hero-vid" muted loop playsinline preload="metadata" poster="/assets/video/hero-poster.jpg" data-hero-video>
+        ${HERO_WEBM ? '<source src="/assets/video/hero.webm" type="video/webm">' : ''}<source src="/assets/video/hero.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="container hero-video-inner">
+      <div class="hero-masthead" aria-hidden="true"><span class="vol">The BetterEd Method</span><span>Intake · Diagnose · Plan · Treat · Strengthen · Discharge</span></div>
+      <div class="hero-video-copy">
+        <h1 id="hero-h" class="display">Schools can get well. <em>Fast.</em></h1>
+        <p class="lead">Every year a school struggles is a year children don't get back. We diagnose honestly, treat urgently, and stay until the results hold.</p>
+        ${ctaPair()}
+        ${tagline('hero-tagline')}
+      </div>
+    </div>
+    <button class="video-toggle" type="button" data-video-toggle><span class="vt-icon" aria-hidden="true"></span><span class="vt-label">Pause background video</span></button>
+  </section>
+  <section class="hero-index-band" aria-label="Where to start"><div class="container">
+    <ul class="hero-index" role="list">
+      <li><a href="/school-health-index/" data-track="SHI opened"><span class="n">01 · Intake</span><strong>The School Health Index™</strong><span class="d">A 12-domain exam of the conditions around learning.</span></a></li>
+      <li><a href="/solutions/"><span class="n">02 · Treat</span><strong>Four EdSolutions</strong><span class="d">School Health, leaders, teachers and Intensive Care.</span></a></li>
+      <li><a href="/results/"><span class="n">03 · Measure</span><strong>Measured, not promised</strong><span class="d">Results reported with their limits.</span></a></li>
+    </ul>
+  </div></section>` : html`<section class="hero" aria-labelledby="hero-h">
     <div class="container">
     <div class="hero-masthead" aria-hidden="true"><span class="vol">The BetterEd Method</span><span>Intake · Diagnose · Plan · Treat · Strengthen · Discharge</span></div>
     <div class="hero-grid">
@@ -117,7 +146,7 @@ export function home(latest = []) {
       <li><a href="/results/"><span class="n">03 · Measure</span><strong>Measured, not promised</strong><span class="d">Results reported with their limits.</span></a></li>
     </ul>
     </div>
-  </section>
+  </section>`}
 
   <section class="section-tight band-ink" aria-labelledby="ev-h">
     <div class="container">
@@ -275,8 +304,8 @@ export function solutionsIndex() {
     </div>
   </section>
   <section class="section" aria-labelledby="rel-h"><div class="container grid grid-12">
-    <div class="span-5">${kicker('How they relate')}<h2 id="rel-h">Conditions, head, hands. Or all three at once.</h2></div>
-    <div class="span-7 stack"><p>School Health comes first, because every engagement begins with the conditions: culture and climate. Leader Development strengthens the head: the people who decide and develop others. Teacher Development strengthens the hands: the teachers where learning happens. Intensive Care is whole-school turnaround, when the problem is not one thing but everything, and the first three are delivered together with more time and attention.</p>
+    <div class="span-5">${kicker('How they relate')}<h2 id="rel-h">Heart, head, hands. Or the whole body.</h2></div>
+    <div class="span-7 stack"><p>School Health is the heart: culture and climate, where every treatment starts. If a school has a culture and climate problem, it has a heart condition, and nothing else holds until it is treated. Leader Development strengthens the head: the people who decide and develop others. Teacher Development strengthens the hands: the teachers where learning happens. Intensive Care is the whole body: whole-school turnaround, when the problem is not one condition but all of them, and heart, head and hands are treated together with more time and attention.</p>
     <p>None of them is a product in a box. Each is shaped by the diagnosis.</p>
     <div class="btn-row">${btn('Start with the diagnosis', site.primaryCta.href, { track: 'CTA primary' })}${btn('Take the School Health Index', '/school-health-index/', { variant: 'secondary', track: 'SHI opened' })}</div></div>
   </div></section>
@@ -292,7 +321,7 @@ export function solutionPage(s) {
   const body = html`${breadcrumb(crumbs)}
   <section class="page-hero ${s.intensive ? 'band-ink' : ''}" aria-labelledby="h">
     <div class="container grid grid-12">
-      <div class="span-8"><p class="sol-name"><span class="sol-n">${s.n}</span>${esc(s.name)}<span class="sol-sub">${esc(s.sub)}</span></p><h1 id="h">${esc(s.hero)}</h1><p class="lead">${esc(s.lead)}</p>${intensity}
+      <div class="span-8"><p class="sol-name">${icon(s.icon)}<span><span class="sol-n">${s.n}</span>${esc(s.name)}<span class="sol-sub">${esc(s.sub)} · ${esc(s.role)}</span></span></p><h1 id="h">${esc(s.hero)}</h1><p class="lead">${esc(s.lead)}</p>${intensity}
         <div class="btn-row" style="margin-top:2rem">${btn(s.cta, `/contact/?type=${s.contactType}`, { track: 'CTA solution', })}${btn('Take the School Health Index', '/school-health-index/', { variant: 'secondary', track: 'SHI opened' })}</div></div>
     </div>
   </section>

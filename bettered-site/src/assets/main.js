@@ -88,6 +88,24 @@
     revealables.forEach(function (el) { io.observe(el); });
   }
 
+  /* Background video hero: muted loop, never for reduced motion, always pausable (WCAG 2.2.2) */
+  var vid = document.querySelector('[data-hero-video]');
+  var vt = document.querySelector('[data-video-toggle]');
+  if (vid && vt) {
+    var label = vt.querySelector('.vt-label');
+    var setState = function (playing) {
+      label.textContent = playing ? 'Pause background video' : 'Play background video';
+      vt.classList.toggle('is-paused', !playing);
+    };
+    var userPaused = !!reduce;
+    var tryPlay = function () { var pr = vid.play(); if (pr && pr.catch) pr.catch(function () { setState(false); }); };
+    vid.addEventListener('play', function () { setState(true); });
+    vid.addEventListener('pause', function () { setState(false); });
+    vt.addEventListener('click', function () { if (vid.paused) { userPaused = false; tryPlay(); } else { userPaused = true; vid.pause(); } });
+    document.addEventListener('visibilitychange', function () { if (document.hidden) vid.pause(); else if (!userPaused) tryPlay(); });
+    if (reduce) setState(false); else tryPlay();
+  }
+
   /* Metrics count once. The final value is already in the HTML. */
   function countUp(el) {
     var target = parseFloat(el.getAttribute('data-count'));
