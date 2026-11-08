@@ -2,14 +2,17 @@
    Source of truth: Brand Guidelines 7 Nov 2026 + Brand Kit Ed. 1.0.
    No gradients, no shadows, no extra hues. */
 
-/* Self-hosted fonts (SIL OFL 1.1), Latin subset. No third-party font requests. */
-@font-face { font-family: "Libre Franklin"; font-style: normal; font-weight: 400; font-display: swap; src: url("fonts/libre-franklin-latin-400-normal.woff2") format("woff2"); }
-@font-face { font-family: "Libre Franklin"; font-style: normal; font-weight: 600; font-display: swap; src: url("fonts/libre-franklin-latin-600-normal.woff2") format("woff2"); }
-@font-face { font-family: "Libre Franklin"; font-style: normal; font-weight: 800; font-display: swap; src: url("fonts/libre-franklin-latin-800-normal.woff2") format("woff2"); }
-@font-face { font-family: "Newsreader"; font-style: normal; font-weight: 400; font-display: swap; src: url("fonts/newsreader-latin-400-normal.woff2") format("woff2"); }
-@font-face { font-family: "Newsreader"; font-style: italic; font-weight: 400; font-display: swap; src: url("fonts/newsreader-latin-400-italic.woff2") format("woff2"); }
-/* Metric-adjusted fallback to limit layout shift while fonts load */
-@font-face { font-family: "Franklin Fallback"; src: local("Arial"); size-adjust: 104%; ascent-override: 92%; descent-override: 24%; }
+/* Self-hosted fonts (SIL OFL 1.1), Latin subset: Source Serif 4 (headlines, reading) and Work Sans (interface). */
+@font-face { font-family: "Work Sans"; font-style: normal; font-weight: 400; font-display: swap; src: url("fonts/work-sans-latin-400-normal.woff2") format("woff2"); }
+@font-face { font-family: "Work Sans"; font-style: normal; font-weight: 500; font-display: swap; src: url("fonts/work-sans-latin-500-normal.woff2") format("woff2"); }
+@font-face { font-family: "Work Sans"; font-style: normal; font-weight: 600; font-display: swap; src: url("fonts/work-sans-latin-600-normal.woff2") format("woff2"); }
+@font-face { font-family: "Work Sans"; font-style: normal; font-weight: 700 900; font-display: swap; src: url("fonts/work-sans-latin-700-normal.woff2") format("woff2"); }
+@font-face { font-family: "Source Serif 4"; font-style: normal; font-weight: 400; font-display: swap; src: url("fonts/source-serif-4-latin-400-normal.woff2") format("woff2"); }
+@font-face { font-family: "Source Serif 4"; font-style: italic; font-weight: 400; font-display: swap; src: url("fonts/source-serif-4-latin-400-italic.woff2") format("woff2"); }
+@font-face { font-family: "Source Serif 4"; font-style: normal; font-weight: 600 700; font-display: swap; src: url("fonts/source-serif-4-latin-600-normal.woff2") format("woff2"); }
+/* Metric-adjusted fallbacks to limit layout shift while fonts load */
+@font-face { font-family: "Work Sans Fallback"; src: local("Arial"); size-adjust: 111%; ascent-override: 84%; descent-override: 22%; }
+@font-face { font-family: "Source Serif Fallback"; src: local("Georgia"); size-adjust: 98%; ascent-override: 102%; descent-override: 33%; }
 
 :root {
   /* Color — approved palette only */
@@ -25,8 +28,8 @@
   --rule-on-ink: rgba(255,255,255,.18);
 
   /* Type */
-  --sans: "Libre Franklin", "Franklin Fallback", Arial, sans-serif;
-  --serif: "Newsreader", Georgia, "Times New Roman", serif;
+  --sans: "Work Sans", "Work Sans Fallback", Arial, sans-serif;
+  --serif: "Source Serif 4", "Source Serif Fallback", Georgia, "Times New Roman", serif;
   --fs-display: clamp(2.6rem, 1.6rem + 4.6vw, 5.4rem);
   --fs-h1: clamp(2.2rem, 1.5rem + 3.2vw, 3.8rem);
   --fs-h2: clamp(1.8rem, 1.35rem + 2vw, 2.8rem);
@@ -206,18 +209,6 @@ body.menu-open { overflow: hidden; }
 .page-hero.band-ink { padding-top: clamp(3rem, 2rem + 4vw, 5.5rem); }
 .page-hero-trace { margin-top: var(--s6); max-width: 40rem; }
 
-/* Vital Line SVG */
-.vital path.trace { fill: none; stroke: var(--ink); stroke-width: 2.4; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; }
-.vital.is-thin path.trace { stroke-width: 1.6; }
-.vital .point { fill: var(--signal); }
-.band-ink .vital path.trace, .vital.on-ink path.trace { stroke: var(--white); }
-.vital .baseline-label { font: 800 9px var(--sans); letter-spacing: .12em; text-transform: uppercase; fill: var(--slate); }
-.band-ink .vital .baseline-label { fill: var(--on-ink-2); }
-.js .vital[data-draw] path.trace { stroke-dasharray: var(--len); stroke-dashoffset: var(--len); }
-.js .vital[data-draw] .point { transform-box: fill-box; transform-origin: center; transform: scale(0); }
-.js .vital.is-drawn path.trace { stroke-dashoffset: 0; transition: stroke-dashoffset var(--m-signature) linear; }
-.js .vital.is-drawn .point { transform: scale(1); transition: transform var(--m-fast) var(--e-enter) var(--m-signature); }
-
 /* Reveal */
 .js [data-reveal] { opacity: 0; transform: translateY(var(--d-section)); transition: opacity var(--m-section) var(--e-enter), transform var(--m-section) var(--e-enter); }
 .js [data-reveal].is-in { opacity: 1; transform: none; }
@@ -390,8 +381,6 @@ a.solution-row:hover .go { transform: translateX(var(--d-micro)); }
 @media (min-width: 64rem) { .founder { grid-template-columns: 5fr 7fr; gap: var(--s8); align-items: start; } }
 .portrait-card { background: var(--ink); color: var(--white); min-height: 30rem; padding: var(--s6); display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden; }
 .portrait-card .name { font-size: clamp(2rem, 1.6rem + 1.8vw, 3rem); font-weight: 800; letter-spacing: -.025em; line-height: 1; }
-.portrait-card .vital { width: 78%; margin: var(--s4) 0 var(--s4) auto; }
-.portrait-card .vital path.trace { stroke: #1A5FB4; }
 .portrait-card .role { color: var(--on-ink-2); margin-top: var(--s2); }
 .portrait-card .kicker { color: var(--signal); }
 .creds { display: grid; gap: 0; border-top: 1px solid var(--rule-on-ink); margin-top: var(--s5); position: relative; }
@@ -480,9 +469,6 @@ a.solution-row:hover .go { transform: translateX(var(--d-micro)); }
 /* Closing CTA */
 .closing { position: relative; overflow: hidden; }
 .closing h2 { font-size: var(--fs-h1); max-width: 18ch; }
-.closing .vital { position: absolute; right: var(--gutter); bottom: 2rem; width: min(30rem, 45%); pointer-events: none; }
-@media (max-width: 63.99rem) { .closing .vital { display: none; } }
-.closing .vital path.trace { stroke: #1A5FB4; }
 .closing .container { position: relative; }
 
 /* Related */
@@ -517,27 +503,24 @@ a.solution-row:hover .go { transform: translateX(var(--d-micro)); }
 .footer-bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--s3); font-size: var(--fs-small); color: var(--on-ink-2); }
 
 /* 404 */
-.notfound .vital { max-width: 30rem; margin-top: var(--s6); }
 
 /* Reduced motion: final states, no movement */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 1ms !important; animation-iteration-count: 1 !important; transition-duration: 1ms !important; transition-delay: 0ms !important; scroll-behavior: auto !important; }
   .js [data-reveal], .js .mastery-word[data-mastery] span { opacity: 1 !important; transform: none !important; }
   .js .rule-point[data-reveal]::after { opacity: 1 !important; }
-  .js .vital[data-draw] path.trace { stroke-dashoffset: 0 !important; }
-  .js .vital[data-draw] .point { transform: none !important; }
   .progress-point { display: none; }
 }
 
 @media print {
-  .site-header, .mobile-menu, .site-footer .footer-cols, .closing .vital, .hero-trace { display: none !important; }
+  .site-header, .mobile-menu, .site-footer .footer-cols, .closing-art, .hero-trace { display: none !important; }
   body { background: #fff; }
   .band-ink { background: #fff; color: var(--ink); }
 }
 
 /* =====================================================================
    Institutional edition (v2.0) — academic-medical / publication layer.
-   Newsreader carries headlines; Libre Franklin carries the interface
+   Source Serif 4 carries headlines; Work Sans carries the interface
    (nav, buttons, labels, body). Hairline rules replace heavy borders.
    Same palette, same marks. This layer overrides the rules above.
    ===================================================================== */
@@ -554,7 +537,7 @@ a.solution-row:hover .go { transform: translateX(var(--d-micro)); }
 body { background: var(--white); }
 .band-mist { background: var(--paper); }
 
-/* Headlines in Newsreader */
+/* Headlines in Source Serif 4 */
 .display, h1, .h1, h2, .h2, h3, .h3, .statement, .closing h2, .metric-value,
 .portrait-card .name, .mastery-word, .value .letter, .solution-row h3, .step h3, .shi-panel h3,
 .article-body h2, .mobile-menu ul:not(.utility) a { font-family: var(--serif); font-weight: 400; }
@@ -657,3 +640,59 @@ h3, .h3 { letter-spacing: -.006em; line-height: 1.2; }
 .value h3 { font-size: clamp(1.25rem, 1.15rem + .4vw, 1.5rem); }
 .value p { margin-top: .2rem; }
 .breadcrumb { padding-bottom: var(--s4); }
+
+/* =====================================================================
+   The Diagnostic Cross (v2.1): artwork, method, stage chart.
+   Every "point" is now a square, matching the block geometry.
+   ===================================================================== */
+.cross-art { display: block; width: 100%; height: auto; overflow: visible; }
+.cross-art .ghost { fill: none; stroke: var(--rule); stroke-width: 1.5; }
+.cross-art .blk { fill: var(--ink); }
+.cross-art .core { fill: var(--signal); }
+.band-ink .cross-art .blk, .portrait-card .cross-art .blk { fill: var(--harbor); }
+.band-ink .cross-art .ghost, .portrait-card .cross-art .ghost { stroke: var(--rule-on-ink); }
+.js .cross-art[data-draw] .blk, .js .cross-art[data-draw] .core { opacity: 0; transform: scale(.7); transform-box: fill-box; transform-origin: center; }
+.js .cross-art.is-drawn .blk, .js .cross-art.is-drawn .core { opacity: 1; transform: none; transition: opacity var(--m-section) var(--e-enter), transform var(--m-section) var(--e-enter); transition-delay: calc(var(--i) * 130ms + 80ms); }
+.js .cross-art.is-drawn .core { transition-duration: var(--m-section); }
+
+.hero-trace { max-width: 24rem; width: 100%; justify-self: end; align-self: center; }
+@media (max-width: 63.99rem) { .hero-trace { max-width: 7rem; justify-self: start; margin-top: 0; } }
+.portrait-art { width: 5.5rem; margin: var(--s5) 0 var(--s5) auto; }
+.closing-art { position: absolute; right: var(--gutter); top: 50%; transform: translateY(-50%); width: min(19rem, 28%); pointer-events: none; }
+@media (max-width: 63.99rem) { .closing-art { display: none; } }
+.notfound-art { max-width: 12rem; margin-top: var(--s7); }
+
+.method-spine .cross-art { max-width: 19rem; }
+.method-spine .node { fill: transparent; stroke: var(--ink); stroke-width: 2; transition: fill var(--m-standard) var(--e-ui), stroke var(--m-standard) var(--e-ui); }
+.method-spine .node.is-on { fill: var(--ink); }
+.method-spine .node.is-core { stroke: var(--signal); }
+.method-spine .node.is-core.is-on { fill: var(--signal); }
+.method-spine .labels { max-width: 19rem; margin-top: var(--s5); }
+
+.stage-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--s3); max-width: 34rem; height: 9rem; align-items: end; }
+.stage-strip .stage { display: flex; flex-direction: column; justify-content: flex-end; height: 100%; gap: var(--s2); }
+.stage-strip .bar { display: block; height: var(--h); background: var(--ink); }
+.stage-strip .stage:last-child .bar { background: var(--signal); }
+.stage-strip .t { font-size: var(--fs-label); font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--slate); }
+.band-ink .stage-strip .bar { background: var(--harbor); }
+.js .stage-strip[data-reveal] { transform: none; }
+.js .stage-strip[data-reveal] .bar { transform: scaleY(0); transform-origin: bottom; }
+.js .stage-strip[data-reveal].is-in .bar { transform: none; transition: transform var(--m-section) var(--e-enter); transition-delay: calc(var(--i) * 120ms); }
+
+.rule-point::after, .footer-rule::after { border-radius: 0; width: 9px; height: 9px; top: -3px; right: -4px; }
+.progress-point, .metric-point, .band-scale span:last-child::after, .mastery-word .y::after, .step::before, .case-stage .stage-label .dot { border-radius: 0; }
+
+/* Work Sans runs wide: tighten tracked labels a touch */
+.nav-primary a { letter-spacing: .1em; }
+.kicker, .hero-masthead, .hero-index .n { letter-spacing: .16em; }
+.btn, .link-arrow { letter-spacing: .09em; }
+
+@media (prefers-reduced-motion: reduce) {
+  .js .cross-art[data-draw] .blk, .js .cross-art[data-draw] .core { opacity: 1 !important; transform: none !important; }
+  .js .stage-strip[data-reveal] .bar { transform: none !important; }
+}
+.method-spine .labels { grid-template-columns: repeat(2, 1fr); row-gap: .5rem; }
+.cross-art .ghost { stroke: rgba(11, 31, 58, .1); }
+.hero-trace { max-width: 21rem; }
+.stage-strip { height: 6.5rem; max-width: 28rem; }
+.brand img { width: 196px; }

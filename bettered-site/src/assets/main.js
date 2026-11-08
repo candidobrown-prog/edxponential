@@ -64,27 +64,23 @@
     update();
   }
 
-  /* Vital Line trace: measure, then draw once */
-  var lines = document.querySelectorAll('.vital[data-draw]');
-  lines.forEach(function (svg) {
-    var path = svg.querySelector('path.trace');
-    if (path) svg.style.setProperty('--len', Math.ceil(path.getTotalLength() * 1.02));
-  });
+  /* Diagnostic Cross artwork: blocks assemble once */
+  var lines = document.querySelectorAll('.cross-art[data-draw]');
   function draw(svg) { requestAnimationFrame(function () { svg.classList.add('is-drawn'); }); }
 
   /* Reveal once */
-  var revealables = document.querySelectorAll('[data-reveal], .vital[data-draw]:not([data-draw="load"]), [data-count], [data-mastery]');
+  var revealables = document.querySelectorAll('[data-reveal], [data-draw]:not([data-draw="load"]), [data-count], [data-mastery]');
   if (reduce || !('IntersectionObserver' in window)) {
     revealables.forEach(function (el) { el.classList.add('is-in', 'is-drawn'); });
     lines.forEach(function (el) { el.classList.add('is-drawn'); });
   } else {
-    document.querySelectorAll('.vital[data-draw="load"]').forEach(function (svg) { setTimeout(function () { draw(svg); }, 120); });
+    document.querySelectorAll('[data-draw="load"]').forEach(function (svg) { setTimeout(function () { draw(svg); }, 120); });
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {
         if (!en.isIntersecting) return;
         var el = en.target;
         io.unobserve(el);
-        if (el.matches('.vital[data-draw]')) draw(el);
+        if (el.matches('.cross-art[data-draw]')) draw(el);
         else if (el.hasAttribute('data-count')) countUp(el);
         else el.classList.add('is-in');
       });
@@ -110,21 +106,16 @@
     el.classList.add('is-in');
   }
 
-  /* Method spine: the signal moves to the active stage */
+  /* Method spine: the cross fills in as each stage is reached */
   var spine = document.querySelector('.method-spine');
   var steps = document.querySelectorAll('.step[data-stage]');
   if (steps.length) {
     var nodes = spine ? spine.querySelectorAll('.node') : [];
     var labels = spine ? spine.querySelectorAll('.labels span') : [];
-    var signal = spine ? spine.querySelector('.signal') : null;
     var setStage = function (i) {
       steps.forEach(function (s, k) { s.classList.toggle('is-active', k === i); });
-      nodes.forEach(function (n, k) { n.classList.toggle('is-past', k < i); });
+      nodes.forEach(function (n) { n.classList.toggle('is-on', parseInt(n.getAttribute('data-stage'), 10) <= i); });
       labels.forEach(function (l, k) { l.classList.toggle('is-active', k === i); });
-      if (signal) {
-        var n = nodes[i];
-        if (n) signal.style.transform = 'translate(' + (n.getAttribute('cx') - signal.getAttribute('cx')) + 'px,' + (n.getAttribute('cy') - signal.getAttribute('cy')) + 'px)';
-      }
     };
     if ('IntersectionObserver' in window) {
       var so = new IntersectionObserver(function (entries) {

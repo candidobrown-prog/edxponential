@@ -1,6 +1,6 @@
 import { site, method, solutions, mastery, shiDomains, shiBands, founder, team, caseStudies, insights } from '../content/site.mjs';
 import { claim } from '../content/claims.mjs';
-import { html, esc, layout, vitalLine, methodSpine, rulePoint, kicker, tagline, btn, linkArrow, ctaPair, breadcrumb, closing, evidenceNote, metric, ldOrg, ldBreadcrumb } from './lib.mjs';
+import { html, esc, layout, crossArt, methodSpine, stageStrip, rulePoint, kicker, tagline, btn, linkArrow, ctaPair, breadcrumb, closing, evidenceNote, metric, ldOrg, ldBreadcrumb } from './lib.mjs';
 
 const sol = (slug) => solutions.find((s) => s.slug === slug);
 const fmtDate = (d) => new Date(d + 'T12:00:00Z').toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
@@ -59,7 +59,7 @@ function founderSection({ full = false } = {}) {
     <div class="container founder">
       <div class="portrait-card" data-reveal>
         <p class="kicker">Founder</p>
-        ${vitalLine({ thin: true })}
+        <div class="portrait-art">${crossArt()}</div>
         <div><p class="name">Candido<br>Brown</p><p class="role">${esc(founder.title)}, BetterEd Solutions</p>
           <ul class="creds" role="list">${founder.creds.map(([a, b]) => `<li><strong>${esc(a)}</strong>${esc(b)}</li>`)}</ul></div>
       </div>
@@ -99,7 +99,7 @@ export function home(latest = []) {
         ${ctaPair()}
         ${tagline('hero-tagline')}
       </div>
-      <div class="hero-trace">${vitalLine({ draw: 'load', extend: 40, decorative: false, label: 'The Vital Line: a flat baseline, a spike, and a rise to a yellow point' })}</div>
+      <div class="hero-trace">${crossArt({ draw: 'load', decorative: false })}</div>
     </div>
     <ul class="hero-index" role="list">
       <li><a href="/school-health-index/" data-track="SHI opened"><span class="n">01 · Diagnose</span><strong>The School Health Index™</strong><span class="d">A 12-domain exam of the conditions around learning.</span></a></li>
@@ -194,7 +194,7 @@ export function approach() {
   <section class="page-hero" aria-labelledby="h">
     <div class="container">${kicker('Our Approach')}<h1 id="h">Diagnosis before prescription.</h1>
       <p class="lead">What actually happens when a school or district works with BetterEd: four stages, the same every time, at the intensity your school needs.</p>
-      <div class="page-hero-trace">${vitalLine({ draw: 'load', extend: 60, thin: true })}</div>
+      <div class="page-hero-trace">${stageStrip()}</div>
     </div>
   </section>
 
@@ -620,6 +620,6 @@ export function notFound() {
   const body = html`<section class="section notfound" aria-labelledby="h"><div class="container stack">${kicker('404')}<h1 id="h">This page could not be found.</h1>
     <p class="lead">The link may be old, or the page may have moved when we rebuilt the site. Here is where most people are headed.</p>
     <ul class="fact-list" role="list" style="max-width:32rem"><li><a href="/">Home</a></li><li><a href="/approach/">Our Approach</a></li><li><a href="/solutions/">EdSolutions</a></li><li><a href="/school-health-index/">School Health Index</a></li><li><a href="/contact/">Contact</a></li></ul>
-    ${vitalLine({ draw: 'load', extend: 60 })}</div></section>`;
+    <div class="notfound-art">${crossArt({ draw: 'load' })}</div></div></section>`;
   return layout({ path: '/404.html', title: 'Page not found', description: 'This page could not be found.', body, noindex: true });
 }

@@ -3,28 +3,34 @@ import { site, nav, footerNav } from '../content/site.mjs';
 export const esc = (s = '') => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 export const html = (strings, ...vals) => strings.reduce((out, s, i) => out + s + (i < vals.length ? (Array.isArray(vals[i]) ? vals[i].join('') : (vals[i] ?? '')) : ''), '');
 
-/* The Vital Line. Geometry is the approved mark (Brand Kit 02); only the baseline may be extended for graphic use. */
-const MARK = 'H25 L29.5 57 L34 64 H43 L49.5 20 L58.5 92 L64 64 H75 L94 38';
-export function vitalLine({ cls = '', draw = '', extend = 0, labels = false, label = 'The Vital Line: a flat baseline, a spike, and a rise to a yellow point', decorative = true, thin = false } = {}) {
-  const x0 = 4 - extend;
-  const vb = `${x0 - 8} 6 ${116 + extend} ${labels ? 112 : 100}`;
-  const lab = labels ? html`<g aria-hidden="true">
-    <text class="baseline-label" x="14" y="114">DIAGNOSE</text>
-    <text class="baseline-label" x="40" y="114">TREAT</text>
-    <text class="baseline-label" x="61" y="114">STRENGTHEN</text>
-    <text class="baseline-label" x="88" y="114">SUSTAIN</text></g>` : '';
+/* The Diagnostic Cross. A 3 x 3 clinical grid: four navy blocks (one per EdSolution)
+   around a gold core (the diagnosis). Blocks assemble in order: the school getting better. */
+const CELLS = { top: [104, 0], left: [0, 104], right: [208, 104], bottom: [104, 208], core: [104, 104] };
+const GHOSTS = [[0, 0], [208, 0], [0, 208], [208, 208]];
+const sq = (x, y, cls, extra = '') => `<rect class="${cls}" x="${x}" y="${y}" width="92" height="92"${extra}/>`;
+export function crossArt({ cls = '', draw = '', decorative = true, label = 'The BetterEd mark: four blocks forming a cross around a gold center' } = {}) {
   const a11y = decorative ? 'aria-hidden="true" focusable="false"' : `role="img" aria-label="${esc(label)}"`;
-  return html`<svg class="vital ${thin ? 'is-thin' : ''} ${cls}" viewBox="${vb}" ${a11y} ${draw ? `data-draw="${draw}"` : ''} preserveAspectRatio="xMidYMid meet"><path class="trace" d="M${x0} 64 ${MARK}"/><circle class="point" cx="94" cy="38" r="6.5"/>${lab}</svg>`;
+  const order = ['top', 'left', 'right', 'bottom'];
+  return html`<svg class="cross-art ${cls}" viewBox="-2 -2 304 304" ${a11y} ${draw ? `data-draw="${draw}"` : ''}>
+    ${GHOSTS.map(([x, y]) => sq(x, y, 'ghost'))}
+    ${order.map((k, i) => sq(...CELLS[k], 'blk', ` style="--i:${i}"`))}
+    ${sq(...CELLS.core, 'core', ' style="--i:4"')}</svg>`;
 }
 
+/* Method: the cross fills stage by stage. Diagnose = core, Treat = top, Strengthen = left + right, Sustain = bottom. */
 export function methodSpine() {
-  const nodes = [[29.5, 57], [49.5, 20], [64, 64], [94, 38]];
+  const map = [['core', 0], ['top', 1], ['left', 2], ['right', 2], ['bottom', 3]];
   return html`<div class="method-spine" aria-hidden="true">
-    <svg viewBox="-8 6 120 100"><path class="trace" d="M-4 64 ${MARK}" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="miter" style="stroke:var(--ink)"/>
-    ${nodes.map(([x, y]) => `<circle class="node" cx="${x}" cy="${y}" r="3.4"/>`)}
-    <circle class="signal" cx="${nodes[0][0]}" cy="${nodes[0][1]}" r="4.6"/></svg>
+    <svg class="cross-art is-method" viewBox="-2 -2 304 304">${GHOSTS.map(([x, y]) => sq(x, y, 'ghost'))}
+    ${map.map(([k, st]) => sq(...CELLS[k], `node ${k === 'core' ? 'is-core' : ''}`, ` data-stage="${st}"`))}</svg>
     <div class="labels"><span>Diagnose</span><span>Treat</span><span>Strengthen</span><span>Sustain</span></div>
   </div>`;
+}
+
+/* Getting better: four stages rising, the last one gold. */
+export function stageStrip({ cls = '' } = {}) {
+  const st = ['Diagnose', 'Treat', 'Strengthen', 'Sustain'];
+  return html`<div class="stage-strip ${cls}" aria-hidden="true" data-reveal>${st.map((t, i) => `<div class="stage" style="--h:${(i + 1) * 25}%;--i:${i}"><span class="bar"></span><span class="t">${t}</span></div>`)}</div>`;
 }
 
 export const rulePoint = (extra = '') => `<div class="rule-point ${extra}" data-reveal aria-hidden="true"></div>`;
@@ -48,7 +54,7 @@ export function breadcrumb(items) {
 
 export function closing({ heading = 'What is keeping your school from getting better?', body = 'Tell us what you are seeing. The first conversation is 30 minutes and it starts where every BetterEd engagement starts: with the diagnosis.' } = {}) {
   return html`<section class="section band-ink closing" aria-labelledby="closing-h">
-    ${vitalLine({ draw: 'scroll' })}
+    <div class="closing-art">${crossArt({ draw: 'scroll' })}</div>
     <div class="container stack">
       ${kicker('Start here')}
       <h2 id="closing-h">${esc(heading)}</h2>
@@ -88,7 +94,7 @@ function header(path) {
   </div></aside>
   <header class="site-header">
     <div class="container header-inner">
-      <a class="brand" href="/" aria-label="BetterEd Solutions, home"><img src="/assets/logo-primary.svg" width="168" height="46" alt="BetterEd Solutions"></a>
+      <a class="brand" href="/" aria-label="BetterEd Solutions, home"><img src="/assets/logo-primary.svg" width="196" height="43" alt="BetterEd Solutions"></a>
       <nav class="nav-primary" aria-label="Primary"><ul role="list">${nav.map((n) => `<li><a href="${n.href}" ${isCurrent(n.href)}>${esc(n.label)}</a></li>`)}</ul></nav>
       <div class="header-cta">${btn(site.primaryCta.label, site.primaryCta.href, { track: 'CTA header', arrow: false })}</div>
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu"><span class="bars" aria-hidden="true"></span><span class="label">Menu</span></button>
@@ -108,7 +114,7 @@ function footer() {
     <div class="container">
       <p class="footer-mission">Every child deserves an excellent school. <em>Schools can get well.</em></p>
       <div class="footer-top">
-        <div class="footer-brand"><img src="/assets/logo-reversed.svg" width="190" height="52" alt="BetterEd Solutions">
+        <div class="footer-brand"><img src="/assets/logo-reversed.svg" width="202" height="44" alt="BetterEd Solutions">
           ${tagline()}
           <p class="small" style="margin-top:1rem;color:var(--on-ink-2);max-width:32ch">A school improvement, turnaround and transformation firm.</p>
         </div>
@@ -148,9 +154,9 @@ ${noindex ? '<meta name="robots" content="noindex">' : ''}
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
-<link rel="preload" href="/assets/fonts/libre-franklin-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/assets/fonts/libre-franklin-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/assets/fonts/newsreader-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/work-sans-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/work-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/source-serif-4-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/styles.css">
 <script src="/assets/main.js" defer></script>
 ${ld}

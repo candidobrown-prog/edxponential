@@ -19,9 +19,9 @@ node scripts/serve.mjs dist 4173   # serve dist at http://localhost:4173
 build.mjs                  generator: renders routes, versions CSS/JS, writes sitemap/robots
 src/content/site.mjs       all page content (structured)
 src/content/claims.mjs     claims registry + publish guard
-src/templates/lib.mjs      layout, header, footer, Vital Line, shared components, JSON-LD helpers
+src/templates/lib.mjs      layout, header, footer, Diagnostic Cross artwork, shared components, JSON-LD helpers
 src/templates/pages.mjs    one function per route
-src/assets/                styles.css (design tokens at top), main.js (Vital Motion + UI), logos, fonts
+src/assets/                styles.css (design tokens at top), main.js (motion + UI), logos, fonts
 api/contact.js             POST /api/contact (Vercel function)
 vercel.json                clean URLs, redirects from the old site, security headers, caching
 scripts/                   QA: serve, screenshots, axe + interaction tests, links, OG image generator
@@ -76,13 +76,20 @@ Environment variables (Vercel → Project → Settings → Environment Variables
 
 Never commit keys. `.env*` files are git-ignored.
 
-## Motion system (Vital Motion)
+## Brand system
+
+- **Mark:** the Diagnostic Cross. Four navy blocks (one per EdSolution) around a gold core (the diagnosis). `crossArt()` in `lib.mjs` draws it as artwork; the blocks assemble in order, the school getting better. Logo files in `src/assets/` are outlined SVGs generated from the brand fonts, so they render identically everywhere.
+- **Type:** Source Serif 4 for headlines and reading text, Work Sans for interface text (SIL OFL 1.1, self-hosted in `src/assets/fonts/`).
+- **Color:** Navy `#0B1F3A`, Harbor `#1A5FB4`, Signal `#FFC20E`, Paper `#F6F4EE`. Accent points are squares, matching the mark.
+- After changing the logo, run `node scripts/gen-images.mjs` to regenerate `og-default.png` and `apple-touch-icon.png`.
+
+## Motion system
 
 Tokens at the top of `styles.css` (`--m-*` durations, `--d-*` distances, `--e-*` easings). Behaviour in `main.js`:
-- `.vital[data-draw="load"]` draws once on load; `data-draw="scroll"` draws when it enters the viewport.
+- `.cross-art[data-draw="load"]` assembles once on load; `data-draw="scroll"` assembles when it enters the viewport.
 - `[data-reveal]` fades/rises 16 px once. Content is visible without JavaScript.
 - `[data-count]` counts once; the final value is already in the HTML.
-- `.step[data-stage]` drives the method spine.
+- `.step[data-stage]` drives the method spine: the cross fills in stage by stage.
 - `prefers-reduced-motion: reduce` shows every final state immediately.
 Rule of thumb: one primary and one supporting motion per viewport; nothing loops.
 

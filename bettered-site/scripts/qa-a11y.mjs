@@ -69,8 +69,8 @@ ok('axe-core: 0 violations across 18 routes × 2 widths', total === 0, total ? J
 // Reduced motion: final state immediately
 { const ctx = await b.newContext({ viewport: { width: 1440, height: 900 }, reducedMotion: 'reduce' }); const p = await ctx.newPage();
   await p.goto(base + '/', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(50);
-  const st = await p.evaluate(() => { const path = document.querySelector('.hero-trace path.trace'); const cs = getComputedStyle(path); const n = document.querySelector('.metric .n').textContent; const hidden = [...document.querySelectorAll('[data-reveal]')].filter((e) => getComputedStyle(e).opacity !== '1').length; return { off: cs.strokeDashoffset, n, hidden }; });
-  ok('Reduced motion: Vital Line complete on load', parseFloat(st.off) === 0, JSON.stringify(st));
+  const st = await p.evaluate(() => { const core = document.querySelector('.hero-trace .core'); const cs = getComputedStyle(core); const n = document.querySelector('.metric .n').textContent; const hidden = [...document.querySelectorAll('[data-reveal]')].filter((e) => getComputedStyle(e).opacity !== '1').length; return { op: cs.opacity, n, hidden }; });
+  ok('Reduced motion: hero cross complete on load', parseFloat(st.op) === 1, JSON.stringify(st));
   ok('Reduced motion: metrics show final values (no counting)', st.n === '+15');
   ok('Reduced motion: no hidden reveal content', st.hidden === 0);
   await ctx.close(); }
@@ -81,8 +81,8 @@ ok('axe-core: 0 violations across 18 routes × 2 widths', total === 0, total ? J
   const h1 = await p.evaluate(() => getComputedStyle(document.querySelector('#hero-h')).opacity);
   ok('Hero headline visible from first paint (not animated in)', h1 === '1');
   await p.waitForTimeout(1600);
-  const drawn = await p.evaluate(() => ({ cls: document.querySelector('.hero-trace svg').classList.contains('is-drawn'), off: getComputedStyle(document.querySelector('.hero-trace path.trace')).strokeDashoffset }));
-  ok('Hero Vital Line draws once and settles at offset 0', drawn.cls && parseFloat(drawn.off) === 0, JSON.stringify(drawn));
+  const drawn = await p.evaluate(() => ({ cls: document.querySelector('.hero-trace svg').classList.contains('is-drawn'), op: getComputedStyle(document.querySelector('.hero-trace .core')).opacity }));
+  ok('Hero cross assembles once and settles fully visible', drawn.cls && parseFloat(drawn.op) === 1, JSON.stringify(drawn));
   await ctx.close(); }
 
 await b.close();
