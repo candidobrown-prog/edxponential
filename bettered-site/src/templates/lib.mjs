@@ -80,6 +80,12 @@ export function metric(c) {
 function header(path) {
   const isCurrent = (href) => path === href ? 'aria-current="page"' : (path.startsWith(href) && href !== '/' ? 'aria-current="true"' : '');
   return html`<a class="skip-link" href="#main">Skip to content</a>
+  <aside class="utility-bar" aria-label="Contact and quick links"><div class="container utility-inner">
+    <p><a href="tel:+18007350953">${esc(site.phone)}</a> · <a href="mailto:${site.email}">${esc(site.email)}</a></p>
+    <nav aria-label="Utility"><ul role="list">
+      <li><a href="/school-health-index/">School Health Index</a></li><li><a href="/procurement/">Procurement</a></li><li><a href="/partner/">Partner</a></li><li><a href="/contact/">Contact</a></li>
+      <li><a class="utility-cta" href="${esc(site.primaryCta.href)}" data-track="CTA utility">${esc(site.primaryCta.label)} →</a></li></ul></nav>
+  </div></aside>
   <header class="site-header">
     <div class="container header-inner">
       <a class="brand" href="/" aria-label="BetterEd Solutions, home"><img src="/assets/logo-primary.svg" width="168" height="46" alt="BetterEd Solutions"></a>
@@ -100,6 +106,7 @@ function header(path) {
 function footer() {
   return html`<footer class="site-footer">
     <div class="container">
+      <p class="footer-mission">Every child deserves an excellent school. <em>Schools can get well.</em></p>
       <div class="footer-top">
         <div class="footer-brand"><img src="/assets/logo-reversed.svg" width="190" height="52" alt="BetterEd Solutions">
           ${tagline()}
@@ -143,6 +150,7 @@ ${noindex ? '<meta name="robots" content="noindex">' : ''}
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <link rel="preload" href="/assets/fonts/libre-franklin-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/libre-franklin-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/newsreader-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/styles.css">
 <script src="/assets/main.js" defer></script>
 ${ld}

@@ -89,15 +89,23 @@ function evidenceStrip({ dark = false } = {}) {
 export function home(latest = []) {
   const body = html`
   <section class="hero" aria-labelledby="hero-h">
-    <div class="container hero-grid">
+    <div class="container">
+    <div class="hero-masthead" aria-hidden="true"><span class="vol">The BetterEd Method</span><span>Diagnose · Treat · Strengthen · Sustain</span></div>
+    <div class="hero-grid">
       <div>
         ${kicker('School improvement, turnaround and transformation')}
-        <h1 id="hero-h" class="display" style="margin-top:1rem">Schools can get well.</h1>
+        <h1 id="hero-h" class="display" style="margin-top:1.25rem">Schools can <em>get well.</em></h1>
         <p class="lead">We treat struggling schools the way good medicine treats patients: diagnose honestly, treat decisively, and stay until the results hold.</p>
         ${ctaPair()}
         ${tagline('hero-tagline')}
       </div>
       <div class="hero-trace">${vitalLine({ draw: 'load', extend: 40, decorative: false, label: 'The Vital Line: a flat baseline, a spike, and a rise to a yellow point' })}</div>
+    </div>
+    <ul class="hero-index" role="list">
+      <li><a href="/school-health-index/" data-track="SHI opened"><span class="n">01 · Diagnose</span><strong>The School Health Index™</strong><span class="d">A 12-domain exam of the conditions around learning.</span></a></li>
+      <li><a href="/solutions/"><span class="n">02 · Treat</span><strong>Four EdSolutions</strong><span class="d">Culture, leadership, teaching and whole-school turnaround.</span></a></li>
+      <li><a href="/results/"><span class="n">03 · Measure</span><strong>Measured, not promised</strong><span class="d">Results reported with their limits.</span></a></li>
+    </ul>
     </div>
   </section>
 
