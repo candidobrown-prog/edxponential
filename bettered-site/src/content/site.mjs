@@ -79,9 +79,9 @@ export const method = [
   },
   {
     key: 'plan', name: 'Treatment plan', short: 'Plan',
-    line: 'The right treatment, at the right level of care, in writing.',
-    body: 'Not more intervention than the school needs. Not less than the problem requires. The diagnosis decides which EdSolutions are used, in what order, at what level of care, and how much time we spend in the building. The vital signs we will track, and the discharge criteria that will tell us the school is healthy on its own, are named here, before any work begins.',
-    activities: ['A short list of priorities, each with an owner and a measure', 'The EdSolutions the diagnosis calls for, in order, and the level of care', 'The vital signs we will track, and how often we report them', 'Discharge criteria: what healthy looks like for this school', 'Governance: who decides, who reports, how often'],
+    line: 'The right treatment, at the right level of intervention, in writing.',
+    body: 'Not more intervention than the school needs. Not less than the problem requires. The diagnosis decides which EdSolutions are used, in what order, at what level of intervention (core, crew, cohort or community), and how much time we spend in the building. The vital signs we will track, and the discharge criteria that will tell us the school is healthy on its own, are named here, before any work begins.',
+    activities: ['A short list of priorities, each with an owner and a measure', 'The EdSolutions the diagnosis calls for, in order, and the level of intervention for each', 'The vital signs we will track, and how often we report them', 'Discharge criteria: what healthy looks like for this school', 'Governance: who decides, who reports, how often'],
     output: 'A treatment plan the leadership team owns, with measures named before work begins.',
   },
   {
@@ -107,11 +107,20 @@ export const method = [
   },
 ];
 
+/* Levels of intervention: who the treatment reaches. Each EdSolution offers some or all of them. */
+export const levels = [
+  { key: 'core', n: 1, name: 'Core', tag: 'The 101', who: 'One leader, one-to-one', text: 'Focused work with one person, usually the head of the organization: a principal, head of school, superintendent or CEO.' },
+  { key: 'crew', n: 2, name: 'Crew', tag: 'The team', who: 'A leader\'s team, with or without the leader', text: 'A leadership team or a team of teachers treated together. Sometimes the leader is in the room, and sometimes the work is with the team alone.' },
+  { key: 'cohort', n: 3, name: 'Cohort', tag: 'Across campuses', who: 'Leaders or teachers from several schools', text: 'For leaders of more than one school: people in the same role across campuses come together for treatment, and carry it back to their schools.' },
+  { key: 'community', n: 4, name: 'Community', tag: 'The whole school', who: 'Every adult, in every room', text: 'The whole school at once: all leaders, teachers and staff, with students and families feeling the change.' },
+];
+
 export const solutions = [
   {
     slug: 'school-health', n: '01', name: 'School Health', sub: 'Culture & climate', role: 'The heart', icon: 'heart', intensity: 2,
     short: 'The heart of the school, where every treatment starts: belonging, safety and high expectations, so adults can do their best work and children can learn.',
     cta: 'Talk about School Health', contactType: 'culture',
+    levels: { core: 'One-to-one with the school leader on culture: presence, expectations, follow-through and repair.', crew: 'The leadership or culture team designs, rehearses and runs schoolwide routines.', cohort: 'Culture leads from several campuses build shared routines and expectations together.', community: 'The whole school resets together: routines launched with every adult, felt by every student and family.' },
     hero: 'Culture is the heart of a school.',
     lead: 'When a school has a culture and climate problem, it has a heart condition. Children learn where they feel safe, known and expected to succeed. Adults teach well where expectations are clear and support is real. Every BetterEd treatment starts here, because nothing else holds without a healthy heart.',
     why: [
@@ -136,6 +145,7 @@ export const solutions = [
     slug: 'leader-development', n: '02', name: 'Leader Development', sub: 'Principals & leadership teams', role: 'The head', icon: 'head', intensity: 2,
     short: 'Heavy is the head that wears the crown. We build leaders who diagnose, decide and develop adults.',
     cta: 'Develop your leaders', contactType: 'leadership',
+    levels: { core: 'One-to-one coaching for the head of the organization: principal, head of school, superintendent or CEO, on the decisions in front of them.', crew: 'The leader\'s team: roles, meetings and decision rights, with the leader or with the team alone.', cohort: 'Leaders from several campuses treated together, for district and network leaders who lead more than one school.' },
     hero: 'Heavy is the head that wears the crown.',
     lead: 'The quality of the leader decides whether improvement takes hold. We develop principals and leadership teams who can diagnose their own schools, choose the few moves that matter, and grow the adults around them.',
     why: [
@@ -160,6 +170,7 @@ export const solutions = [
     slug: 'teacher-development', n: '03', name: 'Teacher Development', sub: 'Instruction in the classroom', role: 'The hands', icon: 'hand', intensity: 2,
     short: 'Teachers are where learning happens. We coach reading, writing and math instruction in the classroom.',
     cta: 'Strengthen teaching', contactType: 'educator',
+    levels: { crew: 'A team of teachers, often a grade-level or department team with its lead: co-planning, observation and feedback cycles.', cohort: 'Teachers in the same grade or subject across campuses, learning and planning together.', community: 'Every teacher in the school, on a shared instructional standard, coached in their classrooms.' },
     hero: 'Teachers are where learning happens.',
     lead: 'We coach reading, writing and math instruction in real classrooms, with feedback that changes the next lesson, not the next school year.',
     why: [
@@ -183,6 +194,7 @@ export const solutions = [
     slug: 'intensive-care', n: '04', name: 'Intensive Care', sub: 'Whole-school turnaround', role: 'The whole body', icon: 'body', intensity: 4, intensive: true,
     short: 'When it is not one condition but the whole body: heart, head and hands treated together, until the school is healthy on its own.',
     cta: 'Talk about Intensive Care', contactType: 'turnaround',
+    levels: { core: 'The head of the school or organization, coached through the turnaround week by week.', crew: 'The leadership team, rebuilt around a few priorities, owners and measures.', cohort: 'Where a school belongs to a network or district, leaders and teachers across campuses aligned to the same treatment.', community: 'The whole school, treated at once: culture, leadership and teaching together.' },
     hero: 'When it is the whole body, we treat the whole body.',
     lead: 'Intensive Care is whole-school turnaround: the heart, head and hands of a school (culture, leadership and teaching), plus its systems and measurement, treated together, with more time, more intensity and more attention, until the school is healthy on its own.',
     why: [

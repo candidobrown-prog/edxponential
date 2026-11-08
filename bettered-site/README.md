@@ -32,6 +32,7 @@ docs/                      phase deliverables (registers, red teams, strategy, d
 
 - Page copy lives in `src/content/site.mjs`. Change text there, run the build.
 - EdSolutions must stay in this order: School Health (culture & climate), Leader Development, Teacher Development, Intensive Care (whole-school turnaround). The array order is the display order everywhere, and each has a `sub` line that always appears with the name.
+- Levels of intervention: Core (one leader, the 101), Crew (a leader's team, with or without the leader), Cohort (across campuses), Community (the whole school). `levels` in `site.mjs` defines them; each solution's `levels` object lists the ones it offers (School Health and Intensive Care: all four; Leader Development: core, crew, cohort; Teacher Development: crew, cohort, community). The matrix and solution-page sections render from that data.
 - The method is six steps: Intake, Diagnosis, Treatment plan, Treatment, Strengthen, Discharge & follow-up (`method` in `site.mjs`).
 - The headline is "Schools can get well. Fast." Urgency is a brand value; do not attach a specific timeline unless the founder supplies one.
 - No eyebrow labels above headings: `kicker()` is a no-op.

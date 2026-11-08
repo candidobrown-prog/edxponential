@@ -120,6 +120,7 @@ export const OPEN = [
   { id: 'o_keeping', label: 'In your own words, what is keeping your school from getting better?', hint: 'A few sentences is plenty. Tell us what you see every day.', required: true, max: 2000 },
   { id: 'o_tried', label: 'What have you already tried?', hint: 'Optional.', required: false, max: 2000 },
   { id: 'o_first', label: 'If BetterEd could help with one thing first, what would it be?', options: INTERESTS, required: true },
+  { id: 'o_level', label: 'Who should the work reach first?', options: ['Core: one leader, one-to-one', 'Crew: a leadership or teacher team', 'Cohort: leaders or teachers across campuses', 'Community: the whole school', 'Not sure yet'], required: false },
 ];
 
 export const itemId = (d, i) => `d${d.n}_${i + 1}`;

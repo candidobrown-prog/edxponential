@@ -1,4 +1,4 @@
-import { site, method, solutions, mastery, shiDomains, shiBands, founder, team, caseStudies, insights } from '../content/site.mjs';
+import { site, method, solutions, levels, mastery, shiDomains, shiBands, founder, team, caseStudies, insights } from '../content/site.mjs';
 import { claim } from '../content/claims.mjs';
 import { icon } from './icons.mjs';
 import { existsSync } from 'node:fs';
@@ -34,6 +34,34 @@ function methodSection({ id = 'method', heading = 'Diagnosis before prescription
     </div></section>`;
 }
 
+/* Levels of intervention: Core, Crew, Cohort, Community. The glyph fills one block per level of reach. */
+const levelGlyph = (n) => `<svg class="lvl-glyph" viewBox="0 0 20 20" aria-hidden="true" focusable="false">${[[0, 0], [11, 0], [0, 11], [11, 11]].map(([x, y], i) => `<rect x="${x}" y="${y}" width="9" height="9"${i < n ? ' class="on"' : ''}/>`).join('')}</svg>`;
+const NOT_OFFERED = {
+  'leader-development': { community: 'Whole-school work happens through Intensive Care or School Health.' },
+  'teacher-development': { core: 'Teacher development works with groups of teachers rather than one person, so it starts at the crew level.' },
+};
+function levelsIntro() {
+  return html`<ol class="lvl-cards" role="list">${levels.map((l) => html`<li><div class="lvl-head">${levelGlyph(l.n)}<h3>${esc(l.name)}</h3></div><p class="lvl-tag">${esc(l.tag)} · ${esc(l.who)}</p><p>${esc(l.text)}</p></li>`)}</ol>`;
+}
+function levelsMatrix() {
+  return html`<div class="table-wrap"><table class="lvl-matrix">
+    <caption>Levels of intervention offered in each EdSolution</caption>
+    <thead><tr><th scope="col">EdSolution</th>${levels.map((l) => `<th scope="col">${levelGlyph(l.n)}<span>${esc(l.name)}</span></th>`)}</tr></thead>
+    <tbody>${solutions.map((s) => html`<tr><th scope="row"><a href="/solutions/${s.slug}/">${icon(s.icon)}<span>${esc(s.name)}</span></a></th>${levels.map((l) => s.levels[l.key]
+      ? '<td class="yes"><span class="lvl-yes" aria-hidden="true"></span><span class="visually-hidden">Offered</span></td>'
+      : '<td class="no"><span aria-hidden="true">–</span><span class="visually-hidden">Not offered</span></td>')}</tr>`)}</tbody>
+  </table></div>`;
+}
+function solutionLevels(s) {
+  const off = levels.filter((l) => !s.levels[l.key]);
+  return html`<section class="section band-mist" aria-labelledby="lvl-h"><div class="container">
+    <div class="section-head split"><div><h2 id="lvl-h">Levels of intervention</h2></div><p class="lead">${esc(s.name)} can reach ${levels.filter((l) => s.levels[l.key]).map((l) => l.name.toLowerCase()).join(', ').replace(/, ([^,]*)$/, ' and $1')}. The diagnosis decides which level, or which combination, your school needs.</p></div>
+    <ol class="lvl-cards" role="list">${levels.filter((l) => s.levels[l.key]).map((l) => html`<li><div class="lvl-head">${levelGlyph(l.n)}<h3>${esc(l.name)}</h3></div><p class="lvl-tag">${esc(l.tag)}</p><p>${esc(s.levels[l.key])}</p></li>`)}</ol>
+    ${off.map((l) => `<p class="small muted lvl-off"><strong>${esc(l.name)} is not offered here.</strong> ${esc((NOT_OFFERED[s.slug] || {})[l.key] || '')}</p>`)}
+    <p style="margin-top:1.5rem">${linkArrow('See every EdSolution and level', '/solutions/#levels-h')}</p>
+  </div></section>`;
+}
+
 /* The BetterEd Model: the cross as a diagram. Each arm is an EdSolution; the gold core is the diagnosis. */
 function modelFigure({ caption = true } = {}) {
   const pos = { 'school-health': 'l', 'leader-development': 't', 'teacher-development': 'r', 'intensive-care': 'b' };
@@ -42,7 +70,7 @@ function modelFigure({ caption = true } = {}) {
       ${solutions.map((s) => `<li class="m-${pos[s.slug]}"><a href="/solutions/${s.slug}/">${icon(s.icon)}<span class="m-name">${esc(s.name)}</span><span class="m-role">${esc(s.role)}</span></a></li>`)}
       <li class="m-c"><a href="/approach/#stages"><span class="m-name">Diagnosis</span></a></li>
     </ul>
-    ${caption ? html`<div class="model-copy stack"><h3>The BetterEd Model</h3><p>Each arm of the cross is one EdSolution. The gold center is the diagnosis, and it decides which arms a school needs, in what order, and at what level of care.</p>${linkArrow('How the diagnosis works', '/approach/#stages')}</div>` : ''}
+    ${caption ? html`<div class="model-copy stack"><h3>The BetterEd Model</h3><p>Each arm of the cross is one EdSolution. The gold center is the diagnosis, and it decides which arms a school needs, in what order, and at what level of intervention.</p>${linkArrow('How the diagnosis works', '/approach/#stages')}</div>` : ''}
   </div>`;
 }
 
@@ -250,14 +278,12 @@ export function approach() {
 
   ${methodSection({ id: 'stages', heading: 'Six steps. The same order every time.', intro: 'Here is what each step involves, and what you hold at the end of it.', detailed: true })}
 
-  <section class="section band-mist" aria-labelledby="care-h">
+  <section class="section band-mist" aria-labelledby="levels-h">
     <div class="container">
-      <div class="section-head split"><div><h2 id="care-h">Three levels of care.</h2></div><p class="lead">The diagnosis sets the level of care. Not more than the school needs, and not less than the problem requires.</p></div>
-      <ol class="care-levels" role="list">
-        <li><span class="care-n">01</span><h3>Check-up</h3><p>The School Health Index and a written diagnosis. For schools that want an honest read before deciding anything.</p><p class="care-link">${linkArrow('The School Health Index', '/school-health-index/', 'SHI opened')}</p></li>
-        <li><span class="care-n">02</span><h3>Targeted care</h3><p>One or two EdSolutions aimed at the conditions the diagnosis found: School Health, Leader Development or Teacher Development.</p><p class="care-link">${linkArrow('See the EdSolutions', '/solutions/')}</p></li>
-        <li class="is-intensive"><span class="care-n">03</span><h3>Intensive care</h3><p>Whole-school turnaround, when it is everything at once. More time in the building, more intensity, every area treated together.</p><p class="care-link">${linkArrow('Intensive Care', '/solutions/intensive-care/')}</p></li>
-      </ol>
+      <div class="section-head split"><div><h2 id="levels-h">Four levels of intervention.</h2></div><p class="lead">Every EdSolution is delivered at one or more levels, from one leader to the whole school. The diagnosis sets the level: not more than the school needs, and not less than the problem requires.</p></div>
+      ${levelsIntro()}
+      <h3 class="lvl-matrix-title">Which levels each EdSolution offers</h3>
+      ${levelsMatrix()}
     </div>
   </section>
 
@@ -292,6 +318,12 @@ export function solutionsIndex() {
   <section class="page-hero" aria-labelledby="h"><div class="container">${kicker('EdSolutions')}<h1 id="h">Four treatments. One diagnosis decides the mix.</h1>
     <p class="lead">We call them EdSolutions because each one treats a specific condition in a school, the way a hospital organizes care by department. They always appear in this order, because this is the order we work in.</p></div></section>
   <section class="section-tight" aria-labelledby="four-h"><div class="container"><h2 id="four-h" class="visually-hidden">The four EdSolutions</h2>${modelFigure()}${solutionsList()}</div></section>
+  <section class="section-tight" aria-labelledby="levels-h"><div class="container">
+    <div class="section-head split"><div><h2 id="levels-h">Four levels of intervention.</h2></div><p class="lead">Each EdSolution reaches one leader, a team, leaders across campuses or the whole school. Here is where each one works.</p></div>
+    ${levelsIntro()}
+    <h3 class="lvl-matrix-title">Which levels each EdSolution offers</h3>
+    ${levelsMatrix()}
+  </div></section>
   <section class="section band-mist" aria-labelledby="which-h">
     <div class="container">
       <div class="section-head split"><div>${kicker('Which do we need?')}<h2 id="which-h">Start with what you are seeing.</h2></div><p class="lead">Most schools need more than one. The diagnosis tells us which, in what order, and at what intensity.</p></div>
@@ -337,6 +369,7 @@ export function solutionPage(s) {
     <div class="callout">${kicker('Treat and strengthen')}<h2 id="work-h" class="h3" style="margin-top:.5rem">What the work looks like</h2><ul class="check-list" style="margin-top:1rem">${s.work.map((w) => `<li>${esc(w)}</li>`)}</ul></div>
     <div class="callout">${kicker('How we will know')}<h2 class="h3" style="margin-top:.5rem">What we measure</h2><ul class="check-list" style="margin-top:1rem">${s.measures.map((w) => `<li>${esc(w)}</li>`)}</ul><p class="small muted" style="margin-top:1rem">Measures are agreed in the treatment plan, before the work starts.</p></div>
   </div></section>
+  ${solutionLevels(s)}
   ${s.caseStudy ? html`<section class="section-tight band-ink" aria-labelledby="ev-h"><div class="container"><div class="section-head split" style="margin-bottom:2.5rem"><div>${kicker('Evidence')}<h2 id="ev-h">Measured, not promised.</h2></div><p class="lead">Results reported during a multi-year whole-school engagement, with their limits.</p></div>${evidenceStrip()}</div></section>` : ''}
   <section class="section ${s.caseStudy ? '' : 'band-ink'}" aria-labelledby="kids-h"><div class="container grid grid-12">
     <div class="span-4">${kicker('The child remains the reason')}</div>
