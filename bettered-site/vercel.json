@@ -1,0 +1,123 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "node build.mjs",
+  "outputDirectory": "dist",
+  "cleanUrls": true,
+  "trailingSlash": true,
+  "redirects": [
+    {
+      "source": "/services",
+      "destination": "/solutions/",
+      "permanent": true
+    },
+    {
+      "source": "/services/:path*",
+      "destination": "/solutions/",
+      "permanent": true
+    },
+    {
+      "source": "/about/medical-model",
+      "destination": "/approach/",
+      "permanent": true
+    },
+    {
+      "source": "/about/candido-brown",
+      "destination": "/about/#founder",
+      "permanent": true
+    },
+    {
+      "source": "/about/team",
+      "destination": "/about/#team",
+      "permanent": true
+    },
+    {
+      "source": "/about/team/:path*",
+      "destination": "/about/#team",
+      "permanent": true
+    },
+    {
+      "source": "/case-studies",
+      "destination": "/results/",
+      "permanent": true
+    },
+    {
+      "source": "/case-studies/shining-stars-montessori",
+      "destination": "/results/shining-stars-montessori/",
+      "permanent": true
+    },
+    {
+      "source": "/results/methodology",
+      "destination": "/results/#methodology",
+      "permanent": true
+    },
+    {
+      "source": "/insights/research",
+      "destination": "/insights/",
+      "permanent": true
+    },
+    {
+      "source": "/insights/in-the-news",
+      "destination": "/insights/",
+      "permanent": true
+    },
+    {
+      "source": "/trust",
+      "destination": "/privacy/",
+      "permanent": false
+    },
+    {
+      "source": "/terms",
+      "destination": "/privacy/",
+      "permanent": false
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=63072000; includeSubDomains; preload"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=(), interest-cohort=()"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
+        }
+      ]
+    },
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/assets/(fonts/.*|styles\\.css|main\\.js)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    }
+  ]
+}
