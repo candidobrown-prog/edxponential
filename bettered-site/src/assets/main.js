@@ -231,6 +231,7 @@
       }
       var endpoint = form.getAttribute('action');
       submit.setAttribute('aria-disabled', 'true');
+      var started = Date.now();
       var label = submit.querySelector('.label');
       var original = label.textContent;
       label.textContent = 'Sending…';
@@ -252,7 +253,10 @@
           show('error', 'Your message was not sent.', 'Something went wrong on our side. Your text is still in the form. Please try again, or email info@betteredsolutions.org directly.');
           track('Contact failed', {});
         })
-        .then(function () { submit.removeAttribute('aria-disabled'); label.textContent = original; });
+        .then(function () {
+          // Hold the "Sending" state for at least 800 ms so a fast double-click can never send twice.
+          setTimeout(function () { submit.removeAttribute('aria-disabled'); label.textContent = original; }, Math.max(0, 800 - (Date.now() - started)));
+        });
     });
   }
 })();

@@ -131,7 +131,7 @@ function footer() {
   </footer>`;
 }
 
-export function layout({ path, title, description, body, jsonld = [], ogType = 'website', pageEvent = '', noindex = false, ogImage = '/assets/og-default.png' }) {
+export function layout({ path, title, description, body, jsonld = [], ogType = 'website', pageEvent = '', noindex = false, ogImage = '/assets/og-default.png', head = '' }) {
   const fullTitle = path === '/' ? `${site.name} | School improvement, turnaround and transformation` : `${title} | ${site.name}`;
   const canonical = site.url + path;
   const ld = jsonld.length ? `<script type="application/ld+json">${JSON.stringify(jsonld.length === 1 ? jsonld[0] : { '@context': 'https://schema.org', '@graph': jsonld.map(({ '@context': _, ...r }) => r) }).replace(/</g, '\\u003c')}</script>` : '';
@@ -161,6 +161,7 @@ ${noindex ? '<meta name="robots" content="noindex">' : ''}
 <link rel="preload" href="/assets/fonts/source-serif-4-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/styles.css">
 <script src="/assets/main.js" defer></script>
+${head}
 ${ld}
 </head>
 <body${pageEvent ? ` data-page-event="${esc(pageEvent)}"` : ''}>

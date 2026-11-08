@@ -15,7 +15,15 @@ export const site = {
   foundedPlace: 'New Jersey',
   locale: 'en_US',
   // Where "Take the School Health Index" sends people once the intake app is wired (M9).
-  shiIntakeUrl: '/contact/?type=shi',
+  shiIntakeUrl: '/school-health-index/start/',
+  /* School Health Index app. Leave supabaseUrl empty to show "opening soon" instead of the forms. */
+  shi: {
+    supabaseUrl: process.env.SHI_SUPABASE_URL || '',
+    supabaseKey: process.env.SHI_SUPABASE_KEY || '', // publishable (anon) key: safe in the browser; row-level security protects the data
+    turnstileSiteKey: process.env.SHI_TURNSTILE_SITE_KEY || '', // Cloudflare Turnstile site key (public); the secret key goes in Supabase Auth settings
+    termsVersion: '2026-11-08',
+    reviewWindow: '24 to 48 hours',
+  },
   contactEndpoint: '/api/contact',
   primaryCta: { label: 'Start with the diagnosis', href: '/contact/?type=diagnostic', track: 'CTA primary' },
   secondaryCta: { label: 'Take the School Health Index', href: '/school-health-index/', track: 'SHI opened' },
@@ -58,8 +66,8 @@ export const method = [
   {
     key: 'intake', name: 'Intake', short: 'Intake',
     line: 'Hear what you are seeing, and gauge how urgent it is.',
-    body: 'Every engagement starts with a 30-minute conversation and the School Health Index. You tell us what you are seeing and what you have already tried. Your team completes the 12-domain intake, and a BetterEd expert reviews it within 48 hours. We do not propose anything yet.',
-    activities: ['A 30-minute conversation with your leaders', 'The School Health Index: a 12-domain intake your team completes', 'Expert review of the intake within 48 hours', 'Agreement on what the diagnostic visit will examine'],
+    body: 'Every engagement starts with a 30-minute conversation and the School Health Index. You tell us what you are seeing and what you have already tried. Your team creates a free account and completes the 12-domain index, and a BetterEd practitioner reviews it within 24 to 48 hours. We do not propose anything yet.',
+    activities: ['A 30-minute conversation with your leaders', 'The School Health Index: a 12-domain intake your team completes', 'Practitioner review of the index within 24 to 48 hours', 'Agreement on what the diagnostic visit will examine'],
     output: 'A first read of your school\'s health, and a plan for the diagnostic visit.',
   },
   {

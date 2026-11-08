@@ -6,6 +6,7 @@ import { createHash } from 'node:crypto';
 import { join, dirname } from 'node:path';
 import { site, solutions, caseStudies, insights } from './src/content/site.mjs';
 import * as P from './src/templates/pages.mjs';
+import * as SHI from './src/templates/shi.mjs';
 
 const PREVIEW = process.argv.includes('--preview');
 const OUT = PREVIEW ? 'preview' : 'dist';
@@ -17,6 +18,13 @@ const routes = [
   ['/solutions/', P.solutionsIndex()],
   ...solutions.map((s) => [`/solutions/${s.slug}/`, P.solutionPage(s)]),
   ['/school-health-index/', P.shi()],
+  ['/school-health-index/start/', SHI.shiStart()],
+  ['/school-health-index/sign-in/', SHI.shiSignIn()],
+  ['/school-health-index/check-email/', SHI.shiCheckEmail()],
+  ['/school-health-index/reset/', SHI.shiReset()],
+  ['/school-health-index/exam/', SHI.shiExam()],
+  ['/school-health-index/submitted/', SHI.shiSubmitted()],
+  ['/school-health-index/terms/', SHI.shiTerms()],
   ['/results/', P.results()],
   ...caseStudies.filter(visible).map((c) => [`/results/${c.slug}/`, P.caseStudy(c)]),
   ['/insights/', P.insightsIndex(insights.filter(visible))],

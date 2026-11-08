@@ -185,7 +185,7 @@ export function home(latest = []) {
         <ul class="fact-list" role="list">
           <li><strong>12 domains</strong><span class="muted">Leadership to strategic planning</span></li>
           <li><strong>A score from 0 to 100</strong><span class="muted">Placed in one of five health bands</span></li>
-          <li><strong>Expert review within 48 hours</strong><span class="muted">Before any recommendation reaches you</span></li>
+          <li><strong>Expert review within 24 to 48 hours</strong><span class="muted">Before any recommendation reaches you</span></li>
           <li><strong>No cost, no login</strong><span class="muted">For the public intake</span></li>
         </ul>
       </div>
@@ -360,8 +360,9 @@ export function shi() {
   const body = html`${breadcrumb(crumbs)}
   <section class="page-hero" aria-labelledby="h"><div class="container grid grid-12">
     <div class="span-8">${kicker('Diagnostic')}<h1 id="h">The School Health Index™</h1>
-      <p class="lead">An honest exam of the conditions around learning in your school, across 12 domains, reviewed by a BetterEd expert before any recommendation reaches you.</p>
-      <div class="btn-row" style="margin-top:2rem">${btn('Start the School Health Index', site.shiIntakeUrl, { track: 'Diagnostic started' })}${btn('Talk to us first', '/contact/?type=shi', { variant: 'secondary' })}</div></div>
+      <p class="lead">An honest exam of the conditions around learning in your school, across 12 domains. Free, one per person, and read by a BetterEd practitioner, who sends your report within ${site.shi.reviewWindow}.</p>
+      <div class="btn-row" style="margin-top:2rem">${btn('Create your free account', site.shiIntakeUrl, { track: 'Diagnostic started' })}${btn('Sign in', '/school-health-index/sign-in/', { variant: 'secondary', arrow: false })}</div>
+      <p class="small muted" style="margin-top:1rem">About 20 minutes. Your answers save as you go.</p></div>
   </div></section>
   <section class="section-tight band-mist" aria-labelledby="why-h"><div class="container grid grid-12">
     <div class="span-5">${kicker('Why diagnose first')}<h2 id="why-h">Most schools are prescribed something before anyone examines them.</h2></div>
@@ -390,7 +391,7 @@ export function shi() {
     <ol class="next-steps span-7" role="list">
       <li><div><strong>Complete the intake.</strong> Five short sections about your school. No login and no cost for the public intake.</div></li>
       <li><div><strong>Receive a preliminary score.</strong> Calculated when you submit, and yours immediately.</div></li>
-      <li><div><strong>Expert review within 48 hours.</strong> A BetterEd expert reviews the results before any recommendation is issued.</div></li>
+      <li><div><strong>Expert review within 24 to 48 hours.</strong> A BetterEd expert reviews the results before any recommendation is issued.</div></li>
       <li><div><strong>Health review call.</strong> We walk through the findings with you and talk about what, if anything, to do next.</div></li>
     </ol>
   </div></section>
@@ -402,7 +403,7 @@ export function shi() {
       <p style="margin-top:1rem">${linkArrow('Read the privacy policy', '/privacy/')}</p></div>
   </div></section>
   ${closing({ heading: 'Find out what is really keeping your school from getting better.', body: 'Start the School Health Index, or talk with BetterEd first. Either way, it starts with the diagnosis.' })}`;
-  return layout({ path: '/school-health-index/', title: 'School Health Index', description: 'The BetterEd School Health Index: a 12-domain diagnostic of the conditions around learning, scored 0–100 and reviewed by a BetterEd expert within 48 hours.', body, jsonld: [ldBreadcrumb(crumbs)], pageEvent: 'School Health Index opened' });
+  return layout({ path: '/school-health-index/', title: 'School Health Index', description: 'The BetterEd School Health Index: a 12-domain diagnostic of the conditions around learning, free, scored 0–100 and reviewed by a BetterEd practitioner within 24 to 48 hours.', body, jsonld: [ldBreadcrumb(crumbs)], pageEvent: 'School Health Index opened' });
 }
 
 export function results() {
@@ -625,14 +626,14 @@ export function privacy() {
     <p><em>This statement describes how this website is built. It has not yet been reviewed by legal counsel.</em></p>
     <h2>What we collect</h2>
     <p><strong>Contact form.</strong> Your name, work email, organization, role, the topic you choose and your message. We use it only to reply to you and to keep a record of the conversation. Please do not send confidential student information.</p>
-    <p><strong>School Health Index.</strong> The diagnostic intake is governed by its own privacy notice, shown before you begin. Results are visible only to your organization, its invited collaborators and the BetterEd reviewers assigned to your assessment. Do not upload student-level records or identifiable personnel files. You can ask us to archive or delete your diagnostic records, subject to any legal hold.</p>
+    <p><strong>School Health Index.</strong> When you create an account we collect your name, work email, password (stored only as a secure hash by our account provider), role, optional phone number and best time to call, your school and its city and state, how you heard about us, your budget range and, optionally, your area of interest. We then store your answers to the index. We use this to prepare your report, to contact you about it, and to improve the index; answers may be used in aggregate with names and schools removed. Your account and answers are stored with Supabase, our database provider, and are visible only to you and to BetterEd staff. The sign-up and sign-in forms use Cloudflare Turnstile to block automated sign-ups; Cloudflare processes basic browser signals for that check. See the <a href="/school-health-index/terms/">School Health Index terms</a>.</p>
     <p><strong>Basic server logs.</strong> Our hosting provider records standard request information (such as IP address and browser type) to keep the site secure and working.</p>
     <h2>Cookies and analytics</h2>
     <p>This website does not set advertising or tracking cookies. If we add analytics, we will use a privacy-focused service that does not use cookies or build profiles, and we will update this page first.</p>
     <h2>Third parties</h2>
-    <p>Fonts are served from our own domain; no font service receives your information. Contact form messages are delivered by an email service provider acting on our behalf. We do not sell personal information.</p>
+    <p>Fonts are served from our own domain; no font service receives your information. Contact form messages and School Health Index emails are delivered by an email service provider acting on our behalf. School Health Index accounts are hosted by Supabase, and the security check is provided by Cloudflare. We do not sell personal information.</p>
     <h2>Retention</h2>
-    <p>We keep contact messages as long as needed to respond and to maintain a record of the relationship, and delete them on request.</p>
+    <p>We keep contact messages and School Health Index accounts as long as needed to respond, to maintain a record of the relationship, and to provide your report, and delete them on request.</p>
     <h2>Your choices</h2>
     <p>To see, correct or delete what we hold about you, email <a href="mailto:${site.email}">${site.email}</a>.</p>
   </div></div>`;

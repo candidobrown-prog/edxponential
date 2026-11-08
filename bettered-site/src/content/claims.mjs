@@ -67,7 +67,7 @@ export const claims = {
   'CL-08': { wording: 'Founded in 2019 in New Jersey', status: 'OWNER STATED', lastReview: '2026-11-08', pages: ['/about', '/procurement'] },
   'CL-09': { wording: 'Founder education: Baltimore City College; BA in Sociology, Johns Hopkins University; master\'s in Education Policy and Management, Harvard Graduate School of Education', status: 'OWNER STATED', note: 'No institutional endorsement implied.', lastReview: '2026-11-08', pages: ['/', '/about'] },
   'CL-10': { wording: 'Founder career: ten years at Success Academy Charter Schools as teacher, principal, principal director, network director and managing director of schools, joining when the network had three schools', status: 'OWNER STATED', lastReview: '2026-11-08', pages: ['/', '/about'] },
-  'CL-11': { wording: 'School Health Index: 12 domains, score 0–100, five health bands, expert review within 48 hours', status: 'PUBLIC DATA', note: 'Stated on current site. 48-hour commitment must remain operationally true.', lastReview: '2026-11-08', pages: ['/school-health-index', '/'] },
+  'CL-11': { wording: 'School Health Index: 12 domains, score 0–100, five health bands, practitioner review and report within 24 to 48 hours', status: 'OWNER STATED', note: 'Owner set the 24–48 hour window (Nov 2026). Must remain operationally true; free, one per person, account required.', lastReview: '2026-11-08', pages: ['/school-health-index', '/'] },
   'CL-12': { wording: 'Team of 14 named practitioners and staff', status: 'OWNER STATED', note: 'Carried from current site. Confirm spellings (Furan/Fearon, Jhay/Jay) and titles before launch.', lastReview: '2026-11-08', pages: ['/about'] },
 };
 

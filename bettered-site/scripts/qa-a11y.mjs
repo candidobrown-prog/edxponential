@@ -3,7 +3,7 @@ import { createRequire } from 'node:module'; const require = createRequire(impor
 const { chromium } = require('playwright'); import { readFile, writeFile, mkdir } from 'node:fs/promises';
 const axeSrc = await readFile('node_modules/axe-core/axe.min.js', 'utf8');
 const base = 'http://localhost:4173';
-const routes = ['/', '/approach/', '/solutions/', '/solutions/culture-climate/', '/solutions/leadership-development/', '/solutions/educator-development/', '/solutions/whole-school-turnaround/', '/school-health-index/', '/results/', '/results/shining-stars-montessori/', '/insights/', '/about/', '/partner/', '/procurement/', '/contact/', '/privacy/', '/accessibility/', '/404.html'];
+const routes = ['/', '/approach/', '/solutions/', '/solutions/school-health/', '/solutions/leader-development/', '/solutions/teacher-development/', '/solutions/intensive-care/', '/school-health-index/', '/school-health-index/start/', '/school-health-index/sign-in/', '/school-health-index/check-email/', '/school-health-index/exam/', '/school-health-index/submitted/', '/school-health-index/terms/', '/results/', '/results/shining-stars-montessori/', '/insights/', '/about/', '/partner/', '/procurement/', '/contact/', '/privacy/', '/accessibility/', '/404.html'];
 const b = await chromium.launch(); const out = { axe: {}, tests: [] };
 const ok = (name, pass, detail = '') => { out.tests.push({ name, pass, detail }); console.log(`${pass ? 'PASS' : 'FAIL'}  ${name}${detail ? ' — ' + detail : ''}`); };
 for (const [w, h] of [[1440, 900], [390, 844]]) {
@@ -20,7 +20,7 @@ for (const [w, h] of [[1440, 900], [390, 844]]) {
   await ctx.close();
 }
 const total = Object.values(out.axe).reduce((n, v) => n + v.length, 0);
-ok('axe-core: 0 violations across 18 routes × 2 widths', total === 0, total ? JSON.stringify(Object.fromEntries(Object.entries(out.axe).filter(([, v]) => v.length))) : '');
+ok('axe-core: 0 violations across all routes × 2 widths', total === 0, total ? JSON.stringify(Object.fromEntries(Object.entries(out.axe).filter(([, v]) => v.length))) : '');
 
 // Keyboard: skip link + mobile menu focus containment + Escape
 { const ctx = await b.newContext({ viewport: { width: 390, height: 844 } }); const p = await ctx.newPage();
@@ -58,7 +58,7 @@ ok('axe-core: 0 violations across 18 routes × 2 widths', total === 0, total ? J
   await p.click('button[type=submit]');
   ok('Contact: invalid email rejected client-side', (await p.getAttribute('#f-email', 'aria-invalid')) === 'true' && posts === 0);
   await p.fill('#f-email', 'qa@example.org');
-  await p.click('button[type=submit]'); await p.click('button[type=submit]').catch(() => {});
+  await p.dblclick('button[type=submit]'); // a genuine double-click: two clicks in quick succession
   await p.waitForSelector('#form-status.is-error, #form-status.is-success', { timeout: 5000 });
   const txt = await p.textContent('#form-status');
   ok('Contact: delivery failure shown honestly (never false success)', txt.includes('was not sent'), txt.trim().slice(0, 80));
