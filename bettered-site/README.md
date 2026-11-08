@@ -31,7 +31,10 @@ docs/                      phase deliverables (registers, red teams, strategy, d
 ## Content editing
 
 - Page copy lives in `src/content/site.mjs`. Change text there, run the build.
-- EdSolutions must stay in this order: Culture & Climate, Leadership Development, Educator Development, Whole-School Turnaround. The array order is the display order everywhere.
+- EdSolutions must stay in this order: School Health (culture & climate), Leader Development, Teacher Development, Intensive Care (whole-school turnaround). The array order is the display order everywhere, and each has a `sub` line that always appears with the name.
+- The method is six steps: Intake, Diagnosis, Treatment plan, Treatment, Strengthen, Discharge & follow-up (`method` in `site.mjs`).
+- The headline is "Schools can get well. Fast." Urgency is a brand value; do not attach a specific timeline unless the founder supplies one.
+- No eyebrow labels above headings: `kicker()` is a no-op.
 - The tagline is exactly "Happy. Healthy. High-performing." — it is rendered by `tagline()` in `lib.mjs`; do not retype it.
 - Say "teachers", never "guides". Write "MASTERY", never "M.A.S.T.E.R.Y.".
 
@@ -78,7 +81,8 @@ Never commit keys. `.env*` files are git-ignored.
 
 ## Brand system
 
-- **Mark:** the Diagnostic Cross. Four navy blocks (one per EdSolution) around a gold core (the diagnosis). `crossArt()` in `lib.mjs` draws it as artwork; the blocks assemble in order, the school getting better. Logo files in `src/assets/` are outlined SVGs generated from the brand fonts, so they render identically everywhere.
+- **Mark:** the B-Cross. A medical cross whose right arm forms the two bowls of a B, with a gold core (the diagnosis). `crossArt()` in `lib.mjs` draws it as artwork; the blocks assemble in order, the school getting better.
+- **The BetterEd Model:** the plain cross as a diagram, one EdSolution per arm and the diagnosis at the center (`modelFigure()` in `pages.mjs`). Use it on pages and in decks, never as the logo. Logo files in `src/assets/` are outlined SVGs generated from the brand fonts, so they render identically everywhere.
 - **Type:** Source Serif 4 for headlines and reading text, Work Sans for interface text (SIL OFL 1.1, self-hosted in `src/assets/fonts/`).
 - **Color:** Navy `#0B1F3A`, Harbor `#1A5FB4`, Signal `#FFC20E`, Paper `#F6F4EE`. Accent points are squares, matching the mark.
 - After changing the logo, run `node scripts/gen-images.mjs` to regenerate `og-default.png` and `apple-touch-icon.png`.

@@ -28,7 +28,7 @@ export const claims = {
     clientApproval: 'Stated as approved on the current website; written approval to be located (launch condition)',
     status: 'CLIENT REPORTED · PREVIOUSLY PUBLISHED',
     lastReview: '2026-11-08',
-    pages: ['/', '/results', '/results/shining-stars-montessori', '/solutions/whole-school-turnaround'],
+    pages: ['/', '/results', '/results/shining-stars-montessori', '/solutions/intensive-care'],
   },
   'CL-02': {
     wording: 'Math proficiency rose 14 percentage points',
@@ -46,7 +46,7 @@ export const claims = {
     clientApproval: 'As CL-01',
     status: 'CLIENT REPORTED · PREVIOUSLY PUBLISHED',
     lastReview: '2026-11-08',
-    pages: ['/', '/results', '/results/shining-stars-montessori', '/solutions/whole-school-turnaround'],
+    pages: ['/', '/results', '/results/shining-stars-montessori', '/solutions/intensive-care'],
   },
   'CL-03': {
     wording: '+406 ranking positions gained, Beginning With Children 2 Middle School, 2025–26',

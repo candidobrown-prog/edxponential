@@ -3,7 +3,7 @@
 // Returns { ok: true } ONLY when the email provider accepted the message. Never fakes success.
 // Env: RESEND_API_KEY (required), CONTACT_TO (default info@betteredsolutions.org), CONTACT_FROM (verified sender)
 
-const TYPES = ['Start with the diagnosis', 'School Health Index', 'Culture & Climate', 'Leadership Development', 'Educator Development', 'Whole-School Turnaround', 'Partnership', 'Procurement', 'Other'];
+const TYPES = ['Start with the diagnosis', 'School Health Index', 'School Health', 'Leader Development', 'Teacher Development', 'Intensive Care', 'Partnership', 'Procurement', 'Other'];
 const LIMITS = { name: 120, email: 200, organization: 200, role: 120, message: 4000 };
 const hits = new Map(); // per-instance; pair with Vercel Firewall rate limiting in production
 

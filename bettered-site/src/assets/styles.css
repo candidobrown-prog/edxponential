@@ -696,3 +696,59 @@ h3, .h3 { letter-spacing: -.006em; line-height: 1.2; }
 .hero-trace { max-width: 21rem; }
 .stage-strip { height: 6.5rem; max-width: 28rem; }
 .brand img { width: 196px; }
+
+/* =====================================================================
+   v2.2: no eyebrows, six-step journey, BetterEd Model, levels of care
+   ===================================================================== */
+.section-head { gap: var(--s5); }
+.hero .display { max-width: 11ch; }
+
+/* Step numbers replace the old eyebrow labels */
+.step-n { display: block; font-family: var(--serif); font-style: italic; font-size: 1.5rem; line-height: 1; color: var(--harbor); }
+.band-ink .step-n { color: var(--signal); }
+.step h3 { margin-top: var(--s3); }
+.method-spine .labels { grid-template-columns: repeat(2, 1fr); row-gap: .6rem; column-gap: var(--s4); }
+.method-spine .labels b { font-family: var(--serif); font-style: italic; font-weight: 400; letter-spacing: 0; margin-right: .35rem; color: var(--harbor); }
+@media (min-width: 64rem) { .step { min-height: 34vh; } }
+
+/* Solution names with their plain-English descriptions */
+.sol-sub { display: block; font-family: var(--sans); font-size: .9375rem; font-weight: 500; letter-spacing: 0; color: var(--slate); margin-top: .35rem; }
+.band-ink .sol-sub { color: var(--on-ink-2); }
+.sol-name { font-family: var(--serif); font-size: clamp(1.4rem, 1.2rem + .7vw, 1.8rem); line-height: 1.15; margin-bottom: var(--s5); padding-bottom: var(--s4); border-bottom: 1px solid var(--rule); max-width: 32rem; }
+.band-ink .sol-name { border-bottom-color: var(--rule-on-ink); }
+.sol-n { font-style: italic; color: var(--harbor); margin-right: .6rem; }
+.band-ink .sol-n { color: var(--signal); }
+.sol-name .sol-sub { margin-top: .25rem; }
+
+/* The BetterEd Model */
+.model { display: grid; gap: var(--s7); align-items: center; margin-bottom: var(--s8); }
+@media (min-width: 64rem) { .model { grid-template-columns: minmax(0, 30rem) 1fr; gap: var(--s8); } }
+.model-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); grid-template-areas: ". t ." "l c r" ". b ."; gap: clamp(.4rem, 1vw, .75rem); max-width: 30rem; }
+.model-grid li { aspect-ratio: 1; }
+.model-grid .m-t { grid-area: t; } .model-grid .m-l { grid-area: l; } .model-grid .m-r { grid-area: r; } .model-grid .m-b { grid-area: b; } .model-grid .m-c { grid-area: c; }
+.model-grid a { display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; gap: .3rem; height: 100%; padding: .5rem; background: var(--ink); color: var(--white); text-decoration: none; transition: background-color var(--m-fast) var(--e-ui); }
+.model-grid a:hover { background: var(--harbor); color: var(--white); }
+.model-grid .m-c a { background: var(--signal); color: var(--ink); }
+.model-grid .m-c a:hover { background: var(--ink); color: var(--signal); }
+.model-grid .m-n { font-family: var(--serif); font-style: italic; font-size: .9rem; color: var(--signal); line-height: 1; }
+.model-grid .m-name { font-weight: 600; font-size: clamp(.72rem, .6rem + .6vw, 1rem); line-height: 1.2; }
+.model-copy h3 { font-size: var(--fs-h3); }
+.model-copy p { color: var(--slate); max-width: 46ch; }
+
+/* Levels of care */
+.care-levels { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; border-top: 1px solid var(--ink); }
+@media (min-width: 64rem) { .care-levels { grid-template-columns: repeat(3, 1fr); } .care-levels li + li { border-left: 1px solid var(--rule); padding-left: var(--s6); } }
+.care-levels li { padding: var(--s6) var(--s6) var(--s6) 0; border-bottom: 1px solid var(--rule); display: flex; flex-direction: column; gap: var(--s3); }
+@media (min-width: 64rem) { .care-levels li { border-bottom: 0; } }
+.care-n { font-family: var(--serif); font-style: italic; font-size: 1.5rem; color: var(--harbor); line-height: 1; }
+.care-levels .is-intensive .care-n { color: var(--pulse); }
+.care-levels p { color: var(--slate); }
+.care-link { margin-top: auto; }
+
+/* Structural labels that used to borrow the eyebrow style */
+.stage-title { font-family: var(--serif); font-size: 1.35rem; font-weight: 400; color: var(--ink); }
+.stage-strip { max-width: 36rem; }
+.stage-strip .t { font-size: .65rem; letter-spacing: .08em; }
+.stage-strip { grid-template-columns: repeat(6, 1fr); gap: var(--s2); }
+.stage-strip { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+@media (max-width: 40rem) { .stage-strip .t { display: none; } .stage-strip { height: 5rem; } }

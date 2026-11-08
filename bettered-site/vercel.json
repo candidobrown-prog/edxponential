@@ -6,6 +6,46 @@
   "trailingSlash": true,
   "redirects": [
     {
+      "source": "/solutions/culture-climate",
+      "destination": "/solutions/school-health/",
+      "permanent": true
+    },
+    {
+      "source": "/solutions/culture-climate/:path*",
+      "destination": "/solutions/school-health/",
+      "permanent": true
+    },
+    {
+      "source": "/solutions/leadership-development",
+      "destination": "/solutions/leader-development/",
+      "permanent": true
+    },
+    {
+      "source": "/solutions/leadership-development/:path*",
+      "destination": "/solutions/leader-development/",
+      "permanent": true
+    },
+    {
+      "source": "/solutions/educator-development",
+      "destination": "/solutions/teacher-development/",
+      "permanent": true
+    },
+    {
+      "source": "/solutions/educator-development/:path*",
+      "destination": "/solutions/teacher-development/",
+      "permanent": true
+    },
+    {
+      "source": "/solutions/whole-school-turnaround",
+      "destination": "/solutions/intensive-care/",
+      "permanent": true
+    },
+    {
+      "source": "/solutions/whole-school-turnaround/:path*",
+      "destination": "/solutions/intensive-care/",
+      "permanent": true
+    },
+    {
       "source": "/services",
       "destination": "/solutions/",
       "permanent": true

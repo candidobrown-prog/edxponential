@@ -37,10 +37,10 @@ export const footerNav = [
     { label: 'Insights', href: '/insights/' },
   ]},
   { heading: 'EdSolutions', links: [
-    { label: 'Culture & Climate', href: '/solutions/culture-climate/' },
-    { label: 'Leadership Development', href: '/solutions/leadership-development/' },
-    { label: 'Educator Development', href: '/solutions/educator-development/' },
-    { label: 'Whole-School Turnaround', href: '/solutions/whole-school-turnaround/' },
+    { label: 'School Health', href: '/solutions/school-health/' },
+    { label: 'Leader Development', href: '/solutions/leader-development/' },
+    { label: 'Teacher Development', href: '/solutions/teacher-development/' },
+    { label: 'Intensive Care', href: '/solutions/intensive-care/' },
   ]},
   { heading: 'Company', links: [
     { label: 'About', href: '/about/' },
@@ -56,40 +56,54 @@ export const footerNav = [
 
 export const method = [
   {
-    key: 'diagnose', name: 'Diagnose', motion: 'Baseline',
+    key: 'intake', name: 'Intake', short: 'Intake',
+    line: 'Hear what you are seeing, and gauge how urgent it is.',
+    body: 'Every engagement starts with a 30-minute conversation and the School Health Index. You tell us what you are seeing and what you have already tried. Your team completes the 12-domain intake, and a BetterEd expert reviews it within 48 hours. We do not propose anything yet.',
+    activities: ['A 30-minute conversation with your leaders', 'The School Health Index: a 12-domain intake your team completes', 'Expert review of the intake within 48 hours', 'Agreement on what the diagnostic visit will examine'],
+    output: 'A first read of your school\'s health, and a plan for the diagnostic visit.',
+  },
+  {
+    key: 'diagnose', name: 'Diagnosis', short: 'Diagnose',
     line: 'Understand what is actually happening before recommending anything.',
     body: 'We read the data, observe classrooms, sit in leadership meetings, walk the hallways at arrival and dismissal, and listen to teachers, students and families. We look for root causes in the conditions around learning: culture, leadership, instruction, systems, routines and execution.',
-    activities: ['Data review: attendance, achievement, discipline, staffing, enrollment', 'Classroom observation across grades and subjects', 'Leadership, teacher, student and family interviews', 'School Health Index across 12 domains'],
+    activities: ['Data review: attendance, achievement, discipline, staffing, enrollment', 'Classroom observation across grades and subjects', 'Leadership, teacher, student and family interviews', 'Root-cause analysis across the 12 School Health Index domains'],
     output: 'A written diagnosis: what is working, what is not, and the few root causes that explain the most.',
   },
   {
-    key: 'treat', name: 'Treat', motion: 'Signal',
-    line: 'The right intervention, at the right intensity.',
-    body: 'Not more intervention than the school needs. Not less than the problem requires. The diagnosis decides which EdSolutions are used, in what order, and how much time we spend in the building.',
-    activities: ['A short list of priorities, each with an owner and a measure', 'The EdSolutions the diagnosis calls for, in order', 'An agreed calendar of in-building time', 'Governance: who decides, who reports, how often'],
+    key: 'plan', name: 'Treatment plan', short: 'Plan',
+    line: 'The right treatment, at the right level of care, in writing.',
+    body: 'Not more intervention than the school needs. Not less than the problem requires. The diagnosis decides which EdSolutions are used, in what order, at what level of care, and how much time we spend in the building. The vital signs we will track, and the discharge criteria that will tell us the school is healthy on its own, are named here, before any work begins.',
+    activities: ['A short list of priorities, each with an owner and a measure', 'The EdSolutions the diagnosis calls for, in order, and the level of care', 'The vital signs we will track, and how often we report them', 'Discharge criteria: what healthy looks like for this school', 'Governance: who decides, who reports, how often'],
     output: 'A treatment plan the leadership team owns, with measures named before work begins.',
   },
   {
-    key: 'strengthen', name: 'Strengthen', motion: 'Rise',
+    key: 'treat', name: 'Treatment', short: 'Treat',
+    line: 'Start the work in the building, without waiting.',
+    body: 'Once the plan is agreed, we start. Every year a school struggles is a year children do not get back, so we move with urgency: routines launched with staff, leadership meetings redesigned, coaching under way in classrooms, on the priorities in the plan.',
+    activities: ['The EdSolutions the plan calls for, in order', 'Routines and structures launched with staff', 'Coaching in classrooms and leadership meetings', 'Monthly progress reviews against the vital signs'],
+    output: 'Treatment under way, with progress reported against the vital signs.',
+  },
+  {
+    key: 'strengthen', name: 'Strengthen', short: 'Strengthen',
     line: 'Stay close enough to the work for practice to change.',
     body: 'Plans do not change schools. Adults practicing differently does. We coach in classrooms and leadership meetings, model, rehearse and give feedback until new routines are the normal way of working.',
-    activities: ['Observation and feedback cycles with teachers', 'Leadership coaching tied to the week\'s real decisions', 'Rehearsal and modeling of routines before they go live', 'Progress monitoring against the measures named in Treat'],
+    activities: ['Observation and feedback cycles with teachers', 'Leadership coaching tied to the week\'s real decisions', 'Rehearsal and modeling of routines before they go live', 'Progress monitoring against the vital signs in the treatment plan'],
     output: 'Changed adult practice you can see in classrooms, and evidence that it is changing results.',
   },
   {
-    key: 'sustain', name: 'Sustain', motion: 'Hold',
-    line: 'Build what holds after we leave.',
-    body: 'The goal is not a school that depends on BetterEd. It is a school whose leaders, systems and routines keep the gains year after year. We hand over the work deliberately, stage by stage.',
-    activities: ['Leaders running the routines without us in the room', 'Systems documented and owned by the school', 'A measurement cycle the school runs itself', 'A planned step-down of BetterEd time'],
+    key: 'discharge', name: 'Discharge & follow-up', short: 'Discharge',
+    line: 'Step back when the school is healthy on its own, then check in.',
+    body: 'The goal is not a school that depends on BetterEd. When the discharge criteria in the treatment plan are met, we hand over the work deliberately and step down, then return for scheduled check-ups to confirm the gains are holding.',
+    activities: ['Leaders running the routines without us in the room', 'Systems documented and owned by the school', 'A measurement cycle the school runs itself', 'A planned step-down of BetterEd time, then follow-up check-ups'],
     output: 'A school that can diagnose and correct itself.',
   },
 ];
 
 export const solutions = [
   {
-    slug: 'culture-climate', n: '01', name: 'Culture & Climate', role: 'Where it starts', intensity: 2,
+    slug: 'school-health', n: '01', name: 'School Health', sub: 'Culture & climate', role: 'Where every treatment starts', intensity: 2,
     short: 'Belonging, safety and high expectations, so adults can do their best work and children can learn.',
-    cta: 'Explore Culture & Climate', contactType: 'culture',
+    cta: 'Talk about School Health', contactType: 'culture',
     hero: 'Conditions come first.',
     lead: 'Children learn where they feel safe, known and expected to succeed. Adults teach well where expectations are clear and support is real. Every BetterEd engagement begins with the conditions, because nothing else holds without them.',
     why: [
@@ -108,10 +122,10 @@ export const solutions = [
     work: ['Schoolwide routines designed, rehearsed with staff and launched together', 'Clear, shared expectations for adults and students', 'Coaching for leaders on presence, follow-through and repair', 'A culture walk-through and student voice cycle the school runs itself'],
     measures: ['Attendance and chronic absence', 'Incidents and instructional time lost', 'Student and staff survey measures of safety and belonging', 'Staff retention'],
     children: 'Calmer hallways, more minutes of learning, and adults who know their names and expect a lot of them.',
-    related: ['leadership-development', 'whole-school-turnaround'],
+    related: ['leader-development', 'intensive-care'],
   },
   {
-    slug: 'leadership-development', n: '02', name: 'Leadership Development', role: 'The head', intensity: 2,
+    slug: 'leader-development', n: '02', name: 'Leader Development', sub: 'Principals & leadership teams', role: 'The head', intensity: 2,
     short: 'Heavy is the head that wears the crown. We build leaders who diagnose, decide and develop adults.',
     cta: 'Develop your leaders', contactType: 'leadership',
     hero: 'Heavy is the head that wears the crown.',
@@ -132,10 +146,10 @@ export const solutions = [
     work: ['One-to-one leadership coaching tied to live decisions', 'Leadership team design: roles, meetings, decision rights', 'Instructional leadership: observation, feedback and data meetings', 'Rehearsal of hard conversations before they happen'],
     measures: ['Leader time spent on instruction', 'Quality and frequency of teacher feedback', 'Completion of priority commitments', 'Teacher and leader retention'],
     children: 'A school led by someone with the time, clarity and team to make every classroom better.',
-    related: ['educator-development', 'culture-climate'],
+    related: ['teacher-development', 'school-health'],
   },
   {
-    slug: 'educator-development', n: '03', name: 'Educator Development', role: 'The hands', intensity: 2,
+    slug: 'teacher-development', n: '03', name: 'Teacher Development', sub: 'Instruction in the classroom', role: 'The hands', intensity: 2,
     short: 'Teachers are where learning happens. We coach reading, writing and math instruction in the classroom.',
     cta: 'Strengthen teaching', contactType: 'educator',
     hero: 'Teachers are where learning happens.',
@@ -155,14 +169,14 @@ export const solutions = [
     work: ['Observation and feedback cycles: one lever at a time', 'Co-planning and lesson internalization', 'Modeling and rehearsal before new routines go live', 'Professional learning built from what was seen in classrooms'],
     measures: ['Implementation of the targeted practice, observed', 'Student work and interim assessment results', 'Reading, writing and math proficiency', 'Teacher reported usefulness of feedback'],
     children: 'Clearer lessons, more time thinking and writing, and teachers who know exactly where each child is.',
-    related: ['leadership-development', 'whole-school-turnaround'],
+    related: ['leader-development', 'intensive-care'],
   },
   {
-    slug: 'whole-school-turnaround', n: '04', name: 'Whole-School Turnaround', role: 'Intensive care', intensity: 4, intensive: true,
+    slug: 'intensive-care', n: '04', name: 'Intensive Care', sub: 'Whole-school turnaround', role: 'When it is everything', intensity: 4, intensive: true,
     short: 'When it is not one thing, it is everything: culture, leadership and teaching together, until the school is healthy on its own.',
-    cta: 'Talk about turnaround', contactType: 'turnaround',
+    cta: 'Talk about Intensive Care', contactType: 'turnaround',
     hero: 'When it is not one thing, it is everything.',
-    lead: 'Whole-School Turnaround is intensive care: culture, leadership, teaching, systems and measurement treated together, with more time, more intensity and more attention, until the school is healthy on its own.',
+    lead: 'Intensive Care is whole-school turnaround: culture, leadership, teaching, systems and measurement treated together, with more time, more intensity and more attention, until the school is healthy on its own.',
     why: [
       'Some schools are not struggling for one reason. Culture is unstable, leadership is stretched, instruction is uneven, systems are fragmented and every problem feeds the next. Fixing one at a time does not work, because the others undo it.',
       'Turnaround is integrated work. We diagnose across every domain, agree the few priorities that unlock the rest, and stay in the building at the intensity the school needs. We do not promise timelines. We name measures, report them, and adjust.',
@@ -178,7 +192,7 @@ export const solutions = [
     work: ['Integrated diagnosis across all 12 School Health Index domains', 'A turnaround plan with few priorities, owners and measures', 'Sustained in-building presence: leadership, classrooms and culture together', 'Monthly progress reviews with school and system leaders', 'A planned transfer of every routine to the school team'],
     measures: ['Attendance and culture indicators', 'Leadership and instructional practice, observed', 'Reading and math proficiency and growth', 'Designation or accountability status, where applicable', 'Retention of effective teachers and leaders'],
     children: 'A school that works: safe, well led, well taught, and still getting better after we leave.',
-    related: ['culture-climate', 'leadership-development'],
+    related: ['school-health', 'leader-development'],
     caseStudy: 'shining-stars-montessori',
   },
 ];
@@ -194,18 +208,18 @@ export const mastery = [
 ];
 
 export const shiDomains = [
-  { n: '01', name: 'Leadership', looks: 'Leadership capacity, team structure, decision rights and how priorities are set and kept.', solution: 'leadership-development' },
-  { n: '02', name: 'Culture and Climate', looks: 'Safety, belonging, expectations, routines and adult culture.', solution: 'culture-climate' },
-  { n: '03', name: 'Instruction', looks: 'Planning, classroom practice, feedback and curriculum implementation.', solution: 'educator-development' },
-  { n: '04', name: 'Student Achievement', looks: 'Proficiency, growth and the gaps between groups of students, read in context.', solution: 'educator-development' },
-  { n: '05', name: 'Talent', looks: 'Hiring, development and retention of teachers and leaders.', solution: 'leadership-development' },
-  { n: '06', name: 'Enrollment', looks: 'Enrollment trends, re-enrollment and what they signal about trust.', solution: 'whole-school-turnaround' },
-  { n: '07', name: 'Operations', looks: 'Schedules, systems and the operational load on school leaders.', solution: 'whole-school-turnaround' },
-  { n: '08', name: 'Finance', looks: 'Whether resources match priorities, and how sustainable the budget is.', solution: 'whole-school-turnaround' },
-  { n: '09', name: 'Facilities', looks: 'Whether the building supports safety, learning and pride.', solution: 'culture-climate' },
-  { n: '10', name: 'Family Trust', looks: 'Communication with families and whether they would choose the school again.', solution: 'culture-climate' },
-  { n: '11', name: 'Special Education', looks: 'Services, compliance and whether students with disabilities are learning.', solution: 'educator-development' },
-  { n: '12', name: 'Strategic Planning', looks: 'Whether there is a plan, with few priorities, owners, measures and governance.', solution: 'leadership-development' },
+  { n: '01', name: 'Leadership', looks: 'Leadership capacity, team structure, decision rights and how priorities are set and kept.', solution: 'leader-development' },
+  { n: '02', name: 'Culture and Climate', looks: 'Safety, belonging, expectations, routines and adult culture.', solution: 'school-health' },
+  { n: '03', name: 'Instruction', looks: 'Planning, classroom practice, feedback and curriculum implementation.', solution: 'teacher-development' },
+  { n: '04', name: 'Student Achievement', looks: 'Proficiency, growth and the gaps between groups of students, read in context.', solution: 'teacher-development' },
+  { n: '05', name: 'Talent', looks: 'Hiring, development and retention of teachers and leaders.', solution: 'leader-development' },
+  { n: '06', name: 'Enrollment', looks: 'Enrollment trends, re-enrollment and what they signal about trust.', solution: 'intensive-care' },
+  { n: '07', name: 'Operations', looks: 'Schedules, systems and the operational load on school leaders.', solution: 'intensive-care' },
+  { n: '08', name: 'Finance', looks: 'Whether resources match priorities, and how sustainable the budget is.', solution: 'intensive-care' },
+  { n: '09', name: 'Facilities', looks: 'Whether the building supports safety, learning and pride.', solution: 'school-health' },
+  { n: '10', name: 'Family Trust', looks: 'Communication with families and whether they would choose the school again.', solution: 'school-health' },
+  { n: '11', name: 'Special Education', looks: 'Services, compliance and whether students with disabilities are learning.', solution: 'teacher-development' },
+  { n: '12', name: 'Strategic Planning', looks: 'Whether there is a plan, with few priorities, owners, measures and governance.', solution: 'leader-development' },
 ];
 
 export const shiBands = [
@@ -258,8 +272,8 @@ export const caseStudies = [
     school: 'Shining Stars Montessori Academy PCS',
     title: 'Treating the whole school, not one symptom',
     summary: 'A public charter school facing connected pressures across enrollment, culture, staffing, instruction, leadership and facilities. A multi-year engagement treated them together.',
-    facts: [['School type', 'Public charter school'], ['Engagement', 'Multi-year'], ['EdSolutions', 'Whole-School Turnaround'], ['Results year', '2025–26']],
-    solutions: ['whole-school-turnaround', 'leadership-development', 'educator-development', 'culture-climate'],
+    facts: [['School type', 'Public charter school'], ['Engagement', 'Multi-year'], ['EdSolutions', 'Intensive Care (whole-school turnaround)'], ['Results year', '2025–26']],
+    solutions: ['intensive-care', 'leader-development', 'teacher-development', 'school-health'],
     claims: ['CL-01', 'CL-02'],
     stages: {
       condition: 'The school faced pressure on several fronts at once: enrollment, culture, staffing, instruction, leadership and facilities. Each pressure made the others worse. Isolated professional development, or any single intervention, could not address them.',
@@ -277,7 +291,7 @@ export const insights = [
     title: 'Diagnosis before prescription',
     deck: 'Why the first job in school improvement is an honest exam, and what it should look at.',
     category: 'School Turnaround', author: 'BetterEd Solutions', date: '2026-11-08', readMinutes: 5,
-    related: ['culture-climate', 'whole-school-turnaround'],
+    related: ['school-health', 'intensive-care'],
     body: [
       ['p', 'Most struggling schools have been prescribed something before anyone examined them. A new curriculum. A coaching vendor. A data platform. A new principal. Each arrives with good intentions and a theory of what is wrong. Few arrive with evidence about this school.'],
       ['p', 'Medicine learned long ago that treating a symptom without a diagnosis is how patients get worse. Schools deserve the same discipline. The institution is the patient. Children are not the problem, and neither are families. The conditions adults build around learning are where the cause usually lives.'],

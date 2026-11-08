@@ -6,7 +6,7 @@ const sol = (slug) => solutions.find((s) => s.slug === slug);
 const fmtDate = (d) => new Date(d + 'T12:00:00Z').toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
 
 /* ---------- shared sections ---------- */
-function methodSection({ id = 'method', heading = 'Diagnosis before prescription.', intro = 'Every BetterEd engagement follows the same four stages. Not because every school is the same, but because no school should be treated before it is examined.', detailed = false } = {}) {
+function methodSection({ id = 'method', heading = 'Diagnosis before prescription.', intro = 'Every BetterEd engagement follows the same six steps, from intake to discharge. Not because every school is the same, but because no school should be treated before it is examined.', detailed = false } = {}) {
   return html`<section class="section" id="${id}" aria-labelledby="${id}-h">
     <div class="container">
       <div class="section-head split">
@@ -17,7 +17,7 @@ function methodSection({ id = 'method', heading = 'Diagnosis before prescription
         ${methodSpine()}
         <ol class="steps" role="list">
           ${method.map((m, i) => html`<li class="step" data-stage="${i}">
-            <span class="kicker">Stage 0${i + 1}</span>
+            <span class="step-n">0${i + 1}</span>
             <h3>${esc(m.name)}</h3>
             <p class="step-line">${esc(m.line)}</p>
             <p class="muted">${esc(m.body)}</p>
@@ -28,11 +28,23 @@ function methodSection({ id = 'method', heading = 'Diagnosis before prescription
     </div></section>`;
 }
 
+/* The BetterEd Model: the cross as a diagram. Each arm is an EdSolution; the gold core is the diagnosis. */
+function modelFigure({ caption = true } = {}) {
+  const pos = { 'school-health': 'l', 'leader-development': 't', 'teacher-development': 'r', 'intensive-care': 'b' };
+  return html`<div class="model">
+    <ul class="model-grid" role="list" aria-label="The BetterEd Model">
+      ${solutions.map((s) => `<li class="m-${pos[s.slug]}"><a href="/solutions/${s.slug}/"><span class="m-n">${s.n}</span><span class="m-name">${esc(s.name)}</span></a></li>`)}
+      <li class="m-c"><a href="/approach/#stages"><span class="m-name">Diagnosis</span></a></li>
+    </ul>
+    ${caption ? html`<div class="model-copy stack"><h3>The BetterEd Model</h3><p>Each arm of the cross is one EdSolution. The gold center is the diagnosis, and it decides which arms a school needs, in what order, and at what level of care.</p>${linkArrow('How the diagnosis works', '/approach/#stages')}</div>` : ''}
+  </div>`;
+}
+
 function solutionsList({ dark = false, heading = true } = {}) {
   return html`<ul class="solutions-list" role="list">
     ${solutions.map((s) => html`<li><a class="solution-row${s.intensive ? ' is-intensive' : ''}" href="/solutions/${s.slug}/" data-track="EdSolution viewed" data-track-label="${esc(s.name)}" data-reveal>
       <span class="num">${s.n}</span>
-      <h3>${esc(s.name)}</h3>
+      <h3>${esc(s.name)}<span class="sol-sub">${esc(s.sub)}</span></h3>
       <span class="role">${esc(s.role)}</span>
       <span class="desc">${esc(s.short)}</span>
       <span class="go" aria-hidden="true">→</span>
@@ -58,7 +70,6 @@ function founderSection({ full = false } = {}) {
   return html`<section class="section ${full ? '' : 'band-mist'}" id="founder" aria-labelledby="founder-h">
     <div class="container founder">
       <div class="portrait-card" data-reveal>
-        <p class="kicker">Founder</p>
         <div class="portrait-art">${crossArt()}</div>
         <div><p class="name">Candido<br>Brown</p><p class="role">${esc(founder.title)}, BetterEd Solutions</p>
           <ul class="creds" role="list">${founder.creds.map(([a, b]) => `<li><strong>${esc(a)}</strong>${esc(b)}</li>`)}</ul></div>
@@ -90,19 +101,19 @@ export function home(latest = []) {
   const body = html`
   <section class="hero" aria-labelledby="hero-h">
     <div class="container">
-    <div class="hero-masthead" aria-hidden="true"><span class="vol">The BetterEd Method</span><span>Diagnose · Treat · Strengthen · Sustain</span></div>
+    <div class="hero-masthead" aria-hidden="true"><span class="vol">The BetterEd Method</span><span>Intake · Diagnose · Plan · Treat · Strengthen · Discharge</span></div>
     <div class="hero-grid">
       <div>
-        <h1 id="hero-h" class="display">Schools can <em>get well.</em></h1>
-        <p class="lead">We treat struggling schools the way good medicine treats patients: diagnose honestly, treat decisively, and stay until the results hold.</p>
+        <h1 id="hero-h" class="display">Schools can get well. <em>Fast.</em></h1>
+        <p class="lead">Every year a school struggles is a year children don't get back. We diagnose honestly, treat urgently, and stay until the results hold.</p>
         ${ctaPair()}
         ${tagline('hero-tagline')}
       </div>
       <div class="hero-trace">${crossArt({ draw: 'load', decorative: false })}</div>
     </div>
     <ul class="hero-index" role="list">
-      <li><a href="/school-health-index/" data-track="SHI opened"><span class="n">01 · Diagnose</span><strong>The School Health Index™</strong><span class="d">A 12-domain exam of the conditions around learning.</span></a></li>
-      <li><a href="/solutions/"><span class="n">02 · Treat</span><strong>Four EdSolutions</strong><span class="d">Culture, leadership, teaching and whole-school turnaround.</span></a></li>
+      <li><a href="/school-health-index/" data-track="SHI opened"><span class="n">01 · Intake</span><strong>The School Health Index™</strong><span class="d">A 12-domain exam of the conditions around learning.</span></a></li>
+      <li><a href="/solutions/"><span class="n">02 · Treat</span><strong>Four EdSolutions</strong><span class="d">School Health, leaders, teachers and Intensive Care.</span></a></li>
       <li><a href="/results/"><span class="n">03 · Measure</span><strong>Measured, not promised</strong><span class="d">Results reported with their limits.</span></a></li>
     </ul>
     </div>
@@ -158,6 +169,7 @@ export function home(latest = []) {
         <div>${kicker('EdSolutions')}<h2 id="sol-h">Four treatments, in the order we work.</h2>${rulePoint()}</div>
         <p class="lead">Every child deserves an excellent classroom, in an excellent school, with excellent teachers and leaders, in an excellent culture. The diagnosis decides which of these a school needs, and how much.</p>
       </div>
+      ${modelFigure()}
       ${solutionsList()}
       <p style="margin-top:2rem">${linkArrow('How the EdSolutions fit together', '/solutions/')}</p>
     </div>
@@ -184,7 +196,7 @@ export function home(latest = []) {
   </section>
 
   ${closing()}`;
-  return layout({ path: '/', title: 'BetterEd Solutions', description: 'BetterEd Solutions is a school improvement, turnaround and transformation firm. We diagnose honestly, treat decisively, and stay until the results hold.', body, jsonld: [ldOrg(), { '@context': 'https://schema.org', '@type': 'WebSite', '@id': `${site.url}/#website`, url: site.url, name: site.name, publisher: { '@id': `${site.url}/#org` } }] });
+  return layout({ path: '/', title: 'BetterEd Solutions', description: 'BetterEd Solutions is a school improvement, turnaround and transformation firm. Schools can get well, fast: we diagnose honestly, treat urgently, and stay until the results hold.', body, jsonld: [ldOrg(), { '@context': 'https://schema.org', '@type': 'WebSite', '@id': `${site.url}/#website`, url: site.url, name: site.name, publisher: { '@id': `${site.url}/#org` } }] });
 }
 
 export function approach() {
@@ -192,7 +204,7 @@ export function approach() {
   const body = html`${breadcrumb(crumbs)}
   <section class="page-hero" aria-labelledby="h">
     <div class="container">${kicker('Our Approach')}<h1 id="h">Diagnosis before prescription.</h1>
-      <p class="lead">What actually happens when a school or district works with BetterEd: four stages, the same every time, at the intensity your school needs.</p>
+      <p class="lead">What actually happens when a school or district works with BetterEd: six steps, from intake to discharge, the same every time, at the level of care your school needs.</p>
       <div class="page-hero-trace">${stageStrip()}</div>
     </div>
   </section>
@@ -207,20 +219,19 @@ export function approach() {
     </div>
   </section>
 
-  ${methodSection({ id: 'stages', heading: 'Four stages. The same order every time.', intro: 'Here is what each stage involves, and what you hold at the end of it.', detailed: true })}
+  ${methodSection({ id: 'stages', heading: 'Six steps. The same order every time.', intro: 'Here is what each step involves, and what you hold at the end of it.', detailed: true })}
 
-  <section class="section band-ink" aria-labelledby="begin-h">
-    <div class="container grid grid-12">
-      <div class="span-5">${kicker('How engagements begin')}<h2 id="begin-h">The first month, plainly.</h2></div>
-      <ol class="next-steps span-7" role="list">
-        <li><div><strong>A 30-minute conversation.</strong> You tell us what you are seeing. We ask what you have already tried. No proposal yet.</div></li>
-        <li><div><strong>The School Health Index.</strong> Your team completes the 12-domain intake. A BetterEd expert reviews it within 48 hours.</div></li>
-        <li><div><strong>The diagnostic visit.</strong> We review your data, observe classrooms and meet leaders, teachers, students and families.</div></li>
-        <li><div><strong>The written diagnosis.</strong> What is working, what is not, and the few root causes that explain the most.</div></li>
-        <li><div><strong>The treatment plan.</strong> The EdSolutions the diagnosis calls for, at the right intensity, with owners and measures named before work starts.</div></li>
+  <section class="section band-mist" aria-labelledby="care-h">
+    <div class="container">
+      <div class="section-head split"><div><h2 id="care-h">Three levels of care.</h2></div><p class="lead">The diagnosis sets the level of care. Not more than the school needs, and not less than the problem requires.</p></div>
+      <ol class="care-levels" role="list">
+        <li><span class="care-n">01</span><h3>Check-up</h3><p>The School Health Index and a written diagnosis. For schools that want an honest read before deciding anything.</p><p class="care-link">${linkArrow('The School Health Index', '/school-health-index/', 'SHI opened')}</p></li>
+        <li><span class="care-n">02</span><h3>Targeted care</h3><p>One or two EdSolutions aimed at the conditions the diagnosis found: School Health, Leader Development or Teacher Development.</p><p class="care-link">${linkArrow('See the EdSolutions', '/solutions/')}</p></li>
+        <li class="is-intensive"><span class="care-n">03</span><h3>Intensive care</h3><p>Whole-school turnaround, when it is everything at once. More time in the building, more intensity, every area treated together.</p><p class="care-link">${linkArrow('Intensive Care', '/solutions/intensive-care/')}</p></li>
       </ol>
     </div>
   </section>
+
 
   <section class="section" aria-labelledby="evidence-h">
     <div class="container grid grid-2">
@@ -250,27 +261,27 @@ export function solutionsIndex() {
   const crumbs = [{ label: 'Home', href: '/' }, { label: 'EdSolutions', href: '/solutions/' }];
   const body = html`${breadcrumb(crumbs)}
   <section class="page-hero" aria-labelledby="h"><div class="container">${kicker('EdSolutions')}<h1 id="h">Four treatments. One diagnosis decides the mix.</h1>
-    <p class="lead">We call them EdSolutions because each one solves a specific condition in a school. They always appear in this order, because this is the order we work in.</p></div></section>
-  <section class="section-tight" aria-labelledby="four-h"><div class="container"><h2 id="four-h" class="visually-hidden">The four EdSolutions</h2>${solutionsList()}</div></section>
+    <p class="lead">We call them EdSolutions because each one treats a specific condition in a school, the way a hospital organizes care by department. They always appear in this order, because this is the order we work in.</p></div></section>
+  <section class="section-tight" aria-labelledby="four-h"><div class="container"><h2 id="four-h" class="visually-hidden">The four EdSolutions</h2>${modelFigure()}${solutionsList()}</div></section>
   <section class="section band-mist" aria-labelledby="which-h">
     <div class="container">
       <div class="section-head split"><div>${kicker('Which do we need?')}<h2 id="which-h">Start with what you are seeing.</h2></div><p class="lead">Most schools need more than one. The diagnosis tells us which, in what order, and at what intensity.</p></div>
       <ul class="fact-list cols-2" role="list">
-        <li><strong>“Our hallways and classrooms do not feel safe or calm.”</strong><a href="/solutions/culture-climate/">Culture &amp; Climate →</a></li>
-        <li><strong>“Our principal is carrying everything alone.”</strong><a href="/solutions/leadership-development/">Leadership Development →</a></li>
-        <li><strong>“Teaching quality varies from room to room.”</strong><a href="/solutions/educator-development/">Educator Development →</a></li>
-        <li><strong>“It is all of the above, and the clock is running.”</strong><a href="/solutions/whole-school-turnaround/">Whole-School Turnaround →</a></li>
+        <li><strong>“Our hallways and classrooms do not feel safe or calm.”</strong><a href="/solutions/school-health/">School Health →</a></li>
+        <li><strong>“Our principal is carrying everything alone.”</strong><a href="/solutions/leader-development/">Leader Development →</a></li>
+        <li><strong>“Teaching quality varies from room to room.”</strong><a href="/solutions/teacher-development/">Teacher Development →</a></li>
+        <li><strong>“It is all of the above, and the clock is running.”</strong><a href="/solutions/intensive-care/">Intensive Care →</a></li>
       </ul>
     </div>
   </section>
   <section class="section" aria-labelledby="rel-h"><div class="container grid grid-12">
     <div class="span-5">${kicker('How they relate')}<h2 id="rel-h">Conditions, head, hands. Or all three at once.</h2></div>
-    <div class="span-7 stack"><p>Culture &amp; Climate comes first because every engagement begins with the conditions. Leadership Development strengthens the head: the people who decide and develop others. Educator Development strengthens the hands: the teachers where learning happens. Whole-School Turnaround is intensive care, when the problem is not one thing but everything, and the first three are delivered together with more time and attention.</p>
+    <div class="span-7 stack"><p>School Health comes first, because every engagement begins with the conditions: culture and climate. Leader Development strengthens the head: the people who decide and develop others. Teacher Development strengthens the hands: the teachers where learning happens. Intensive Care is whole-school turnaround, when the problem is not one thing but everything, and the first three are delivered together with more time and attention.</p>
     <p>None of them is a product in a box. Each is shaped by the diagnosis.</p>
     <div class="btn-row">${btn('Start with the diagnosis', site.primaryCta.href, { track: 'CTA primary' })}${btn('Take the School Health Index', '/school-health-index/', { variant: 'secondary', track: 'SHI opened' })}</div></div>
   </div></section>
   ${closing()}`;
-  return layout({ path: '/solutions/', title: 'EdSolutions', description: 'BetterEd\'s four EdSolutions: Culture & Climate, Leadership Development, Educator Development and Whole-School Turnaround. The diagnosis decides the mix.', body, jsonld: [ldBreadcrumb(crumbs)] });
+  return layout({ path: '/solutions/', title: 'EdSolutions', description: 'BetterEd\'s four EdSolutions: School Health, Leader Development, Teacher Development and Intensive Care. The diagnosis decides the mix.', body, jsonld: [ldBreadcrumb(crumbs)] });
 }
 
 export function solutionPage(s) {
@@ -281,7 +292,7 @@ export function solutionPage(s) {
   const body = html`${breadcrumb(crumbs)}
   <section class="page-hero ${s.intensive ? 'band-ink' : ''}" aria-labelledby="h">
     <div class="container grid grid-12">
-      <div class="span-8">${kicker(`EdSolution ${s.n} · ${s.role}`)}<h1 id="h">${esc(s.hero)}</h1><p class="lead">${esc(s.lead)}</p>${intensity}
+      <div class="span-8"><p class="sol-name"><span class="sol-n">${s.n}</span>${esc(s.name)}<span class="sol-sub">${esc(s.sub)}</span></p><h1 id="h">${esc(s.hero)}</h1><p class="lead">${esc(s.lead)}</p>${intensity}
         <div class="btn-row" style="margin-top:2rem">${btn(s.cta, `/contact/?type=${s.contactType}`, { track: 'CTA solution', })}${btn('Take the School Health Index', '/school-health-index/', { variant: 'secondary', track: 'SHI opened' })}</div></div>
     </div>
   </section>
@@ -305,7 +316,7 @@ export function solutionPage(s) {
   <section class="section-tight" aria-label="More EdSolutions"><div class="container">
     <nav class="pager" aria-label="EdSolutions">${prev ? `<a href="/solutions/${prev.slug}/" rel="prev"><span>Previous · ${prev.n}</span>${esc(prev.name)}</a>` : `<a href="/solutions/"><span>All</span>EdSolutions</a>`}${next ? `<a href="/solutions/${next.slug}/" rel="next" style="text-align:right"><span>Next · ${next.n}</span>${esc(next.name)}</a>` : `<a href="/approach/" style="text-align:right"><span>Next</span>Our Approach</a>`}</nav>
     <div class="related" style="margin-top:3rem">
-      <a href="/approach/"><span>Method</span><strong>Diagnose → Treat → Strengthen → Sustain</strong></a>
+      <a href="/approach/"><span>Method</span><strong>Intake → Diagnose → Plan → Treat → Strengthen → Discharge</strong></a>
       <a href="/school-health-index/" data-track="SHI opened"><span>Diagnostic</span><strong>The School Health Index</strong></a>
       <a href="/results/shining-stars-montessori/" data-track="Case study viewed"><span>Case study</span><strong>Shining Stars Montessori Academy</strong></a>
     </div>
@@ -335,7 +346,7 @@ export function shi() {
         ${shiDomains.map((d, i) => `<button type="button" class="shi-tab" role="tab" id="tab-${d.n}" aria-controls="panel-${d.n}" aria-selected="${i === 0}" tabindex="${i === 0 ? 0 : -1}" data-domain="${esc(d.name)}"><span class="n">${d.n}</span>${esc(d.name)}</button>`)}
       </div>
       <div>${shiDomains.map((d, i) => { const s = sol(d.solution); return html`<div class="shi-panel" role="tabpanel" id="panel-${d.n}" aria-labelledby="tab-${d.n}" tabindex="0"${i === 0 ? '' : ' hidden'}>
-        <p class="kicker">Domain ${d.n}</p><h3>${esc(d.name)}</h3><p class="lead" style="margin-top:1rem;color:#fff">${esc(d.looks)}</p>
+        <h3>${esc(d.name)}</h3><p class="lead" style="margin-top:1rem;color:#fff">${esc(d.looks)}</p>
         <p class="ed-link">Most often treated through <a href="/solutions/${s.slug}/">${esc(s.name)}</a></p></div>`; })}</div>
     </div>
   </div></section>
@@ -403,7 +414,7 @@ export function results() {
 export function caseStudy(cs) {
   const crumbs = [{ label: 'Home', href: '/' }, { label: 'Results', href: '/results/' }, { label: cs.school, href: `/results/${cs.slug}/` }];
   const cl = cs.claims.map(claim);
-  const stage = (key, label, content, cls = '') => html`<section class="case-stage ${cls}" aria-labelledby="st-${key}"><div class="stage-label"><span class="dot" aria-hidden="true"></span><h2 id="st-${key}" class="kicker" style="color:var(--ink)">${label}</h2></div><div>${content}</div></section>`;
+  const stage = (key, label, content, cls = '') => html`<section class="case-stage ${cls}" aria-labelledby="st-${key}"><div class="stage-label"><span class="dot" aria-hidden="true"></span><h2 id="st-${key}" class="stage-title">${label}</h2></div><div>${content}</div></section>`;
   const body = html`${breadcrumb(crumbs)}
   <section class="page-hero band-ink" aria-labelledby="h"><div class="container">
     ${kicker(`Case study · ${cs.school}`)}<h1 id="h">${esc(cs.title)}</h1><p class="lead">${esc(cs.summary)}</p>
@@ -432,10 +443,10 @@ function articleCards(list) {
   return html`<div class="articles">${list.map((a) => {
     const href = a.status === 'external' ? a.externalUrl : `/insights/${a.slug}/`;
     return html`<article class="article-card" data-reveal>
-      <p class="kicker">${esc(a.category)}${a.status === 'review' ? ' <span class="tag-draft">Draft for owner review</span>' : ''}</p>
+      ${a.status === 'review' ? '<p><span class="tag-draft">Draft for owner review</span></p>' : ''}
       <h3><a href="${href}" data-track="Insight viewed">${esc(a.title)}</a></h3>
       <p>${esc(a.deck)}</p>
-      <p class="meta">${esc(a.author)} · ${a.readMinutes} min read${a.date ? ` · ${fmtDate(a.date)}` : ''}</p>
+      <p class="meta">${esc(a.category)} · ${esc(a.author)} · ${a.readMinutes} min read${a.date ? ` · ${fmtDate(a.date)}` : ''}</p>
     </article>`;
   })}</div>`;
 }
@@ -460,7 +471,7 @@ export function article(a) {
       <p class="article-meta"><span>By ${esc(a.author)}</span><span><time datetime="${a.date}">${fmtDate(a.date)}</time></span><span>${a.readMinutes} min read</span></p>${rulePoint()}</header>
     <div class="container section-tight" style="padding-top:1rem"><div class="article-body">${a.body.map(block)}</div></div>
   </article>
-  <section class="section-tight band-mist" aria-labelledby="rel-h"><div class="container"><h2 id="rel-h" class="kicker" style="margin-bottom:1.5rem">Related</h2><div class="related">
+  <section class="section-tight band-mist" aria-labelledby="rel-h"><div class="container"><h2 id="rel-h" class="h3" style="margin-bottom:1.5rem">Related</h2><div class="related">
     ${a.related.map((slug) => { const s = sol(slug); return `<a href="/solutions/${s.slug}/"><span>EdSolution ${s.n}</span><strong>${esc(s.name)}</strong></a>`; })}
     <a href="/school-health-index/" data-track="SHI opened"><span>Diagnostic</span><strong>The School Health Index</strong></a></div></div></section>
   ${closing()}`;
@@ -524,7 +535,7 @@ export function procurement() {
       <tr><th scope="row">Legal name</th><td>${esc(site.legalName)}</td></tr>
       <tr><th scope="row">Founded</th><td>${site.founded}, ${site.foundedPlace}</td></tr>
       <tr><th scope="row">Leadership</th><td>Candido Brown, Founder and CEO</td></tr>
-      <tr><th scope="row">Services</th><td>School improvement, turnaround and transformation: Culture &amp; Climate, Leadership Development, Educator Development, Whole-School Turnaround; School Health Index diagnostic</td></tr>
+      <tr><th scope="row">Services</th><td>School improvement, turnaround and transformation: School Health (culture and climate), Leader Development, Teacher Development, Intensive Care (whole-school turnaround); School Health Index diagnostic</td></tr>
       <tr><th scope="row">Clients served</th><td>Public school districts, public charter schools and charter networks</td></tr>
       <tr><th scope="row">Contact for RFPs</th><td><a href="mailto:${site.email}">${site.email}</a> · ${site.phone}</td></tr>
     </tbody></table></div>
@@ -543,7 +554,7 @@ export function procurement() {
 
 export function contact() {
   const crumbs = [{ label: 'Home', href: '/' }, { label: 'Contact', href: '/contact/' }];
-  const types = ['Start with the diagnosis', 'School Health Index', 'Culture & Climate', 'Leadership Development', 'Educator Development', 'Whole-School Turnaround', 'Partnership', 'Procurement', 'Other'];
+  const types = ['Start with the diagnosis', 'School Health Index', 'School Health', 'Leader Development', 'Teacher Development', 'Intensive Care', 'Partnership', 'Procurement', 'Other'];
   const field = (id, label, input, { hint = '', req = false } = {}) => html`<div class="field"><label for="${id}">${label}${req ? ' <span class="req">(required)</span>' : ''}${hint ? `<span class="hint" id="${id}-hint">${hint}</span>` : ''}</label>${input}<p class="error" id="${id}-err" aria-live="polite"></p></div>`;
   const body = html`${breadcrumb(crumbs)}
   <section class="page-hero" aria-labelledby="h"><div class="container">${kicker('Contact')}<h1 id="h">Start with the diagnosis.</h1>

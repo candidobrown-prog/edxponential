@@ -163,7 +163,7 @@
     var type = params.get('type');
     var sel = form.querySelector('#f-type');
     if (type && sel) {
-      var map = { diagnostic: 'Start with the diagnosis', shi: 'School Health Index', culture: 'Culture & Climate', leadership: 'Leadership Development', educator: 'Educator Development', turnaround: 'Whole-School Turnaround', partnership: 'Partnership', procurement: 'Procurement', other: 'Other' };
+      var map = { diagnostic: 'Start with the diagnosis', shi: 'School Health Index', culture: 'School Health', leadership: 'Leader Development', educator: 'Teacher Development', turnaround: 'Intensive Care', partnership: 'Partnership', procurement: 'Procurement', other: 'Other' };
       if (map[type]) sel.value = map[type];
     }
     var startedField = form.querySelector('[name="started_at"]');

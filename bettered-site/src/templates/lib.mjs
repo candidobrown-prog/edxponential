@@ -1,40 +1,42 @@
-import { site, nav, footerNav } from '../content/site.mjs';
+import { site, nav, footerNav, method } from '../content/site.mjs';
 
 export const esc = (s = '') => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 export const html = (strings, ...vals) => strings.reduce((out, s, i) => out + s + (i < vals.length ? (Array.isArray(vals[i]) ? vals[i].join('') : (vals[i] ?? '')) : ''), '');
 
-/* The Diagnostic Cross. A 3 x 3 clinical grid: four navy blocks (one per EdSolution)
-   around a gold core (the diagnosis). Blocks assemble in order: the school getting better. */
+/* The B-Cross. A medical cross whose right arm becomes the two bowls of a B.
+   Navy blocks around a gold core (the diagnosis). Blocks assemble in order: the school getting better. */
 const CELLS = { top: [104, 0], left: [0, 104], right: [208, 104], bottom: [104, 208], core: [104, 104] };
-const GHOSTS = [[0, 0], [208, 0], [0, 208], [208, 208]];
 const sq = (x, y, cls, extra = '') => `<rect class="${cls}" x="${x}" y="${y}" width="92" height="92"${extra}/>`;
-export function crossArt({ cls = '', draw = '', decorative = true, label = 'The BetterEd mark: four blocks forming a cross around a gold center' } = {}) {
+export const BOWLS = ['M208 0H236A64 72 0 0 1 236 144H208Z', 'M208 156H232A68 72 0 0 1 232 300H208Z'];
+export function crossArt({ cls = '', draw = '', decorative = true, label = 'The BetterEd mark: a cross of navy blocks around a gold center, with its right arm shaped into the letter B' } = {}) {
   const a11y = decorative ? 'aria-hidden="true" focusable="false"' : `role="img" aria-label="${esc(label)}"`;
-  const order = ['top', 'left', 'right', 'bottom'];
   return html`<svg class="cross-art ${cls}" viewBox="-2 -2 304 304" ${a11y} ${draw ? `data-draw="${draw}"` : ''}>
-    ${GHOSTS.map(([x, y]) => sq(x, y, 'ghost'))}
-    ${order.map((k, i) => sq(...CELLS[k], 'blk', ` style="--i:${i}"`))}
-    ${sq(...CELLS.core, 'core', ' style="--i:4"')}</svg>`;
+    ${sq(0, 0, 'ghost')}${sq(0, 208, 'ghost')}
+    ${sq(...CELLS.top, 'blk', ' style="--i:0"')}${sq(...CELLS.left, 'blk', ' style="--i:1"')}
+    <path class="blk" d="${BOWLS[0]}" style="--i:2"/><path class="blk" d="${BOWLS[1]}" style="--i:3"/>
+    ${sq(...CELLS.bottom, 'blk', ' style="--i:4"')}${sq(...CELLS.core, 'core', ' style="--i:5"')}</svg>`;
 }
 
-/* Method: the cross fills stage by stage. Diagnose = core, Treat = top, Strengthen = left + right, Sustain = bottom. */
+/* Method: the model cross fills step by step. Intake = outline, Diagnose = core, Plan = top,
+   Treat = left, Strengthen = right, Discharge = bottom (the cross is complete). */
+const GHOSTS = [[0, 0], [208, 0], [0, 208], [208, 208]];
 export function methodSpine() {
-  const map = [['core', 0], ['top', 1], ['left', 2], ['right', 2], ['bottom', 3]];
+  const map = [['core', 1], ['top', 2], ['left', 3], ['right', 4], ['bottom', 5]];
   return html`<div class="method-spine" aria-hidden="true">
     <svg class="cross-art is-method" viewBox="-2 -2 304 304">${GHOSTS.map(([x, y]) => sq(x, y, 'ghost'))}
     ${map.map(([k, st]) => sq(...CELLS[k], `node ${k === 'core' ? 'is-core' : ''}`, ` data-stage="${st}"`))}</svg>
-    <div class="labels"><span>Diagnose</span><span>Treat</span><span>Strengthen</span><span>Sustain</span></div>
+    <div class="labels">${method.map((m, i) => `<span><b>0${i + 1}</b> ${esc(m.short)}</span>`)}</div>
   </div>`;
 }
 
-/* Getting better: four stages rising, the last one gold. */
+/* Getting better: the six steps rising, the last one gold. */
 export function stageStrip({ cls = '' } = {}) {
-  const st = ['Diagnose', 'Treat', 'Strengthen', 'Sustain'];
-  return html`<div class="stage-strip ${cls}" aria-hidden="true" data-reveal>${st.map((t, i) => `<div class="stage" style="--h:${(i + 1) * 25}%;--i:${i}"><span class="bar"></span><span class="t">${t}</span></div>`)}</div>`;
+  return html`<div class="stage-strip ${cls}" aria-hidden="true" data-reveal>${method.map((m, i) => `<div class="stage" style="--h:${Math.round((i + 1) / method.length * 100)}%;--i:${i}"><span class="bar"></span><span class="t">${esc(m.short)}</span></div>`)}</div>`;
 }
 
 export const rulePoint = (extra = '') => `<div class="rule-point ${extra}" data-reveal aria-hidden="true"></div>`;
-export const kicker = (t) => `<p class="kicker">${esc(t)}</p>`;
+/* Eyebrow labels were retired in v2.2: headings stand on their own. Kept as a no-op so templates stay simple. */
+export const kicker = () => '';
 export const tagline = (cls = '') => `<p class="tagline ${cls}">Happy. Healthy. <span class="hp">High-performing.</span></p>`;
 
 export function btn(label, href, { variant = 'primary', track = '', arrow = true } = {}) {
@@ -112,7 +114,7 @@ function header(path) {
 function footer() {
   return html`<footer class="site-footer">
     <div class="container">
-      <p class="footer-mission">Every child deserves an excellent school. <em>Schools can get well.</em></p>
+      <p class="footer-mission">Every child deserves an excellent school. Schools can get well. <em>Fast.</em></p>
       <div class="footer-top">
         <div class="footer-brand"><img src="/assets/logo-reversed.svg" width="202" height="44" alt="BetterEd Solutions">
           ${tagline()}
