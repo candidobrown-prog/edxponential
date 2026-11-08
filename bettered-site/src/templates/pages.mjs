@@ -93,8 +93,7 @@ export function home(latest = []) {
     <div class="hero-masthead" aria-hidden="true"><span class="vol">The BetterEd Method</span><span>Diagnose · Treat · Strengthen · Sustain</span></div>
     <div class="hero-grid">
       <div>
-        ${kicker('School improvement, turnaround and transformation')}
-        <h1 id="hero-h" class="display" style="margin-top:1.25rem">Schools can <em>get well.</em></h1>
+        <h1 id="hero-h" class="display">Schools can <em>get well.</em></h1>
         <p class="lead">We treat struggling schools the way good medicine treats patients: diagnose honestly, treat decisively, and stay until the results hold.</p>
         ${ctaPair()}
         ${tagline('hero-tagline')}
