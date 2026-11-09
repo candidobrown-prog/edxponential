@@ -1,0 +1,221 @@
+<title>BetterEd Email Signature</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=Work+Sans:wght@400;500;600&display=swap">
+<style>
+  /* Layout: a two-column workbench. Details on the left, the signature on its white email canvas on the right, install steps below. */
+  :root {
+    --bg: #ffffff; --bg-alt: #f6f4ee; --ink: #0b1f3a; --muted: #4f5b6d; --link: #1a5fb4;
+    --rule: rgba(11, 31, 58, .14); --field: #ffffff; --field-border: #4f5b6d; --signal: #ffc20e; --canvas-edge: rgba(11, 31, 58, .14);
+    --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+    --sans: "Work Sans", Arial, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #0b1f3a; --bg-alt: #12294a; --ink: #ffffff; --muted: #c7d0dc; --link: #8db6ec; --rule: rgba(255,255,255,.18); --field: #12294a; --field-border: #8a97aa; --canvas-edge: rgba(255,255,255,.25); color-scheme: dark; } }
+  :root[data-theme="dark"] { --bg: #0b1f3a; --bg-alt: #12294a; --ink: #ffffff; --muted: #c7d0dc; --link: #8db6ec; --rule: rgba(255,255,255,.18); --field: #12294a; --field-border: #8a97aa; --canvas-edge: rgba(255,255,255,.25); color-scheme: dark; }
+  * { box-sizing: border-box; }
+  body { background: var(--bg); color: var(--ink); font-family: var(--sans); font-size: 16px; line-height: 1.55; }
+  .wrap { max-width: 72rem; margin: 0 auto; padding-block: 2.5rem 4rem; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  header { border-top: 2px solid var(--ink); padding-top: 1rem; margin-bottom: 2.5rem; display: grid; gap: .75rem; }
+  h1 { font-family: var(--serif); font-weight: 400; font-size: clamp(2rem, 1.5rem + 2vw, 3rem); line-height: 1.05; letter-spacing: -.02em; margin: 0; text-wrap: balance; }
+  h1 em { color: var(--link); }
+  .intro { color: var(--muted); max-width: 60ch; margin: 0; }
+  .bench { display: grid; gap: 2.5rem; align-items: start; }
+  @media (min-width: 60rem) { .bench { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); } }
+  .bench > * { min-width: 0; }
+  form { display: grid; gap: 1.5rem; }
+  fieldset { border: 0; padding: 0; margin: 0; display: grid; gap: .9rem; }
+  legend { font-family: var(--serif); font-size: 1.35rem; padding: 0 0 .4rem; border-bottom: 1px solid var(--rule); width: 100%; margin-bottom: .4rem; }
+  label { display: grid; gap: .3rem; font-weight: 600; font-size: .875rem; }
+  label .hint { font-weight: 400; color: var(--muted); font-size: .8125rem; }
+  input[type="text"], input[type="url"] { font: inherit; font-size: .95rem; color: var(--ink); background: var(--field); border: 1px solid var(--field-border); border-radius: 0; padding: .6rem .7rem; min-height: 44px; width: 100%; }
+  input:focus-visible, button:focus-visible { outline: 3px solid var(--link); outline-offset: 2px; }
+  .check { display: flex; gap: .6rem; align-items: center; font-weight: 500; }
+  .check input { width: 1.1rem; height: 1.1rem; accent-color: var(--ink); }
+  .stage { position: sticky; top: calc(1rem + env(safe-area-inset-top, 0px)); display: grid; gap: 1rem; }
+  .stage h2, .steps h2 { font-family: var(--serif); font-weight: 400; font-size: 1.35rem; margin: 0; }
+  .canvas { background: #ffffff; border: 1px solid var(--canvas-edge); padding: 1.75rem 1.5rem; overflow-x: auto; }
+  .canvas .mailhead { font-family: Arial, sans-serif; font-size: 13px; color: #4f5b6d; border-bottom: 1px solid #e3e9f1; padding-bottom: .9rem; margin-bottom: 1.25rem; }
+  .canvas .mailbody { font-family: Arial, sans-serif; font-size: 14px; color: #0b1f3a; margin: 0 0 1.25rem; line-height: 1.5; }
+  .actions { display: flex; flex-wrap: wrap; gap: .75rem; align-items: center; }
+  .btn { font: inherit; font-weight: 600; font-size: .8125rem; letter-spacing: .09em; text-transform: uppercase; min-height: 48px; padding: .8rem 1.3rem; border-radius: 0; cursor: pointer; border: 1px solid var(--ink); background: var(--ink); color: var(--bg); }
+  .btn.secondary { background: transparent; color: var(--ink); }
+  .status { font-size: .875rem; color: var(--muted); min-height: 1.4em; margin: 0; }
+  .missing { font-size: .875rem; color: var(--muted); margin: 0; }
+  .missing strong { color: var(--ink); }
+  textarea.code { width: 100%; min-height: 10rem; font: 12px/1.5 ui-monospace, Menlo, Consolas, monospace; color: var(--ink); background: var(--field); border: 1px solid var(--field-border); border-radius: 0; padding: .75rem; }
+  .steps { margin-top: 3.5rem; border-top: 1px solid var(--ink); padding-top: 1.5rem; display: grid; gap: 1.25rem; }
+  .tabs { display: flex; flex-wrap: wrap; gap: .5rem; }
+  .tab { font: inherit; font-weight: 600; font-size: .875rem; min-height: 44px; padding: .5rem 1rem; border: 1px solid var(--field-border); background: transparent; color: var(--ink); border-radius: 0; cursor: pointer; }
+  .tab[aria-selected="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+  .panel ol { margin: 0; padding-left: 1.25rem; display: grid; gap: .5rem; max-width: 65ch; }
+  .panel .note { color: var(--muted); font-size: .9rem; max-width: 65ch; }
+  .point { display: inline-block; width: .55rem; height: .55rem; background: var(--signal); margin-right: .5rem; vertical-align: .05em; }
+  @media (prefers-reduced-motion: no-preference) { .btn, .tab { transition: background-color .2s, color .2s; } }
+</style>
+
+<div class="wrap">
+  <header>
+    <h1>Your BetterEd signature, <em>ready to paste.</em></h1>
+    <p class="intro">Fill in the details, check the preview, then copy it into Gmail, Outlook or Apple Mail. Built the way email programs expect, with one hosted logo, a table layout and email-safe fonts, so it stays intact when people reply and forward.</p>
+  </header>
+
+  <div class="bench">
+    <form id="sig-form" autocomplete="off">
+      <fieldset>
+        <legend>You</legend>
+        <label for="f-name">Name <input type="text" id="f-name" data-k="name"></label>
+        <label for="f-title">Title <input type="text" id="f-title" data-k="title"></label>
+        <label for="f-phone">Phone <input type="text" id="f-phone" data-k="phone"></label>
+      </fieldset>
+      <fieldset>
+        <legend>BetterEd</legend>
+        <label for="f-website">Website <input type="url" id="f-website" data-k="website"></label>
+        <label for="f-address">Mailing address <span class="hint">One line, for example: 123 Main Street, Suite 400, Newark, NJ 07102</span><input type="text" id="f-address" data-k="address"></label>
+        <label class="check" for="f-cta"><input type="checkbox" id="f-cta" data-k="cta"> Add "Take the free School Health Index" link</label>
+        <label for="f-booking">Booking link <span class="hint">Optional. A Calendly or Microsoft Bookings link adds "Book a 30-minute conversation".</span><input type="url" id="f-booking" data-k="booking"></label>
+      </fieldset>
+      <fieldset>
+        <legend>Social</legend>
+        <label for="f-li">Your LinkedIn <span class="hint">linkedin.com/in/…</span><input type="url" id="f-li" data-k="li"></label>
+        <label for="f-lic">BetterEd on LinkedIn <span class="hint">linkedin.com/company/…</span><input type="url" id="f-lic" data-k="lic"></label>
+        <label for="f-ig">Instagram <input type="url" id="f-ig" data-k="ig"></label>
+        <label for="f-fb">Facebook <input type="url" id="f-fb" data-k="fb"></label>
+        <label for="f-ss">Substack <input type="url" id="f-ss" data-k="ss"></label>
+        <label for="f-yt">YouTube <span class="hint">Optional.</span><input type="url" id="f-yt" data-k="yt"></label>
+      </fieldset>
+    </form>
+
+    <section class="stage" aria-labelledby="prev-h">
+      <h2 id="prev-h">Preview</h2>
+      <div class="canvas">
+        <div class="mailhead">To: a school leader &nbsp;·&nbsp; Subject: Following up on your School Health Index</div>
+        <p class="mailbody">Thank you for taking the time to talk today. I'll send your report by Thursday.</p>
+        <div id="sig"></div>
+      </div>
+      <p class="missing" id="missing"></p>
+      <div class="actions">
+        <button class="btn" type="button" id="copy">Copy signature</button>
+        <button class="btn secondary" type="button" id="copy-code">Copy HTML code</button>
+      </div>
+      <p class="status" id="status" aria-live="polite"></p>
+      <textarea class="code" id="code" readonly hidden aria-label="Signature HTML code"></textarea>
+    </section>
+  </div>
+
+  <section class="steps" aria-labelledby="steps-h">
+    <h2 id="steps-h">Install it</h2>
+    <div class="tabs" role="tablist" aria-label="Email program">
+      <button class="tab" role="tab" id="t-gmail" aria-controls="p-gmail" aria-selected="true">Gmail</button>
+      <button class="tab" role="tab" id="t-outlook" aria-controls="p-outlook" aria-selected="false" tabindex="-1">Outlook</button>
+      <button class="tab" role="tab" id="t-apple" aria-controls="p-apple" aria-selected="false" tabindex="-1">Apple Mail</button>
+    </div>
+    <div class="panel" role="tabpanel" id="p-gmail" aria-labelledby="t-gmail">
+      <ol>
+        <li>Click <strong>Copy signature</strong> above.</li>
+        <li>In Gmail on a computer, click the gear, then <strong>See all settings</strong>.</li>
+        <li>On the <strong>General</strong> tab, scroll to <strong>Signature</strong> and click <strong>Create new</strong>. Name it "BetterEd".</li>
+        <li>Click in the signature box and paste (<strong>Ctrl+V</strong>, or <strong>Cmd+V</strong> on a Mac).</li>
+        <li>Under <strong>Signature defaults</strong>, choose "BetterEd" for new emails and for replies.</li>
+        <li>Scroll to the bottom and click <strong>Save Changes</strong>.</li>
+      </ol>
+      <p class="note"><span class="point" aria-hidden="true"></span>Delete your old signature first, and don't paste on top of it: leftover formatting is what usually jumbles a signature.</p>
+    </div>
+    <div class="panel" role="tabpanel" id="p-outlook" aria-labelledby="t-outlook" hidden>
+      <ol>
+        <li>Click <strong>Copy signature</strong> above.</li>
+        <li>In Outlook (web or new Outlook), open <strong>Settings</strong>, then <strong>Account</strong>, then <strong>Signatures</strong>.</li>
+        <li>Click <strong>New signature</strong>, name it "BetterEd", and paste into the box.</li>
+        <li>Choose it as the default for new messages and for replies and forwards, then click <strong>Save</strong>.</li>
+      </ol>
+      <p class="note"><span class="point" aria-hidden="true"></span>Classic Outlook for Windows: File, Options, Mail, Signatures. If pasting loses the layout there, use <strong>Copy HTML code</strong> and ask whoever manages your Microsoft 365 to install it as an HTML signature.</p>
+    </div>
+    <div class="panel" role="tabpanel" id="p-apple" aria-labelledby="t-apple" hidden>
+      <ol>
+        <li>Click <strong>Copy signature</strong> above.</li>
+        <li>In Mail on your Mac, open <strong>Mail</strong>, then <strong>Settings</strong>, then <strong>Signatures</strong>.</li>
+        <li>Pick your BetterEd account, click <strong>+</strong>, name it "BetterEd", and paste into the right-hand box.</li>
+        <li>Untick <strong>Always match my default message font</strong>, so the signature keeps its own type.</li>
+      </ol>
+      <p class="note"><span class="point" aria-hidden="true"></span>The logo is hosted online. If Mail shows it as a blank box at first, it appears once the message is sent.</p>
+    </div>
+  </section>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  // The logo recipients see: a public, version-pinned file. The preview uses an embedded copy because this page can't load outside images.
+  var PUBLIC_LOGO = 'https://cdn.jsdelivr.net/gh/candidobrown-prog/edxponential@40253592051c2cec0db5d6b439bb33c899ef7936/bettered-site/src/assets/email/bettered-mark-128.png';
+  var PREVIEW_LOGO = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAIAAABMXPacAAAFB0lEQVR4nOzdf0zUdRzH8fddLDQDmiVYMlAkJE02LK2s+WMrc/5R2WzYgMVsOc254bSssDkr7B9SnFvSGoUB65eYhVpEaCJFQhEqw364bIyIHwd33KlwJN/rs7FIbsfdV7/3vvd3u9fjD3bjuPvjnvf9fO/7+X4/R8SkxIUEcqwEohBAGAIIQwBhCCAMAYQhgDAEEIYAwhBAGAIIQwBhCCAMAYQhgDAEEIYAwhBAGAIIQwBhCCAMAYQhgDAEEIYAwhBAGAIIiyBza6wus1qu/12iebT5j2SpG7FTJu/f+5r3vZrmcLpsvY6Ozp7KqtrW3/6gkLOY/OJc14U6i8VC18vj8UTNeEjdSIif2lpX4f+PVYDST468/f6nw8PDFCoYgv43OyXpzW0bG6pKH158H4UKAniblZx4aP+uVzc/RyGBAL5t3ZhTsGMT8TP7TljQumdWqZ9btu8mTtgC/FENliy8hzghQADFe7arj7DEBgECiJty6+tb1xMbBAgs44lHp8beRjwQILCIiBs2rcskHgigy9NPLjdyQO4HAugy+Zbou+9KJgYIoNei+9OJAQ7E9EqZmUgMEEAv9XmUGCCAXnE8h2MIoFdMdBQxQAC92tr/JgYIoJc6eUkMEECvrp4+YoAAep1p/Z0YmD1A2uIMI1MAHg8FhTq5X1PbQAzMHuBC219kAi3nznd224gBhiBdyg4cJR4sARqry1KTp5MBauQZee/3l5y1Gpiv0jSKyZlLxqj3fnH5IeLBEsBqsRqcvB19tHr1jTyV1RqEncDuovJB9xDxwBAUwE+nz73zQQWxQQB/1MFX9oZtV64wXqmIAP7k5hW0tXcSJwTwze0eylyf99Wx74kZAvhw6fLAU8++WFvfRPxwSnIMdcR7oPKb+cuyQvPqU/hsAZ5AkxI9vfaDR46VfFR5lmfOZzzhEsDpurSz8D2vX6oqdofT1udo7+hqbG4N5bqMUeESoN95cWdhMZkP9gHCwmULiIm+ecOajKt/MzL+9Nod3TZ7Q1PLwKCbJIRLgOioSa/krhnv3ssDg1XH6z//8tvPjh4P8Z4gXIYg/zN6N02csHLF0pK9O36sLnt8+RIKIewDxrgzKaG8KL/2i+KlD95LIYEAPsxLSy3Mf2Ha7bHEDwF8mzk9vqaiaM6sJGKGAOOKvyOuqCBv4oRI4oQA/qTPTS18YwtxQoAAMletYP3mApYAmkfzGPXfU2nkMUA93DjWVZJm/7aUYNHzbSl+rF770uGvTxIDDEG6eE1jBJHZpyJmJEwzeGliUK6tW5A+R01mqDltCjazBzhz4uOgfGGTQZGRNy56YB7HKIQhSK+02SnEACfl9cIaMWFYJSkMW4AwputzEUCvrp5eYoAAemGRnrAwXaRnEuG7SM8ksEhPWPWJU8QDAQJTn3/y2S5rRIDAdu0rc2ORnpTmll+xSE9Mt82+eu3LWKQnQ9O07Ofz2ju6iBPOB/jW77y4Mmfzdw2niRm2AB86Onsey8r95fyfxA9bwBhDQ//seffDBcuyQ/PqE7aAUfZ+18HDNW/tK+Veme3F7AHUO9Hgv7EauaFm80/+8PPVd6npHUe/y9bn6Lb11dY31Z1q1oJyGdc1CpcLs0wL+wBhCCAMAYQhgDAEEIYAwhBAGAIIQwBhCCAMAYQhgDAEEIYAwhBAGAIIQwBhCCAMAYQhgDAEEIYAwhBAGAIIQwBhCCAMAYT9CwAA//8e+JRxAAAABklEQVQDAPzjBh59IzZtAAAAAElFTkSuQmCC';
+  var DEFAULTS = { name: 'Candido Brown', title: 'Founder and CEO', phone: '1-800-735-0953', website: 'https://betteredsolutions.org', address: '', cta: true, booking: '', li: '', lic: '', ig: '', fb: '', ss: '', yt: '' };
+  var KEY = 'bettered-signature-v1';
+  var data = Object.assign({}, DEFAULTS);
+  try { var saved = JSON.parse(localStorage.getItem(KEY) || 'null'); if (saved) data = Object.assign(data, saved); } catch (e) { /* storage unavailable */ }
+
+  var esc = function (s) { return String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); };
+  var url = function (u) { u = String(u || '').trim(); if (!u) return ''; if (!/^https?:\/\//i.test(u)) u = 'https://' + u; return u; };
+  var host = function (u) { return url(u).replace(/^https?:\/\/(www\.)?/i, '').replace(/\/$/, ''); };
+
+  function signature(d, logo) {
+    var site = url(d.website) || 'https://betteredsolutions.org';
+    var tel = String(d.phone || '').replace(/[^\d+]/g, '');
+    var socials = [['LinkedIn', d.li], ['BetterEd on LinkedIn', d.lic], ['Instagram', d.ig], ['Facebook', d.fb], ['Substack', d.ss], ['YouTube', d.yt]].filter(function (s) { return url(s[1]); });
+    var sep = '<span style="color:#FFC20E;font-size:9px;padding:0 7px;vertical-align:1px;">&#9632;</span>';
+    var row = function (inner, pad) { return '<tr><td style="padding-top:' + (pad || 0) + 'px;font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:18px;color:#0B1F3A;">' + inner + '</td></tr>'; };
+    var a = function (href, text, style) { return '<a href="' + esc(href) + '" style="color:#1A5FB4;text-decoration:none;' + (style || '') + '">' + text + '</a>'; };
+    var rows = [
+      '<tr><td style="font-family:Georgia,\'Times New Roman\',serif;font-size:20px;line-height:24px;color:#0B1F3A;">' + esc(d.name) + '</td></tr>',
+      '<tr><td style="padding-top:2px;font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:18px;color:#4F5B6D;">' + esc(d.title) + (d.title ? ', ' : '') + '<span style="color:#0B1F3A;font-weight:bold;">BetterEd Solutions</span></td></tr>',
+      '<tr><td style="padding-top:9px;font-family:Georgia,\'Times New Roman\',serif;font-style:italic;font-size:13px;line-height:16px;color:#1A5FB4;"><span style="font-style:normal;color:#FFC20E;font-size:11px;">&#9632;</span>&nbsp;&nbsp;Schools can get well. Fast.</td></tr>',
+      row([d.phone ? a('tel:' + tel, esc(d.phone), 'color:#0B1F3A;') : '', a(site, esc(host(site)))].filter(Boolean).join('<span style="color:#C3CAD4;padding:0 8px;">|</span>'), 10),
+    ];
+    if (String(d.address || '').trim()) rows.push(row('<span style="color:#4F5B6D;">' + esc(d.address.trim()) + '</span>'));
+    if (socials.length) rows.push('<tr><td style="padding-top:9px;font-family:Arial,Helvetica,sans-serif;font-size:11px;line-height:18px;font-weight:bold;letter-spacing:1px;text-transform:uppercase;">' + socials.map(function (s) { return a(url(s[1]), esc(s[0]), 'color:#0B1F3A;white-space:nowrap;'); }).join(sep) + '</td></tr>');
+    var ctas = [];
+    if (d.cta) ctas.push(a(site.replace(/\/$/, '') + '/school-health-index/', 'Take the free School Health Index&nbsp;&rarr;', 'font-weight:bold;'));
+    if (url(d.booking)) ctas.push(a(url(d.booking), 'Book a 30-minute conversation&nbsp;&rarr;', 'font-weight:bold;'));
+    if (ctas.length) rows.push(row(ctas.join('<span style="color:#C3CAD4;padding:0 8px;">|</span>'), 10));
+    return '<table cellpadding="0" cellspacing="0" border="0" role="presentation" style="border-collapse:collapse;"><tr>' +
+      '<td valign="top" style="padding:2px 18px 0 0;"><a href="' + esc(site) + '" style="text-decoration:none;"><img src="' + logo + '" width="64" height="64" alt="BetterEd Solutions" style="display:block;border:0;width:64px;height:64px;"></a></td>' +
+      '<td valign="top" style="border-left:1px solid #D5DAE1;padding:0 0 0 18px;"><table cellpadding="0" cellspacing="0" border="0" role="presentation" style="border-collapse:collapse;">' + rows.join('') + '</table></td>' +
+      '</tr></table>';
+  }
+
+  var form = document.getElementById('sig-form'), out = document.getElementById('sig'), statusEl = document.getElementById('status'), code = document.getElementById('code'), missingEl = document.getElementById('missing');
+  form.querySelectorAll('[data-k]').forEach(function (el) { var k = el.getAttribute('data-k'); if (el.type === 'checkbox') el.checked = !!data[k]; else el.value = data[k] || ''; });
+  function render() {
+    out.innerHTML = signature(data, PREVIEW_LOGO);
+    var need = [];
+    if (!String(data.address || '').trim()) need.push('mailing address');
+    if (!url(data.li) && !url(data.lic) && !url(data.ig) && !url(data.fb) && !url(data.ss)) need.push('social links');
+    missingEl.innerHTML = need.length ? '<strong>Still to add:</strong> ' + need.join(' and ') + '. Empty items are left out of the signature.' : '';
+    try { localStorage.setItem(KEY, JSON.stringify(data)); } catch (e) { /* storage unavailable */ }
+  }
+  form.addEventListener('input', function (e) { var k = e.target.getAttribute('data-k'); if (!k) return; data[k] = e.target.type === 'checkbox' ? e.target.checked : e.target.value; render(); });
+  form.addEventListener('submit', function (e) { e.preventDefault(); });
+  render();
+
+  function plain() { return [data.name, data.title + ', BetterEd Solutions', 'Schools can get well. Fast.', data.phone + ' | ' + host(data.website), data.address].filter(function (s) { return String(s || '').trim(); }).join('\n'); }
+  function showCode(msg) { code.hidden = false; code.value = signature(data, PUBLIC_LOGO); code.focus(); code.select(); statusEl.textContent = msg; }
+  document.getElementById('copy').addEventListener('click', function () {
+    var html = signature(data, PUBLIC_LOGO);
+    statusEl.textContent = '';
+    try {
+      var item = new ClipboardItem({ 'text/html': new Blob([html], { type: 'text/html' }), 'text/plain': new Blob([plain()], { type: 'text/plain' }) });
+      navigator.clipboard.write([item]).then(function () { statusEl.textContent = 'Copied. Now paste it into your email signature settings (steps below).'; }, function () { showCode('Your browser blocked copying the formatted signature. Use the code below with "Copy HTML code", or try Chrome.'); });
+    } catch (e) { showCode('Your browser blocked copying the formatted signature. Use the code below with "Copy HTML code", or try Chrome.'); }
+  });
+  document.getElementById('copy-code').addEventListener('click', function () {
+    var html = signature(data, PUBLIC_LOGO);
+    try { navigator.clipboard.writeText(html).then(function () { statusEl.textContent = 'HTML code copied. Use it where a program asks for an HTML signature.'; }, function () { showCode('Copying was blocked. The code is selected below: press Ctrl+C (Cmd+C on a Mac).'); }); }
+    catch (e) { showCode('Copying was blocked. The code is selected below: press Ctrl+C (Cmd+C on a Mac).'); }
+  });
+
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('[role="tab"]'));
+  function select(t, focus) { tabs.forEach(function (x) { var on = x === t; x.setAttribute('aria-selected', on); x.tabIndex = on ? 0 : -1; document.getElementById(x.getAttribute('aria-controls')).hidden = !on; }); if (focus) t.focus(); }
+  tabs.forEach(function (t, i) {
+    t.addEventListener('click', function () { select(t); });
+    t.addEventListener('keydown', function (e) { var d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0; if (d) { e.preventDefault(); select(tabs[(i + d + tabs.length) % tabs.length], true); } });
+  });
+})();
+</script>
