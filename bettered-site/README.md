@@ -80,6 +80,10 @@ Environment variables (Vercel → Project → Settings → Environment Variables
 
 Never commit keys. `.env*` files are git-ignored.
 
+## Brand lock
+
+The BetterEd brand is **locked** (version 2.2, approved by Candido Brown, 9 Nov 2026). The official book is `brand/BRAND.md`, with logos, icons and tokens in `brand/`; the same toolkit is published as the BetterEd Brand Toolkit artifact. Every build runs `scripts/check-brand.mjs` and stops if a logo, icon, font, the B-Cross geometry, a color or font token, or the tagline changes. To change the brand, get the founder's written approval, bump the version in `brand/brand.lock.json`, record it in `brand/BRAND.md`, and run `node scripts/check-brand.mjs --update`.
+
 ## Brand system
 
 - **Mark:** the B-Cross. A medical cross whose right arm forms the two bowls of a B, with a gold core (the diagnosis). `crossArt()` in `lib.mjs` draws it as artwork; the blocks assemble in order, the school getting better.

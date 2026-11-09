@@ -2,6 +2,10 @@
 //   node build.mjs            -> dist/     (production: clean URLs, published content only)
 //   node build.mjs --preview  -> preview/  (flat relative files for private review; includes 'review' drafts)
 import { mkdir, writeFile, rm, cp, readFile } from 'node:fs/promises';
+import { execFileSync } from 'node:child_process';
+
+// The BetterEd brand is locked (brand/BRAND.md). Stop the build if a locked element changed.
+try { execFileSync(process.execPath, ['scripts/check-brand.mjs'], { stdio: 'inherit' }); } catch { process.exit(1); }
 import { createHash } from 'node:crypto';
 import { join, dirname } from 'node:path';
 import { site, solutions, caseStudies, insights } from './src/content/site.mjs';

@@ -1,0 +1,35 @@
+{
+  "brand": "BetterEd",
+  "version": "2.2",
+  "lockedBy": "Candido Brown",
+  "lockedOn": "2026-11-09",
+  "note": "Do not edit by hand. Change the brand only with the founder's written approval, then run node scripts/check-brand.mjs --update.",
+  "files": {
+    "src/assets/logo-primary.svg": "7cee320a0ec9437bf71f8b663a0ebe4a00596589d613359b538128a278568c8f",
+    "src/assets/logo-reversed.svg": "de06a629108fa6c33e9eba3097bf9d2f62c35b6448374a18159f8fc0617e83bc",
+    "src/assets/logo-reversed-panel.svg": "5fa71848efbc6f3b1cbe84548317e0fa2f06d80e67bbe1c1db3ee5b42584c31b",
+    "src/assets/favicon.svg": "08d1ef061819651a7dd4af2174e68a91b42042a54f92409b500574c6483ec284",
+    "src/assets/app-icon.svg": "efb9c2a8b2cdc7017e1b721824ed6deccd4ae2e0d185d84d4fd8e458faab613a",
+    "src/templates/icons.mjs": "541b0f5ee79d56ac202f0647607aa49a0dbf0a3cf2504c0f0b258be90a972692",
+    "src/assets/fonts/source-serif-4-latin-400-normal.woff2": "02194deb92d3975dd30e11a3824a1f1db32b48c93654e60560cb81ce8e7b5f95",
+    "src/assets/fonts/source-serif-4-latin-400-italic.woff2": "882b7c150c29f29d4f8daae6b8dcae8662aac7f28ca34b34615305154136ecfd",
+    "src/assets/fonts/source-serif-4-latin-600-normal.woff2": "f2b7e1cf1d277b7608231868135648f8ad8e2b58d8e97ca088bee15dc357bee7",
+    "src/assets/fonts/work-sans-latin-400-normal.woff2": "418b06936717d2e9b6c7a1fb61acb7e2f40030be4b230452f96505230e7b6b41",
+    "src/assets/fonts/work-sans-latin-500-normal.woff2": "943a4b2d8b4908cd2a41c5f92c5f370132356b51eda7444ab582fae8b37366e1",
+    "src/assets/fonts/work-sans-latin-600-normal.woff2": "c536b548fdcb2734cdc97e0ff0bf26e6719a8b067856d7021971f52ed53a874e",
+    "src/assets/fonts/work-sans-latin-700-normal.woff2": "c1e51267967030c3d8893931aa3b2e087b9caf44332cf7c384f4f4c22da0dadc"
+  },
+  "values": {
+    "color navy": "#0B1F3A",
+    "color harbor": "#1A5FB4",
+    "color signal": "#FFC20E",
+    "color pulse": "#E8603C",
+    "color paper": "#F6F4EE",
+    "color mist": "#E3E9F1",
+    "color slate": "#4F5B6D",
+    "font sans": "\"Work Sans\", \"Work Sans Fallback\", Arial, sans-serif",
+    "font serif": "\"Source Serif 4\", \"Source Serif Fallback\", Georgia, \"Times New Roman\", serif",
+    "B-Cross geometry": "['M208 0H236A64 72 0 0 1 236 144H208Z', 'M208 156H232A68 72 0 0 1 232 300H208Z']",
+    "tagline": "export const tagline = (cls = '') => `<p class=\"tagline ${cls}\">Happy. Healthy. <span class=\"hp\">High-performing.</span></p>`;"
+  }
+}
