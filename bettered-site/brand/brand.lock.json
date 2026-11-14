@@ -1,13 +1,13 @@
 {
   "brand": "BetterEd",
-  "version": "2.4",
+  "version": "2.5",
   "lockedBy": "Candido Brown",
   "lockedOn": "2026-11-14",
   "note": "Do not edit by hand. Change the brand only with the founder's written approval, then run node scripts/check-brand.mjs --update.",
   "files": {
-    "src/assets/logo-primary.svg": "996ba1dae8620f550554c045ff230823a959ac49bbbb643cd9490536a81c1092",
-    "src/assets/logo-reversed.svg": "28e119170c5ffb33b0ee5d338616fe14dd50b511c0c879b09f337dc447b77873",
-    "src/assets/logo-reversed-panel.svg": "abd16fd691cdae551505dd3e8c7b1373f812a1d4b5008cfc750efef36176ef77",
+    "src/assets/logo-primary.svg": "0a94f61da4fa46d33b4e2b4daf5fc35cd2c6725df3e2686dfbe12e58d2537103",
+    "src/assets/logo-reversed.svg": "8b3b42311b0455020b26722fb33726e6879bfb72dce34cb1837f5abb1bc7dbb3",
+    "src/assets/logo-reversed-panel.svg": "cb57dc0fbc34f99360a141657578600df888bdbcd1c5130faf3d9ddee3d26822",
     "src/assets/favicon.svg": "08d1ef061819651a7dd4af2174e68a91b42042a54f92409b500574c6483ec284",
     "src/assets/app-icon.svg": "efb9c2a8b2cdc7017e1b721824ed6deccd4ae2e0d185d84d4fd8e458faab613a",
     "src/templates/icons.mjs": "541b0f5ee79d56ac202f0647607aa49a0dbf0a3cf2504c0f0b258be90a972692",

@@ -21,10 +21,12 @@ def mark(ox, oy, fill, center=GOLD, scale=1):
     return f'<g transform="translate({ox:.2f},{oy:.2f}) scale({k:.5f})">{body}</g>'
 wm, wend = text_path(sys.argv[2], 'BetterEd', 37, 58, 35.2, track=-0.012)
 sub = ''
-W = round(wend + 1, 1); H = 44
+SQ = 6.4; SX = round(wend + 1.6, 2)  # the gold square period: sits on the baseline after the d
+PERIOD = f'<rect x="{SX}" y="{35.2 - SQ:.2f}" width="{SQ}" height="{SQ}" fill="{GOLD}"/>'
+W = round(SX + SQ + 1, 1); H = 44
 def lockup(text, blocks, bg=None, pad=0):
     w, h = W + 2*pad, H + 2*pad
-    body = (f'<rect width="{w}" height="{h}" fill="{bg}"/>' if bg else '') + f'<g transform="translate({pad},{pad})">' + mark(0, 0, blocks) + f'<path d="{wm}" fill="{text}"/></g>'
+    body = (f'<rect width="{w}" height="{h}" fill="{bg}"/>' if bg else '') + f'<g transform="translate({pad},{pad})">' + mark(0, 0, blocks) + f'<path d="{wm}" fill="{text}"/>{PERIOD}</g>'
     return f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {w} {h}" width="{w}" height="{h}" role="img" aria-label="BetterEd Solutions"><title>BetterEd Solutions</title>{body}</svg>\n'
 open(f'{A}/logo-primary.svg','w').write(lockup(NAVY, NAVY))
 open(f'{A}/logo-reversed.svg','w').write(lockup(WHITE, WHITE))

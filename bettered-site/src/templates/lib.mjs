@@ -96,7 +96,7 @@ function header(path) {
   </div></aside>
   <header class="site-header">
     <div class="container header-inner">
-      <a class="brand" href="/" aria-label="BetterEd Solutions, home"><img src="/assets/logo-primary.svg" width="191" height="40" alt="BetterEd Solutions"></a>
+      <a class="brand" href="/" aria-label="BetterEd Solutions, home"><img src="/assets/logo-primary.svg" width="198" height="40" alt="BetterEd Solutions"></a>
       <nav class="nav-primary" aria-label="Primary"><ul role="list">${nav.map((n) => `<li><a href="${n.href}" ${isCurrent(n.href)}>${esc(n.label)}</a></li>`)}</ul></nav>
       <div class="header-cta">${btn(site.primaryCta.label, site.primaryCta.href, { track: 'CTA header', arrow: false })}</div>
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu"><span class="bars" aria-hidden="true"></span><span class="label">Menu</span></button>
@@ -116,7 +116,7 @@ function footer() {
     <div class="container">
       <p class="footer-mission">Every child deserves an excellent school. Schools can get well. <em>Fast.</em></p>
       <div class="footer-top">
-        <div class="footer-brand"><img src="/assets/logo-reversed.svg" width="210" height="44" alt="BetterEd Solutions">
+        <div class="footer-brand"><img src="/assets/logo-reversed.svg" width="218" height="44" alt="BetterEd Solutions">
           ${tagline()}
           <p class="small" style="margin-top:1rem;color:var(--on-ink-2);max-width:32ch">A school improvement, turnaround and transformation firm.</p>
         </div>

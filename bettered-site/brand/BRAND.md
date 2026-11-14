@@ -1,6 +1,6 @@
 # BetterEd Brand Toolkit
 
-**Status: LOCKED.** Version 2.4, adopted 14 November 2026 by Candido Brown, Founder and CEO (2.2 on 9 November; 2.3 added the EdXrAI sub-brand). This is the official BetterEd brand. Use it exactly as written. Nothing here changes without the founder's written approval, recorded as a new version at the end of this book.
+**Status: LOCKED.** Version 2.5, adopted 14 November 2026 by Candido Brown, Founder and CEO (2.2 on 9 November; 2.3 added the EdXrAI sub-brand; 2.4 and 2.5 revised the logo). This is the official BetterEd brand. Use it exactly as written. Nothing here changes without the founder's written approval, recorded as a new version at the end of this book.
 
 BetterEd Solutions is a school improvement, turnaround and transformation firm that works like a modern medical institution: we diagnose honestly, treat urgently, and stay until the results hold.
 
@@ -25,11 +25,11 @@ A medical cross whose right arm becomes the two bowls of a B. Navy blocks surrou
 - **The B** says BetterEd. Read one way it is a cross; read the other it is a B.
 - **The gold core** is the diagnosis, at the heart of everything.
 
-**Lockups** (see Logos): the primary lockup is the B-Cross with "BetterEd" in Arial Bold. There is no "SOLUTIONS" line in the logo. Use the reversed lockup on Navy. The mark alone is for icons, avatars and small spaces.
+**Lockups** (see Logos): the primary lockup is the B-Cross with "BetterEd" in Arial Bold, closed by a gold square period. There is no "SOLUTIONS" line in the logo. The period belongs to the logo only: in sentences, emails and legal text the name is "BetterEd" or "BetterEd Solutions", never "BetterEd." with a period. Use the reversed lockup on Navy. The mark alone is for icons, avatars and small spaces.
 
 - **Clear space:** keep a margin of at least one block (one third of the mark's width) on every side.
 - **Minimum size:** lockup 140 px wide on screen (1.25 in in print); mark 16 px.
-- **Never:** stretch, outline, add effects, change the core from gold, put the navy mark on a dark ground, set the wordmark in another typeface, or add "SOLUTIONS" or any other line under it.
+- **Never:** stretch, outline, add effects, change the core from gold, put the navy mark on a dark ground, set the wordmark in another typeface, recolor, round or remove the gold period, or add "SOLUTIONS" or any other line under it.
 
 ## Color
 
@@ -117,3 +117,4 @@ This brand is locked. The website enforces it: its build stops if the logo files
 | 2.2 | 9 Nov 2026 | B-Cross mark, Source Serif 4 and Work Sans, urgency headline, EdSolution names and body metaphor, levels of intervention, six-step method. Locked. | Candido Brown |
 | 2.3 | 14 Nov 2026 | Added the EdXrAI™ product sub-brand (Horizon Lens mark, Inter Tight wordmark, "by BetterEd Solutions" endorsement); renamed from BetterEdXrAI. | Candido Brown |
 | 2.4 | 14 Nov 2026 | BetterEd logo wordmark changed to "BetterEd" in Arial Bold; "SOLUTIONS" removed from the logo. | Candido Brown |
+| 2.5 | 14 Nov 2026 | Gold square period added after "BetterEd" in the logo (logo only, not in running text). | Candido Brown |
