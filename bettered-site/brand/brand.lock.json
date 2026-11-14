@@ -1,6 +1,6 @@
 {
   "brand": "BetterEd",
-  "version": "2.3",
+  "version": "2.4",
   "lockedBy": "Candido Brown",
   "lockedOn": "2026-11-14",
   "note": "Do not edit by hand. Change the brand only with the founder's written approval, then run node scripts/check-brand.mjs --update.",

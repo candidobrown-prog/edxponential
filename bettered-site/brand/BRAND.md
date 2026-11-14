@@ -1,6 +1,6 @@
 # BetterEd Brand Toolkit
 
-**Status: LOCKED.** Version 2.3, adopted 14 November 2026 by Candido Brown, Founder and CEO. This is the official BetterEd brand. Use it exactly as written. Nothing here changes without the founder's written approval, recorded as a new version at the end of this book.
+**Status: LOCKED.** Version 2.4, adopted 14 November 2026 by Candido Brown, Founder and CEO (2.2 on 9 November; 2.3 added the EdXrAI sub-brand). This is the official BetterEd brand. Use it exactly as written. Nothing here changes without the founder's written approval, recorded as a new version at the end of this book.
 
 BetterEd Solutions is a school improvement, turnaround and transformation firm that works like a modern medical institution: we diagnose honestly, treat urgently, and stay until the results hold.
 
@@ -94,6 +94,16 @@ Four EdSolution icons (heart, head, hand, body) drawn on a 32 px grid with a 1.8
 - Results are "measured, not promised": every number carries its source and limits.
 - Do not promise timelines unless the founder supplies them.
 
+## Product sub-brand: EdXrAI™
+
+EdXrAI™ (said "Ed X-ray") is BetterEd's school health diagnostic. It was previously called BetterEdXrAI; use EdXrAI everywhere.
+
+- **Mark: the Horizon Lens.** One circle split by a gold scan line that breaks out past it on both sides. Above the line the lens is an open, see-through ring (Harbor on light grounds, sky #8DB6EC on Navy); below it the lens is solid Navy (white on Navy). It reads as an X-ray (seeing inside the school), an eye (insight) and a sunrise (a better day ahead). The gold line is the "getting better" signal.
+- **Wordmark:** "Ed" in Navy and "XrAI" in Harbor (white and #8DB6EC on Navy), Inter Tight Bold, with a small ™. The endorsement "by BetterEd Solutions" sits under the full lockup in Inter Tight Regular, sentence case, never capitalized.
+- **Versions:** horizontal, stacked, wordmark, icon, and a heavier-cut small icon for 16 to 24 px. Color, reversed (Navy only), all-Navy and all-white. Transparent backgrounds. Files: the EdXrAI Logo Kit.
+- **Use:** the endorsement stays on the full lockup and comes off icons. Clear space is a quarter of the icon's width; minimum width 160 px for the horizontal lockup. Do not recolor the scan line, close the ring, change the proportions, or add effects.
+- **Exception to the type rule:** Inter Tight is approved for the EdXrAI wordmark and endorsement only. Everything else stays in Source Serif 4 and Work Sans.
+
 ## Photography and video
 
 Real schools, leaders and classrooms in natural light. Licensed images with model releases for anyone identifiable; never present stock images as BetterEd clients. Background video is muted, slow, 10 to 20 seconds, and always pausable.
@@ -104,5 +114,6 @@ This brand is locked. The website enforces it: its build stops if the logo files
 
 | Version | Date | Change | Approved by |
 |---|---|---|---|
-| 2.3 | 14 Nov 2026 | Logo wordmark changed to "BetterEd" in Arial Bold; "SOLUTIONS" removed from the logo. | Candido Brown |
 | 2.2 | 9 Nov 2026 | B-Cross mark, Source Serif 4 and Work Sans, urgency headline, EdSolution names and body metaphor, levels of intervention, six-step method. Locked. | Candido Brown |
+| 2.3 | 14 Nov 2026 | Added the EdXrAI™ product sub-brand (Horizon Lens mark, Inter Tight wordmark, "by BetterEd Solutions" endorsement); renamed from BetterEdXrAI. | Candido Brown |
+| 2.4 | 14 Nov 2026 | BetterEd logo wordmark changed to "BetterEd" in Arial Bold; "SOLUTIONS" removed from the logo. | Candido Brown |

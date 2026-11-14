@@ -12,4 +12,4 @@ The B-Cross in every approved form. Use these files exactly; never redraw or rec
 | `app-icon.svg` / `app-icon-512.png` | The mark on a square Navy tile: social profile pictures, app icons. |
 | `favicon.svg` | Browser tab icon (rounded tile; the only rounded shape in the system). |
 
-Inks: Navy #0B1F3A, white #FFFFFF, Signal gold #FFC20E. The wordmark lettering is outlined, so the files look identical everywhere.
+Inks: Navy #0B1F3A, white #FFFFFF, Signal gold #FFC20E. The lockup is the B-Cross with "BetterEd" in Arial Bold, with no "SOLUTIONS" line (version 2.4). The lettering is outlined, so the files look identical everywhere.
