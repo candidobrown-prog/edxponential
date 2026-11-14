@@ -1,6 +1,6 @@
 # BetterEd Brand Toolkit
 
-**Status: LOCKED.** Version 2.2, adopted 9 November 2026 by Candido Brown, Founder and CEO. This is the official BetterEd brand. Use it exactly as written. Nothing here changes without the founder's written approval, recorded as a new version at the end of this book.
+**Status: LOCKED.** Version 2.3, adopted 14 November 2026 by Candido Brown, Founder and CEO. This is the official BetterEd brand. Use it exactly as written. Nothing here changes without the founder's written approval, recorded as a new version at the end of this book.
 
 BetterEd Solutions is a school improvement, turnaround and transformation firm that works like a modern medical institution: we diagnose honestly, treat urgently, and stay until the results hold.
 
@@ -12,7 +12,7 @@ BetterEd Solutions is a school improvement, turnaround and transformation firm t
 | Urgency line | *Every year a school struggles is a year children don't get back.* |
 | Tagline | **Happy. Healthy. High-performing.** Exactly these words and punctuation, with "High-performing." in Harbor (Signal on navy). Never retype it differently. |
 | Mark | The B-Cross. Never redraw, recolor, rotate or rebuild it. Use the files in Logos. |
-| Type | Source Serif 4 for headlines and reading; Work Sans for interface, labels and body copy. |
+| Type | Source Serif 4 for headlines and reading; Work Sans for interface, labels and body copy. The logo wordmark alone is Arial Bold. |
 | Color | Navy, Harbor, Signal, Paper. Pulse and Mist in small roles only. |
 | Corners | Square. No rounded corners, no gradients, no drop shadows. |
 | Accents | Hairline rules and square points. The gold square is the "getting better" signal. |
@@ -25,11 +25,11 @@ A medical cross whose right arm becomes the two bowls of a B. Navy blocks surrou
 - **The B** says BetterEd. Read one way it is a cross; read the other it is a B.
 - **The gold core** is the diagnosis, at the heart of everything.
 
-**Lockups** (see Logos): the primary lockup is the B-Cross with "BetterEd" in Source Serif 4 Semibold and "SOLUTIONS" in tracked Work Sans. Use the reversed lockup on Navy. The mark alone is for icons, avatars and small spaces.
+**Lockups** (see Logos): the primary lockup is the B-Cross with "BetterEd" in Arial Bold. There is no "SOLUTIONS" line in the logo. Use the reversed lockup on Navy. The mark alone is for icons, avatars and small spaces.
 
 - **Clear space:** keep a margin of at least one block (one third of the mark's width) on every side.
 - **Minimum size:** lockup 140 px wide on screen (1.25 in in print); mark 16 px.
-- **Never:** stretch, outline, add effects, change the core from gold, put the navy mark on a dark ground, or set the wordmark in another typeface.
+- **Never:** stretch, outline, add effects, change the core from gold, put the navy mark on a dark ground, set the wordmark in another typeface, or add "SOLUTIONS" or any other line under it.
 
 ## Color
 
@@ -104,4 +104,5 @@ This brand is locked. The website enforces it: its build stops if the logo files
 
 | Version | Date | Change | Approved by |
 |---|---|---|---|
+| 2.3 | 14 Nov 2026 | Logo wordmark changed to "BetterEd" in Arial Bold; "SOLUTIONS" removed from the logo. | Candido Brown |
 | 2.2 | 9 Nov 2026 | B-Cross mark, Source Serif 4 and Work Sans, urgency headline, EdSolution names and body metaphor, levels of intervention, six-step method. Locked. | Candido Brown |

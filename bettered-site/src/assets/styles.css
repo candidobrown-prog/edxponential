@@ -880,3 +880,7 @@ h3, .h3 { letter-spacing: -.006em; line-height: 1.2; }
   .lvl-matrix tbody th .icon { display: none; }
 }
 @media (max-width: 40rem) { .lvl-matrix thead th { font-size: .52rem; letter-spacing: 0; overflow: visible; } .lvl-matrix thead th:first-child { width: 32%; } }
+
+/* v2.3 logo: B-Cross + "BetterEd" in Arial Bold, no descriptor line */
+.brand img { width: 191px; }
+.footer-brand img { width: 210px; }
