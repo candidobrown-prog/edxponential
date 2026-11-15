@@ -1,0 +1,55 @@
+{
+  "name": "PayoutConfig",
+  "type": "object",
+  "properties": {
+    "brand": {
+      "type": "string"
+    },
+    "schedule": {
+      "type": "string",
+      "enum": [
+        "daily",
+        "weekly",
+        "monthly",
+        "instant"
+      ],
+      "default": "weekly"
+    },
+    "platform_fee_pct": {
+      "type": "number",
+      "default": 20
+    },
+    "creator_pct": {
+      "type": "number",
+      "default": 80
+    },
+    "reserve_pct": {
+      "type": "number",
+      "default": 5
+    },
+    "auto_payout": {
+      "type": "boolean",
+      "default": true
+    },
+    "payout_paused": {
+      "type": "boolean",
+      "default": false
+    },
+    "bank_account_last4": {
+      "type": "string"
+    },
+    "bank_account_name": {
+      "type": "string"
+    },
+    "routing_number_last4": {
+      "type": "string"
+    },
+    "stripe_bank_account_id": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": []
+}

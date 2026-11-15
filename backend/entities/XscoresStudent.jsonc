@@ -1,0 +1,97 @@
+{
+  "name": "XscoresStudent",
+  "type": "object",
+  "properties": {
+    "school_id": {
+      "type": "string"
+    },
+    "student_name": {
+      "type": "string"
+    },
+    "student_id_number": {
+      "type": "string"
+    },
+    "grade": {
+      "type": "string"
+    },
+    "homeroom_teacher": {
+      "type": "string"
+    },
+    "counselor": {
+      "type": "string"
+    },
+    "subgroup": {
+      "type": "string"
+    },
+    "parent_name": {
+      "type": "string"
+    },
+    "parent_email": {
+      "type": "string"
+    },
+    "parent_phone": {
+      "type": "string"
+    },
+    "attendance_pct": {
+      "type": "number",
+      "default": 100
+    },
+    "tardies_this_week": {
+      "type": "number",
+      "default": 0
+    },
+    "absences_this_month": {
+      "type": "number",
+      "default": 0
+    },
+    "gpa": {
+      "type": "number"
+    },
+    "behavior_infractions": {
+      "type": "number",
+      "default": 0
+    },
+    "suspensions": {
+      "type": "number",
+      "default": 0
+    },
+    "risk_level": {
+      "type": "string",
+      "enum": [
+        "on_track",
+        "watch",
+        "concern",
+        "at_risk",
+        "critical"
+      ],
+      "default": "on_track"
+    },
+    "active_alerts_count": {
+      "type": "number",
+      "default": 0
+    },
+    "intervention_active": {
+      "type": "boolean",
+      "default": false
+    },
+    "notes": {
+      "type": "string"
+    },
+    "photo_url": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "inactive",
+        "transferred"
+      ],
+      "default": "active"
+    }
+  },
+  "required": [
+    "student_name",
+    "grade"
+  ]
+}

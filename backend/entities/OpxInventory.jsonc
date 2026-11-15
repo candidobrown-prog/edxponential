@@ -1,0 +1,112 @@
+{
+  "name": "OpxInventory",
+  "type": "object",
+  "properties": {
+    "item_name": {
+      "type": "string"
+    },
+    "barcode": {
+      "type": "string"
+    },
+    "qr_code": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "technology",
+        "furniture",
+        "textbooks",
+        "supplies",
+        "equipment",
+        "food_service",
+        "janitorial",
+        "medical",
+        "sports",
+        "art",
+        "music",
+        "other"
+      ]
+    },
+    "location": {
+      "type": "string"
+    },
+    "room_number": {
+      "type": "string"
+    },
+    "assigned_to": {
+      "type": "string"
+    },
+    "quantity": {
+      "type": "number",
+      "default": 1
+    },
+    "quantity_available": {
+      "type": "number",
+      "default": 1
+    },
+    "reorder_threshold": {
+      "type": "number"
+    },
+    "unit_cost": {
+      "type": "number"
+    },
+    "total_value": {
+      "type": "number"
+    },
+    "condition": {
+      "type": "string",
+      "enum": [
+        "excellent",
+        "good",
+        "fair",
+        "poor",
+        "damaged",
+        "retired"
+      ],
+      "default": "good"
+    },
+    "purchase_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "warranty_expiry": {
+      "type": "string",
+      "format": "date"
+    },
+    "serial_number": {
+      "type": "string"
+    },
+    "manufacturer": {
+      "type": "string"
+    },
+    "model": {
+      "type": "string"
+    },
+    "last_audit_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "photo_url": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "available",
+        "checked_out",
+        "maintenance",
+        "retired",
+        "lost"
+      ],
+      "default": "available"
+    }
+  },
+  "required": [
+    "item_name",
+    "category"
+  ]
+}

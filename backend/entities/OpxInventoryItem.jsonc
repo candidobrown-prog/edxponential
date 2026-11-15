@@ -1,0 +1,96 @@
+{
+  "name": "OpxInventoryItem",
+  "type": "object",
+  "properties": {
+    "item_name": {
+      "type": "string"
+    },
+    "barcode": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "technology",
+        "furniture",
+        "supplies",
+        "equipment",
+        "vehicle",
+        "media",
+        "safety",
+        "food_service",
+        "other"
+      ]
+    },
+    "location_room": {
+      "type": "string"
+    },
+    "location_building": {
+      "type": "string"
+    },
+    "assigned_to": {
+      "type": "string"
+    },
+    "assigned_to_email": {
+      "type": "string"
+    },
+    "serial_number": {
+      "type": "string"
+    },
+    "purchase_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "purchase_price": {
+      "type": "number"
+    },
+    "current_value": {
+      "type": "number"
+    },
+    "quantity": {
+      "type": "number",
+      "default": 1
+    },
+    "min_quantity": {
+      "type": "number",
+      "default": 0
+    },
+    "condition": {
+      "type": "string",
+      "enum": [
+        "excellent",
+        "good",
+        "fair",
+        "poor",
+        "damaged",
+        "lost"
+      ],
+      "default": "good"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "available",
+        "checked_out",
+        "maintenance",
+        "retired",
+        "lost"
+      ],
+      "default": "available"
+    },
+    "notes": {
+      "type": "string"
+    },
+    "last_audited": {
+      "type": "string",
+      "format": "date"
+    },
+    "photo_url": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "item_name",
+    "category"
+  ]
+}

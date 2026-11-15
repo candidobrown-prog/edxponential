@@ -1,0 +1,96 @@
+{
+  "name": "GraiedxAlert",
+  "type": "object",
+  "properties": {
+    "student_id": {
+      "type": "string"
+    },
+    "student_name": {
+      "type": "string"
+    },
+    "class_id": {
+      "type": "string"
+    },
+    "class_name": {
+      "type": "string"
+    },
+    "teacher_email": {
+      "type": "string"
+    },
+    "alert_type": {
+      "type": "string",
+      "enum": [
+        "failing",
+        "missing_assignments",
+        "grade_drop",
+        "below_proficiency",
+        "chronic_missing",
+        "sudden_decline",
+        "mastery_gap",
+        "intervention_needed",
+        "achievement",
+        "improvement"
+      ],
+      "default": "missing_assignments"
+    },
+    "severity": {
+      "type": "string",
+      "enum": [
+        "info",
+        "warning",
+        "critical"
+      ],
+      "default": "warning"
+    },
+    "current_average": {
+      "type": "number"
+    },
+    "missing_count": {
+      "type": "number",
+      "default": 0
+    },
+    "description": {
+      "type": "string"
+    },
+    "recommended_action": {
+      "type": "string"
+    },
+    "parent_notified": {
+      "type": "boolean",
+      "default": false
+    },
+    "teacher_notified": {
+      "type": "boolean",
+      "default": false
+    },
+    "leader_notified": {
+      "type": "boolean",
+      "default": false
+    },
+    "resolved": {
+      "type": "boolean",
+      "default": false
+    },
+    "resolved_by": {
+      "type": "string"
+    },
+    "resolved_notes": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "open",
+        "in_progress",
+        "resolved",
+        "dismissed"
+      ],
+      "default": "open"
+    }
+  },
+  "required": [
+    "student_name",
+    "teacher_email",
+    "alert_type"
+  ]
+}

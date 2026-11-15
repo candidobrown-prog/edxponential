@@ -1,0 +1,150 @@
+{
+  "name": "Transaction",
+  "type": "object",
+  "properties": {
+    "stripe_payment_intent_id": {
+      "type": "string"
+    },
+    "stripe_session_id": {
+      "type": "string"
+    },
+    "stripe_customer_id": {
+      "type": "string"
+    },
+    "user_email": {
+      "type": "string"
+    },
+    "user_name": {
+      "type": "string"
+    },
+    "amount": {
+      "type": "number",
+      "description": "Amount in cents"
+    },
+    "amount_usd": {
+      "type": "number",
+      "description": "Amount in dollars"
+    },
+    "currency": {
+      "type": "string",
+      "default": "usd"
+    },
+    "product_type": {
+      "type": "string",
+      "enum": [
+        "subscription_pro",
+        "subscription_enterprise",
+        "coaching_session",
+        "course_purchase",
+        "tutoring_session",
+        "job_posting",
+        "content_purchase",
+        "deal_room_access",
+        "event_ticket",
+        "community_membership",
+        "donation",
+        "investment",
+        "sponsorship",
+        "platform_fee",
+        "other"
+      ]
+    },
+    "product_id": {
+      "type": "string"
+    },
+    "product_name": {
+      "type": "string"
+    },
+    "brand": {
+      "type": "string",
+      "enum": [
+        "edxponential_core",
+        "whalledoh",
+        "tilii",
+        "twotrx",
+        "onejob",
+        "edxportante",
+        "xschores",
+        "coaching",
+        "deal_room",
+        "communities"
+      ],
+      "default": "edxponential_core"
+    },
+    "platform_fee_amount": {
+      "type": "number"
+    },
+    "creator_payout_amount": {
+      "type": "number"
+    },
+    "net_amount": {
+      "type": "number"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "completed",
+        "failed",
+        "refunded",
+        "partially_refunded",
+        "disputed",
+        "cancelled"
+      ],
+      "default": "pending"
+    },
+    "payout_status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "scheduled",
+        "processing",
+        "paid",
+        "failed"
+      ],
+      "default": "pending"
+    },
+    "refund_amount": {
+      "type": "number",
+      "default": 0
+    },
+    "refund_reason": {
+      "type": "string"
+    },
+    "refunded_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "stripe_refund_id": {
+      "type": "string"
+    },
+    "metadata": {
+      "type": "object"
+    },
+    "payment_method": {
+      "type": "string"
+    },
+    "receipt_url": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "flagged": {
+      "type": "boolean",
+      "default": false
+    },
+    "flag_reason": {
+      "type": "string"
+    },
+    "admin_notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "user_email",
+    "amount",
+    "product_type",
+    "status"
+  ]
+}

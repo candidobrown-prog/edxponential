@@ -1,0 +1,131 @@
+{
+  "name": "GraiedxAssignment",
+  "type": "object",
+  "properties": {
+    "class_id": {
+      "type": "string"
+    },
+    "class_name": {
+      "type": "string"
+    },
+    "teacher_email": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "homework",
+        "quiz",
+        "test",
+        "project",
+        "classwork",
+        "lab",
+        "essay",
+        "presentation",
+        "final_exam",
+        "participation",
+        "extra_credit",
+        "other"
+      ],
+      "default": "homework"
+    },
+    "assignment_type": {
+      "type": "string",
+      "enum": [
+        "graded",
+        "ungraded",
+        "extra_credit"
+      ],
+      "default": "graded"
+    },
+    "points_possible": {
+      "type": "number",
+      "default": 100
+    },
+    "weight": {
+      "type": "number",
+      "default": 1
+    },
+    "due_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "assigned_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "standards": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "grading_scale": {
+      "type": "string",
+      "enum": [
+        "percentage",
+        "points",
+        "rubric",
+        "mastery"
+      ],
+      "default": "percentage"
+    },
+    "class_average": {
+      "type": "number"
+    },
+    "completion_rate": {
+      "type": "number"
+    },
+    "missing_count": {
+      "type": "number",
+      "default": 0
+    },
+    "late_count": {
+      "type": "number",
+      "default": 0
+    },
+    "graded_count": {
+      "type": "number",
+      "default": 0
+    },
+    "total_submitted": {
+      "type": "number",
+      "default": 0
+    },
+    "published": {
+      "type": "boolean",
+      "default": true
+    },
+    "allow_late": {
+      "type": "boolean",
+      "default": true
+    },
+    "late_penalty_pct": {
+      "type": "number",
+      "default": 0
+    },
+    "rubric": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "attachment_url": {
+      "type": "string"
+    },
+    "instructions": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "class_id",
+    "title",
+    "teacher_email"
+  ]
+}

@@ -1,0 +1,127 @@
+{
+  "name": "FoundaitionxSchool",
+  "type": "object",
+  "properties": {
+    "founder_email": {
+      "type": "string"
+    },
+    "founder_name": {
+      "type": "string"
+    },
+    "school_name": {
+      "type": "string"
+    },
+    "school_type": {
+      "type": "string",
+      "enum": [
+        "charter",
+        "independent",
+        "private",
+        "microschool",
+        "nonprofit",
+        "online",
+        "hybrid",
+        "tutoring_academy",
+        "virtual",
+        "other"
+      ],
+      "default": "charter"
+    },
+    "school_model": {
+      "type": "string"
+    },
+    "mission": {
+      "type": "string"
+    },
+    "vision": {
+      "type": "string"
+    },
+    "target_population": {
+      "type": "string"
+    },
+    "grade_levels": {
+      "type": "string"
+    },
+    "location_city": {
+      "type": "string"
+    },
+    "location_state": {
+      "type": "string"
+    },
+    "district": {
+      "type": "string"
+    },
+    "authorizer": {
+      "type": "string"
+    },
+    "academic_focus": {
+      "type": "string"
+    },
+    "enrollment_year1": {
+      "type": "number"
+    },
+    "enrollment_year3": {
+      "type": "number"
+    },
+    "enrollment_year5": {
+      "type": "number"
+    },
+    "philosophy": {
+      "type": "string"
+    },
+    "community_need": {
+      "type": "string"
+    },
+    "founder_background": {
+      "type": "string"
+    },
+    "approval_likelihood": {
+      "type": "number"
+    },
+    "completion_pct": {
+      "type": "number",
+      "default": 0
+    },
+    "ai_last_review": {
+      "type": "string"
+    },
+    "ai_strengths": {
+      "type": "string"
+    },
+    "ai_gaps": {
+      "type": "string"
+    },
+    "sections_complete": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "collaborators": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "concept",
+        "drafting",
+        "reviewing",
+        "submitted",
+        "approved",
+        "denied",
+        "revising"
+      ],
+      "default": "concept"
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "founder_email",
+    "school_name"
+  ]
+}

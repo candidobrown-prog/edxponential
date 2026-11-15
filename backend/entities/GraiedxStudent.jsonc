@@ -1,0 +1,99 @@
+{
+  "name": "GraiedxStudent",
+  "type": "object",
+  "properties": {
+    "class_id": {
+      "type": "string"
+    },
+    "class_name": {
+      "type": "string"
+    },
+    "teacher_email": {
+      "type": "string"
+    },
+    "student_name": {
+      "type": "string"
+    },
+    "student_id_number": {
+      "type": "string"
+    },
+    "grade_level": {
+      "type": "string"
+    },
+    "parent_email": {
+      "type": "string"
+    },
+    "parent_name": {
+      "type": "string"
+    },
+    "parent_phone": {
+      "type": "string"
+    },
+    "current_average": {
+      "type": "number"
+    },
+    "letter_grade": {
+      "type": "string"
+    },
+    "missing_assignments": {
+      "type": "number",
+      "default": 0
+    },
+    "late_assignments": {
+      "type": "number",
+      "default": 0
+    },
+    "completion_rate": {
+      "type": "number",
+      "default": 100
+    },
+    "risk_level": {
+      "type": "string",
+      "enum": [
+        "on_track",
+        "watch",
+        "concern",
+        "at_risk",
+        "failing"
+      ],
+      "default": "on_track"
+    },
+    "trend": {
+      "type": "string",
+      "enum": [
+        "improving",
+        "stable",
+        "declining"
+      ],
+      "default": "stable"
+    },
+    "parent_notified": {
+      "type": "boolean",
+      "default": false
+    },
+    "intervention_active": {
+      "type": "boolean",
+      "default": false
+    },
+    "notes": {
+      "type": "string"
+    },
+    "photo_url": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "inactive",
+        "transferred"
+      ],
+      "default": "active"
+    }
+  },
+  "required": [
+    "class_id",
+    "student_name",
+    "teacher_email"
+  ]
+}

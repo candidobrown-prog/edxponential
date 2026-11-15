@@ -1,0 +1,60 @@
+{
+  "name": "BoardRecruitment",
+  "type": "object",
+  "properties": {
+    "school_id": {
+      "type": "string"
+    },
+    "school_name": {
+      "type": "string"
+    },
+    "founder_email": {
+      "type": "string"
+    },
+    "candidate_id": {
+      "type": "string"
+    },
+    "candidate_name": {
+      "type": "string"
+    },
+    "candidate_email": {
+      "type": "string"
+    },
+    "stage": {
+      "type": "string",
+      "enum": [
+        "saved",
+        "outreach_sent",
+        "responded",
+        "interview_scheduled",
+        "interviewed",
+        "offered",
+        "accepted",
+        "declined"
+      ],
+      "default": "saved"
+    },
+    "ai_match_score": {
+      "type": "number"
+    },
+    "ai_match_reason": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "string"
+    },
+    "interview_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "outreach_date": {
+      "type": "string",
+      "format": "date"
+    }
+  },
+  "required": [
+    "school_id",
+    "founder_email",
+    "candidate_name"
+  ]
+}

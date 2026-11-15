@@ -1,0 +1,158 @@
+{
+  "name": "PaiyIncentive",
+  "type": "object",
+  "properties": {
+    "parent_email": {
+      "type": "string"
+    },
+    "student_name": {
+      "type": "string"
+    },
+    "student_id": {
+      "type": "string"
+    },
+    "class_id": {
+      "type": "string"
+    },
+    "class_name": {
+      "type": "string"
+    },
+    "teacher_email": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "incentive_type": {
+      "type": "string",
+      "enum": [
+        "grade",
+        "assignment_completion",
+        "attendance",
+        "behavior",
+        "growth",
+        "standards_mastery",
+        "report_card",
+        "honor_roll",
+        "streak",
+        "custom"
+      ],
+      "default": "grade"
+    },
+    "trigger_condition": {
+      "type": "string"
+    },
+    "subject": {
+      "type": "string"
+    },
+    "target_grade": {
+      "type": "string"
+    },
+    "target_percentage": {
+      "type": "number"
+    },
+    "improvement_points": {
+      "type": "number"
+    },
+    "attendance_threshold": {
+      "type": "number"
+    },
+    "reward_amount": {
+      "type": "number"
+    },
+    "currency": {
+      "type": "string",
+      "default": "USD"
+    },
+    "savings_split_pct": {
+      "type": "number",
+      "default": 0
+    },
+    "spending_split_pct": {
+      "type": "number",
+      "default": 100
+    },
+    "period": {
+      "type": "string",
+      "enum": [
+        "weekly",
+        "monthly",
+        "quarterly",
+        "semester",
+        "year_end",
+        "per_assignment",
+        "per_report_card"
+      ],
+      "default": "monthly"
+    },
+    "requires_parent_approval": {
+      "type": "boolean",
+      "default": true
+    },
+    "auto_release": {
+      "type": "boolean",
+      "default": false
+    },
+    "delay_until_report_card": {
+      "type": "boolean",
+      "default": false
+    },
+    "condition_met": {
+      "type": "boolean",
+      "default": false
+    },
+    "condition_met_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "payout_status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "condition_met",
+        "approved",
+        "paid_out",
+        "retained",
+        "paused",
+        "expired"
+      ],
+      "default": "pending"
+    },
+    "funds_reserved": {
+      "type": "number",
+      "default": 0
+    },
+    "total_earned": {
+      "type": "number",
+      "default": 0
+    },
+    "ai_recommendation": {
+      "type": "string"
+    },
+    "parent_note": {
+      "type": "string"
+    },
+    "active": {
+      "type": "boolean",
+      "default": true
+    },
+    "start_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "end_date": {
+      "type": "string",
+      "format": "date"
+    }
+  },
+  "required": [
+    "parent_email",
+    "student_name",
+    "title",
+    "incentive_type",
+    "reward_amount"
+  ]
+}

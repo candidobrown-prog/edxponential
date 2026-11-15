@@ -1,0 +1,100 @@
+{
+  "name": "GraiedxReport",
+  "type": "object",
+  "properties": {
+    "class_id": {
+      "type": "string"
+    },
+    "student_id": {
+      "type": "string"
+    },
+    "student_name": {
+      "type": "string"
+    },
+    "teacher_email": {
+      "type": "string"
+    },
+    "teacher_name": {
+      "type": "string"
+    },
+    "report_type": {
+      "type": "string",
+      "enum": [
+        "progress_report",
+        "report_card",
+        "transcript",
+        "academic_summary",
+        "honor_roll",
+        "intervention_report"
+      ],
+      "default": "progress_report"
+    },
+    "grading_period": {
+      "type": "string"
+    },
+    "current_average": {
+      "type": "number"
+    },
+    "letter_grade": {
+      "type": "string"
+    },
+    "missing_assignments": {
+      "type": "number",
+      "default": 0
+    },
+    "completion_rate": {
+      "type": "number"
+    },
+    "attendance_pct": {
+      "type": "number"
+    },
+    "ai_comment": {
+      "type": "string"
+    },
+    "teacher_comment": {
+      "type": "string"
+    },
+    "strengths": {
+      "type": "string"
+    },
+    "growth_areas": {
+      "type": "string"
+    },
+    "parent_notified": {
+      "type": "boolean",
+      "default": false
+    },
+    "approved": {
+      "type": "boolean",
+      "default": false
+    },
+    "published": {
+      "type": "boolean",
+      "default": false
+    },
+    "published_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "parent_viewed": {
+      "type": "boolean",
+      "default": false
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "ai_generated",
+        "teacher_reviewed",
+        "approved",
+        "published"
+      ],
+      "default": "draft"
+    }
+  },
+  "required": [
+    "student_name",
+    "teacher_email",
+    "report_type"
+  ]
+}

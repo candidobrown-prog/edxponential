@@ -1,0 +1,132 @@
+{
+  "name": "BoardMember",
+  "type": "object",
+  "properties": {
+    "user_email": {
+      "type": "string"
+    },
+    "full_name": {
+      "type": "string"
+    },
+    "photo_url": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "bio": {
+      "type": "string"
+    },
+    "location_city": {
+      "type": "string"
+    },
+    "location_state": {
+      "type": "string"
+    },
+    "linkedin_url": {
+      "type": "string"
+    },
+    "resume_url": {
+      "type": "string"
+    },
+    "expertise": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "legal",
+          "finance",
+          "real_estate",
+          "fundraising",
+          "academic",
+          "hr",
+          "technology",
+          "operations",
+          "marketing",
+          "nonprofit",
+          "government",
+          "healthcare",
+          "community",
+          "diversity_equity",
+          "special_education",
+          "curriculum",
+          "other"
+        ]
+      }
+    },
+    "years_experience": {
+      "type": "number"
+    },
+    "board_experience_years": {
+      "type": "number"
+    },
+    "previous_boards": {
+      "type": "string"
+    },
+    "education": {
+      "type": "string"
+    },
+    "certifications": {
+      "type": "string"
+    },
+    "school_model_alignment": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "geographic_preference": {
+      "type": "string"
+    },
+    "availability": {
+      "type": "string",
+      "enum": [
+        "immediate",
+        "within_3_months",
+        "within_6_months",
+        "not_available"
+      ],
+      "default": "within_3_months"
+    },
+    "fundraising_capacity": {
+      "type": "string",
+      "enum": [
+        "under_5k",
+        "5k_25k",
+        "25k_100k",
+        "100k_plus",
+        "prefer_not_to_say"
+      ],
+      "default": "prefer_not_to_say"
+    },
+    "race_ethnicity": {
+      "type": "string"
+    },
+    "gender": {
+      "type": "string"
+    },
+    "languages": {
+      "type": "string"
+    },
+    "ai_match_score": {
+      "type": "number"
+    },
+    "open_to_opportunities": {
+      "type": "boolean",
+      "default": true
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "inactive",
+        "placed"
+      ],
+      "default": "active"
+    }
+  },
+  "required": [
+    "full_name",
+    "user_email"
+  ]
+}

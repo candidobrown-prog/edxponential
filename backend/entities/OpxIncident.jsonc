@@ -1,0 +1,114 @@
+{
+  "name": "OpxIncident",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string"
+    },
+    "incident_type": {
+      "type": "string",
+      "enum": [
+        "injury",
+        "fight",
+        "threat",
+        "fire",
+        "medical",
+        "property_damage",
+        "bullying",
+        "harassment",
+        "theft",
+        "unauthorized_access",
+        "substance",
+        "weapon",
+        "lockdown",
+        "other"
+      ]
+    },
+    "severity": {
+      "type": "string",
+      "enum": [
+        "minor",
+        "moderate",
+        "serious",
+        "critical"
+      ],
+      "default": "minor"
+    },
+    "incident_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "incident_time": {
+      "type": "string"
+    },
+    "location": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "people_involved": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "witnesses": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "reported_by": {
+      "type": "string"
+    },
+    "reported_to": {
+      "type": "string"
+    },
+    "police_report": {
+      "type": "boolean",
+      "default": false
+    },
+    "police_report_number": {
+      "type": "string"
+    },
+    "medical_attention": {
+      "type": "boolean",
+      "default": false
+    },
+    "parent_notified": {
+      "type": "boolean",
+      "default": false
+    },
+    "district_notified": {
+      "type": "boolean",
+      "default": false
+    },
+    "follow_up_required": {
+      "type": "boolean",
+      "default": false
+    },
+    "follow_up_notes": {
+      "type": "string"
+    },
+    "resolution": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "open",
+        "under_investigation",
+        "resolved",
+        "escalated"
+      ],
+      "default": "open"
+    }
+  },
+  "required": [
+    "title",
+    "incident_type",
+    "severity",
+    "incident_date"
+  ]
+}
