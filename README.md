@@ -24,7 +24,7 @@ Dockerfile           one-container deploy
 | Row-level security | Enforced from the `rls` blocks in `backend/entities/*.jsonc` |
 | `InvokeLLM` | Anthropic API (`ANTHROPIC_API_KEY`, model `LLM_MODEL`) |
 | `SendEmail` | SMTP (`SMTP_URL`); without it, emails are logged, not sent |
-| `UploadFile` | Supabase Storage bucket `uploads` (or local disk in dev) |
+| `UploadFile` | Vercel Blob when `BLOB_READ_WRITE_TOKEN` is set, else Supabase Storage bucket `uploads`, else local disk |
 | Backend functions (Deno) | Same code, run by `backend/src/functions-runtime.js` at `/api/functions/<name>` |
 | GitHub connector | `GITHUB_TOKEN` |
 | Scheduled automation | `sendSessionReminders` runs daily (Vercel Cron → `/api/cron/reminders`, or `REMINDER_CRON` when self-hosted) |
@@ -42,15 +42,16 @@ npm run dev                               # terminal 2 → app on :5173
 
 Production-style (one process): `npm run build && npm start` → http://localhost:8787
 
-## Deploy on Vercel + Supabase (recommended)
+## Deploy on Vercel (recommended)
 
-Vercel serves the app and runs the API as a serverless function; Supabase provides the Postgres database
-and file storage. Tables are created automatically the first time the app talks to the database.
+Vercel serves the app and runs the API as a serverless function; a Vercel Marketplace Postgres (Neon or Supabase)
+holds the data and Vercel Blob holds uploads. `DB_SCHEMA` (optional) keeps the tables in their own schema when sharing a database. Tables are created automatically the first time the app talks to the database.
 
 1. **Push this folder to GitHub** (branch `vercel-portable` of `candidobrown-prog/edxponential` already has it).
 2. **Vercel → Add New → Project →** import that repo, choose the `vercel-portable` branch. Settings are read from `vercel.json`.
-3. **Vercel → your project → Storage → Create → Supabase.** Accept the defaults. This creates a Supabase project and
-   adds `POSTGRES_URL`, `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY` to the project automatically.
+3. **Vercel → your project → Storage → Create.** Pick a Postgres provider (Neon or Supabase — both add `DATABASE_URL`/`POSTGRES_URL`
+   automatically) and a **Blob** store for file uploads (adds `BLOB_READ_WRITE_TOKEN`). If you choose Supabase, its
+   integration also adds `SUPABASE_URL` + `SUPABASE_SERVICE_ROLE_KEY`, and Blob is optional.
 4. **Vercel → Settings → Environment Variables**, add:
 
    | Name | Value |

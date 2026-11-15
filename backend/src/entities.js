@@ -2,7 +2,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { all, one, run, newId, now } from './db.js';
+import { all, one, run, newId, now, T } from './db.js';
 import { publicUser, createUser, getUserById, hashPassword } from './auth.js';
 
 // ctx.user may be a Promise (resolved lazily so synchronous-looking SDK calls still work)
@@ -106,7 +106,7 @@ const RESERVED = ['id', 'created_date', 'updated_date', 'created_by'];
 const clean = (d) => Object.fromEntries(Object.entries(d || {}).filter(([k]) => !RESERVED.includes(k)));
 
 // ---------- the User entity (backed by the users table) ----------
-const userRecs = async () => (await all('SELECT * FROM users')).map(publicUser);
+const userRecs = async () => (await all(`SELECT * FROM ${T.users}`)).map(publicUser);
 function userApi(ctx0) {
   const setup = async () => { const ctx = await resolveCtx(ctx0); const isAdmin = ctx.service || ctx.user?.role === 'admin'; return { ctx, isAdmin }; };
   const visible = async ({ ctx, isAdmin }) => { const u = await userRecs(); return isAdmin ? u : ctx.user ? u.filter((x) => x.id === ctx.user.id) : []; };
@@ -122,11 +122,11 @@ function userApi(ctx0) {
       const row = await getUserById(id); if (!row) throw notFound();
       const { email, role, full_name, password, ...extra } = clean(d);
       const data = { ...JSON.parse(row.data), ...extra };
-      await run('UPDATE users SET full_name=$1, role=$2, data=$3, password_hash=$4, updated_date=$5 WHERE id=$6',
+      await run(`UPDATE ${T.users} SET full_name=$1, role=$2, data=$3, password_hash=$4, updated_date=$5 WHERE id=$6`,
         [full_name ?? row.full_name, isAdmin && role ? role : row.role, JSON.stringify(data), password ? hashPassword(password) : row.password_hash, now(), id]);
       return publicUser(await getUserById(id));
     },
-    delete: async (id) => { const { isAdmin } = await setup(); if (!isAdmin) throw forbid(); await run('DELETE FROM users WHERE id=$1', [id]); return { success: true }; },
+    delete: async (id) => { const { isAdmin } = await setup(); if (!isAdmin) throw forbid(); await run(`DELETE FROM ${T.users} WHERE id=$1`, [id]); return { success: true }; },
     bulkCreate: async (arr) => { const out = []; for (const d of arr) out.push(await api.create(d)); return out; },
   };
   return api;
@@ -135,10 +135,10 @@ function userApi(ctx0) {
 // ---------- the generic entity API ----------
 export function entityApi(entity, ctx0) {
   if (entity === 'User') return userApi(ctx0);
-  const load = async () => (await all('SELECT * FROM records WHERE entity = $1', [entity])).map(toRec);
+  const load = async () => (await all(`SELECT * FROM ${T.records} WHERE entity = $1`, [entity])).map(toRec);
   const readable = (rows, ctx) => rows.filter((rec) => allowed(entity, 'read', { ...ctx, rec }));
   const finish = (rows, { sort = '-created_date', limit, skip = 0 } = {}) => sortRows(rows, sort).slice(skip, limit ? skip + limit : undefined);
-  const fetchRow = async (id) => { const row = await one('SELECT * FROM records WHERE entity=$1 AND id=$2', [entity, id]); if (!row) throw notFound(`${entity} ${id} not found`); return row; };
+  const fetchRow = async (id) => { const row = await one(`SELECT * FROM ${T.records} WHERE entity=$1 AND id=$2`, [entity, id]); if (!row) throw notFound(`${entity} ${id} not found`); return row; };
 
   const api = {
     list: async (sort, limit, skip) => finish(readable(await load(), await resolveCtx(ctx0)), { sort, limit, skip }),
@@ -153,7 +153,7 @@ export function entityApi(entity, ctx0) {
       const data = applyDefaults(entity, clean(input));
       if (!allowed(entity, 'create', { ...ctx, rec: data })) throw forbid();
       const id = newId(), t = now();
-      await run('INSERT INTO records (id,entity,data,created_by,created_date,updated_date) VALUES ($1,$2,$3,$4,$5,$6)',
+      await run(`INSERT INTO ${T.records} (id,entity,data,created_by,created_date,updated_date) VALUES ($1,$2,$3,$4,$5,$6)`,
         [id, entity, JSON.stringify(data), ctx.user?.email ?? null, t, t]);
       return { ...data, id, created_by: ctx.user?.email ?? null, created_date: t, updated_date: t };
     },
@@ -162,13 +162,13 @@ export function entityApi(entity, ctx0) {
       const ctx = await resolveCtx(ctx0); const row = await fetchRow(id);
       if (!allowed(entity, 'update', { ...ctx, rec: toRec(row) })) throw forbid();
       const data = { ...JSON.parse(row.data), ...clean(patch) }; const t = now();
-      await run('UPDATE records SET data=$1, updated_date=$2 WHERE id=$3', [JSON.stringify(data), t, id]);
+      await run(`UPDATE ${T.records} SET data=$1, updated_date=$2 WHERE id=$3`, [JSON.stringify(data), t, id]);
       return { ...data, id, created_by: row.created_by, created_date: row.created_date, updated_date: t };
     },
     delete: async (id) => {
       const ctx = await resolveCtx(ctx0); const row = await fetchRow(id);
       if (!allowed(entity, 'delete', { ...ctx, rec: toRec(row) })) throw forbid();
-      await run('DELETE FROM records WHERE id=$1', [id]);
+      await run(`DELETE FROM ${T.records} WHERE id=$1`, [id]);
       return { success: true };
     },
   };

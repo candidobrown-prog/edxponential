@@ -10,7 +10,7 @@ const root = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
 const envFile = path.join(root, '.env');
 if (fs.existsSync(envFile)) for (const l of fs.readFileSync(envFile, 'utf8').split('\n')) { const m = l.match(/^\s*([A-Z0-9_]+)\s*=\s*(.*)\s*$/); if (m && !(m[1] in process.env)) process.env[m[1]] = m[2].replace(/^["']|["']$/g, ''); }
 
-const { one, run, newId, now } = await import('../src/db.js');
+const { one, run, newId, now, T } = await import('../src/db.js');
 const { createUser, getUserByEmail } = await import('../src/auth.js');
 const [entity, file, ...flags] = process.argv.slice(2);
 if (!entity || !file) { console.error('usage: node scripts/import-json.js <Entity> <file.json|csv> [--password=xxxx]'); process.exit(1); }
@@ -44,9 +44,9 @@ for (const item of Array.isArray(items) ? items : [items]) {
     await createUser({ ...data, password: pw }); n++; continue;
   }
   const rid = id || newId(); const t = now();
-  const exists = await one('SELECT 1 AS x FROM records WHERE id=$1', [rid]);
+  const exists = await one(`SELECT 1 AS x FROM ${T.records} WHERE id=$1`, [rid]);
   if (exists) { skipped++; continue; }
-  await run('INSERT INTO records (id,entity,data,created_by,created_date,updated_date) VALUES ($1,$2,$3,$4,$5,$6)',
+  await run(`INSERT INTO ${T.records} (id,entity,data,created_by,created_date,updated_date) VALUES ($1,$2,$3,$4,$5,$6)`,
     [rid, entity, JSON.stringify(data), created_by ?? null, created_date || t, updated_date || created_date || t]);
   n++;
 }

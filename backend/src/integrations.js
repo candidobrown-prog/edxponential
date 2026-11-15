@@ -100,11 +100,16 @@ async function SendEmail({ to, subject, body, from_name }) {
 }
 
 // ---- Core.UploadFile (called by the HTTP layer with the multer file) ----
-// With SUPABASE_URL + SUPABASE_SERVICE_ROLE_KEY set, files go to a public Supabase Storage bucket ("uploads"),
+// With BLOB_READ_WRITE_TOKEN set (Vercel Blob) files go there; with SUPABASE_URL + SUPABASE_SERVICE_ROLE_KEY set, to a public Supabase Storage bucket ("uploads"),
 // which is what you need on Vercel (no persistent disk). Otherwise they are written to the local data folder.
 let bucketReady = false;
 export async function saveUpload(file, { baseUrl = '' } = {}) {
   const safe = `${Date.now().toString(36)}-${file.originalname.replace(/[^\w.-]+/g, '_')}`;
+  if (process.env.BLOB_READ_WRITE_TOKEN) {          // Vercel Blob (set automatically by the Vercel Blob store)
+    const { put } = await import('@vercel/blob');
+    const blob = await put(`uploads/${safe}`, file.buffer, { access: 'public', contentType: file.mimetype || 'application/octet-stream' });
+    return { file_url: blob.url };
+  }
   const sbUrl = process.env.SUPABASE_URL, sbKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
   if (sbUrl && sbKey) {
     const auth = { Authorization: `Bearer ${sbKey}`, apikey: sbKey };

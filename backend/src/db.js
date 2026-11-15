@@ -9,8 +9,13 @@ export const DATA_DIR = path.resolve(process.env.DATA_DIR || (process.env.VERCEL
 export const UPLOAD_DIR = path.join(DATA_DIR, 'uploads');
 fs.mkdirSync(UPLOAD_DIR, { recursive: true });
 
+// Optional: keep this app's tables in their own schema (e.g. DB_SCHEMA=edx) when sharing a database.
+export const SCHEMA_NAME = (process.env.DB_SCHEMA || '').replace(/[^a-z0-9_]/gi, '');
+const P = SCHEMA_NAME ? `${SCHEMA_NAME}.` : '';
+export const T = { users: `${P}users`, records: `${P}records` };
+
 const SCHEMA = `
-  CREATE TABLE IF NOT EXISTS users (
+  CREATE TABLE IF NOT EXISTS ${P}users (
     id            TEXT PRIMARY KEY,
     email         TEXT NOT NULL,
     password_hash TEXT,
@@ -20,8 +25,8 @@ const SCHEMA = `
     created_date  TEXT NOT NULL,
     updated_date  TEXT NOT NULL
   );
-  CREATE UNIQUE INDEX IF NOT EXISTS users_email_lower ON users (lower(email));
-  CREATE TABLE IF NOT EXISTS records (
+  CREATE UNIQUE INDEX IF NOT EXISTS users_email_lower ON ${P}users (lower(email));
+  CREATE TABLE IF NOT EXISTS ${P}records (
     id           TEXT PRIMARY KEY,
     entity       TEXT NOT NULL,
     data         TEXT NOT NULL,
@@ -29,7 +34,7 @@ const SCHEMA = `
     created_date TEXT NOT NULL,
     updated_date TEXT NOT NULL
   );
-  CREATE INDEX IF NOT EXISTS idx_records_entity ON records (entity, created_date);
+  CREATE INDEX IF NOT EXISTS idx_records_entity ON ${P}records (entity, created_date);
 `;
 
 const url = process.env.DATABASE_URL || process.env.POSTGRES_URL || process.env.POSTGRES_URL_NON_POOLING;
@@ -55,8 +60,12 @@ if (url) {
 
 // Run the schema once (statements separated so every driver accepts them)
 const ready = (async () => {
+  if (SCHEMA_NAME) {   // create the schema only if missing (a restricted role may lack CREATE on the database)
+    const rows = await exec('SELECT 1 FROM information_schema.schemata WHERE schema_name = $1', [SCHEMA_NAME]);
+    if (!rows.length) await exec(`CREATE SCHEMA ${SCHEMA_NAME}`);
+  }
   for (const stmt of SCHEMA.split(';').map((s) => s.trim()).filter(Boolean)) await exec(stmt);
-})();
+})().catch((e) => { console.error('[db] could not initialise the database schema:', e.message); throw e; });
 
 export const all = async (sql, params) => { await ready; return exec(sql, params); };
 export const one = async (sql, params) => (await all(sql, params))[0];

@@ -1,5 +1,5 @@
 import crypto from 'node:crypto';
-import { one, run, newId, now } from './db.js';
+import { one, run, newId, now, T } from './db.js';
 
 // Token-signing secret: JWT_SECRET if set; otherwise derived from the (secret) database URL so production
 // works with zero extra config; otherwise an insecure dev-only default.
@@ -44,14 +44,14 @@ export function publicUser(row) {
   const { password_hash, data, ...rest } = row;
   return { ...JSON.parse(data || '{}'), ...rest };
 }
-export const getUserByEmail = (email) => one('SELECT * FROM users WHERE lower(email) = lower($1)', [email]);
-export const getUserById = (id) => one('SELECT * FROM users WHERE id = $1', [id]);
+export const getUserByEmail = (email) => one(`SELECT * FROM ${T.users} WHERE lower(email) = lower($1)`, [email]);
+export const getUserById = (id) => one(`SELECT * FROM ${T.users} WHERE id = $1`, [id]);
 
 export async function createUser({ email, password, full_name, role, ...extra }) {
-  const count = Number((await one('SELECT COUNT(*) AS c FROM users')).c);
+  const count = Number((await one(`SELECT COUNT(*) AS c FROM ${T.users}`)).c);
   const isAdmin = count === 0 || adminEmails().includes(email.toLowerCase());
   const id = newId(); const t = now();
-  await run(`INSERT INTO users (id,email,password_hash,role,full_name,data,created_date,updated_date) VALUES ($1,$2,$3,$4,$5,$6,$7,$8)`,
+  await run(`INSERT INTO ${T.users} (id,email,password_hash,role,full_name,data,created_date,updated_date) VALUES ($1,$2,$3,$4,$5,$6,$7,$8)`,
     [id, email, password ? hashPassword(password) : null, role || (isAdmin ? 'admin' : 'user'), full_name || email.split('@')[0], JSON.stringify(extra), t, t]);
   return getUserById(id);
 }
