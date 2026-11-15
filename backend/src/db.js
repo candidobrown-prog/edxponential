@@ -51,6 +51,10 @@ if (url) {
   });
   exec = async (sql, params = []) => (await pool.query(sql, params)).rows;
   console.log('[db] using Postgres via DATABASE_URL');
+} else if (process.env.VERCEL) {
+  // Hosted without a database: fail every query with a clear message instead of crashing the function.
+  exec = async () => { throw Object.assign(new Error('No database connected yet. In Vercel open Storage → Create Database (any Postgres) so DATABASE_URL / POSTGRES_URL is set, then redeploy.'), { status: 503 }); };
+  console.error('[db] DATABASE_URL / POSTGRES_URL is not set');
 } else {
   const { PGlite } = await import('@electric-sql/pglite');
   const lite = new PGlite(path.join(DATA_DIR, 'pgdata'));
@@ -65,7 +69,9 @@ const ready = (async () => {
     if (!rows.length) await exec(`CREATE SCHEMA ${SCHEMA_NAME}`);
   }
   for (const stmt of SCHEMA.split(';').map((s) => s.trim()).filter(Boolean)) await exec(stmt);
-})().catch((e) => { console.error('[db] could not initialise the database schema:', e.message); throw e; });
+})().catch((e) => { console.error('[db] could not initialise the database schema:', e.message); });
+
+
 
 export const all = async (sql, params) => { await ready; return exec(sql, params); };
 export const one = async (sql, params) => (await all(sql, params))[0];

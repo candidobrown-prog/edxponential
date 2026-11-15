@@ -132,7 +132,12 @@ app.get('/api/cron/reminders', h(async (req) => {
   return { status: out.status, result: await out.text() };
 }));
 
-app.get('/api/health', (_req, res) => res.json({ ok: true, entities: Object.keys(schemas).length }));
+app.get('/api/health', h(async () => {
+  const { one } = await import('./db.js');
+  let database = 'ok';
+  try { await one('SELECT 1 AS ok'); } catch (e) { database = e.message; }
+  return { ok: database === 'ok', database, entities: Object.keys(schemas).length };
+}));
 app.use('/api', (_req, res) => res.status(404).json({ error: 'Not found' }));
 
 // ---- serve the built frontend (production) ----
