@@ -1,0 +1,33 @@
+import React, { useState } from 'react';
+import { Link, useOutletContext } from 'react-router-dom';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { ii } from '@/api/ii';
+import { PageHeader, Card, Btn, State, Pill, Input, Field, C, useErr, ErrorNote } from '@/components/ii/ui';
+
+export default function IIActionPlans() {
+  const { me } = useOutletContext(); const qc = useQueryClient(); const [err, run] = useErr(); const me_ = me.user.email.toLowerCase();
+  const { data: plans = [], isLoading } = useQuery({ queryKey: ['ii-plans'], queryFn: () => ii.actionPlans() });
+  const { data: reass = [] } = useQuery({ queryKey: ['ii-reass'], queryFn: ii.reassessments });
+  const [forms, setForms] = useState({});
+  const refresh = () => { qc.invalidateQueries(['ii-plans']); qc.invalidateQueries(['ii-reass']); };
+  const f = (id) => forms[id] || {}; const setF = (id, p) => setForms({ ...forms, [id]: { ...f(id), ...p } });
+  return (<>
+    <PageHeader title="Instructional Action Plans & Reassessment" subtitle="Adult behaviour change is tracked separately from student outcomes. A reassessment needs a denominator before any percentage is shown." crumbs={[{ label: 'Instructional Intelligence', to: '/ii' }, { label: 'Action plans' }]} />
+    <ErrorNote error={err} />
+    {isLoading ? <State kind="loading" title="Loading…" /> : plans.length === 0 ? <State kind="empty" title="No action plans" detail="Create one from a coaching conference." /> : plans.map((p) => {
+      const mine = p.teacher_email === me_ || p.coach_email === me_; const rs = reass.filter((r) => r.action_plan_id === p.id);
+      return (<Card key={p.id} id={p.id} className="mb-4" title={`${p.teacher_email} · coach ${p.coach_email}`} right={<div className="flex gap-2"><Pill tone={p.status === 'complete' ? 'good' : 'info'}>{p.status}</Pill>{p.observation_id && <Link to={`/ii/observations/${p.observation_id}`} className="text-xs underline">observation</Link>}</div>}>
+        <ol className="space-y-3">{(p.items || []).map((it) => <li key={it.id} className="border-l-2 pl-3" style={{ borderColor: C.harbor }}><p className="font-semibold text-sm" style={{ color: C.navy }}>{it.title}</p><dl className="grid md:grid-cols-2 gap-x-4 text-xs mt-1">{[['Adult behaviour', it.recommended_adult_behavior], ['Owner', it.implementation_owner], ['By', it.implementation_date], ['Evidence of implementation', it.evidence_of_implementation], ['Expected student response', it.expected_student_response], ['Reassessment', it.reassessment], ['Success criterion', it.success_criterion]].filter(([, v]) => v).map(([k, v]) => <div key={k}><dt className="font-semibold" style={{ color: C.slate }}>{k}</dt><dd>{v}</dd></div>)}</dl></li>)}</ol>
+        <div className="grid md:grid-cols-2 gap-4 mt-4">
+          <div><h4 className="text-xs font-bold uppercase mb-1" style={{ color: C.slate }}>Adult behaviour change evidence ({(p.adult_behavior_evidence || []).length})</h4><ul className="text-xs space-y-1">{(p.adult_behavior_evidence || []).map((e, i) => <li key={i}>{new Date(e.at).toLocaleDateString()} · {e.note} <em>({e.by})</em></li>)}</ul>{mine && <div className="flex gap-1 mt-2"><Input className="h-8 text-xs" placeholder="What changed in practice? (date, lesson, what you did)" value={f(p.id).abe || ''} onChange={(e) => setF(p.id, { abe: e.target.value })} aria-label="Adult behaviour evidence" /><Btn size="sm" onClick={() => run(async () => { await ii.saveActionPlan(p.id, { adult_behavior_evidence: { note: f(p.id).abe } }); setF(p.id, { abe: '' }); refresh(); })} disabled={!f(p.id).abe}>Add</Btn></div>}</div>
+          <div><h4 className="text-xs font-bold uppercase mb-1" style={{ color: C.slate }}>Student outcome evidence ({(p.student_outcome_evidence || []).length})</h4><ul className="text-xs space-y-1">{(p.student_outcome_evidence || []).map((e, i) => <li key={i}>{new Date(e.at).toLocaleDateString()} · {e.note} <em>({e.by})</em></li>)}</ul>{mine && <div className="flex gap-1 mt-2"><Input className="h-8 text-xs" placeholder="What did students do differently? (no names)" value={f(p.id).soe || ''} onChange={(e) => setF(p.id, { soe: e.target.value })} aria-label="Student outcome evidence" /><Btn size="sm" onClick={() => run(async () => { await ii.saveActionPlan(p.id, { student_outcome_evidence: { note: f(p.id).soe } }); setF(p.id, { soe: '' }); refresh(); })} disabled={!f(p.id).soe}>Add</Btn></div>}</div>
+        </div>
+        <div className="mt-4 border-t pt-3" style={{ borderColor: C.mist }}>
+          <h4 className="text-xs font-bold uppercase mb-2" style={{ color: C.slate }}>Reassessments</h4>
+          {rs.length === 0 ? <p className="text-xs" style={{ color: C.slate }}>None scheduled.</p> : <ul className="space-y-2">{rs.map((r) => <li key={r.id} className="text-sm flex flex-wrap items-center gap-2"><span>{r.standard} · due {r.due_date}</span><Pill tone={r.status === 'complete' ? 'good' : 'neutral'}>{r.status}</Pill>{r.results?.total ? <Pill tone="info">{r.results.correct}/{r.results.total} = {Math.round(r.results.correct / r.results.total * 100)}%</Pill> : mine && <span className="flex gap-1"><Input type="number" className="h-7 w-20 text-xs" placeholder="correct" value={f(r.id).c || ''} onChange={(e) => setF(r.id, { c: e.target.value })} aria-label="Correct" /><Input type="number" className="h-7 w-20 text-xs" placeholder="total" value={f(r.id).t || ''} onChange={(e) => setF(r.id, { t: e.target.value })} aria-label="Total assessed" /><Btn size="sm" onClick={() => run(async () => { await ii.saveReassessment(r.id, { results: { correct: Number(f(r.id).c), total: Number(f(r.id).t), aligned: true } }); refresh(); })} disabled={!f(r.id).t}>Record</Btn></span>}</li>)}</ul>}
+          {mine && <div className="flex flex-wrap gap-2 items-end mt-2"><Field label="Standard"><Input className="h-8 text-xs" value={f(p.id).std || (p.items?.[0]?.title ? '' : '')} onChange={(e) => setF(p.id, { std: e.target.value })} placeholder="e.g. 7.RP.A.2" /></Field><Field label="Due date"><Input type="date" className="h-8 text-xs" value={f(p.id).due || ''} onChange={(e) => setF(p.id, { due: e.target.value })} /></Field><Btn size="sm" variant="secondary" onClick={() => run(async () => { await ii.createReassessment({ action_plan_id: p.id, standard: f(p.id).std, due_date: f(p.id).due }); setF(p.id, { std: '', due: '' }); refresh(); })} disabled={!f(p.id).std || !f(p.id).due}>Schedule reassessment</Btn>{p.status !== 'complete' && <Btn size="sm" variant="ghost" onClick={() => run(async () => { await ii.saveActionPlan(p.id, { status: 'complete' }); refresh(); })}>Mark plan complete</Btn>}</div>}
+        </div>
+      </Card>);
+    })}
+  </>);
+}

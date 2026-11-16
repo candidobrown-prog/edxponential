@@ -52,7 +52,7 @@ async function openaiWhisper(buffer, mime) {
 
 /** Flag segments whose time ranges intersect another speaker's (F11). */
 export function markOverlaps(segments) {
-  const s = [...segments].sort((a, b) => a.start - b.start);
+  const s = [...segments].sort((a, b) => a.start - b.start).map((x) => ({ ...x, overlap: !!x.overlap }));
   for (let i = 0; i < s.length; i++) for (let j = i + 1; j < s.length && s[j].start < s[i].end; j++) {
     if (s[j].speaker_label !== s[i].speaker_label) { s[i].overlap = true; s[j].overlap = true; }
   }

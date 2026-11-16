@@ -130,6 +130,21 @@ import SpedCompliance from './pages/perspedxtives/SpedCompliance';
 import SpedAIGenerator from './pages/perspedxtives/SpedAIGenerator';
 import PerSpEdxtivesLayout from './components/perspedxtives/PerSpEdxtivesLayout';
 import GraiedxHome from './pages/graiedx/GraiedxHome';
+// Instructional Intelligence module (feature-flagged on the server)
+import IILayout from './components/ii/IILayout';
+import IIDashboard from './pages/ii/IIDashboard';
+import IIObservations from './pages/ii/IIObservations';
+import IINewObservation from './pages/ii/IINewObservation';
+import IIRecord from './pages/ii/IIRecord';
+import IIObservationDetail from './pages/ii/IIObservationDetail';
+import IIUpload from './pages/ii/IIUpload';
+import IIReflection, { IIReflectionList } from './pages/ii/IIReflections';
+import IICoachingSession, { IICoachingList } from './pages/ii/IICoaching';
+import IIActionPlans from './pages/ii/IIActionPlans';
+import IIReport, { IIReportsIndex } from './pages/ii/IIReports';
+import IITrends from './pages/ii/IITrends';
+import IIPlc from './pages/ii/IIPlc';
+import IIAdmin from './pages/ii/IIAdmin';
 import GraiedxLayout from './components/graiedx/GraiedxLayout';
 import GraiedxDashboard from './pages/graiedx/GraiedxDashboard';
 import GraiedxGradebook from './pages/graiedx/GraiedxGradebook';
@@ -299,6 +314,28 @@ const AuthenticatedApp = () => {
         <Route path="/goaled/scores" element={<GoaledScoresPage />} />
         <Route path="/ai-insights" element={<AIInsightDashboard />} />
         <Route path="/github-prs" element={<GitHubPRDashboard />} />
+      </Route>
+
+      {/* Instructional Intelligence */}
+      <Route element={<IILayout />}>
+        <Route path="/ii" element={<IIDashboard />} />
+        <Route path="/ii/observations" element={<IIObservations />} />
+        <Route path="/ii/observations/new" element={<IINewObservation />} />
+        <Route path="/ii/observations/:id" element={<IIObservationDetail />} />
+        <Route path="/ii/observations/:id/record" element={<IIRecord />} />
+        <Route path="/ii/upload" element={<IIUpload />} />
+        <Route path="/ii/reflections" element={<IIReflectionList />} />
+        <Route path="/ii/reflections/:id" element={<IIReflection />} />
+        <Route path="/ii/coaching" element={<IICoachingList />} />
+        <Route path="/ii/coaching/:id" element={<IICoachingSession />} />
+        <Route path="/ii/action-plans" element={<IIActionPlans />} />
+        <Route path="/ii/reports" element={<IIReportsIndex />} />
+        <Route path="/ii/reports/:id" element={<IIReport />} />
+        <Route path="/ii/trends" element={<IITrends />} />
+        <Route path="/ii/plc" element={<IIPlc />} />
+        <Route path="/ii/admin" element={<IIAdmin />} />
+        <Route path="/ii/admin/privacy" element={<IIAdmin />} />
+        <Route path="/ii/admin/system" element={<IIAdmin />} />
       </Route>
 
       {/* Graiedx™ */}

@@ -10,6 +10,9 @@ import { base44 } from '@/api/base44Client';
 import { cn } from '@/lib/utils';
 import EdxTooltip from '@/components/platform/EdxTooltip';
 import { TOOLTIP } from '@/lib/tooltipData';
+import { useQuery } from '@tanstack/react-query';
+import { ii } from '@/api/ii';
+import { Mic } from 'lucide-react';
 
 const navItems = [
 { path: '/', icon: LayoutDashboard, label: 'Dashboard', tooltip: TOOLTIP.dashboard },
@@ -57,6 +60,9 @@ const platformTiers = [
 export default function Sidebar() {
   const [collapsed, setCollapsed] = useState(false);
   const location = useLocation();
+  // Instructional Intelligence entry appears only when the module is enabled and the user has access
+  const { data: iiMe } = useQuery({ queryKey: ['ii-me'], queryFn: ii.me, retry: false, staleTime: 60_000 });
+  const showII = !!iiMe && (iiMe.platform_admin || (iiMe.memberships || []).length > 0);
 
   return (
     <aside className={cn(
@@ -84,6 +90,12 @@ export default function Sidebar() {
 
       {/* Navigation */}
       <nav className="flex-1 overflow-y-auto py-3 px-2 space-y-0.5">
+        {showII && (
+          <Link to="/ii" aria-label="Instructional Intelligence" className={cn('flex items-center gap-2.5 rounded-lg transition-all duration-150 mb-1', collapsed ? 'h-9 w-9 justify-center mx-auto' : 'h-8 px-3', location.pathname.startsWith('/ii') ? 'bg-[#FFC20E] text-[#0B1F3A]' : 'text-[#FFC20E]/80 hover:bg-white/5 hover:text-[#FFC20E]')}>
+            <Mic className={cn('flex-shrink-0', collapsed ? 'w-4 h-4' : 'w-3.5 h-3.5')} />
+            {!collapsed && <span className="text-xs font-bold tracking-[-0.01em] truncate">Instructional Intelligence</span>}
+          </Link>
+        )}
         {navItems.map(({ path, icon: Icon, label, tooltip }) => {
           const isActive = path === '/' ? location.pathname === '/' : location.pathname.startsWith(path);
           return (
