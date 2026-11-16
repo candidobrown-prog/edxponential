@@ -1,0 +1,84 @@
+// Instructional Intelligence entity — accessed only through /api/ii (authorization in backend/src/ii/authz.js)
+{
+  "name": "IITranscriptVersion",
+  "type": "object",
+  "properties": {
+    "organization_id": {
+      "type": "string"
+    },
+    "school_id": {
+      "type": "string"
+    },
+    "observation_id": {
+      "type": "string"
+    },
+    "version": {
+      "type": "number"
+    },
+    "source": {
+      "type": "string"
+    },
+    "provider": {
+      "type": "string"
+    },
+    "segments": {
+      "type": "array",
+      "default": []
+    },
+    "approved": {
+      "type": "boolean",
+      "default": false
+    },
+    "approved_by": {
+      "type": "string"
+    },
+    "approved_at": {
+      "type": "string"
+    },
+    "parent_version_id": {
+      "type": "string"
+    },
+    "change_summary": {
+      "type": "string"
+    },
+    "media_asset_id": {
+      "type": "string"
+    },
+    "confidence_mean": {
+      "type": "number"
+    },
+    "notes": {
+      "type": "array",
+      "default": []
+    }
+  },
+  "required": [
+    "organization_id",
+    "school_id",
+    "observation_id",
+    "version",
+    "source"
+  ],
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "__ii_internal_only__"
+      }
+    },
+    "create": {
+      "user_condition": {
+        "role": "__ii_internal_only__"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "__ii_internal_only__"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "__ii_internal_only__"
+      }
+    }
+  }
+}

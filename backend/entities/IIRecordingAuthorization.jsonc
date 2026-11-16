@@ -1,0 +1,67 @@
+// Instructional Intelligence entity — accessed only through /api/ii (authorization in backend/src/ii/authz.js)
+{
+  "name": "IIRecordingAuthorization",
+  "type": "object",
+  "properties": {
+    "organization_id": {
+      "type": "string"
+    },
+    "school_id": {
+      "type": "string"
+    },
+    "observation_id": {
+      "type": "string"
+    },
+    "authorized_by": {
+      "type": "string"
+    },
+    "consent_basis": {
+      "type": "string"
+    },
+    "consent_status": {
+      "type": "string",
+      "default": "valid"
+    },
+    "expires_at": {
+      "type": "string"
+    },
+    "permitted_processing": {
+      "type": "array",
+      "default": [
+        "transcription",
+        "analysis"
+      ]
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "organization_id",
+    "school_id",
+    "authorized_by",
+    "consent_basis"
+  ],
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "__ii_internal_only__"
+      }
+    },
+    "create": {
+      "user_condition": {
+        "role": "__ii_internal_only__"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "__ii_internal_only__"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "__ii_internal_only__"
+      }
+    }
+  }
+}

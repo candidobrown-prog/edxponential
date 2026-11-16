@@ -1,0 +1,78 @@
+// Instructional Intelligence entity — accessed only through /api/ii (authorization in backend/src/ii/authz.js)
+{
+  "name": "IIJob",
+  "type": "object",
+  "properties": {
+    "organization_id": {
+      "type": "string"
+    },
+    "school_id": {
+      "type": "string"
+    },
+    "observation_id": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
+    "idempotency_key": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "default": "queued"
+    },
+    "attempts": {
+      "type": "number",
+      "default": 0
+    },
+    "error": {
+      "type": "string"
+    },
+    "result_ref": {
+      "type": "string"
+    },
+    "started_at": {
+      "type": "string"
+    },
+    "finished_at": {
+      "type": "string"
+    },
+    "requested_by": {
+      "type": "string"
+    },
+    "stages": {
+      "type": "array",
+      "default": []
+    }
+  },
+  "required": [
+    "organization_id",
+    "school_id",
+    "observation_id",
+    "type",
+    "idempotency_key"
+  ],
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "__ii_internal_only__"
+      }
+    },
+    "create": {
+      "user_condition": {
+        "role": "__ii_internal_only__"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "__ii_internal_only__"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "__ii_internal_only__"
+      }
+    }
+  }
+}

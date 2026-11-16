@@ -1,0 +1,64 @@
+// Instructional Intelligence entity — accessed only through /api/ii (authorization in backend/src/ii/authz.js)
+{
+  "name": "IIRubricConfig",
+  "type": "object",
+  "properties": {
+    "organization_id": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "dimensions": {
+      "type": "array"
+    },
+    "multipliers": {
+      "type": "object"
+    },
+    "anchors": {
+      "type": "object",
+      "default": {}
+    },
+    "authoritative": {
+      "type": "boolean",
+      "default": false
+    },
+    "imported_by": {
+      "type": "string"
+    },
+    "source_document": {
+      "type": "string"
+    },
+    "active": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "required": [
+    "version",
+    "dimensions",
+    "multipliers"
+  ],
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "__ii_internal_only__"
+      }
+    },
+    "create": {
+      "user_condition": {
+        "role": "__ii_internal_only__"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "__ii_internal_only__"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "__ii_internal_only__"
+      }
+    }
+  }
+}

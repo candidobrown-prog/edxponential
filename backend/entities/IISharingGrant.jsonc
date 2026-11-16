@@ -1,0 +1,73 @@
+// Instructional Intelligence entity — accessed only through /api/ii (authorization in backend/src/ii/authz.js)
+{
+  "name": "IISharingGrant",
+  "type": "object",
+  "properties": {
+    "organization_id": {
+      "type": "string"
+    },
+    "school_id": {
+      "type": "string"
+    },
+    "resource_type": {
+      "type": "string"
+    },
+    "resource_id": {
+      "type": "string"
+    },
+    "owner_email": {
+      "type": "string"
+    },
+    "grantee_email": {
+      "type": "string"
+    },
+    "grantee_role": {
+      "type": "string"
+    },
+    "scope": {
+      "type": "string",
+      "default": "read"
+    },
+    "status": {
+      "type": "string",
+      "default": "active"
+    },
+    "granted_at": {
+      "type": "string"
+    },
+    "revoked_at": {
+      "type": "string"
+    },
+    "reason": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "organization_id",
+    "resource_type",
+    "resource_id",
+    "owner_email"
+  ],
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "__ii_internal_only__"
+      }
+    },
+    "create": {
+      "user_condition": {
+        "role": "__ii_internal_only__"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "__ii_internal_only__"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "__ii_internal_only__"
+      }
+    }
+  }
+}

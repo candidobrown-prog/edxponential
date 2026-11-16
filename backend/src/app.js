@@ -53,7 +53,15 @@ app.post('/api/functions/:name', express.raw({ type: '*/*', limit: '10mb' }), h(
   res.send(Buffer.from(await out.arrayBuffer()));
 }));
 
+// Instructional Intelligence module (feature-flagged). Mounted before the JSON parser: it parses its own bodies
+// (raw media chunks + JSON).
+const { default: iiRouter, enabled: iiEnabled } = await import('./ii/routes.js');
+app.use('/api/ii', iiRouter);
+
 app.use(express.json({ limit: '10mb' }));
+
+// II* entities are internal to the module — never reachable through the generic entity API
+app.use('/api/entities/:entity', (req, res, next) => (/^II[A-Z]/.test(req.params.entity) ? res.status(404).json({ error: 'Not found' }) : next()));
 
 // ---- auth ----
 const attempts = new Map();
@@ -136,7 +144,7 @@ app.get('/api/health', h(async () => {
   const { one } = await import('./db.js');
   let database = 'ok';
   try { await one('SELECT 1 AS ok'); } catch (e) { database = e.message; }
-  return { ok: database === 'ok', database, entities: Object.keys(schemas).length };
+  return { ok: database === 'ok', database, entities: Object.keys(schemas).length, instructional_intelligence: iiEnabled() };
 }));
 app.use('/api', (_req, res) => res.status(404).json({ error: 'Not found' }));
 

@@ -1,0 +1,70 @@
+// Instructional Intelligence entity — accessed only through /api/ii (authorization in backend/src/ii/authz.js)
+{
+  "name": "IIReassessment",
+  "type": "object",
+  "properties": {
+    "organization_id": {
+      "type": "string"
+    },
+    "school_id": {
+      "type": "string"
+    },
+    "action_plan_id": {
+      "type": "string"
+    },
+    "observation_id": {
+      "type": "string"
+    },
+    "teacher_email": {
+      "type": "string"
+    },
+    "standard": {
+      "type": "string"
+    },
+    "due_date": {
+      "type": "string"
+    },
+    "results": {
+      "type": "object",
+      "default": {}
+    },
+    "status": {
+      "type": "string",
+      "default": "planned"
+    },
+    "completed_at": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "organization_id",
+    "school_id",
+    "teacher_email",
+    "standard"
+  ],
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "__ii_internal_only__"
+      }
+    },
+    "create": {
+      "user_condition": {
+        "role": "__ii_internal_only__"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "__ii_internal_only__"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "__ii_internal_only__"
+      }
+    }
+  }
+}

@@ -1,0 +1,109 @@
+// Instructional Intelligence entity — accessed only through /api/ii (authorization in backend/src/ii/authz.js)
+{
+  "name": "IIAnalysis",
+  "type": "object",
+  "properties": {
+    "organization_id": {
+      "type": "string"
+    },
+    "school_id": {
+      "type": "string"
+    },
+    "observation_id": {
+      "type": "string"
+    },
+    "transcript_version_id": {
+      "type": "string"
+    },
+    "questions": {
+      "type": "array",
+      "default": []
+    },
+    "responses": {
+      "type": "array",
+      "default": []
+    },
+    "talk_time": {
+      "type": "object",
+      "default": {}
+    },
+    "engagement": {
+      "type": "object",
+      "default": {}
+    },
+    "misconceptions": {
+      "type": "array",
+      "default": []
+    },
+    "cfu_ratings": {
+      "type": "object",
+      "default": {}
+    },
+    "cfu_result": {
+      "type": "object",
+      "default": {}
+    },
+    "priorities": {
+      "type": "array",
+      "default": []
+    },
+    "mastery_risk": {
+      "type": "object",
+      "default": {}
+    },
+    "status": {
+      "type": "string",
+      "default": "proposed"
+    },
+    "stale": {
+      "type": "boolean",
+      "default": false
+    },
+    "model": {
+      "type": "string"
+    },
+    "warnings": {
+      "type": "array",
+      "default": []
+    },
+    "reviewed_by": {
+      "type": "string"
+    },
+    "approved_by": {
+      "type": "string"
+    },
+    "approved_at": {
+      "type": "string"
+    },
+    "rubric_version": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "organization_id",
+    "school_id",
+    "observation_id"
+  ],
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "__ii_internal_only__"
+      }
+    },
+    "create": {
+      "user_condition": {
+        "role": "__ii_internal_only__"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "__ii_internal_only__"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "__ii_internal_only__"
+      }
+    }
+  }
+}

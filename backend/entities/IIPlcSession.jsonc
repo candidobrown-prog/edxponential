@@ -1,0 +1,76 @@
+// Instructional Intelligence entity — accessed only through /api/ii (authorization in backend/src/ii/authz.js)
+{
+  "name": "IIPlcSession",
+  "type": "object",
+  "properties": {
+    "organization_id": {
+      "type": "string"
+    },
+    "school_id": {
+      "type": "string"
+    },
+    "facilitator_email": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "participants": {
+      "type": "array",
+      "default": []
+    },
+    "standard": {
+      "type": "string"
+    },
+    "hypotheses": {
+      "type": "array",
+      "default": []
+    },
+    "responses": {
+      "type": "array",
+      "default": []
+    },
+    "reassessment_date": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "default": "open"
+    },
+    "evidence_refs": {
+      "type": "array",
+      "default": []
+    }
+  },
+  "required": [
+    "organization_id",
+    "school_id",
+    "facilitator_email",
+    "title"
+  ],
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "__ii_internal_only__"
+      }
+    },
+    "create": {
+      "user_condition": {
+        "role": "__ii_internal_only__"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "__ii_internal_only__"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "__ii_internal_only__"
+      }
+    }
+  }
+}

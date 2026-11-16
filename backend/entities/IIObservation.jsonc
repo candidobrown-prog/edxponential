@@ -1,0 +1,131 @@
+// Instructional Intelligence entity — accessed only through /api/ii (authorization in backend/src/ii/authz.js)
+{
+  "name": "IIObservation",
+  "type": "object",
+  "properties": {
+    "organization_id": {
+      "type": "string"
+    },
+    "school_id": {
+      "type": "string"
+    },
+    "teacher_email": {
+      "type": "string"
+    },
+    "teacher_name": {
+      "type": "string"
+    },
+    "observer_email": {
+      "type": "string"
+    },
+    "grade": {
+      "type": "string"
+    },
+    "subject": {
+      "type": "string"
+    },
+    "date": {
+      "type": "string"
+    },
+    "purpose": {
+      "type": "string"
+    },
+    "duration_type": {
+      "type": "string"
+    },
+    "standard": {
+      "type": "string"
+    },
+    "objective": {
+      "type": "string"
+    },
+    "success_criteria": {
+      "type": "string"
+    },
+    "lesson_type": {
+      "type": "string"
+    },
+    "instructional_phase": {
+      "type": "string"
+    },
+    "students_enrolled": {
+      "type": "number"
+    },
+    "students_present": {
+      "type": "number"
+    },
+    "seating_codes": {
+      "type": "array",
+      "default": []
+    },
+    "evidence_modes": {
+      "type": "array",
+      "default": []
+    },
+    "authorization_id": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "default": "draft"
+    },
+    "notes": {
+      "type": "array",
+      "default": []
+    },
+    "markers": {
+      "type": "array",
+      "default": []
+    },
+    "current_transcript_version_id": {
+      "type": "string"
+    },
+    "current_analysis_id": {
+      "type": "string"
+    },
+    "shared_with_teacher": {
+      "type": "boolean",
+      "default": false
+    },
+    "shared_with_leadership": {
+      "type": "boolean",
+      "default": false
+    },
+    "excluded_intervals": {
+      "type": "array",
+      "default": []
+    },
+    "evidence_types": {
+      "type": "array",
+      "default": []
+    }
+  },
+  "required": [
+    "organization_id",
+    "school_id",
+    "teacher_email",
+    "observer_email"
+  ],
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "__ii_internal_only__"
+      }
+    },
+    "create": {
+      "user_condition": {
+        "role": "__ii_internal_only__"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "__ii_internal_only__"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "__ii_internal_only__"
+      }
+    }
+  }
+}

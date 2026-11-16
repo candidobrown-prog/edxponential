@@ -1,0 +1,62 @@
+// Instructional Intelligence entity — accessed only through /api/ii (authorization in backend/src/ii/authz.js)
+{
+  "name": "IIMembership",
+  "type": "object",
+  "properties": {
+    "user_email": {
+      "type": "string"
+    },
+    "organization_id": {
+      "type": "string"
+    },
+    "school_id": {
+      "type": "string"
+    },
+    "role": {
+      "type": "string",
+      "enum": [
+        "district_admin",
+        "principal",
+        "coach",
+        "teacher",
+        "plc_facilitator",
+        "observer",
+        "reviewer"
+      ]
+    },
+    "status": {
+      "type": "string",
+      "default": "active"
+    },
+    "granted_by": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "user_email",
+    "organization_id",
+    "role"
+  ],
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "__ii_internal_only__"
+      }
+    },
+    "create": {
+      "user_condition": {
+        "role": "__ii_internal_only__"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "__ii_internal_only__"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "__ii_internal_only__"
+      }
+    }
+  }
+}

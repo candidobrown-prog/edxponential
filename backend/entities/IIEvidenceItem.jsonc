@@ -1,0 +1,76 @@
+// Instructional Intelligence entity — accessed only through /api/ii (authorization in backend/src/ii/authz.js)
+{
+  "name": "IIEvidenceItem",
+  "type": "object",
+  "properties": {
+    "organization_id": {
+      "type": "string"
+    },
+    "school_id": {
+      "type": "string"
+    },
+    "observation_id": {
+      "type": "string"
+    },
+    "kind": {
+      "type": "string"
+    },
+    "standard": {
+      "type": "string"
+    },
+    "items": {
+      "type": "array",
+      "default": []
+    },
+    "denominator": {
+      "type": "number"
+    },
+    "correct": {
+      "type": "number"
+    },
+    "aligned": {
+      "type": "boolean"
+    },
+    "summary": {
+      "type": "string"
+    },
+    "source": {
+      "type": "string"
+    },
+    "representative": {
+      "type": "boolean",
+      "default": false
+    },
+    "uploaded_by": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "organization_id",
+    "school_id",
+    "observation_id",
+    "kind"
+  ],
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "__ii_internal_only__"
+      }
+    },
+    "create": {
+      "user_condition": {
+        "role": "__ii_internal_only__"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "__ii_internal_only__"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "__ii_internal_only__"
+      }
+    }
+  }
+}

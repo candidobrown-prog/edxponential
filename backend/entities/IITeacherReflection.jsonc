@@ -1,0 +1,69 @@
+// Instructional Intelligence entity — accessed only through /api/ii (authorization in backend/src/ii/authz.js)
+{
+  "name": "IITeacherReflection",
+  "type": "object",
+  "properties": {
+    "organization_id": {
+      "type": "string"
+    },
+    "school_id": {
+      "type": "string"
+    },
+    "observation_id": {
+      "type": "string"
+    },
+    "teacher_email": {
+      "type": "string"
+    },
+    "answers": {
+      "type": "object",
+      "default": {}
+    },
+    "status": {
+      "type": "string",
+      "default": "draft"
+    },
+    "shared_with": {
+      "type": "array",
+      "default": []
+    },
+    "share_log": {
+      "type": "array",
+      "default": []
+    },
+    "completed_at": {
+      "type": "string"
+    },
+    "estimated_minutes": {
+      "type": "number",
+      "default": 25
+    }
+  },
+  "required": [
+    "organization_id",
+    "school_id",
+    "teacher_email"
+  ],
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "__ii_internal_only__"
+      }
+    },
+    "create": {
+      "user_condition": {
+        "role": "__ii_internal_only__"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "__ii_internal_only__"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "__ii_internal_only__"
+      }
+    }
+  }
+}

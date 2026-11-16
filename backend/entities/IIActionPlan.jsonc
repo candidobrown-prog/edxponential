@@ -1,0 +1,72 @@
+// Instructional Intelligence entity — accessed only through /api/ii (authorization in backend/src/ii/authz.js)
+{
+  "name": "IIActionPlan",
+  "type": "object",
+  "properties": {
+    "organization_id": {
+      "type": "string"
+    },
+    "school_id": {
+      "type": "string"
+    },
+    "observation_id": {
+      "type": "string"
+    },
+    "coaching_session_id": {
+      "type": "string"
+    },
+    "teacher_email": {
+      "type": "string"
+    },
+    "coach_email": {
+      "type": "string"
+    },
+    "items": {
+      "type": "array",
+      "default": []
+    },
+    "status": {
+      "type": "string",
+      "default": "open"
+    },
+    "adult_behavior_evidence": {
+      "type": "array",
+      "default": []
+    },
+    "student_outcome_evidence": {
+      "type": "array",
+      "default": []
+    },
+    "teacher_response": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "organization_id",
+    "school_id",
+    "teacher_email",
+    "coach_email"
+  ],
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "__ii_internal_only__"
+      }
+    },
+    "create": {
+      "user_condition": {
+        "role": "__ii_internal_only__"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "__ii_internal_only__"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "__ii_internal_only__"
+      }
+    }
+  }
+}
