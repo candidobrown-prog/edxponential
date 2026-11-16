@@ -96,6 +96,12 @@ node scripts/import-json.js Transaction transactions.json
 Original ids and created dates are preserved. Base44 passwords cannot be exported, so every user needs a
 password set once (there is no self-service "forgot password" email yet).
 
+## Instructional Intelligence module (feature-flagged)
+
+An integrated classroom-observation, transcription, CFU-100 and coaching module lives under `/ii` and `/api/ii`,
+enabled with `FEATURE_INSTRUCTIONAL_INTELLIGENCE=true`. Documentation, permission matrix, test results and the
+honest implementation status are in `docs/instructional-intelligence/`. Run its tests with `npm test`.
+
 ## Known gaps
 
 - LinkedIn sign-in is not wired up (the button was removed). Needs an OAuth app of your own.

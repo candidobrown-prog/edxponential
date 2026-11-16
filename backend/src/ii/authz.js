@@ -114,5 +114,4 @@ export async function can(ctx, action, resource) {
   try { await require(ctx, action, resource, { audit: false }); return true; } catch { return false; }
 }
 
-/** Minimum group size suppression for aggregates. */
-export function suppress(count, minGroup = 5) { return count < minGroup; }
+export { suppress } from './scoring/suppression.js';

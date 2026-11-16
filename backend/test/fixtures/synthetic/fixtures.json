@@ -1,0 +1,1429 @@
+[
+ {
+  "key": "k_phonemic",
+  "title": "Kindergarten phonemic awareness",
+  "synthetic": true,
+  "label": "SYNTHETIC \u2014 not a real classroom",
+  "context": {
+   "grade": "K",
+   "subject": "ELA",
+   "standard": "RF.K.2.D",
+   "objective": "Isolate initial sounds",
+   "students_present": 18,
+   "instructional_phase": "guided_practice"
+  },
+  "segments": [
+   {
+    "id": "0-T",
+    "start": 0,
+    "end": 20,
+    "speaker": "teacher",
+    "speaker_label": "Teacher",
+    "text": "What sound do you hear at the beginning of sun? Everybody.",
+    "confidence": 0.9,
+    "inaudible": false,
+    "overlap": false,
+    "flags": []
+   },
+   {
+    "id": "20-G",
+    "start": 20,
+    "end": 24,
+    "speaker": "group",
+    "speaker_label": "Group",
+    "text": "/s/",
+    "confidence": 0.9,
+    "inaudible": false,
+    "overlap": false,
+    "flags": []
+   },
+   {
+    "id": "24-T",
+    "start": 24,
+    "end": 40,
+    "speaker": "teacher",
+    "speaker_label": "Teacher",
+    "text": "Good. Now mop. Jaylen code A1, what sound?",
+    "confidence": 0.9,
+    "inaudible": false,
+    "overlap": false,
+    "flags": []
+   },
+   {
+    "id": "40-S",
+    "start": 40,
+    "end": 43,
+    "speaker": "student",
+    "speaker_label": "Student 1",
+    "text": "/m/",
+    "confidence": 0.9,
+    "inaudible": false,
+    "overlap": false,
+    "flags": []
+   },
+   {
+    "id": "43-T",
+    "start": 43,
+    "end": 60,
+    "speaker": "teacher",
+    "speaker_label": "Teacher",
+    "text": "How do you know it is /m/? Say the word slowly.",
+    "confidence": 0.9,
+    "inaudible": false,
+    "overlap": false,
+    "flags": []
+   },
+   {
+    "id": "60-S",
+    "start": 60,
+    "end": 66,
+    "speaker": "student",
+    "speaker_label": "Student 1",
+    "text": "mmm-op. I hear mmm first.",
+    "confidence": 0.9,
+    "inaudible": false,
+    "overlap": false,
+    "flags": []
+   },
+   {
+    "id": "66-T",
+    "start": 66,
+    "end": 80,
+    "speaker": "teacher",
+    "speaker_label": "Teacher",
+    "text": "Turn to your partner and find the first sound in fish.",
+    "confidence": 0.9,
+    "inaudible": false,
+    "overlap": false,
+    "flags": []
+   },
+   {
+    "id": "80-G",
+    "start": 80,
+    "end": 120,
+    "speaker": "group",
+    "speaker_label": "Group",
+    "text": "/f/ fish /f/",
+    "confidence": 0.9,
+    "inaudible": false,
+    "overlap": false,
+    "flags": []
+   }
+  ],
+  "expect": {
+   "talk": {
+    "group_counts_as_student": true,
+    "unique_student_speakers": 1
+   },
+   "ai": {
+    "question_count_min": 3,
+    "highest_dok_max": 2,
+    "responses_include_group": true
+   }
+  },
+  "notes": "Group answers must not be counted as individual mastery."
+ },
+ {
+  "key": "g2_reading",
+  "title": "Grade 2 reading comprehension",
+  "synthetic": true,
+  "label": "SYNTHETIC \u2014 not a real classroom",
+  "context": {
+   "grade": "2",
+   "subject": "ELA",
+   "standard": "RL.2.3",
+   "students_present": 22,
+   "instructional_phase": "discussion"
+  },
+  "segments": [
+   {
+    "id": "0-T",
+    "start": 0,
+    "end": 25,
+    "speaker": "teacher",
+    "speaker_label": "Teacher",
+    "text": "Why do you think the fox tricked the crow? Student 1?",
+    "confidence": 0.9,
+    "inaudible": false,
+    "overlap": false,
+    "flags": []
+   },
+   {
+    "id": "25-S",
+    "start": 25,
+    "end": 40,
+    "speaker": "student",
+    "speaker_label": "Student 1",
+    "text": "Because he wanted the cheese and he knew the crow liked compliments.",
+    "confidence": 0.9,
+    "inaudible": false,
+    "overlap": false,
+    "flags": []
+   },
+   {
+    "id": "40-T",
+    "start": 40,
+    "end": 55,
+    "speaker": "teacher",
+    "speaker_label": "Teacher",
+    "text": "What in the story tells you the crow liked compliments?",
+    "confidence": 0.9,
+    "inaudible": false,
+    "overlap": false,
+    "flags": []
+   },
+   {
+    "id": "55-S",
+    "start": 55,
+    "end": 70,
+    "speaker": "student",
+    "speaker_label": "Student 1",
+    "text": "It said she puffed up her feathers when he said she was beautiful.",
+    "confidence": 0.9,
+    "inaudible": false,
+    "overlap": false,
+    "flags": []
+   },
+   {
+    "id": "70-T",
+    "start": 70,
+    "end": 85,
+    "speaker": "teacher",
+    "speaker_label": "Teacher",
+    "text": "Student 2, do you agree?",
+    "confidence": 0.9,
+    "inaudible": false,
+    "overlap": false,
+    "flags": []
+   },
+   {
+    "id": "85-S",
+    "start": 85,
+    "end": 90,
+    "speaker": "student",
+    "speaker_label": "Student 2",
+    "text": "Yes.",
+    "confidence": 0.9,
+    "inaudible": false,
+    "overlap": false,
+    "flags": []
+   },
+   {
+    "id": "90-T",
+    "start": 90,
+    "end": 105,
+    "speaker": "teacher",
+    "speaker_label": "Teacher",
+    "text": "Why?",
+    "confidence": 0.9,
+    "inaudible": false,
+    "overlap": false,
+    "flags": []
+   },
+   {
+    "id": "105-S",
+    "start": 105,
+    "end": 112,
+    "speaker": "student",
+    "speaker_label": "Student 2",
+    "text": "Because he said so.",
+    "confidence": 0.9,
+    "inaudible": false,
+    "overlap": false,
+    "flags": []
+   }
+  ],
+  "expect": {
+   "talk": {
+    "unique_student_speakers": 2
+   },
+   "ai": {
+    "response_with_weak_reasoning": "Student 2",
+    "question_count_min": 3
+   }
+  },
+  "notes": "Student 2 is correct without explanation (F20)."
+ },
+ {
+  "key": "g4_math_misconception",
+  "title": "Grade 4 mathematics \u2014 misconception-rich fraction discussion",
+  "synthetic": true,
+  "label": "SYNTHETIC \u2014 not a real classroom",
+  "context": {
+   "grade": "4",
+   "subject": "Math",
+   "standard": "4.NF.A.2",
+   "students_present": 26,
+   "instructional_phase": "discussion"
+  },
+  "segments": [
+   {
+    "id": "0-T",
+    "start": 0,
+    "end": 20,
+    "speaker": "teacher",
+    "speaker_label": "Teacher",
+    "text": "Which is bigger, one third or one fourth? Show me with your hands and explain. Student 1.",
+    "confidence": 0.9,
+    "inaudible": false,
+    "overlap": false,
+    "flags": []
+   },
+   {
+    "id": "20-S",
+    "start": 20,
+    "end": 32,
+    "speaker": "student",
+    "speaker_label": "Student 1",
+    "text": "One fourth, because four is bigger than three.",
+    "confidence": 0.9,
+    "inaudible": false,
+    "overlap": false,
+    "flags": []
+   },
+   {
+    "id": "32-T",
+    "start": 32,
+    "end": 50,
+    "speaker": "teacher",
+    "speaker_label": "Teacher",
+    "text": "Interesting. Student 2, same or different?",
+    "confidence": 0.9,
+    "inaudible": false,
+    "overlap": false,
+    "flags": []
+   },
+   {
+    "id": "50-S",
+    "start": 50,
+    "end": 65,
+    "speaker": "student",
+    "speaker_label": "Student 2",
+    "text": "Different. If you cut a pizza into four you get smaller pieces, so one third is bigger.",
+    "confidence": 0.9,
+    "inaudible": false,
+    "overlap": false,
+    "flags": []
+   },
+   {
+    "id": "65-T",
+    "start": 65,
+    "end": 90,
+    "speaker": "teacher",
+    "speaker_label": "Teacher",
+    "text": "Student 1, what do you think about that pizza idea?",
+    "confidence": 0.9,
+    "inaudible": false,
+    "overlap": false,
+    "flags": []
+   },
+   {
+    "id": "90-S",
+    "start": 90,
+    "end": 105,
+    "speaker": "student",
+    "speaker_label": "Student 1",
+    "text": "Oh. The pieces are smaller. But the number is bigger so I was confused.",
+    "confidence": 0.9,
+    "inaudible": false,
+    "overlap": false,
+    "flags": []
+   },
+   {
+    "id": "105-T",
+    "start": 105,
+    "end": 130,
+    "speaker": "teacher",
+    "speaker_label": "Teacher",
+    "text": "Everyone, with your partner: is one fifth bigger or smaller than one third, and why?",
+    "confidence": 0.9,
+    "inaudible": false,
+    "overlap": false,
+    "flags": []
+   },
+   {
+    "id": "130-G",
+    "start": 130,
+    "end": 190,
+    "speaker": "group",
+    "speaker_label": "Group",
+    "text": "smaller smaller because more pieces",
+    "confidence": 0.9,
+    "inaudible": false,
+    "overlap": false,
+    "flags": []
+   }
+  ],
+  "expect": {
+   "talk": {
+    "unique_student_speakers": 2
+   },
+   "ai": {
+    "misconception_type": "conceptual_error",
+    "misconception_min": 1,
+    "correct_response_by": "Student 2"
+   }
+  },
+  "notes": "Classic whole-number-reasoning misconception; competing explanation should be offered."
+ },
+ {
+  "key": "g6_science",
+  "title": "Grade 6 science",
+  "synthetic": true,
+  "label": "SYNTHETIC \u2014 not a real classroom",
+  "context": {
+   "grade": "6",
+   "subject": "Science",
+   "standard": "MS-PS1-4",
+   "students_present": 27,
+   "instructional_phase": "lab"
+  },
+  "segments": [
+   {
+    "id": "0-T",
+    "start": 0,
+    "end": 30,
+    "speaker": "teacher",
+    "speaker_label": "Teacher",
+    "text": "Before we heat the water, predict: what will happen to the particles? Write it, then tell your table.",
+    "confidence": 0.9,
+    "inaudible": false,
+    "overlap": false,
+    "flags": []
+   },
+   {
+    "id": "30-U",
+    "start": 30,
+    "end": 120,
+    "speaker": "unknown",
+    "speaker_label": null,
+    "text": "[inaudible] table talk",
+    "confidence": 0.9,
+    "inaudible": true,
+    "overlap": false,
+    "flags": []
+   },
+   {
+    "id": "120-T",
+    "start": 120,
+    "end": 140,
+    "speaker": "teacher",
+    "speaker_label": "Teacher",
+    "text": "Student 3, what did your table predict?",
+    "confidence": 0.9,
+    "inaudible": false,
+    "overlap": false,
+    "flags": []
+   },
+   {
+    "id": "140-S",
+    "start": 140,
+    "end": 160,
+    "speaker": "student",
+    "speaker_label": "Student 3",
+    "text": "The particles will get bigger when it gets hot.",
+    "confidence": 0.9,
+    "inaudible": false,
+    "overlap": false,
+    "flags": []
+   },
+   {
+    "id": "160-T",
+    "start": 160,
+    "end": 185,
+    "speaker": "teacher",
+    "speaker_label": "Teacher",
+    "text": "Get bigger, or something else changes? What did the simulation show yesterday?",
+    "confidence": 0.9,
+    "inaudible": false,
+    "overlap": false,
+    "flags": []
+   },
+   {
+    "id": "185-S",
+    "start": 185,
+    "end": 200,
+    "speaker": "student",
+    "speaker_label": "Student 3",
+    "text": "They moved faster and spread out. So not bigger, farther apart.",
+    "confidence": 0.9,
+    "inaudible": false,
+    "overlap": false,
+    "flags": []
+   }
+  ],
+  "expect": {
+   "talk": {
+    "unknown_seconds_min": 80
+   },
+   "ai": {
+    "misconception_type": "conceptual_error",
+    "teacher_responsiveness": "present"
+   }
+  },
+  "notes": "Inaudible table talk must stay unknown, not attributed."
+ },
+ {
+  "key": "g7_social",
+  "title": "Grade 7 social studies \u2014 teacher-dominant lecture",
+  "synthetic": true,
+  "label": "SYNTHETIC \u2014 not a real classroom",
+  "context": {
+   "grade": "7",
+   "subject": "Social Studies",
+   "standard": "D2.His.1.6-8",
+   "students_present": 29,
+   "instructional_phase": "explicit_modeling",
+   "lesson_type": "new_learning"
+  },
+  "segments": [
+   {
+    "id": "0-T",
+    "start": 0,
+    "end": 300,
+    "speaker": "teacher",
+    "speaker_label": "Teacher",
+    "text": "Today I am going to explain the three causes of the war. The first cause was economic. ... The second cause ... The third cause ... Any questions? No? Good.",
+    "confidence": 0.9,
+    "inaudible": false,
+    "overlap": false,
+    "flags": []
+   },
+   {
+    "id": "300-S",
+    "start": 300,
+    "end": 305,
+    "speaker": "student",
+    "speaker_label": "Student 1",
+    "text": "No.",
+    "confidence": 0.9,
+    "inaudible": false,
+    "overlap": false,
+    "flags": []
+   },
+   {
+    "id": "305-T",
+    "start": 305,
+    "end": 420,
+    "speaker": "teacher",
+    "speaker_label": "Teacher",
+    "text": "Then let us move on to the timeline ...",
+    "confidence": 0.9,
+    "inaudible": false,
+    "overlap": false,
+    "flags": []
+   }
+  ],
+  "expect": {
+   "talk": {
+    "student_pct_max": 5,
+    "band": 1
+   },
+   "ai": {
+    "question_count_max": 1,
+    "cfu_intentionality": "low"
+   }
+  },
+  "notes": "Documented explicit modelling phase: context note applies (F26) but zero CFU is still a finding."
+ },
+ {
+  "key": "g8_ela",
+  "title": "Grade 8 ELA \u2014 student-led discussion",
+  "synthetic": true,
+  "label": "SYNTHETIC \u2014 not a real classroom",
+  "context": {
+   "grade": "8",
+   "subject": "ELA",
+   "standard": "RL.8.2",
+   "students_present": 24,
+   "instructional_phase": "discussion"
+  },
+  "segments": [
+   {
+    "id": "0-T",
+    "start": 0,
+    "end": 15,
+    "speaker": "teacher",
+    "speaker_label": "Teacher",
+    "text": "Student 1, you are leading. Go ahead.",
+    "confidence": 0.9,
+    "inaudible": false,
+    "overlap": false,
+    "flags": []
+   },
+   {
+    "id": "15-S",
+    "start": 15,
+    "end": 60,
+    "speaker": "student",
+    "speaker_label": "Student 1",
+    "text": "I think the theme is that power isolates people. On page 40 she says she has no one left to tell the truth to. Student 4, you disagreed.",
+    "confidence": 0.9,
+    "inaudible": false,
+    "overlap": false,
+    "flags": []
+   },
+   {
+    "id": "60-S",
+    "start": 60,
+    "end": 110,
+    "speaker": "student",
+    "speaker_label": "Student 4",
+    "text": "I do not disagree, I think it is more specific. It is that power makes people lie to themselves. The mirror scene shows that.",
+    "confidence": 0.9,
+    "inaudible": false,
+    "overlap": false,
+    "flags": []
+   },
+   {
+    "id": "110-S",
+    "start": 110,
+    "end": 150,
+    "speaker": "student",
+    "speaker_label": "Student 2",
+    "text": "Can I add to that? The mirror scene is where she actually says the truth for once, so maybe both.",
+    "confidence": 0.9,
+    "inaudible": false,
+    "overlap": false,
+    "flags": []
+   },
+   {
+    "id": "150-T",
+    "start": 150,
+    "end": 170,
+    "speaker": "teacher",
+    "speaker_label": "Teacher",
+    "text": "Say more about how both could be true at the same time.",
+    "confidence": 0.9,
+    "inaudible": false,
+    "overlap": false,
+    "flags": []
+   },
+   {
+    "id": "170-S",
+    "start": 170,
+    "end": 220,
+    "speaker": "student",
+    "speaker_label": "Student 2",
+    "text": "Isolation comes first and then she lies to herself because nobody corrects her.",
+    "confidence": 0.9,
+    "inaudible": false,
+    "overlap": false,
+    "flags": []
+   }
+  ],
+  "expect": {
+   "talk": {
+    "student_pct_min": 70,
+    "band": 5,
+    "unique_student_speakers": 3
+   },
+   "ai": {
+    "highest_dok_min": 3
+   }
+  },
+  "notes": "Strong student talk with rigour; band 5 is defensible only with cognitive rigour evidence."
+ },
+ {
+  "key": "alg1_strong_talk_weak_learning",
+  "title": "Algebra I \u2014 strong student talk, weak learning",
+  "synthetic": true,
+  "label": "SYNTHETIC \u2014 not a real classroom",
+  "context": {
+   "grade": "9",
+   "subject": "Algebra I",
+   "standard": "A-REI.B.3",
+   "students_present": 30,
+   "instructional_phase": "collaborative"
+  },
+  "segments": [
+   {
+    "id": "0-T",
+    "start": 0,
+    "end": 10,
+    "speaker": "teacher",
+    "speaker_label": "Teacher",
+    "text": "Solve 3x plus 5 equals 20 with your partner and explain each step.",
+    "confidence": 0.9,
+    "inaudible": false,
+    "overlap": false,
+    "flags": []
+   },
+   {
+    "id": "10-S",
+    "start": 10,
+    "end": 70,
+    "speaker": "student",
+    "speaker_label": "Student 1",
+    "text": "You add five to both sides, so 3x equals 25, then divide, x is like 8.3.",
+    "confidence": 0.9,
+    "inaudible": false,
+    "overlap": false,
+    "flags": []
+   },
+   {
+    "id": "70-S",
+    "start": 70,
+    "end": 120,
+    "speaker": "student",
+    "speaker_label": "Student 2",
+    "text": "Yeah I got that too, 8.3.",
+    "confidence": 0.9,
+    "inaudible": false,
+    "overlap": false,
+    "flags": []
+   },
+   {
+    "id": "120-S",
+    "start": 120,
+    "end": 160,
+    "speaker": "student",
+    "speaker_label": "Student 3",
+    "text": "Mine was 8.33 so same thing.",
+    "confidence": 0.9,
+    "inaudible": false,
+    "overlap": false,
+    "flags": []
+   },
+   {
+    "id": "160-T",
+    "start": 160,
+    "end": 175,
+    "speaker": "teacher",
+    "speaker_label": "Teacher",
+    "text": "Great discussion everyone, move on to number two.",
+    "confidence": 0.9,
+    "inaudible": false,
+    "overlap": false,
+    "flags": []
+   }
+  ],
+  "expect": {
+   "talk": {
+    "student_pct_min": 60
+   },
+   "ai": {
+    "incorrect_responses_min": 2,
+    "missed_opportunity": true,
+    "misconception_type": "procedural_error"
+   }
+  },
+  "notes": "High participation with a shared procedural error the teacher did not catch (F35)."
+ },
+ {
+  "key": "geometry_silent_productive",
+  "title": "Geometry \u2014 limited talk with strong independent work",
+  "synthetic": true,
+  "label": "SYNTHETIC \u2014 not a real classroom",
+  "context": {
+   "grade": "10",
+   "subject": "Geometry",
+   "standard": "G-CO.C.10",
+   "students_present": 25,
+   "instructional_phase": "independent_practice"
+  },
+  "segments": [
+   {
+    "id": "0-T",
+    "start": 0,
+    "end": 40,
+    "speaker": "teacher",
+    "speaker_label": "Teacher",
+    "text": "Prove the base angles of an isosceles triangle are congruent. Twelve minutes. I will circulate.",
+    "confidence": 0.9,
+    "inaudible": false,
+    "overlap": false,
+    "flags": []
+   },
+   {
+    "id": "40-T",
+    "start": 40,
+    "end": 60,
+    "speaker": "teacher",
+    "speaker_label": "Teacher",
+    "text": "Student 5, your auxiliary line choice is interesting. Why the median?",
+    "confidence": 0.9,
+    "inaudible": false,
+    "overlap": false,
+    "flags": []
+   },
+   {
+    "id": "60-S",
+    "start": 60,
+    "end": 90,
+    "speaker": "student",
+    "speaker_label": "Student 5",
+    "text": "Because then I get SSS with the shared side, which gives me the angles by CPCTC.",
+    "confidence": 0.9,
+    "inaudible": false,
+    "overlap": false,
+    "flags": []
+   },
+   {
+    "id": "90-T",
+    "start": 90,
+    "end": 100,
+    "speaker": "teacher",
+    "speaker_label": "Teacher",
+    "text": "Nice. Keep going.",
+    "confidence": 0.9,
+    "inaudible": false,
+    "overlap": false,
+    "flags": []
+   }
+  ],
+  "expect": {
+   "excluded": [
+    {
+     "start": 100,
+     "end": 760,
+     "reason": "independent work"
+    }
+   ],
+   "talk": {
+    "band_null_or_low": true,
+    "silence_min": 600
+   },
+   "ai": {
+    "engagement_task_domain": "unscored_on_audio"
+   }
+  },
+  "notes": "Silence is productive here (F27); audio cannot score task engagement (F31)."
+ },
+ {
+  "key": "biology_weak_cfu",
+  "title": "Biology \u2014 weak formative assessment",
+  "synthetic": true,
+  "label": "SYNTHETIC \u2014 not a real classroom",
+  "context": {
+   "grade": "10",
+   "subject": "Biology",
+   "standard": "HS-LS1-2",
+   "students_present": 28,
+   "instructional_phase": "guided_practice"
+  },
+  "segments": [
+   {
+    "id": "0-T",
+    "start": 0,
+    "end": 60,
+    "speaker": "teacher",
+    "speaker_label": "Teacher",
+    "text": "So mitochondria make ATP. Everyone understand? Thumbs up. Great. Next slide. The nucleus holds DNA. Got it? Okay.",
+    "confidence": 0.9,
+    "inaudible": false,
+    "overlap": false,
+    "flags": []
+   },
+   {
+    "id": "60-G",
+    "start": 60,
+    "end": 62,
+    "speaker": "group",
+    "speaker_label": "Group",
+    "text": "yes",
+    "confidence": 0.9,
+    "inaudible": false,
+    "overlap": false,
+    "flags": []
+   },
+   {
+    "id": "62-T",
+    "start": 62,
+    "end": 120,
+    "speaker": "teacher",
+    "speaker_label": "Teacher",
+    "text": "Now the ribosomes ...",
+    "confidence": 0.9,
+    "inaudible": false,
+    "overlap": false,
+    "flags": []
+   }
+  ],
+  "expect": {
+   "ai": {
+    "cfu_intentionality": "low",
+    "question_quality": "low",
+    "question_count_max": 2
+   }
+  },
+  "notes": "Thumbs-up checks are not evidence of understanding."
+ },
+ {
+  "key": "history_misaligned",
+  "title": "High school history \u2014 misaligned questioning",
+  "synthetic": true,
+  "label": "SYNTHETIC \u2014 not a real classroom",
+  "context": {
+   "grade": "11",
+   "subject": "US History",
+   "standard": "Evaluate the causes of the Great Depression",
+   "students_present": 26,
+   "instructional_phase": "discussion"
+  },
+  "segments": [
+   {
+    "id": "0-T",
+    "start": 0,
+    "end": 20,
+    "speaker": "teacher",
+    "speaker_label": "Teacher",
+    "text": "What year did the stock market crash?",
+    "confidence": 0.9,
+    "inaudible": false,
+    "overlap": false,
+    "flags": []
+   },
+   {
+    "id": "20-S",
+    "start": 20,
+    "end": 23,
+    "speaker": "student",
+    "speaker_label": "Student 1",
+    "text": "1929",
+    "confidence": 0.9,
+    "inaudible": false,
+    "overlap": false,
+    "flags": []
+   },
+   {
+    "id": "23-T",
+    "start": 23,
+    "end": 40,
+    "speaker": "teacher",
+    "speaker_label": "Teacher",
+    "text": "And who was president?",
+    "confidence": 0.9,
+    "inaudible": false,
+    "overlap": false,
+    "flags": []
+   },
+   {
+    "id": "40-S",
+    "start": 40,
+    "end": 43,
+    "speaker": "student",
+    "speaker_label": "Student 2",
+    "text": "Hoover",
+    "confidence": 0.9,
+    "inaudible": false,
+    "overlap": false,
+    "flags": []
+   },
+   {
+    "id": "43-T",
+    "start": 43,
+    "end": 60,
+    "speaker": "teacher",
+    "speaker_label": "Teacher",
+    "text": "What did people call the shanty towns?",
+    "confidence": 0.9,
+    "inaudible": false,
+    "overlap": false,
+    "flags": []
+   },
+   {
+    "id": "60-S",
+    "start": 60,
+    "end": 63,
+    "speaker": "student",
+    "speaker_label": "Student 3",
+    "text": "Hoovervilles",
+    "confidence": 0.9,
+    "inaudible": false,
+    "overlap": false,
+    "flags": []
+   }
+  ],
+  "expect": {
+   "ai": {
+    "highest_dok_max": 1,
+    "most_consequential_asked": false,
+    "alignment": "partially_aligned_or_not"
+   }
+  },
+  "notes": "Recall questions that sound historical are still DOK 1 (F19/F22/F23)."
+ },
+ {
+  "key": "writing_feedback",
+  "title": "Writing instruction \u2014 actionable feedback",
+  "synthetic": true,
+  "label": "SYNTHETIC \u2014 not a real classroom",
+  "context": {
+   "grade": "5",
+   "subject": "Writing",
+   "standard": "W.5.1.B",
+   "students_present": 24,
+   "instructional_phase": "guided_practice"
+  },
+  "segments": [
+   {
+    "id": "0-T",
+    "start": 0,
+    "end": 30,
+    "speaker": "teacher",
+    "speaker_label": "Teacher",
+    "text": "Student 2, read me your reason sentence.",
+    "confidence": 0.9,
+    "inaudible": false,
+    "overlap": false,
+    "flags": []
+   },
+   {
+    "id": "30-S",
+    "start": 30,
+    "end": 45,
+    "speaker": "student",
+    "speaker_label": "Student 2",
+    "text": "Dogs are good because they are good.",
+    "confidence": 0.9,
+    "inaudible": false,
+    "overlap": false,
+    "flags": []
+   },
+   {
+    "id": "45-T",
+    "start": 45,
+    "end": 80,
+    "speaker": "teacher",
+    "speaker_label": "Teacher",
+    "text": "You have a claim and a reason word, because. Right now the reason repeats the claim. Give me one fact about dogs that supports good.",
+    "confidence": 0.9,
+    "inaudible": false,
+    "overlap": false,
+    "flags": []
+   },
+   {
+    "id": "80-S",
+    "start": 80,
+    "end": 95,
+    "speaker": "student",
+    "speaker_label": "Student 2",
+    "text": "Dogs can be trained to help blind people.",
+    "confidence": 0.9,
+    "inaudible": false,
+    "overlap": false,
+    "flags": []
+   },
+   {
+    "id": "95-T",
+    "start": 95,
+    "end": 110,
+    "speaker": "teacher",
+    "speaker_label": "Teacher",
+    "text": "Now put that after because and read it again.",
+    "confidence": 0.9,
+    "inaudible": false,
+    "overlap": false,
+    "flags": []
+   },
+   {
+    "id": "110-S",
+    "start": 110,
+    "end": 125,
+    "speaker": "student",
+    "speaker_label": "Student 2",
+    "text": "Dogs are good because they can be trained to help blind people.",
+    "confidence": 0.9,
+    "inaudible": false,
+    "overlap": false,
+    "flags": []
+   }
+  ],
+  "expect": {
+   "ai": {
+    "actionable_feedback": "present",
+    "teacher_responsiveness": "present"
+   }
+  },
+  "notes": "Specific, immediate, usable feedback."
+ },
+ {
+  "key": "multilingual",
+  "title": "Multilingual classroom discussion with code-switching",
+  "synthetic": true,
+  "label": "SYNTHETIC \u2014 not a real classroom",
+  "context": {
+   "grade": "3",
+   "subject": "Math",
+   "standard": "3.OA.A.3",
+   "students_present": 21,
+   "instructional_phase": "collaborative"
+  },
+  "segments": [
+   {
+    "id": "0-T",
+    "start": 0,
+    "end": 20,
+    "speaker": "teacher",
+    "speaker_label": "Teacher",
+    "text": "How many legs on four dogs? Explain to your partner, you can use Spanish or English.",
+    "confidence": 0.9,
+    "inaudible": false,
+    "overlap": false,
+    "flags": []
+   },
+   {
+    "id": "20-S",
+    "start": 20,
+    "end": 45,
+    "speaker": "student",
+    "speaker_label": "Student 1",
+    "text": "Cuatro perros, each one tiene four legs, so four times four, diecis\u00e9is.",
+    "confidence": 0.9,
+    "inaudible": false,
+    "overlap": false,
+    "flags": []
+   },
+   {
+    "id": "45-T",
+    "start": 45,
+    "end": 60,
+    "speaker": "teacher",
+    "speaker_label": "Teacher",
+    "text": "Student 1, say your thinking for everyone.",
+    "confidence": 0.9,
+    "inaudible": false,
+    "overlap": false,
+    "flags": []
+   },
+   {
+    "id": "60-S",
+    "start": 60,
+    "end": 80,
+    "speaker": "student",
+    "speaker_label": "Student 1",
+    "text": "Four groups of four. Sixteen.",
+    "confidence": 0.9,
+    "inaudible": false,
+    "overlap": false,
+    "flags": []
+   }
+  ],
+  "expect": {
+   "ai": {
+    "preserve_language": true,
+    "correct_response_by": "Student 1"
+   }
+  },
+  "notes": "Preserve code-switching verbatim; do not correct it (F15)."
+ },
+ {
+  "key": "sped_accommodations",
+  "title": "Special education \u2014 accommodated instruction",
+  "synthetic": true,
+  "label": "SYNTHETIC \u2014 not a real classroom",
+  "context": {
+   "grade": "6",
+   "subject": "Math",
+   "standard": "6.RP.A.1",
+   "students_present": 8,
+   "instructional_phase": "guided_practice"
+  },
+  "segments": [
+   {
+    "id": "0-T",
+    "start": 0,
+    "end": 30,
+    "speaker": "teacher",
+    "speaker_label": "Teacher",
+    "text": "Using your ratio cards, show me two to three. Take your time.",
+    "confidence": 0.9,
+    "inaudible": false,
+    "overlap": false,
+    "flags": []
+   },
+   {
+    "id": "30-U",
+    "start": 30,
+    "end": 90,
+    "speaker": "unknown",
+    "speaker_label": null,
+    "text": "[inaudible] cards moving",
+    "confidence": 0.9,
+    "inaudible": true,
+    "overlap": false,
+    "flags": []
+   },
+   {
+    "id": "90-T",
+    "start": 90,
+    "end": 110,
+    "speaker": "teacher",
+    "speaker_label": "Teacher",
+    "text": "Student 1, tell me what your cards show.",
+    "confidence": 0.9,
+    "inaudible": false,
+    "overlap": false,
+    "flags": []
+   },
+   {
+    "id": "110-S",
+    "start": 110,
+    "end": 130,
+    "speaker": "student",
+    "speaker_label": "Student 1",
+    "text": "Two blue, three red. For every two blue there are three red.",
+    "confidence": 0.9,
+    "inaudible": false,
+    "overlap": false,
+    "flags": []
+   },
+   {
+    "id": "130-T",
+    "start": 130,
+    "end": 150,
+    "speaker": "teacher",
+    "speaker_label": "Teacher",
+    "text": "What if there were four blue?",
+    "confidence": 0.9,
+    "inaudible": false,
+    "overlap": false,
+    "flags": []
+   },
+   {
+    "id": "150-S",
+    "start": 150,
+    "end": 170,
+    "speaker": "student",
+    "speaker_label": "Student 1",
+    "text": "Then six red. It doubles.",
+    "confidence": 0.9,
+    "inaudible": false,
+    "overlap": false,
+    "flags": []
+   }
+  ],
+  "expect": {
+   "talk": {
+    "unique_student_speakers": 1
+   },
+   "aggregates": {
+    "suppress_below": 5
+   },
+   "ai": {
+    "correct_response_by": "Student 1"
+   }
+  },
+  "notes": "Small class: whole-class claims limited; aggregates suppressed (F34/F44)."
+ },
+ {
+  "key": "overlap_inaudible",
+  "title": "Overlapping voices and inaudible discussion",
+  "synthetic": true,
+  "label": "SYNTHETIC \u2014 not a real classroom",
+  "context": {
+   "grade": "7",
+   "subject": "Math",
+   "standard": "7.EE.B.4",
+   "students_present": 30,
+   "instructional_phase": "discussion"
+  },
+  "segments": [
+   {
+    "id": "0-T",
+    "start": 0,
+    "end": 20,
+    "speaker": "teacher",
+    "speaker_label": "Teacher",
+    "text": "What is the first step?",
+    "confidence": 0.9,
+    "inaudible": false,
+    "overlap": false,
+    "flags": []
+   },
+   {
+    "id": "18-S",
+    "start": 18,
+    "end": 30,
+    "speaker": "student",
+    "speaker_label": "Student 1",
+    "text": "Subtract seven",
+    "confidence": 0.9,
+    "inaudible": false,
+    "overlap": true,
+    "flags": []
+   },
+   {
+    "id": "19-S",
+    "start": 19,
+    "end": 31,
+    "speaker": "student",
+    "speaker_label": "Student 2",
+    "text": "Divide by two",
+    "confidence": 0.9,
+    "inaudible": false,
+    "overlap": true,
+    "flags": []
+   },
+   {
+    "id": "31-T",
+    "start": 31,
+    "end": 45,
+    "speaker": "teacher",
+    "speaker_label": "Teacher",
+    "text": "One at a time. Student 2?",
+    "confidence": 0.9,
+    "inaudible": false,
+    "overlap": false,
+    "flags": []
+   },
+   {
+    "id": "45-U",
+    "start": 45,
+    "end": 60,
+    "speaker": "unknown",
+    "speaker_label": null,
+    "text": "[inaudible]",
+    "confidence": 0.9,
+    "inaudible": true,
+    "overlap": false,
+    "flags": []
+   },
+   {
+    "id": "60-T",
+    "start": 60,
+    "end": 75,
+    "speaker": "teacher",
+    "speaker_label": "Teacher",
+    "text": "I could not hear that. Say it again.",
+    "confidence": 0.9,
+    "inaudible": false,
+    "overlap": false,
+    "flags": []
+   },
+   {
+    "id": "75-S",
+    "start": 75,
+    "end": 85,
+    "speaker": "student",
+    "speaker_label": "Student 2",
+    "text": "Divide by two first.",
+    "confidence": 0.9,
+    "inaudible": false,
+    "overlap": false,
+    "flags": []
+   }
+  ],
+  "expect": {
+   "talk": {
+    "overlap_seconds_min": 10
+   },
+   "ai": {
+    "unknown_or_inaudible_handling": true
+   }
+  },
+  "notes": "Overlap must be flagged (F11/F13/F14); correctness of overlapping answers not attributed."
+ },
+ {
+  "key": "improvement_after_coaching",
+  "title": "Strong instructional improvement after coaching (follow-up)",
+  "synthetic": true,
+  "label": "SYNTHETIC \u2014 not a real classroom",
+  "context": {
+   "grade": "7",
+   "subject": "Math",
+   "standard": "7.RP.A.2",
+   "students_present": 25,
+   "instructional_phase": "discussion",
+   "purpose": "follow_up"
+  },
+  "segments": [
+   {
+    "id": "0-T",
+    "start": 0,
+    "end": 15,
+    "speaker": "teacher",
+    "speaker_label": "Teacher",
+    "text": "Is this table proportional? Thumbs are not enough today: Student 3, how do you know?",
+    "confidence": 0.9,
+    "inaudible": false,
+    "overlap": false,
+    "flags": []
+   },
+   {
+    "id": "15-S",
+    "start": 15,
+    "end": 35,
+    "speaker": "student",
+    "speaker_label": "Student 3",
+    "text": "Every y divided by x is 4, and when x is zero y is zero.",
+    "confidence": 0.9,
+    "inaudible": false,
+    "overlap": false,
+    "flags": []
+   },
+   {
+    "id": "35-T",
+    "start": 35,
+    "end": 50,
+    "speaker": "teacher",
+    "speaker_label": "Teacher",
+    "text": "Student 6, could it still be proportional if it did not go through zero?",
+    "confidence": 0.9,
+    "inaudible": false,
+    "overlap": false,
+    "flags": []
+   },
+   {
+    "id": "50-S",
+    "start": 50,
+    "end": 70,
+    "speaker": "student",
+    "speaker_label": "Student 6",
+    "text": "No, because then it is not a constant ratio from the start, it is y equals mx plus b with a b.",
+    "confidence": 0.9,
+    "inaudible": false,
+    "overlap": false,
+    "flags": []
+   },
+   {
+    "id": "70-T",
+    "start": 70,
+    "end": 90,
+    "speaker": "teacher",
+    "speaker_label": "Teacher",
+    "text": "Everyone write one sentence: proportional means ... Student 1, read yours.",
+    "confidence": 0.9,
+    "inaudible": false,
+    "overlap": false,
+    "flags": []
+   },
+   {
+    "id": "90-S",
+    "start": 90,
+    "end": 105,
+    "speaker": "student",
+    "speaker_label": "Student 1",
+    "text": "Proportional means constant ratio and through the origin.",
+    "confidence": 0.9,
+    "inaudible": false,
+    "overlap": false,
+    "flags": []
+   },
+   {
+    "id": "105-T",
+    "start": 105,
+    "end": 125,
+    "speaker": "teacher",
+    "speaker_label": "Teacher",
+    "text": "Exit ticket: table 4, is it proportional and how do you know? Two sentences.",
+    "confidence": 0.9,
+    "inaudible": false,
+    "overlap": false,
+    "flags": []
+   }
+  ],
+  "expect": {
+   "talk": {
+    "unique_student_speakers": 3
+   },
+   "ai": {
+    "highest_dok_min": 2,
+    "cfu_intentionality": "high",
+    "most_consequential_asked": true
+   }
+  },
+  "notes": "Compare with the baseline fixture to show adult behaviour change \u2192 student response."
+ }
+]

@@ -47,7 +47,9 @@ export function computeTalkTime(segments, opts = {}) {
   const teacher = unionLength(byKind.teacher);
   const student = unionLength([...byKind.student, ...byKind.group]);
   const unknown = unionLength(byKind.unknown);
-  const overlap = crossOverlap([byKind.teacher, [...byKind.student, ...byKind.group], byKind.unknown]);
+  // Any time where two different speaker slots talk at once (teacher vs student, or student vs student)
+  const bySlot = {}; for (const s of segs) (bySlot[s.label || s.kind] ||= []).push(s);
+  const overlap = crossOverlap(Object.values(bySlot));
   const anySpeech = unionLength(segs);
   // Attributable, non-overlapping teacher+student speech is the denominator for discourse percentages.
   // Time where teacher and students overlap is split evenly so neither side is credited twice.
