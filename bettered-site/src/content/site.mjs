@@ -258,7 +258,7 @@ export const founder = {
   story: [
     'Candido was born in Salem, New Jersey, and grew up in Baltimore from the age of one. The city gave him his hardest challenges and his most extraordinary teachers. He graduated from Baltimore City College, earned a bachelor\'s degree in sociology at Johns Hopkins University, and a master\'s degree in Education Policy and Management at the Harvard Graduate School of Education.',
     'After Harvard he joined Success Academy Charter Schools when the network had three schools, and spent ten years there as a teacher, principal, principal director, network director and managing director of schools. He learned what it takes to open, lead and improve schools at pace, and what it costs children when adults delay.',
-    'He returned to work in Baltimore and founded BetterEd Solutions in 2019 to bring that discipline to schools that need it most: diagnose honestly, treat decisively, and stay until the results hold.',
+    'He founded BetterEd Solutions in New Jersey in 2019 to bring that discipline to schools that need it most: diagnose honestly, treat decisively, and stay until the results hold.',
   ],
   creds: [
     ['Baltimore City College', 'Graduate'],
