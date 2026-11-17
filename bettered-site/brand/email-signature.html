@@ -151,7 +151,7 @@
   var DEFAULTS = { name: 'Candido Brown', title: 'Founder and CEO', phone: '1-800-735-0953', website: 'https://betteredsolutions.org', address: '', cta: true, booking: '', li: '', lic: '', ig: '', fb: '', ss: 'https://thebetterschool.substack.com', tt: '', yt: '' };
   var KEY = 'bettered-signature-v1';
   var data = Object.assign({}, DEFAULTS);
-  try { var saved = JSON.parse(localStorage.getItem(KEY) || 'null'); if (saved) Object.keys(saved).forEach(function (k) { if (saved[k] !== '' || !DEFAULTS[k]) data[k] = saved[k]; }); } // an empty saved field never hides a built-in default catch (e) { /* storage unavailable */ }
+  try { var saved = JSON.parse(localStorage.getItem(KEY) || 'null'); if (saved) Object.keys(saved).forEach(function (k) { if (saved[k] !== '' || !DEFAULTS[k]) data[k] = saved[k]; }); } /* an empty saved field never hides a built-in default */ catch (e) { /* storage unavailable */ }
 
   var esc = function (s) { return String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); };
   var url = function (u) { u = String(u || '').trim(); if (!u) return ''; if (!/^https?:\/\//i.test(u)) u = 'https://' + u; return u; };
