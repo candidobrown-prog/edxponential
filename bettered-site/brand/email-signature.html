@@ -80,7 +80,8 @@
         <label for="f-lic">BetterEd on LinkedIn <span class="hint">linkedin.com/company/…</span><input type="url" id="f-lic" data-k="lic"></label>
         <label for="f-ig">Instagram <input type="url" id="f-ig" data-k="ig"></label>
         <label for="f-fb">Facebook <input type="url" id="f-fb" data-k="fb"></label>
-        <label for="f-ss">Substack <input type="url" id="f-ss" data-k="ss"></label>
+        <label for="f-ss">Substack <span class="hint">The Better School</span><input type="url" id="f-ss" data-k="ss"></label>
+        <label for="f-tt">TikTok <span class="hint">Optional. Add once the account exists, for example tiktok.com/@betteredsolutions</span><input type="url" id="f-tt" data-k="tt"></label>
         <label for="f-yt">YouTube <span class="hint">Optional.</span><input type="url" id="f-yt" data-k="yt"></label>
       </fieldset>
     </form>
@@ -147,10 +148,10 @@
   // The logo recipients see: a public, version-pinned file. The preview uses an embedded copy because this page can't load outside images.
   var PUBLIC_LOGO = 'https://cdn.jsdelivr.net/gh/candidobrown-prog/edxponential@40253592051c2cec0db5d6b439bb33c899ef7936/bettered-site/src/assets/email/bettered-mark-128.png';
   var PREVIEW_LOGO = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAIAAABMXPacAAAFB0lEQVR4nOzdf0zUdRzH8fddLDQDmiVYMlAkJE02LK2s+WMrc/5R2WzYgMVsOc254bSssDkr7B9SnFvSGoUB65eYhVpEaCJFQhEqw364bIyIHwd33KlwJN/rs7FIbsfdV7/3vvd3u9fjD3bjuPvjnvf9fO/7+X4/R8SkxIUEcqwEohBAGAIIQwBhCCAMAYQhgDAEEIYAwhBAGAIIQwBhCCAMAYQhgDAEEIYAwhBAGAIIQwBhCCAMAYQhgDAEEIYAwhBAGAIIiyBza6wus1qu/12iebT5j2SpG7FTJu/f+5r3vZrmcLpsvY6Ozp7KqtrW3/6gkLOY/OJc14U6i8VC18vj8UTNeEjdSIif2lpX4f+PVYDST468/f6nw8PDFCoYgv43OyXpzW0bG6pKH158H4UKAniblZx4aP+uVzc/RyGBAL5t3ZhTsGMT8TP7TljQumdWqZ9btu8mTtgC/FENliy8hzghQADFe7arj7DEBgECiJty6+tb1xMbBAgs44lHp8beRjwQILCIiBs2rcskHgigy9NPLjdyQO4HAugy+Zbou+9KJgYIoNei+9OJAQ7E9EqZmUgMEEAv9XmUGCCAXnE8h2MIoFdMdBQxQAC92tr/JgYIoJc6eUkMEECvrp4+YoAAep1p/Z0YmD1A2uIMI1MAHg8FhTq5X1PbQAzMHuBC219kAi3nznd224gBhiBdyg4cJR4sARqry1KTp5MBauQZee/3l5y1Gpiv0jSKyZlLxqj3fnH5IeLBEsBqsRqcvB19tHr1jTyV1RqEncDuovJB9xDxwBAUwE+nz73zQQWxQQB/1MFX9oZtV64wXqmIAP7k5hW0tXcSJwTwze0eylyf99Wx74kZAvhw6fLAU8++WFvfRPxwSnIMdcR7oPKb+cuyQvPqU/hsAZ5AkxI9vfaDR46VfFR5lmfOZzzhEsDpurSz8D2vX6oqdofT1udo7+hqbG4N5bqMUeESoN95cWdhMZkP9gHCwmULiIm+ecOajKt/MzL+9Nod3TZ7Q1PLwKCbJIRLgOioSa/krhnv3ssDg1XH6z//8tvPjh4P8Z4gXIYg/zN6N02csHLF0pK9O36sLnt8+RIKIewDxrgzKaG8KL/2i+KlD95LIYEAPsxLSy3Mf2Ha7bHEDwF8mzk9vqaiaM6sJGKGAOOKvyOuqCBv4oRI4oQA/qTPTS18YwtxQoAAMletYP3mApYAmkfzGPXfU2nkMUA93DjWVZJm/7aUYNHzbSl+rF770uGvTxIDDEG6eE1jBJHZpyJmJEwzeGliUK6tW5A+R01mqDltCjazBzhz4uOgfGGTQZGRNy56YB7HKIQhSK+02SnEACfl9cIaMWFYJSkMW4AwputzEUCvrp5eYoAAemGRnrAwXaRnEuG7SM8ksEhPWPWJU8QDAQJTn3/y2S5rRIDAdu0rc2ORnpTmll+xSE9Mt82+eu3LWKQnQ9O07Ofz2ju6iBPOB/jW77y4Mmfzdw2niRm2AB86Onsey8r95fyfxA9bwBhDQ//seffDBcuyQ/PqE7aAUfZ+18HDNW/tK+Veme3F7AHUO9Hgv7EauaFm80/+8PPVd6npHUe/y9bn6Lb11dY31Z1q1oJyGdc1CpcLs0wL+wBhCCAMAYQhgDAEEIYAwhBAGAIIQwBhCCAMAYQhgDAEEIYAwhBAGAIIQwBhCCAMAYQhgDAEEIYAwhBAGAIIQwBhCCAMAYT9CwAA//8e+JRxAAAABklEQVQDAPzjBh59IzZtAAAAAElFTkSuQmCC';
-  var DEFAULTS = { name: 'Candido Brown', title: 'Founder and CEO', phone: '1-800-735-0953', website: 'https://betteredsolutions.org', address: '', cta: true, booking: '', li: '', lic: '', ig: '', fb: '', ss: '', yt: '' };
+  var DEFAULTS = { name: 'Candido Brown', title: 'Founder and CEO', phone: '1-800-735-0953', website: 'https://betteredsolutions.org', address: '', cta: true, booking: '', li: '', lic: '', ig: '', fb: '', ss: 'https://thebetterschool.substack.com', tt: '', yt: '' };
   var KEY = 'bettered-signature-v1';
   var data = Object.assign({}, DEFAULTS);
-  try { var saved = JSON.parse(localStorage.getItem(KEY) || 'null'); if (saved) data = Object.assign(data, saved); } catch (e) { /* storage unavailable */ }
+  try { var saved = JSON.parse(localStorage.getItem(KEY) || 'null'); if (saved) Object.keys(saved).forEach(function (k) { if (saved[k] !== '' || !DEFAULTS[k]) data[k] = saved[k]; }); } // an empty saved field never hides a built-in default catch (e) { /* storage unavailable */ }
 
   var esc = function (s) { return String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); };
   var url = function (u) { u = String(u || '').trim(); if (!u) return ''; if (!/^https?:\/\//i.test(u)) u = 'https://' + u; return u; };
@@ -159,7 +160,7 @@
   function signature(d, logo) {
     var site = url(d.website) || 'https://betteredsolutions.org';
     var tel = String(d.phone || '').replace(/[^\d+]/g, '');
-    var socials = [['LinkedIn', d.li], ['BetterEd on LinkedIn', d.lic], ['Instagram', d.ig], ['Facebook', d.fb], ['Substack', d.ss], ['YouTube', d.yt]].filter(function (s) { return url(s[1]); });
+    var socials = [['LinkedIn', d.li], ['BetterEd on LinkedIn', d.lic], ['Instagram', d.ig], ['Facebook', d.fb], ['Substack', d.ss], ['TikTok', d.tt], ['YouTube', d.yt]].filter(function (s) { return url(s[1]); });
     var sep = '<span style="color:#FFC20E;font-size:9px;padding:0 7px;vertical-align:1px;">&#9632;</span>';
     var row = function (inner, pad) { return '<tr><td style="padding-top:' + (pad || 0) + 'px;font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:18px;color:#0B1F3A;">' + inner + '</td></tr>'; };
     var a = function (href, text, style) { return '<a href="' + esc(href) + '" style="color:#1A5FB4;text-decoration:none;' + (style || '') + '">' + text + '</a>'; };
@@ -187,8 +188,8 @@
     out.innerHTML = signature(data, PREVIEW_LOGO);
     var need = [];
     if (!String(data.address || '').trim()) need.push('mailing address');
-    if (!url(data.li) && !url(data.lic) && !url(data.ig) && !url(data.fb) && !url(data.ss)) need.push('social links');
-    missingEl.innerHTML = need.length ? '<strong>Still to add:</strong> ' + need.join(' and ') + '. Empty items are left out of the signature.' : '';
+    [['your LinkedIn', data.li], ['BetterEd\'s LinkedIn', data.lic], ['Instagram', data.ig], ['Facebook', data.fb]].forEach(function (s) { if (!url(s[1])) need.push(s[0]); });
+    missingEl.innerHTML = need.length ? '<strong>Still to add:</strong> ' + need.join(', ') + '. Empty items are left out of the signature.' : '';
     try { localStorage.setItem(KEY, JSON.stringify(data)); } catch (e) { /* storage unavailable */ }
   }
   form.addEventListener('input', function (e) { var k = e.target.getAttribute('data-k'); if (!k) return; data[k] = e.target.type === 'checkbox' ? e.target.checked : e.target.value; render(); });
