@@ -129,7 +129,8 @@ npx html-validate "dist/**/*.html"
 
 ## Deployment
 
-1. Import the repository into Vercel (framework preset: Other). `vercel.json` sets the build command and output.
+1. Import the repository into Vercel (framework preset: Other). The site lives in the `bettered-site/` folder of the edXponential repo, so set **Root Directory** to `bettered-site`; `vercel.json` there sets the build command and output.
+   Redirect sources in `vercel.json` end in `/` because `trailingSlash` is on: Vercel adds the slash first, so a source without one never matches.
 2. Add environment variables; deploy a **preview** and test the form end to end.
 3. Clear the launch conditions in `docs/08-…md`.
 4. Only with owner authorization: attach the domain and switch DNS. Keep the old host live 14 days for rollback.

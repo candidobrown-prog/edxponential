@@ -6,107 +6,107 @@
   "trailingSlash": true,
   "redirects": [
     {
-      "source": "/solutions/culture-climate",
+      "source": "/solutions/culture-climate/",
       "destination": "/solutions/school-health/",
       "permanent": true
     },
     {
-      "source": "/solutions/culture-climate/:path*",
+      "source": "/solutions/culture-climate/:path*/",
       "destination": "/solutions/school-health/",
       "permanent": true
     },
     {
-      "source": "/solutions/leadership-development",
+      "source": "/solutions/leadership-development/",
       "destination": "/solutions/leader-development/",
       "permanent": true
     },
     {
-      "source": "/solutions/leadership-development/:path*",
+      "source": "/solutions/leadership-development/:path*/",
       "destination": "/solutions/leader-development/",
       "permanent": true
     },
     {
-      "source": "/solutions/educator-development",
+      "source": "/solutions/educator-development/",
       "destination": "/solutions/teacher-development/",
       "permanent": true
     },
     {
-      "source": "/solutions/educator-development/:path*",
+      "source": "/solutions/educator-development/:path*/",
       "destination": "/solutions/teacher-development/",
       "permanent": true
     },
     {
-      "source": "/solutions/whole-school-turnaround",
+      "source": "/solutions/whole-school-turnaround/",
       "destination": "/solutions/intensive-care/",
       "permanent": true
     },
     {
-      "source": "/solutions/whole-school-turnaround/:path*",
+      "source": "/solutions/whole-school-turnaround/:path*/",
       "destination": "/solutions/intensive-care/",
       "permanent": true
     },
     {
-      "source": "/services",
+      "source": "/services/",
       "destination": "/solutions/",
       "permanent": true
     },
     {
-      "source": "/services/:path*",
+      "source": "/services/:path*/",
       "destination": "/solutions/",
       "permanent": true
     },
     {
-      "source": "/about/medical-model",
+      "source": "/about/medical-model/",
       "destination": "/approach/",
       "permanent": true
     },
     {
-      "source": "/about/candido-brown",
+      "source": "/about/candido-brown/",
       "destination": "/about/#founder",
       "permanent": true
     },
     {
-      "source": "/about/team",
+      "source": "/about/team/",
       "destination": "/about/#team",
       "permanent": true
     },
     {
-      "source": "/about/team/:path*",
+      "source": "/about/team/:path*/",
       "destination": "/about/#team",
       "permanent": true
     },
     {
-      "source": "/case-studies",
+      "source": "/case-studies/",
       "destination": "/results/",
       "permanent": true
     },
     {
-      "source": "/case-studies/shining-stars-montessori",
+      "source": "/case-studies/shining-stars-montessori/",
       "destination": "/results/shining-stars-montessori/",
       "permanent": true
     },
     {
-      "source": "/results/methodology",
+      "source": "/results/methodology/",
       "destination": "/results/#methodology",
       "permanent": true
     },
     {
-      "source": "/insights/research",
+      "source": "/insights/research/",
       "destination": "/insights/",
       "permanent": true
     },
     {
-      "source": "/insights/in-the-news",
+      "source": "/insights/in-the-news/",
       "destination": "/insights/",
       "permanent": true
     },
     {
-      "source": "/trust",
+      "source": "/trust/",
       "destination": "/privacy/",
       "permanent": false
     },
     {
-      "source": "/terms",
+      "source": "/terms/",
       "destination": "/privacy/",
       "permanent": false
     }
