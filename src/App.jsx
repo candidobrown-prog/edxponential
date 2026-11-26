@@ -193,6 +193,40 @@ import ClassifiedxAnalytics from './pages/classifiedx/ClassifiedxAnalytics';
 import ClassifiedxLMS from './pages/classifiedx/ClassifiedxLMS';
 import ClassifiedxPublish from './pages/classifiedx/ClassifiedxPublish';
 
+// ── BetterEd Solutions marketing site ──
+import BetterEdLayout from '@/bettered/layouts/BetterEdLayout';
+import BetterEdHome from '@/bettered/pages/Home';
+import BetterEdNotFound from '@/bettered/pages/NotFound';
+import SchoolHealthIndexHub from '@/bettered/pages/SchoolHealthIndex/Hub';
+import SchoolHealthIndexStart from '@/bettered/pages/SchoolHealthIndex/Start';
+import SchoolHealthIndexAssessment from '@/bettered/pages/SchoolHealthIndex/Assessment';
+import SchoolHealthIndexResults from '@/bettered/pages/SchoolHealthIndex/Results';
+import BetterEdServicesHub from '@/bettered/pages/Services/Hub';
+import BetterEdServiceDetail from '@/bettered/pages/Services/Detail';
+import BetterEdAcademiesHub from '@/bettered/pages/Academies/Hub';
+import BetterEdAcademyDetail from '@/bettered/pages/Academies/Detail';
+import BetterEdTalentExchangeHub from '@/bettered/pages/TalentExchange/Hub';
+import BetterEdTalentExchangeEmployers from '@/bettered/pages/TalentExchange/Employers';
+import BetterEdVerifiedCandidate from '@/bettered/pages/TalentExchange/VerifiedCandidate';
+import BetterEdCaseStudiesHub from '@/bettered/pages/CaseStudies/Hub';
+import BetterEdShiningStars from '@/bettered/pages/CaseStudies/ShiningStars';
+import BetterEdAboutHub from '@/bettered/pages/About/Hub';
+import BetterEdMedicalModel from '@/bettered/pages/About/MedicalModel';
+import BetterEdVitamins from '@/bettered/pages/About/Vitamins';
+import BetterEdCandidoBrown from '@/bettered/pages/About/CandidoBrown';
+import BetterEdTeam from '@/bettered/pages/About/Team';
+import BetterEdEdXponential from '@/bettered/pages/EdXponential';
+import BetterEdTheEdXponent from '@/bettered/pages/TheEdXponent';
+import BetterEdRaiseTeacherPay from '@/bettered/pages/RaiseTeacherPay';
+import BetterEdInsightsHub from '@/bettered/pages/Insights/Hub';
+import BetterEdArticleDetail from '@/bettered/pages/Insights/ArticleDetail';
+import BetterEdContact from '@/bettered/pages/Contact';
+import BetterEdLogin from '@/bettered/pages/Login';
+import BetterEdPrivacy from '@/bettered/pages/Legal/Privacy';
+import BetterEdTerms from '@/bettered/pages/Legal/Terms';
+import BetterEdAccessibility from '@/bettered/pages/Legal/Accessibility';
+import BetterEdCookies from '@/bettered/pages/Legal/Cookies';
+
 const ONBOARDING_KEY = 'edx_onboarding_complete';
 
 const AuthenticatedApp = () => {
@@ -258,7 +292,7 @@ const AuthenticatedApp = () => {
 
       {/* ── AUTHENTICATED APP ROUTES ── */}
       <Route element={<AppLayout />}>
-        <Route path="/" element={<PersonalizedDashboard />} />
+        <Route path="/dashboard" element={<PersonalizedDashboard />} />
         <Route path="/courses" element={<Courses />} />
         <Route path="/courses/:id" element={<CourseDetail />} />
         <Route path="/coaching" element={<Coaching />} />
@@ -505,6 +539,8 @@ const AuthenticatedApp = () => {
       <Route path="/ceo-command" element={<CEOCommandCenter />} />
       <Route path="*" element={<PageNotFound />} />
     </Routes>
+    <PlatformChatbot />
+    <AskEddy />
     </>
     </OnboardingGate>
     </OnboardingProvider>
@@ -518,9 +554,61 @@ function App() {
     <AuthProvider>
       <QueryClientProvider client={queryClientInstance}>
         <Router>
-          <AuthenticatedApp />
-          <PlatformChatbot />
-          <AskEddy />
+          <Routes>
+            {/* ── BetterEd Solutions: public marketing site, no auth required ── */}
+            <Route element={<BetterEdLayout />}>
+              <Route path="/" element={<BetterEdHome />} />
+
+              <Route path="/school-health-index" element={<SchoolHealthIndexHub />} />
+              <Route path="/school-health-index/start" element={<SchoolHealthIndexStart />} />
+              <Route path="/school-health-index/assessment" element={<SchoolHealthIndexAssessment />} />
+              <Route path="/school-health-index/results" element={<SchoolHealthIndexResults />} />
+              <Route path="/school-health-index/*" element={<BetterEdNotFound />} />
+
+              <Route path="/services" element={<BetterEdServicesHub />} />
+              <Route path="/services/:slug" element={<BetterEdServiceDetail />} />
+              <Route path="/services/*" element={<BetterEdNotFound />} />
+
+              <Route path="/academies" element={<BetterEdAcademiesHub />} />
+              <Route path="/academies/:slug" element={<BetterEdAcademyDetail />} />
+              <Route path="/academies/*" element={<BetterEdNotFound />} />
+
+              <Route path="/talent-exchange" element={<BetterEdTalentExchangeHub />} />
+              <Route path="/talent-exchange/employers" element={<BetterEdTalentExchangeEmployers />} />
+              <Route path="/talent-exchange/verified-candidate" element={<BetterEdVerifiedCandidate />} />
+              <Route path="/talent-exchange/*" element={<BetterEdNotFound />} />
+
+              <Route path="/case-studies" element={<BetterEdCaseStudiesHub />} />
+              <Route path="/case-studies/shining-stars-montessori" element={<BetterEdShiningStars />} />
+              <Route path="/case-studies/*" element={<BetterEdNotFound />} />
+
+              <Route path="/about" element={<BetterEdAboutHub />} />
+              <Route path="/about/medical-model" element={<BetterEdMedicalModel />} />
+              <Route path="/about/bettered-vitamins" element={<BetterEdVitamins />} />
+              <Route path="/about/candido-brown" element={<BetterEdCandidoBrown />} />
+              <Route path="/about/team" element={<BetterEdTeam />} />
+              <Route path="/about/*" element={<BetterEdNotFound />} />
+
+              <Route path="/edxponential" element={<BetterEdEdXponential />} />
+              <Route path="/the-edxponent" element={<BetterEdTheEdXponent />} />
+              <Route path="/raise-teacher-pay" element={<BetterEdRaiseTeacherPay />} />
+
+              <Route path="/insights" element={<BetterEdInsightsHub />} />
+              <Route path="/insights/:slug" element={<BetterEdArticleDetail />} />
+              <Route path="/insights/*" element={<BetterEdNotFound />} />
+
+              <Route path="/contact" element={<BetterEdContact />} />
+              <Route path="/login" element={<BetterEdLogin />} />
+
+              <Route path="/privacy" element={<BetterEdPrivacy />} />
+              <Route path="/terms" element={<BetterEdTerms />} />
+              <Route path="/accessibility" element={<BetterEdAccessibility />} />
+              <Route path="/cookies" element={<BetterEdCookies />} />
+            </Route>
+
+            {/* ── edXponential platform (authenticated) ── */}
+            <Route path="/*" element={<AuthenticatedApp />} />
+          </Routes>
         </Router>
         <Toaster />
       </QueryClientProvider>
