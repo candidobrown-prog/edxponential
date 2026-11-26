@@ -1,0 +1,136 @@
+# betteredsolutions.org — BetterEd Solutions website
+
+Static site + one serverless function. No client framework. Built to the BetterEd Brand Guidelines (7 Nov 2026) and Brand Kit Ed. 1.0.
+
+## Local setup
+
+Requires Node 20+.
+
+```bash
+npm install            # dev tools only (axe-core, html-validate, lighthouse, fonts)
+node build.mjs         # production build -> dist/
+node build.mjs --preview   # private review build -> preview/ (flat files, includes drafts)
+node scripts/serve.mjs dist 4173   # serve dist at http://localhost:4173
+```
+
+## Project architecture
+
+```
+build.mjs                  generator: renders routes, versions CSS/JS, writes sitemap/robots
+src/content/site.mjs       all page content (structured)
+src/content/claims.mjs     claims registry + publish guard
+src/templates/lib.mjs      layout, header, footer, Diagnostic Cross artwork, shared components, JSON-LD helpers
+src/templates/pages.mjs    one function per route
+src/assets/                styles.css (design tokens at top), main.js (motion + UI), logos, fonts
+api/contact.js             POST /api/contact (Vercel function)
+vercel.json                clean URLs, redirects from the old site, security headers, caching
+scripts/                   QA: serve, screenshots, axe + interaction tests, links, OG image generator
+docs/                      phase deliverables (registers, red teams, strategy, design system, QA, launch)
+```
+
+## Content editing
+
+- Page copy lives in `src/content/site.mjs`. Change text there, run the build.
+- EdSolutions must stay in this order: School Health (culture & climate), Leader Development, Teacher Development, Intensive Care (whole-school turnaround). The array order is the display order everywhere, and each has a `sub` line that always appears with the name.
+- Levels of intervention: Core (one leader, the 101), Crew (a leader's team, with or without the leader), Cohort (across campuses), Community (the whole school). `levels` in `site.mjs` defines them; each solution's `levels` object lists the ones it offers (School Health and Intensive Care: all four; Leader Development: core, crew, cohort; Teacher Development: crew, cohort, community). The matrix and solution-page sections render from that data.
+- The method is six steps: Intake, Diagnosis, Treatment plan, Treatment, Strengthen, Discharge & follow-up (`method` in `site.mjs`).
+- The headline is "Schools can get well. Fast." Urgency is a brand value; do not attach a specific timeline unless the founder supplies one.
+- No eyebrow labels above headings: `kicker()` is a no-op.
+- The tagline is exactly "Happy. Healthy. High-performing." — it is rendered by `tagline()` in `lib.mjs`; do not retype it.
+- Say "teachers", never "guides". Write "MASTERY", never "M.A.S.T.E.R.Y.".
+
+## Publishing an article
+
+Add an object to `insights` in `site.mjs`: `slug, status, title, deck, category, author, date (YYYY-MM-DD), readMinutes, related (EdSolution slugs), body` where body is a list of `['p', text]`, `['h2', text]` or `['quote', text]`. Set `status: 'review'` to see it in the preview build only; set `'published'` to ship it. Production builds refuse to render draft content.
+
+## Adding a case study
+
+Add to `caseStudies` with the seven-stage structure (`condition, diagnosis, treatment, strengthening, sustainability` + `claims` for the result and evidence table). Every number must be a claim ID.
+
+## Updating claims
+
+Edit `src/content/claims.mjs`. A claim prints only if its `status` is in `PUBLISHABLE`. Pages call `claim('CL-01')`; if someone sets a claim to `DO NOT PUBLISH` while a page still uses it, the build fails — which is the point. Update `lastReview` whenever you touch a claim.
+
+## Adding photographs
+
+1. Confirm the release/consent and add a row to the media inventory in `docs/05-…md`.
+2. Export WebP/AVIF at 1x and 2x, under ~300 KB for mobile heroes.
+3. Place in `src/assets/img/` and reference with explicit `width`/`height` and meaningful `alt` (empty alt only for decorative images).
+4. Founder portrait: set `founder.photo` and render it inside `.portrait-card` in `founderSection()`.
+
+## Updating team members
+
+Edit `team` in `site.mjs` (`[name, title]`). No credential suffixes; use the person's preferred name.
+
+## Analytics
+
+`main.js` exposes `window.betteredTrack(name, props)` and auto-tracks `data-track` clicks and `data-page-event` page loads. Nothing is sent unless a provider is installed. To add Plausible: include its script in `layout()` and add its host to the CSP `script-src` and `connect-src` in `vercel.json`. Event map: `docs/05-…md`.
+
+## Forms
+
+`/contact/` posts JSON to `/api/contact`. The function validates server-side, checks a honeypot and minimum fill time, rate-limits per instance (add Vercel Firewall rate limiting for production), and sends via Resend. It returns `{ ok: true }` only when the provider accepts the message; the page never shows success otherwise.
+
+Environment variables (Vercel → Project → Settings → Environment Variables):
+
+| Name | Required | Purpose |
+|---|---|---|
+| `RESEND_API_KEY` | yes | Email delivery |
+| `CONTACT_TO` | no | Defaults to info@betteredsolutions.org |
+| `CONTACT_FROM` | recommended | A sender on a verified domain, e.g. `BetterEd Website <website@betteredsolutions.org>` |
+
+Never commit keys. `.env*` files are git-ignored.
+
+## Brand lock
+
+The BetterEd brand is **locked** (version 2.5, approved by Candido Brown, 14 Nov 2026). The official book is `brand/BRAND.md`, with logos, icons and tokens in `brand/`; the same toolkit is published as the BetterEd Brand Toolkit artifact. Every build runs `scripts/check-brand.mjs` and stops if a logo, icon, font, the B-Cross geometry, a color or font token, or the tagline changes. To change the brand, get the founder's written approval, bump the version in `brand/brand.lock.json`, record it in `brand/BRAND.md`, and run `node scripts/check-brand.mjs --update`.
+
+## Brand system
+
+- **Mark:** the B-Cross. A medical cross whose right arm forms the two bowls of a B, with a gold core (the diagnosis). `crossArt()` in `lib.mjs` draws it as artwork; the blocks assemble in order, the school getting better.
+- **The BetterEd Model:** the plain cross as a diagram, one EdSolution per arm and the diagnosis at the center (`modelFigure()` in `pages.mjs`). Use it on pages and in decks, never as the logo. Logo files in `src/assets/` are outlined SVGs generated from the brand fonts, so they render identically everywhere.
+- **Type:** Source Serif 4 for headlines and reading text, Work Sans for interface text (SIL OFL 1.1, self-hosted in `src/assets/fonts/`).
+- **Color:** Navy `#0B1F3A`, Harbor `#1A5FB4`, Signal `#FFC20E`, Paper `#F6F4EE`. Accent points are squares, matching the mark.
+- After changing the logo, run `node scripts/gen-images.mjs` to regenerate `og-default.png` and `apple-touch-icon.png`.
+
+## EdSolution icons and the body metaphor
+
+School Health is the heart (culture and climate; a culture problem is a heart condition), Leader Development the head, Teacher Development the hands, Intensive Care the whole body. Icons live in `src/templates/icons.mjs` (heart, head, hand, body), each with a gold plus for care; `icon` on each solution in `site.mjs` picks one.
+
+## Background video hero
+
+The home hero switches to a full-bleed background video when `src/assets/video/hero.mp4` exists. To add one:
+
+```bash
+scripts/encode-hero-video.sh path/to/licensed-clip.mp4 [start-seconds] [duration-seconds]
+node build.mjs
+```
+
+The script writes `hero.mp4`, `hero.webm` and `hero-poster.jpg` (1920 px wide, no audio). Use a licensed clip with model releases for anyone identifiable, 10 to 20 seconds, that loops well. The video is muted, never plays for visitors who prefer reduced motion, pauses when the tab is hidden, and has a visible pause button. Delete the three files to return to the standard hero.
+
+## Motion system
+
+Tokens at the top of `styles.css` (`--m-*` durations, `--d-*` distances, `--e-*` easings). Behaviour in `main.js`:
+- `.cross-art[data-draw="load"]` assembles once on load; `data-draw="scroll"` assembles when it enters the viewport.
+- `[data-reveal]` fades/rises 16 px once. Content is visible without JavaScript.
+- `[data-count]` counts once; the final value is already in the HTML.
+- `.step[data-stage]` drives the method spine: the cross fills in stage by stage.
+- `prefers-reduced-motion: reduce` shows every final state immediately.
+Rule of thumb: one primary and one supporting motion per viewport; nothing loops.
+
+## QA
+
+```bash
+node scripts/serve.mjs dist 4173 &
+node scripts/qa-a11y.mjs        # axe on all routes + keyboard, form, motion tests
+node scripts/qa-links.mjs       # internal links and anchors
+node scripts/qa-shots.mjs       # screenshots to qa/shots
+npx html-validate "dist/**/*.html"
+```
+
+## Deployment
+
+1. Import the repository into Vercel (framework preset: Other). The site lives in the `bettered-site/` folder of the edXponential repo, so set **Root Directory** to `bettered-site`; `vercel.json` there sets the build command and output.
+   Redirect sources in `vercel.json` end in `/` because `trailingSlash` is on: Vercel adds the slash first, so a source without one never matches.
+2. Add environment variables; deploy a **preview** and test the form end to end.
+3. Clear the launch conditions in `docs/08-…md`.
+4. Only with owner authorization: attach the domain and switch DNS. Keep the old host live 14 days for rollback.
